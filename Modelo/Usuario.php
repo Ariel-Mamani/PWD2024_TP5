@@ -4,6 +4,7 @@ class Usuario{
     private $nombre;
     private $password;
     private $email;
+    private $usdeshabilitado;
     private $mensajeoperacion;
 
     public function __construct()
@@ -12,14 +13,16 @@ class Usuario{
         $this->nombre = "";
         $this->password = "";
         $this->email = "";
+        $this->usdeshabilitado = null;
         $this->mensajeoperacion = "";
     }
 
-    public function setear($idUsuario, $nombre, $password, $email)    {
+    public function setear($idUsuario, $nombre, $password, $email, $usdeshabilitado)    {
         $this->setIdUsuario($idUsuario);
         $this->setNombre($nombre);
         $this->setPassword($password);
         $this->setEmail($email);
+        $this->setUsdeshabilitado($usdeshabilitado);
     }
     // Metodo get y set ID
     public function getIdUsuario(){
@@ -53,6 +56,14 @@ class Usuario{
         $this->email = $valor;
     }
 
+    // Metodo get y set DESHASBILITADO
+    public function getUsdeshabilitado(){
+        return $this->usdeshabilitado;
+    }
+    public function setUsdeshabilitado($valor){
+        $this->usdeshabilitado = $valor;
+    }
+
     // Metodo get y set MENSAJE ERROR
     public function getmensajeoperacion(){
         return $this->mensajeoperacion;
@@ -72,6 +83,7 @@ class Usuario{
                     $this -> setNombre($row['usnombre']);
                     $this -> setPassword($row['uspass']);
                     $this -> setEmail($row['usemail']);
+                    $this->setUsdeshabilitado($row['usdeshabilitado']);
                     $exito = true;
                 }
             }
@@ -82,11 +94,11 @@ class Usuario{
     public function insertar(){
         $resp = false;
         $base  =  new BaseDatos();
-        $sql  =  "INSERT INTO usuario(idusuario, usnombre, uspass, usemail) VALUES('"
-        .$this->getIdUsuario()."', '"
+        $sql  =  "INSERT INTO usuario(usnombre, uspass, usemail) VALUES('"
         .$this->getNombre()."', '"
         .$this->getPassword()."', '"
-        .$this->getEmail()."');";
+        .$this->getEmail()."','"
+        .$this->getUsdeshabilitado()."');";
         if ($base->Iniciar()) {
             if($base->Ejecutar($sql)){
                 $resp = true;
@@ -105,7 +117,9 @@ class Usuario{
         $sql = "UPDATE usuario SET 
         usnombre = '".$this->getNombre()."', 
         uspass = '".$this->getPassword()."', 
-        usemail = '".$this->getEmail()."' WHERE idusuario = '".$this->getIdUsuario()."'";
+        usemail = '".$this->getEmail()."', 
+        usdeshabilitado = '".$this->getUsdeshabilitado()."' 
+        WHERE idusuario = '".$this->getIdUsuario()."'";
         if ($base->Iniciar()) {
             if($base->Ejecutar($sql)){
                 $resp = true;
@@ -118,21 +132,28 @@ class Usuario{
         return $resp;
     }
 
-    public function eliminar(){
+    /**
+     * Summary of borrar
+     * @return bool
+     */
+    public function borrar(){
         $resp = false;
-        $base = new BaseDatos();
-        $sql = "DELETE FROM usuario WHERE idusuario = '".$this->getIdUsuario()."'";
-        if ($base->Iniciar()) {
-            if ($base->Ejecutar($sql)) {
-                return true;
+        $base = new BaseDatos(); 
+        $sql = "UPDATE usuario SET usdeshabilitado = '".date("Y-m-d H:i:s")."' ".
+            " WHERE idusuario = ".$this->getIdUsuario();  
+
+        if($base->Iniciar()){  
+            if($base->Ejecutar($sql)){  
+                $resp = true;
             }else{
-                $this->setmensajeoperacion("Tabla->eliminar: ".$base->getError());
+                $this->setMensajeoperacion("Usuario->borrar: ".$base->getError()); 
             }
         }else{
-            $this->setmensajeoperacion("Tabla->eliminar: ".$base->getError());
+            $this->setMensajeoperacion("Usuario->borrar: ".$base->getError());  
         }
         return $resp;
     }
+
 
     public static function listar($parametro=""){
         $arreglo = array();
@@ -146,8 +167,7 @@ class Usuario{
             if($res > 0){
                 while ($row = $base->Registro()){
                     $obj = new Usuario();
-                    $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usemail']);
-                    array_push($arreglo, $obj);
+                    $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usemail'], $row['usdeshabilitado']);                    array_push($arreglo, $obj);
                 }
             }
         }else{
