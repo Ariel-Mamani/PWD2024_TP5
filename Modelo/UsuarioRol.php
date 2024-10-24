@@ -50,8 +50,8 @@ class UsuarioRol{
         if($base->Iniciar()){
             if($base->Ejecutar($sql)){
                 if ($row = $base->Registro()) {
-                    $this->objUsuario->buscar($row['idusuario']); // Busca el usuario por id
-                    $this->objRol->buscar($row['idrol']);         // Busca el rol por id
+                    $this->getUsuario()->buscar($row['idusuario']); // Busca el usuario por id
+                    $this->getRol()->buscar($row['idrol']);         // Busca el rol por id
                     $exito = true;
                 }
             }else{
@@ -68,8 +68,8 @@ class UsuarioRol{
         $base = new BaseDatos();
         $resp = false;
         $sql = "INSERT INTO usuariorol(idusuario, idrol) VALUES(" 
-        . $this->objUsuario->getIdUsuario() . ", " 
-        . $this->objRol->getIdRol() . ")";
+        . $this->getUsuario()->getIdUsuario() . ", " 
+        . $this->getRol()->getIdRol() . ")";
         if($base->Iniciar()) {
             if($base->Ejecutar($sql)){
                 $resp = true;
@@ -87,8 +87,8 @@ class UsuarioRol{
         $base = new BaseDatos();
         $resp = false;
         $sql = "DELETE FROM usuariorol WHERE idusuario = " 
-        . $this->objUsuario->getIdUsuario() . " AND idrol = " 
-        . $this->objRol->getIdRol();
+        . $this->getUsuario()->getIdUsuario() . " AND idrol = " 
+        . $this->getRol()->getIdRol();
         if($base->Iniciar()){
             if($base->Ejecutar($sql)){
                 $resp = true;
