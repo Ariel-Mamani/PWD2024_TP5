@@ -11,7 +11,6 @@ include_once '../Estructura/header.php';
         <div class="form-group text-center">
             Nombre usuario:<input type="text" name="" id="" required><br><br>
             Contraseña:<input type="text" name="" id="" required><br><br>
-            Email:<input type="text" name="" id="" required><br><br>
             <input type="submit" value="Enviar">
         </div>
     </form>

@@ -15,10 +15,10 @@ include_once ($ROOT.'Util/funciones.php');
 
 
 // Variable que define la pagina de autenticacion del proyecto
-$INICIO = "Location:http://".$_SERVER['HTTP_HOST']."/$PROYECTO/vista/inicio/login/indexLogin.php";
+$INICIO = "Location:http://".$_SERVER['HTTP_HOST']."/$PROYECTO/vista/inicio/Login/login.php";
 
 // variable que define la pagina principal del proyecto (menu principal)
-$PRINCIPAL = "Location:http://".$_SERVER['HTTP_HOST']."/$PROYECTO/vista/inicio/principal/principal.php";
+$PRINCIPAL = "Location:http://".$_SERVER['HTTP_HOST']."/$PROYECTO/vista/inicio/principal.php";
 
 
 $GLOBALS['ROOT']=$ROOT;

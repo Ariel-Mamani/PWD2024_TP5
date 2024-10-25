@@ -3,7 +3,7 @@
 CREATE TABLE usuario (
     idusuario bigint(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     usnombre varchar(50),
-    uspass varchar(50)),
+    uspass varchar(50),
     usmail varchar(50),
     usdeshabilitado timestamp
 )

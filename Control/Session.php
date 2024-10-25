@@ -1,40 +1,45 @@
 <?php
 class Session {
-    private $id;
-    private $usuario;
-    private $psw;
-    private $rol;
 
     public function __construct(){
         session_start();
-        $this->id = $_SESSION['id'];
-        $this->usuario = "";
-        $this->psw = "";
-        $this->rol = "";
+        $_SESSION['usuario'] = "";
+        $_SESSION['psw'] = "";
+        $_SESSION['rol'] = "";
     }
     /**
      * Summary of getUsuario
      * @return string
      */
     public function getUsuario(){
-        return $this->usuario;
+        return $_SESSION['usuario'];
     }
     public function setUsuario($usr){
-        $this->usuario = $usr;
+        $_SESSION['usuario'] = $usr;
+    }
+        /**
+     * Summary of getUsuario
+     * @return string
+     */
+    public function getRol(){
+        return $_SESSION['rol'];
+    }
+    public function setRol($usr){
+        $_SESSION['rol'] = $usr;
     }
     /**
      * Summary of getPsw
      * @return string
      */
     public function getPsw(){
-        return $this->psw;
+        return $_SESSION['psw'];
     }
     public function setPsw($valor){
-        $this->psw = $valor;
+        $_SESSION['psw'] = $valor;
     }
+
+
     public function iniciar($usuario, $psw){
-        $this->usuario = $usuario;
-        $this->psw = $psw;
         $_SESSION['usuario'] = $usuario;
         $_SESSION['psw'] = $psw;
     }
