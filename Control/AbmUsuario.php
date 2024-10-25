@@ -52,7 +52,7 @@ class AbmUsuario{
         
         if( isset($param['idusuario']) ){
             $objUsuario = new Usuario();
-            $objUsuario->setear($param['idusuario'], null, null);
+            $objUsuario->setear($param['idusuario'], null, null, null);
         }
         return $objUsuario;
     }
@@ -94,7 +94,7 @@ class AbmUsuario{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objUsuario = $this->cargarObjetoConClave($param);
-            if ($objUsuario!=null and $objUsuario->borrar()){
+            if ($objUsuario!=null and $objUsuario->eliminar()){
                 $resp = true;
             }
         }
@@ -130,8 +130,10 @@ class AbmUsuario{
                 $where.=" and idusuario =".$param['idusuario'];
             if  (isset($param['usnombre']))
                  $where.=" and usnombre ='".$param['usnombre']."'";
+                 if  (isset($param['uspass']))
+                 $where.=" and uspass ='".$param['uspass']."'";
             if  (isset($param['usmail']))
-            $where.=" and usmail ='".$param['usmail']."'";    
+                $where.=" and usmail ='".$param['usmail']."'";    
         }
         $objUsuario = new Usuario();
         $arreglo = $objUsuario->listar($where);
