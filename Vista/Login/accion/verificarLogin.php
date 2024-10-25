@@ -1,4 +1,14 @@
 <?php
+session_start();
+/*
+sesion star
+crear el objeto session
+cargar usuario y contraseña en el obj con $objSession->iniciar()
+$objSession->validar()
+si es true va a pagina segura con header("Location: vista/inicio/principalSegura.php");
+si es false $objSession->cerrar() -->> header("Location: vista/Login/login.php");
+
+*/
 $titulo = "TP 5 - Login";
 include_once '../../Estructura/header.php';
 echo '<div class="divtitulo"> <h1>';

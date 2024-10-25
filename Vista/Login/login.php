@@ -15,6 +15,9 @@ include_once '../Estructura/header.php';
         </div>
     </form>
 </body>
+
+clave <input id="clave" name="clave" type="text">
+<a onclick='document.getElementById("md5").value=hex_md5(document.getElementById("clave").value)' href="#">
 <!-- Footer -->
 <?php include_once '../Estructura/footer.php'; ?>
 

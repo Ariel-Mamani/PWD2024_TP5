@@ -147,7 +147,7 @@ class Usuario extends BaseDatos{
             if($res > -1){
                 if($res > 0){
                     while ($row = $this->Registro()){
-                        if ($row['borrado'] === NULL){
+                        if ($row['usdeshabilitado'] === NULL){
                             $obj = new Usuario();
                             $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usemail']);
                             array_push($arreglo, $obj);

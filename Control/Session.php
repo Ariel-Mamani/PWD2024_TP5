@@ -57,14 +57,17 @@ class Session {
 
         if($this->getUsuario() == $listaAbm[0]->getNombre() and $this->getPsw() == $listaAbm[0]->getPassword()){
             $resp = true;
+
         }
         return $resp;
     }
 
-
-
-
-
+    public function cerrar(){
+        // remove all session variables
+        session_unset();
+        // destroy the session
+        session_destroy();
+    }
 
 }
 ?>
