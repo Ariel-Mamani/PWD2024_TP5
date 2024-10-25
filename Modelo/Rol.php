@@ -1,10 +1,11 @@
 <?php
-class Rol {
+class Rol extends BaseDatos{
     private $idRol;
     private $descripcion;
     private $mensajeoperacion;
 
     public function __construct() {
+        parent::__construct();
         $this->idRol = "";
         $this->descripcion = "";
         $this->mensajeoperacion = "";
@@ -42,98 +43,114 @@ class Rol {
         $this->mensajeoperacion = $valor;
     }
 
-    //Método para buscar un rol por id
-    public function buscar($idRol){
-        $base = new BaseDatos();
-        $sql = "SELECT * FROM rol WHERE idrol = " . $idRol;
-        $exito = false;
-        if($base->Iniciar()){
-            if($base->Ejecutar($sql)){
-                if($row = $base->Registro()){
-                    $this->setIdRol($row['idrol']);
-                    $this->setDescripcion($row['rodescripcion']);
-                    $exito = true;
+    
+    /**
+     * Summary of cargar
+     * @return bool
+     */
+    public function cargar(){
+        $resp = false;
+        $sql="SELECT * FROM rol WHERE idrol = ".$this->getIdRol();
+        if ($this->Iniciar()) {
+            $res = $this->Ejecutar($sql);
+            if($res>-1){
+                if($res>0){
+                    $resp = true;
+                    $row = $this->Registro();
+                    $this->setear($row['idrol'], $row['roldescripcion']);
                 }
-            }else{
-                $this->setMensajeoperacion("Rol->buscar: " . $base->getError());
             }
-        }else{
-            $this->setMensajeoperacion("Rol->buscar: " . $base->getError());
+        } else {
+            $this->setMensajeoperacion("rol->cargar: ".$this->getError());
         }
-        return $exito;
+        return $resp;
     }
-
-    //Método para insertar un nuevo rol
+    
+ /**
+     * Summary of insertar
+     * @return bool
+     */
     public function insertar(){
-        $base = new BaseDatos();
         $resp = false;
-        $sql = "INSERT INTO rol(rodescripcion) VALUES('" . $this->getDescripcion() . "')";
-        if($base->Iniciar()){
-            if($base->Ejecutar($sql)){
+        $sql="INSERT INTO rol (roldescripcion)  VALUES ('".$this->getDescripcion()."');";
+        if ($this->Iniciar()) {
+            if ($elid = $this->Ejecutar($sql)) {
+                $this->setIdRol($elid);
                 $resp = true;
-            }else{
-                $this->setMensajeoperacion("Rol->insertar: " . $base->getError());
+            } else {
+                $this->setMensajeoperacion("rol->insertar: ".$this->getError());
             }
-        }else{
-            $this->setMensajeoperacion("Rol->insertar: " . $base->getError());
+        } else {
+            $this->setMensajeoperacion("rol->insertar: ".$this->getError());
         }
         return $resp;
     }
-
-    // Método para modificar un rol existente
+    /**
+     * Summary of modificar
+     * @return bool
+     */
     public function modificar(){
-        $base = new BaseDatos();
         $resp = false;
-        $sql = "UPDATE rol SET rodescripcion = '" . $this->getDescripcion() . "' WHERE idrol = " . $this->getIdRol();
-        if($base->Iniciar()) {
-            if($base->Ejecutar($sql)){
+        $sql="UPDATE rol SET roldescripcion = '".$this->getDescripcion()."' ".
+            " WHERE idrol = ".$this->getIdRol();
+        if ($this->Iniciar()) {
+            if ($this->Ejecutar($sql)) {
                 $resp = true;
-            }else{
-                $this->setMensajeoperacion("Rol->modificar: " . $base->getError());
+            } else {
+                $this->setMensajeoperacion("rol->modificar: ".$this->getError());
             }
-        }else{
-            $this->setMensajeoperacion("Rol->modificar: " . $base->getError());
+        } else {
+            $this->setMensajeoperacion("rol->modificar: ".$this->getError());
         }
         return $resp;
     }
-
-    // Método para eliminar un rol
+    /**
+     * Summary of eliminar
+     * @return bool
+     */
     public function eliminar(){
-        $base = new BaseDatos();
         $resp = false;
-        $sql = "DELETE FROM rol WHERE idrol = " . $this->getIdRol();
-        if($base->Iniciar()) {
-            if($base->Ejecutar($sql)){
+        $sql="DELETE FROM rol WHERE idrol = ".$this->getIdRol();
+        if ($this->Iniciar()) {
+            if ($this->Ejecutar($sql) > 0) {
                 $resp = true;
-            }else{
-                $this->setMensajeoperacion("Rol->eliminar: " . $base->getError());
+            } else {
+                $this->setMensajeoperacion("rol->eliminar: ".$this->getError());
             }
-        }else{
-            $this->setMensajeoperacion("Rol->eliminar: " . $base->getError());
+        } else {
+            $this->setMensajeoperacion("rol->eliminar: ".$this->getError());
         }
         return $resp;
     }
 
-    // Método para listar roles
-    public static function listar($parametro = ""){
+      /**
+     * Summary of listar
+     * @param mixed $parametro
+     * @return array
+     */
+    public function listar($parametro=""){
         $arreglo = array();
-        $base = new BaseDatos();
-        $sql = "SELECT * FROM rol ";
-        if($parametro != "") {
-            $sql .= " WHERE " . $parametro;
+        $sql="SELECT * FROM rol ";
+        if ($parametro!="") {
+            $sql.= ' WHERE '.$parametro;
         }
-        if($base->Iniciar()){
-            if($base->Ejecutar($sql)){
-                while ($row = $base->Registro()) {
-                    $obj = new Rol();
-                    $obj->setear($row['idrol'], $row['rodescripcion']);
-                    array_push($arreglo, $obj);
-                }
+        if ($this->Iniciar()) {
+            $res = $this->Ejecutar($sql);
+            if($res>-1){
+                if($res>0){
+                    while ($row = $this->Registro()){
+                            $objrol= new rol();
+                            $objrol->setear($row['idrol'], $row['roldescripcion']);
+                            array_push($arreglo, $objrol);
+                    }
+                } 
             }else{
-                self::setMensajeoperacion("Rol->listar: " . $base->getError());
+                $this->setMensajeoperacion("rol->listar: ".$this->getError());
             }
         }
         return $arreglo;
     }
+    
 }
+
 ?>

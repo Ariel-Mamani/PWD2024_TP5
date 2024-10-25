@@ -1,28 +1,26 @@
 <?php
-class Usuario{
+class Usuario extends BaseDatos{
     private $idUsuario;
     private $nombre;
     private $password;
     private $email;
-    private $usdeshabilitado;
     private $mensajeoperacion;
 
     public function __construct()
     {
+        parent::__construct();
         $this->idUsuario = "";
         $this->nombre = "";
         $this->password = "";
         $this->email = "";
-        $this->usdeshabilitado = null;
         $this->mensajeoperacion = "";
     }
 
-    public function setear($idUsuario, $nombre, $password, $email, $usdeshabilitado)    {
+    public function setear($idUsuario, $nombre, $password, $email)    {
         $this->setIdUsuario($idUsuario);
         $this->setNombre($nombre);
         $this->setPassword($password);
         $this->setEmail($email);
-        $this->setUsdeshabilitado($usdeshabilitado);
     }
     // Metodo get y set ID
     public function getIdUsuario(){
@@ -56,14 +54,6 @@ class Usuario{
         $this->email = $valor;
     }
 
-    // Metodo get y set DESHASBILITADO
-    public function getUsdeshabilitado(){
-        return $this->usdeshabilitado;
-    }
-    public function setUsdeshabilitado($valor){
-        $this->usdeshabilitado = $valor;
-    }
-
     // Metodo get y set MENSAJE ERROR
     public function getmensajeoperacion(){
         return $this->mensajeoperacion;
@@ -72,107 +62,105 @@ class Usuario{
         $this->mensajeoperacion = $valor; 
     }
 
-    public function buscar($idUsuario){
-        $base = new BaseDatos();
+    public function cargar(){
         $exito = false;
-        $sql = "Select * from usuario where idusuario =" . $idUsuario;
-        if($base ->Iniciar()){
-            if($base->Ejecutar($sql)){
-                if($row = $base->Registro()){
-                    $this -> setIdUsuario($idUsuario);
-                    $this -> setNombre($row['usnombre']);
-                    $this -> setPassword($row['uspass']);
-                    $this -> setEmail($row['usemail']);
-                    $this->setUsdeshabilitado($row['usdeshabilitado']);
-                    $exito = true;
-                }
+        $sql = "SELECT * FROM usuario WHERE idusuario =" . $this->getIdUsuario();
+        if($this ->Iniciar()){
+            $res = $this->Ejecutar($sql);
+            if($res > -1){
+                $row = $this->Registro();
+                $this->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usemail']);
+                $exito = true;
+            }else{
+                $this->setmensajeoperacion("Usuario->cargar: ".$this->getError());
             }
+        }else{
+                $this->setmensajeoperacion("Usuario->cargar: ".$this->getError());
         }
         return $exito;
     }
 
     public function insertar(){
         $resp = false;
-        $base  =  new BaseDatos();
-        $sql  =  "INSERT INTO usuario(usnombre, uspass, usemail) VALUES('"
+        $sql  =  "INSERT INTO usuario(idusuario, usnombre, uspass, usemail) VALUES("
+        .$this->getIdUsuario().", '"
         .$this->getNombre()."', '"
         .$this->getPassword()."', '"
-        .$this->getEmail()."','"
-        .$this->getUsdeshabilitado()."');";
-        if ($base->Iniciar()) {
-            if($base->Ejecutar($sql)){
+        .$this->getEmail()."');";
+        if ($this->Iniciar()) {
+            if($elid = $this->Ejecutar($sql)){
+                $this->setIdUsuario($elid);
                 $resp = true;
             }else{
-                $this->setmensajeoperacion("Usuario->insertar: ".$base->getError());
+                $this->setmensajeoperacion("Usuario->insertar: ".$this->getError());
             }
         }else{
-            $this->setmensajeoperacion("Usuario->insertar: ".$base->getError());
+            $this->setmensajeoperacion("Usuario->insertar: ".$this->getError());
         }
         return $resp;
     }
-
+    /**
+     * Summary of modificar
+     * @return bool
+     */
     public function modificar(){
         $resp = false;
-        $base = new BaseDatos();
         $sql = "UPDATE usuario SET 
         usnombre = '".$this->getNombre()."', 
         uspass = '".$this->getPassword()."', 
-        usemail = '".$this->getEmail()."', 
-        usdeshabilitado = '".$this->getUsdeshabilitado()."' 
-        WHERE idusuario = '".$this->getIdUsuario()."'";
-        if ($base->Iniciar()) {
-            if($base->Ejecutar($sql)){
+        usemail = '".$this->getEmail()."' WHERE idusuario = ".$this->getIdUsuario();
+        if ($this->Iniciar()) {
+            if($this->Ejecutar($sql)){
                 $resp = true;
             }else{
-                $this->setmensajeoperacion("Tabla->modificar: ".$base->getError());
+                $this->setmensajeoperacion("Usuario->modificar: ".$this->getError());
             }
         }else{
-            $this->setmensajeoperacion("Tabla->modificar: ".$base->getError());
+            $this->setmensajeoperacion("Usuario->modificar: ".$this->getError());
         }
         return $resp;
     }
 
-    /**
-     * Summary of borrar
-     * @return bool
-     */
-    public function borrar(){
+    public function eliminar(){
         $resp = false;
-        $base = new BaseDatos(); 
-        $sql = "UPDATE usuario SET usdeshabilitado = '".date("Y-m-d H:i:s")."' ".
-            " WHERE idusuario = ".$this->getIdUsuario();  
-
-        if($base->Iniciar()){  
-            if($base->Ejecutar($sql)){  
+        $sql = "UPDATE usuario SET usdeshabilitado = ".date("Y-m-d")." WHERE idusuario = ".$this->getIdUsuario();
+        if ($this->Iniciar()) {
+            if ($this->Ejecutar($sql)) {
                 $resp = true;
             }else{
-                $this->setMensajeoperacion("Usuario->borrar: ".$base->getError()); 
+                $this->setmensajeoperacion("Usuario->eliminar: ".$this->getError());
             }
         }else{
-            $this->setMensajeoperacion("Usuario->borrar: ".$base->getError());  
+            $this->setmensajeoperacion("Usuario->eliminar: ".$this->getError());
         }
         return $resp;
     }
 
-
-    public static function listar($parametro=""){
+    public function listar($parametro=""){
         $arreglo = array();
-        $base = new BaseDatos();
         $sql = "SELECT * FROM usuario ";
         if ($parametro != "") {
             $sql .= " WHERE " .$parametro;
         }
-        $res = $base->Ejecutar($sql);
-        if($res > -1){
-            if($res > 0){
-                while ($row = $base->Registro()){
-                    $obj = new Usuario();
-                    $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usemail'], $row['usdeshabilitado']);                    array_push($arreglo, $obj);
+        if ($this->Iniciar()) {
+            $res = $this->Ejecutar($sql);
+            if($res > -1){
+                if($res > 0){
+                    while ($row = $this->Registro()){
+                        if ($row['borrado'] === NULL){
+                            $obj = new Usuario();
+                            $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usemail']);
+                            array_push($arreglo, $obj);
+                        }
+                    }
                 }
+            }else{
+                $this->setmensajeoperacion("Usuario->listar: ".$this->getError());
             }
-        }else{
-            self::setmensajeoperacion("Usuario->listar: ".$base->getError());
         }
         return $arreglo;
     }
+
 }
+
+?>
