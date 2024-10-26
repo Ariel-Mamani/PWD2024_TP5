@@ -6,23 +6,30 @@ include_once '../Estructura/header.php';
     <h1 class='text-center mb-4 text-white'><?php echo $titulo;?></h1>
 </div>
 <body>
+<div class="divform rounded p-4 shadow">
 <!-- Formulario de Registro -->
-<form id="form" name="form" action="procesar_registro.php" method="get" class="full-height p-5">
-    <div class="form-group text-center">
-        <label for="usuario">Nombre usuario:</label>
-        <input type="text" name="usuario" id="usuario" required><br><br>
-
-        <label for="clave">Contraseña:</label>
-        <input id="clave" name="clave" type="password" required>
+    <form id="form" name="form" action="procesar_registro.php" method="get">
+        <!-- Nombre usuario  -->
+        <div class="input-group mb-4">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="font-size: 22px; color: black;"></i></span>
+            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" required><br><br>
+        </div>
+        <!-- Contraseña -->
+        <div class="input-group mb-4">
+        <span class="input-group-text" id="basic-addon2"><i class="bi bi-lock-fill" style="font-size: 22px;"></i></span>
+        <input id="clave" name="clave" type="password" class="form-control" placeholder="Contraseña" required>
         <input type="hidden" name="clave_md5" id="clave_md5">
-        <!-- investigar sobre password_hash() -->
-
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required><br><br>
-
-        <input type="submit" value="Registrar" onclick="convertirClaveMD5()">
-    </div>
-</form>
+            <!-- investigar sobre password_hash() -->
+        </div>
+        <!-- Email -->
+        <div class="input-group">
+            <span class="input-group-text">usuario123@example.com</span>
+            <input type="email" name="email" id="email" class="form-control" required><br><br>
+        </div>
+        <input type="submit" value="Registrar" onclick="convertirClaveMD5()" class="btn btn-primary mt-5">
+        </div>
+    </form>
+</div>
 </body>
 <script>
     function convertirClaveMD5(){

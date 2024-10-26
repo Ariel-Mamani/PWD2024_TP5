@@ -15,20 +15,25 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
     echo "<h1>{$_SESSION['mensaje']}</h1>";
 }
 ?>
+
+<div class="divform rounded p-4 shadow">
 <!-- Formulario Login -->
     <form id="form" name="form" action="verificarLogin.php" method="get" class="full-height  p-5">
-        <div class="form-group text-center">
-        <label for="usuario">Nombre usuario:</label>
-        <input type="text" name="usuario" id="usuario" required><br><br>
-
-        <label for="clave">Contraseña:</label>
-        <input id="clave" name="clave" type="password" required>
-        <!-- Es unncampo oculto, clave_md5 es la clave que viaja encriptada -->
-        <input type="hidden" name="clave_md5" id="clave_md5"> 
-        
-        <input type="submit" value="Enviar" onclick="convertirClaveMD5()">
+        <!-- Nombre usuario  -->
+        <div class="input-group mb-4">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="font-size: 22px; color: black;"></i></span>
+            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" required><br><br>
         </div>
+        <!-- Contraseña -->
+        <div class="input-group mb-4">
+            <span class="input-group-text" id="basic-addon2"><i class="bi bi-lock-fill" style="font-size: 22px;"></i></span>
+            <input id="clave" name="clave" type="password" class="form-control" placeholder="Contraseña" required>
+            <input type="hidden" name="clave_md5" id="clave_md5">
+        </div>
+        
+        <input type="submit" value="Enviar" class="btn btn-primary mt-5" onclick="convertirClaveMD5()">
     </form>
+</div>
 </body>
 <script>
     function convertirClaveMD5(){
