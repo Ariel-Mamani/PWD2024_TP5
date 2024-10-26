@@ -1,12 +1,12 @@
 <?php
-    $Titulo = " Gestion de Personas";
+    $titulo = " Gestion de Usuarios";
     include_once("../Estructura/header.php");
     $datos = data_submitted();
     
    if (!isset($datos['accion'])){ $datos['accion']="listar"; }
    include_once ("accion.php");
 ?>
-<h3>Lista de Personas </h3>
+<h3>Lista de Usuarios </h3>
 <div class="row float-left">
     <div class="col-md-12 float-left">
       <?php 
@@ -23,7 +23,7 @@
     <div class="mb-2">
         <form action="index.php" method="post" class="container mt-5 p-4 border rounded shadow" novalidate>
             <label for="filtrar" class="form-label fw-bold">Filtro</label>
-            <input name="per_nombre" id="per_nombre" type="text" pattern="[A-z0-9]" >
+            <input name="usnombre" id="usnombre" type="text" pattern="[A-z0-9]" >
             <input type="submit" name="accion" id="accion" class="btn btn-info btn-sm" role="button" value="Filtrar">
             <input type="submit" name="accion" id="accion" class="btn btn-info btn-sm" role="button" value="Limpiar">
         </form>
@@ -40,7 +40,7 @@
         <tr class="header">
             <th scope="col" style="width:10%;">#</th>
             <th scope="col" style="width:35%;">Nombre</th>
-            <th scope="col" style="width:35%;">Telefono</th>
+            <th scope="col" style="width:35%;">Mail</th>
             <th scope="col" style="width:20%;">Acciones</th>
         </tr>
         </thead>
@@ -48,13 +48,13 @@
 
         <?php
         if( count($lista)>0){
-            foreach ($lista as $arreglo) {
-                echo '<tr><td>'.$arreglo['per_id'].'</td>';
-                echo '<td>'.$arreglo['per_nombre'].'</td>';
-                echo '<td>'.$arreglo['per_telefono'].'</td>';
-                echo '<td><a class="btn btn-info" role="button" href="editar.php?accion=editar&per_id='.$arreglo['per_id'].'"><i class="fa fa-edit"></i></a>  ';
-                echo '<a class="btn btn-primary" role="button" href="editar.php?accion=borrar&per_id='.$arreglo['per_id'].'"><i class="fa fa-trash"></i></a>  ';
-                echo '<td><a class="btn btn-info" role="button" href="../Usuario/editar.php?accion=nuevo&tipo_id=-1&per_id='.$arreglo['per_id'].'"><i class="fa fa-edit"></i></a></td></tr>';
+            foreach ($lista as $obj) {
+                echo '<tr><td>'.$obj->getIdUsuario().'</td>';
+                echo '<td>'.$obj->getNombre().'</td>';
+                echo '<td>'.$obj->getEmail().'</td>';
+                echo '<td><a class="btn btn-info" role="button" href="editar.php?accion=editar&idusuario='.$obj->getIdUsuario().'"><i class="fa fa-edit"></i></a>  ';
+                echo '<a class="btn btn-primary" role="button" href="editar.php?accion=borrar&idusuario='.$obj->getIdUsuario().'"><i class="fa fa-trash"></i></a>  ';
+                echo '<td><a class="btn btn-info" role="button" href="../Usuario/editar.php?accion=nuevo&tipo_id=-1&idusuario='.$obj->getIdUsuario().'"><i class="fa fa-edit"></i></a></td></tr>';
             }  // &tipo_id=-1 
         }
         ?>

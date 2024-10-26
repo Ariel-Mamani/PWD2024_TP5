@@ -21,18 +21,39 @@ function data_submitted() {
     return $_AAux;
 }
 
+function dismount($object) {
+    $reflectionClass = new ReflectionClass(get_class($object));
+    $array = array();
+    foreach ($reflectionClass->getProperties() as $property) {
+        $property->setAccessible(true);
+        $array[$property->getName()] = $property->getValue($object);
+        $property->setAccessible(false);
+    }
+    return $array;
+}
+
+function convert_array($param) {
+    $_AAux= array();
+    if (!empty($param)) {
+        if (count($param)){
+            foreach($param as $obj) {
+                array_push($_AAux,dismount($obj));    
+            }
+        }
+    }
+    
+    return $_AAux;
+}
+
+
 // auto load register 
 spl_autoload_register(function ($class_name){
     //echo($class_name);
     //echo($_SESSION['ROOT']); 
     $directorys = array(
-        $GLOBALS['ROOT'].'Modelo/TP2/',
-        $GLOBALS['ROOT'].'Modelo/TP4/',
+        $GLOBALS['ROOT'].'Modelo/',
         $GLOBALS['ROOT'].'Modelo/Conector/',
-        $GLOBALS['ROOT'].'Control/TP1/',
-        $GLOBALS['ROOT'].'Control/TP2/',
-        $GLOBALS['ROOT'].'Control/TP3/',
-        $GLOBALS['ROOT'].'Control/TP4/',
+        $GLOBALS['ROOT'].'Control/',
         $GLOBALS['ROOT'].'Vista/'
       //  $GLOBALS['ROOT'].'util/class/',
         );

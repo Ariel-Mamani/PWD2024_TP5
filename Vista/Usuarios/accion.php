@@ -1,16 +1,16 @@
 <?php
     include_once("../estructura/header.php");
     $resp = false;
-    $objTrans = new AbmPersona();
+    $objTrans = new AbmUsuario();
 
     if(!isset($datos)) {
         $datos = data_submitted();
     } 
     if (isset($datos['accion'])){
         if($datos['accion']=='listar' or $datos['accion']=='Limpiar'){
-            $lista = convert_array($objTrans->buscar(null));
+            $lista = $objTrans->buscar(null);
         } elseif($datos['accion']=='Filtrar'){
-            $lista = convert_array($objTrans->filtrarPorNombre($datos['fam_nombre']));
+            $lista = convert_array($objTrans->filtrarPorNombre($datos['usnombre']));
         } else {
             $resp = $objTrans->abm($datos);
             if($resp){

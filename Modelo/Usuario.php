@@ -69,7 +69,7 @@ class Usuario extends BaseDatos{
             $res = $this->Ejecutar($sql);
             if($res > -1){
                 $row = $this->Registro();
-                $this->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usemail']);
+                $this->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail']);
                 $exito = true;
             }else{
                 $this->setmensajeoperacion("Usuario->cargar: ".$this->getError());
@@ -82,7 +82,7 @@ class Usuario extends BaseDatos{
 
     public function insertar(){
         $resp = false;
-        $sql  =  "INSERT INTO usuario(idusuario, usnombre, uspass, usemail) VALUES("
+        $sql  =  "INSERT INTO usuario(idusuario, usnombre, uspass, usmail) VALUES("
         .$this->getIdUsuario().", '"
         .$this->getNombre()."', '"
         .$this->getPassword()."', '"
@@ -108,7 +108,7 @@ class Usuario extends BaseDatos{
         $sql = "UPDATE usuario SET 
         usnombre = '".$this->getNombre()."', 
         uspass = '".$this->getPassword()."', 
-        usemail = '".$this->getEmail()."' WHERE idusuario = ".$this->getIdUsuario();
+        usmail = '".$this->getEmail()."' WHERE idusuario = ".$this->getIdUsuario();
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -123,7 +123,7 @@ class Usuario extends BaseDatos{
 
     public function eliminar(){
         $resp = false;
-        $sql = "UPDATE usuario SET usdeshabilitado = ".date("Y-m-d")." WHERE idusuario = ".$this->getIdUsuario();
+        $sql = "UPDATE usuario SET usdeshabilitado = '".date("Y-m-d h:i:sa")."' WHERE idusuario = ".$this->getIdUsuario();
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
                 $resp = true;
@@ -147,9 +147,9 @@ class Usuario extends BaseDatos{
             if($res > -1){
                 if($res > 0){
                     while ($row = $this->Registro()){
-                        if ($row['usdeshabilitado'] === NULL){
+                        if ($row['usdeshabilitado'] == '0000-00-00 00:00:00'){
                             $obj = new Usuario();
-                            $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usemail']);
+                            $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail']);
                             array_push($arreglo, $obj);
                         }
                     }
