@@ -13,11 +13,6 @@ include_once '../Estructura/header.php';
     <img src="../Imagenes/Portada 2.png" alt="Imagen de Portada" >
 </div>
 
-
-
-
-
-
 <?php
 include_once '../Estructura/footer.php';
 ?>

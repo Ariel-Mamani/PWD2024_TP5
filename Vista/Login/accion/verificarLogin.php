@@ -17,11 +17,6 @@ if(!empty(data_submitted())){
     $recibido = data_submitted();
     $nombreUsuario = $recibido['usuario'];
     $psw = $recibido['psw'];
-    $usuariosBd =  new AbmUsuario;
-    $usuarios = $usuariosBd->buscar(null);
-    foreach($usuarios as $usuario){
-
-    }
     ?>
     
         <div id="botones" class="d-flex justify-content-center">

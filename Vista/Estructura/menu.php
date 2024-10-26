@@ -11,6 +11,7 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">TP N° 5</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="../Login/login.php">Login</a></li>
+              <li><a class="dropdown-item" href="../Login/registro.php">Registrar</a></li>
             </ul>
           </li>
         </ul>

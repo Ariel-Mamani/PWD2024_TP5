@@ -15,7 +15,7 @@
   <!-- LINK JS -->
   <script src="../Js/funciones.js"></script>
   <!-- MD5  -->
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="../Js/md5.js">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="../Js/md5.js"></script>
 
 
   

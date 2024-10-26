@@ -6,18 +6,29 @@ include_once '../Estructura/header.php';
     <h1 class='text-center mb-4 text-white'><?php echo $titulo;?></h1>
 </div>
 <body>
+<?php 
+// El mensaje viene del script procesar_login.php
+// Mi idea es mostrar el mensaje de que el usuario se registro
+if($mensaje != ''){
+    echo '<h1>';
+    echo $mensaje.'</h1>';
+} 
+?>
 <!-- Formulario Login -->
     <form id="form" name="form" action="verificarLogin.php" method="get" class="full-height  p-5">
         <div class="form-group text-center">
-            Nombre usuario:<input type="text" name="" id="" required><br><br>
-            Contraseña:<input type="text" name="" id="" required><br><br>
-            <input type="submit" value="Enviar">
+        <label for="usuario">Nombre usuario:</label>
+        <input type="text" name="usuario" id="usuario" required><br><br>
+
+        <label for="clave">Contraseña:</label>
+        <input id="clave" name="clave" type="password" required>
+        <a onclick='document.getElementById("md5").value=hex_md5(document.getElementById("clave").value)' href="#"></a><br><br>
+
+        <input type="submit" value="Enviar">
         </div>
     </form>
 </body>
 
-clave <input id="clave" name="clave" type="text">
-<a onclick='document.getElementById("md5").value=hex_md5(document.getElementById("clave").value)' href="#">
 <!-- Footer -->
 <?php include_once '../Estructura/footer.php'; ?>
 
