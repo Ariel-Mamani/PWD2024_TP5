@@ -13,13 +13,15 @@ if(!empty(data_submitted())){
     $listaUsuarioEmail = $objAbmUsuario->buscar($emailUsuario);
     if(empty($listaUsuario) && empty($listaUsuarioEmail)){ // ¿verificamos con nombre de usuario y mail?
         if($objAbmUsuario->alta($recibido)){
-            $mensaje = "Se a registrado exitosamente.";
+            $_SESSION['mensaje'] = "Se ha registrado exitosamente.";
             // Se REDIRIGE al formulario de login si el registro fue exitoso
             header("Location: login.php");
             exit();
         }
     }else{
-        $mensaje = "Esos datos ya se encuentran en la base de datos";
+        $_SESSION['mensaje'] = "El usuario o el email ya están registrados.";
+        header("Location: registro.php");
+        exit();
     }
 }
 

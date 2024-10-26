@@ -1,5 +1,6 @@
 <?php
 $titulo = "TP 5 - Login ";
+session_start();
 include_once '../Estructura/header.php';
 ?>
 <div class="divtitulo">
@@ -9,10 +10,10 @@ include_once '../Estructura/header.php';
 <?php 
 // El mensaje viene del script procesar_login.php
 // Mi idea es mostrar el mensaje de que el usuario se registro
-if($mensaje != ''){
-    echo '<h1>';
-    echo $mensaje.'</h1>';
-} 
+// Verifica si hay un mensaje en la sesión y lo muestra
+if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
+    echo "<h1>{$_SESSION['mensaje']}</h1>";
+}
 ?>
 <!-- Formulario Login -->
     <form id="form" name="form" action="verificarLogin.php" method="get" class="full-height  p-5">
@@ -28,7 +29,6 @@ if($mensaje != ''){
         </div>
     </form>
 </body>
-
 <!-- Footer -->
 <?php include_once '../Estructura/footer.php'; ?>
 

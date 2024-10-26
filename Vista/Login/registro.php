@@ -7,7 +7,7 @@ include_once '../Estructura/header.php';
 </div>
 <body>
 <!-- Formulario de Registro -->
-<form id="form" name="form" action="procesar_registro.php" method="post" class="full-height p-5">
+<form id="form" name="form" action="procesar_registro.php" method="get" class="full-height p-5">
     <div class="form-group text-center">
         <label for="usuario">Nombre usuario:</label>
         <input type="text" name="usuario" id="usuario" required><br><br>

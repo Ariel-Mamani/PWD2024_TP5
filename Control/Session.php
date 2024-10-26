@@ -57,7 +57,6 @@ class Session {
 
         if($this->getUsuario() == $listaAbm[0]->getNombre() and $this->getPsw() == $listaAbm[0]->getPassword()){
             $resp = true;
-
         }
         return $resp;
     }
