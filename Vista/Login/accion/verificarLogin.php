@@ -19,7 +19,7 @@ if(!empty(data_submitted())){
     $nombreUsuario = $recibido['usuario'];
     $psw = $recibido['clave_md5'];
     // Me fijo si el usuario esta registrado
-    if($objUsuario->buscar($nombreUsuario)){
+    if(empty($objUsuario->buscar($nombreUsuario))){
         // Crea el objeto de la sesion
         $objSession->iniciar($nombreUsuario,$psw);
         if($objSession->validar()){

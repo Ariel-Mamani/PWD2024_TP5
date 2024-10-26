@@ -31,7 +31,7 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
             <input type="hidden" name="clave_md5" id="clave_md5">
         </div>
         
-        <input type="submit" value="Enviar" class="btn btn-primary mt-5" onclick="convertirClaveMD5()">
+        <input type="submit" value="Enviar" class="btn btn-primary mt-5" onsubmit="return convertirClaveMD5()">
     </form>
 </div>
 </body>

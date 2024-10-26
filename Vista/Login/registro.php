@@ -36,7 +36,7 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
             <span class="input-group-text">usuario123@example.com</span>
             <input type="email" name="email" id="email" class="form-control" required><br><br>
         </div>
-        <input type="submit" value="Registrar" onclick="convertirClaveMD5()" class="btn btn-primary mt-5">
+        <input type="submit" value="Registrar" onsubmit="return convertirClaveMD5()" class="btn btn-primary mt-5">
         </div>
     </form>
 </div>
