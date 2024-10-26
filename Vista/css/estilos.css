@@ -19,7 +19,7 @@
 
 body {
     padding-bottom: 100px; /* Ajusta este valor según el tamaño del footer */
-    background-image: url(../../Archivos/fondo-blaco.avif);
+    background-image: url(../../Archivos/flechas.jpg);
     background-size: cover; /* La imagen se ajusta al tamaño del contenedor sin recortarse */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-position: center; /* Centra la imagen en el cuerpo */

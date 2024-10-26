@@ -1,7 +1,7 @@
 <?php
 session_start();
 $titulo = "TP 5 - Login";
-include_once '../../Estructura/header.php';
+include_once '../Estructura/header.php';
 echo "<div class='divtitulo'><h1>{$titulo}</h1>";
 $objAbmUsuario = new AbmUsuario();
 if(!empty(data_submitted())){

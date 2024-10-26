@@ -1,6 +1,6 @@
 <?php
 $titulo = "TP 5 - Login ";
-session_start();
+
 include_once '../Estructura/header.php';
 ?>
 <div class="divtitulo">
@@ -18,7 +18,7 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
 
 <div class="divform rounded p-4 shadow">
 <!-- Formulario Login -->
-    <form id="form" name="form" action="verificarLogin.php" method="get" class="full-height  p-5">
+    <form id="form" name="form" action="./verificarLogin.php" method="get" class="full-height  p-5">
         <!-- Nombre usuario  -->
         <div class="input-group mb-4">
             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="font-size: 22px; color: black;"></i></span>
@@ -27,11 +27,11 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
         <!-- Contraseña -->
         <div class="input-group mb-4">
             <span class="input-group-text" id="basic-addon2"><i class="bi bi-lock-fill" style="font-size: 22px;"></i></span>
-            <input id="clave" name="clave" type="password" class="form-control" placeholder="Contraseña" required>
+            <input id="clave" name="clave" type="password" class="form-control" placeholder="Contraseña" required onblur="return convertirClaveMD5()">
             <input type="hidden" name="clave_md5" id="clave_md5">
         </div>
         
-        <input type="submit" value="Enviar" class="btn btn-primary mt-5" onsubmit="return convertirClaveMD5()">
+        <input type="submit" value="Enviar" class="btn btn-primary mt-5" >
     </form>
 </div>
 </body>
@@ -40,7 +40,7 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
         var clave = document.getElementById('clave').value;
         document.getElementById('clave_md5').value = hex_md5(clave); 
         //Borro el valor original de la contraseña en el campo clave 
-        document.getElementById('clave').value = ''; 
+        //document.getElementById('clave').value = ''; //onsubmit="return convertirClaveMD5()"
     }
 </script>
 <!-- Footer -->

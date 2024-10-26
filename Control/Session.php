@@ -54,11 +54,13 @@ class Session {
         $param['usnombre'] = $this->getUsuario();
         $param['uspass'] = $this->getPsw();
         $listaAbm = $objAbmUsuario->buscar($param);
-
-        if($this->getUsuario() == $listaAbm[0]->getNombre() and $this->getPsw() == $listaAbm[0]->getPassword()){
-            $resp = true;
+        //var_dump($listaAbm);
+        if (count($listaAbm) > 0){
+            if($this->getUsuario() == $listaAbm[0]->getNombre() and $this->getPsw() == $listaAbm[0]->getPassword()){
+                $resp = true;
+            }
         }
-        return $resp;
+            return $resp;
     }
 
     public function cerrar(){
