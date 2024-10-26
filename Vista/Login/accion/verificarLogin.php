@@ -11,12 +11,11 @@ si es false $objSession->cerrar() -->> header("Location: vista/Login/login.php")
 */
 $titulo = "TP 5 - Login";
 include_once '../../Estructura/header.php';
-echo '<div class="divtitulo"> <h1>';
-echo $titulo.'</h1></div>';
+echo "<div class='divtitulo'><h1>{$titulo}</h1>";
 if(!empty(data_submitted())){
     $recibido = data_submitted();
     $nombreUsuario = $recibido['usuario'];
-    $psw = $recibido['clave'];
+    $psw = $recibido['clave_md5'];
     // Crea el objeto de la sesion
     $objSession = new Session();
     $objSession->iniciar($nombreUsuario,$psw);

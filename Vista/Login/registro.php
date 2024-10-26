@@ -14,16 +14,23 @@ include_once '../Estructura/header.php';
 
         <label for="clave">Contraseña:</label>
         <input id="clave" name="clave" type="password" required>
-        <a onclick='document.getElementById("md5").value=hex_md5(document.getElementById("clave").value)' href="#"></a><br><br>
+        <input type="hidden" name="clave_md5" id="clave_md5">
         <!-- investigar sobre password_hash() -->
 
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" required><br><br>
 
-        <input type="submit" value="Registrar">
+        <input type="submit" value="Registrar" onclick="convertirClaveMD5()">
     </div>
 </form>
 </body>
-
+<script>
+    function convertirClaveMD5(){
+        var clave = document.getElementById('clave').value;
+        document.getElementById('clave_md5').value = hex_md5(clave);
+        //Borro el valor original de la contraseña en el campo clave 
+        document.getElementById('clave').value = ''; 
+    }
+</script>
 <!-- Footer -->
 <?php include_once '../Estructura/footer.php'; ?>
