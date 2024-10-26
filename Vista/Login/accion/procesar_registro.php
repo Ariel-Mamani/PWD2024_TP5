@@ -19,7 +19,7 @@ if(!empty(data_submitted())){
         }
     }else{
         $_SESSION['mensaje'] = "El usuario o el email ya están registrados.";
-        header("Location: registro.php");
+        header("Location: login.php");
         exit();
     }
 }

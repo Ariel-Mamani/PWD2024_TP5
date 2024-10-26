@@ -5,7 +5,17 @@ include_once '../Estructura/header.php';
 <div class="divtitulo">
     <h1 class='text-center mb-4 text-white'><?php echo $titulo;?></h1>
 </div>
+<?php
+// El mensaje viene del script verificarLogin.php
+// Se mostrara un mensaje ya que el usuario quiso entrar al login sin haberse registrado antes
+// Verifica si hay un mensaje en la sesión y lo muestra
+if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
+    echo "<h1>{$_SESSION['mensaje']}</h1>";
+    unset($_SESSION['mensaje']); // Limpia el mensaje después de mostrarlo
+} 
+?>
 <body>
+
 <div class="divform rounded p-4 shadow">
 <!-- Formulario de Registro -->
     <form id="form" name="form" action="procesar_registro.php" method="get">

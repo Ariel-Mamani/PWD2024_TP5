@@ -14,25 +14,29 @@ include_once '../../Estructura/header.php';
 echo "<div class='divtitulo'><h1>{$titulo}</h1>";
 if(!empty(data_submitted())){
     $recibido = data_submitted();
+    $objUsuario = new AbmUsuario;
+    $objSession = new Session();
     $nombreUsuario = $recibido['usuario'];
     $psw = $recibido['clave_md5'];
-    // Crea el objeto de la sesion
-    $objSession = new Session();
-    $objSession->iniciar($nombreUsuario,$psw);
-    if($objSession->validar()){
-        // Si es correcto, redirige a la página segura
-        header("Location: vista/inicio/paginaSegura.php");
+    // Me fijo si el usuario esta registrado
+    if($objUsuario->buscar($nombreUsuario)){
+        // Crea el objeto de la sesion
+        $objSession->iniciar($nombreUsuario,$psw);
+        if($objSession->validar()){
+            // Si es correcto, redirige a la página segura
+            header("Location: vista/inicio/paginaSegura.php");
+        }else{
+            // Si es incorrecto, cierra la sesión y redirige al login
+            $objSession->cerrar();
+            $_SESSION['mensaje'] = "Usuario o contraseña incorrectos.";
+            header("Location: vista/Login/login.php");
+        }
     }else{
-        // Si es incorrecto, cierra la sesión y redirige al login
-        $objSession->cerrar();
-        $_SESSION['mensaje'] = "Usuario o contraseña incorrectos.";
-        header("Location: vista/Login/login.php");
+        $_SESSION['mensaje'] = "No existe el usuario, DEBE REGISTRARSE PRIMERO HDP!!";
+        header("Location: vista/Login/registro.php");
     }
     ?>
-    
-    <div id="botones" class="d-flex justify-content-center">
-        <a href="../login.php" class="btn btn-tp2" role="button">Volver</a>
-    </div>
+
 <?php
 }
 include_once '../../Estructura/footer.php';

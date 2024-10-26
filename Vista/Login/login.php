@@ -8,7 +8,7 @@ include_once '../Estructura/header.php';
 </div>
 <body>
 <?php 
-// El mensaje viene del script procesar_login.php
+// El mensaje viene del script procesar_login.php y verificarLogin.php
 // Mi idea es mostrar el mensaje de que el usuario se registro
 // Verifica si hay un mensaje en la sesión y lo muestra
 if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {

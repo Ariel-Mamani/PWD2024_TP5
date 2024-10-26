@@ -15,8 +15,8 @@ CREATE TABLE rol (
 
 CREATE TABLE usuariorol (
     idusuario bigint(20),
-    idrol bigint(20) 
-    FOREIGN KEY (idusuario) REFERENCES usuario(idusuario)ON UPDATE cascade ON DELETE RESTRICT
-    FOREIGN KEY (idrol) REFERENCES rol(idrol)ON UPDATE cascade ON DELETE RESTRICT
+    idrol bigint(20),
+    FOREIGN KEY (idusuario) REFERENCES usuario(idusuario)ON UPDATE cascade ON DELETE RESTRICT,
+    FOREIGN KEY (idrol) REFERENCES rol(idrol)ON UPDATE cascade ON DELETE RESTRICT,
     PRIMARY KEY (idusuario, idrol)
 )
