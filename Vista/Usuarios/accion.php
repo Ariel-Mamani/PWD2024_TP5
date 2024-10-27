@@ -1,9 +1,9 @@
 <?php
-    include_once("../estructura/header.php");
+    include_once("../Estructura/header.php");
     $resp = false;
     $objTrans = new AbmUsuario();
 
-    if(!isset($datos)) {
+    if(!isset($datos)){
         $datos = data_submitted();
     } 
     if (isset($datos['accion'])){
@@ -11,7 +11,7 @@
             $lista = $objTrans->buscar(null);
         } elseif($datos['accion']=='Filtrar'){
             $lista = convert_array($objTrans->filtrarPorNombre($datos['usnombre']));
-        } else {
+        }else{
             $resp = $objTrans->abm($datos);
             if($resp){
                 $mensaje = "La accion ".$datos['accion']." se realizo correctamente.";

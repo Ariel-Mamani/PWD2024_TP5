@@ -3,23 +3,22 @@
     include_once("../Estructura/header.php");
     $datos = data_submitted();
     
-   if (!isset($datos['accion'])){ $datos['accion']="listar"; }
-   include_once ("accion.php");
+    if (!isset($datos['accion'])){ $datos['accion']="listar"; }
+    include_once ("accion.php");
 ?>
-<h3>Lista de Usuarios </h3>
+<h3 class="text-success">Lista de Usuarios </h3>
 <div class="row float-left">
     <div class="col-md-12 float-left">
-      <?php 
-      if(isset($datos) && isset($datos['msg']) && $datos['msg']!=null) {
+        <?php 
+        if(isset($datos) && isset($datos['msg']) && $datos['msg']!=null) {
         echo $datos['msg'];
-      }
-     ?>
+        }
+        ?>
     </div>
 </div>
 
-
 <div class="table-responsive">
-      <!-- input de filtro -->
+    <!-- input de filtro -->
     <div class="mb-2">
         <form action="index.php" method="post" class="container mt-5 p-4 border rounded shadow" novalidate>
             <label for="filtrar" class="form-label fw-bold">Filtro</label>
@@ -29,9 +28,12 @@
         </form>
 
         <!-- Boton Nuevo -->
-        <div class="row float-right">
-        <div class="col-md-12 float-right">
-            <a class="btn btn-success" role="button" href="editar.php?accion=nuevo&id=-1">Nuevo</a></div>
+        <div class="row float-right m-5">
+            <div class="col-md-12 float-right">
+                <a class="btn btn-success align-items-center" role="button" href="editar.php?accion=nuevo&id=-1">
+                    <span>Nuevo</span><i class="bi bi-plus fs-4"></i>
+                </a>
+            </div>
         </div>
     </div>
     </div> 
@@ -52,16 +54,14 @@
                 echo '<tr><td>'.$obj->getIdUsuario().'</td>';
                 echo '<td>'.$obj->getNombre().'</td>';
                 echo '<td>'.$obj->getEmail().'</td>';
-                echo '<td><a class="btn btn-info" role="button" href="editar.php?accion=editar&idusuario='.$obj->getIdUsuario().'"><i class="fa fa-edit"></i></a>  ';
-                echo '<a class="btn btn-primary" role="button" href="editar.php?accion=borrar&idusuario='.$obj->getIdUsuario().'"><i class="fa fa-trash"></i></a>  ';
-                echo '<td><a class="btn btn-info" role="button" href="../Usuario/editar.php?accion=nuevo&tipo_id=-1&idusuario='.$obj->getIdUsuario().'"><i class="fa fa-edit"></i></a></td></tr>';
+                echo '<td><a class="btn btn-info" role="button" href="editar.php?accion=editar&idusuario='.$obj->getIdUsuario().'"><i class="bi bi-pencil"></i></a>  ';
+                echo '<a class="btn btn-primary" role="button" href="editar.php?accion=borrar&idusuario='.$obj->getIdUsuario().'"><i class="bi bi-trash3"></i></a>  ';
+                echo '<td><a class="btn btn-info" role="button" href="../Usuario/editar.php?accion=nuevo&tipo_id=-1&idusuario='.$obj->getIdUsuario().'"><i class="bi bi-plus-circle"></i></a></td></tr>';
             }  // &tipo_id=-1 
         }
         ?>
         </tbody>
     </table>
 </div>
-
-
 
 <?php include_once("../estructura/footer.php"); ?>
