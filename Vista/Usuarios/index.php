@@ -6,7 +6,7 @@
     if (!isset($datos['accion'])){ $datos['accion']="listar"; }
     include_once ("accion.php");
 ?>
-<h3 class="text-success">Lista de Usuarios </h3>
+<h3 class=" bg-primary">Lista de Usuarios </h3>
 <div class="row float-left">
     <div class="col-md-12 float-left">
         <?php 
@@ -20,8 +20,8 @@
 <div class="table-responsive">
     <!-- input de filtro -->
     <div class="mb-2">
-        <form action="index.php" method="post" class="container mt-5 p-4 border rounded shadow" novalidate>
-            <label for="filtrar" class="form-label fw-bold">Filtro</label>
+        <form action="index.php" method="post" class="container mt-5 p-4 border rounded shadow bg-light" novalidate>
+            <label for="filtrar" class="form-label fw-bold ">Filtro</label>
             <input name="usnombre" id="usnombre" type="text" pattern="[A-z0-9]" >
             <input type="submit" name="accion" id="accion" class="btn btn-info btn-sm" role="button" value="Filtrar">
             <input type="submit" name="accion" id="accion" class="btn btn-info btn-sm" role="button" value="Limpiar">
@@ -37,7 +37,7 @@
         </div>
     </div>
     </div> 
-    <table class="table table-striped table-sm" id="myTable">
+    <table class="table table-sm  bg-primary " id="myTable">
         <thead>
         <tr class="header">
             <th scope="col" style="width:10%;">#</th>
@@ -51,12 +51,12 @@
         <?php
         if( count($lista)>0){
             foreach ($lista as $obj) {
-                echo '<tr><td>'.$obj->getIdUsuario().'</td>';
-                echo '<td>'.$obj->getNombre().'</td>';
-                echo '<td>'.$obj->getEmail().'</td>';
-                echo '<td><a class="btn btn-info" role="button" href="editar.php?accion=editar&idusuario='.$obj->getIdUsuario().'"><i class="bi bi-pencil"></i></a>  ';
+                echo '<tr><td class="bg-light ">'.$obj->getIdUsuario().'</td>';
+                echo '<td class="bg-light ">'.$obj->getNombre().'</td>';
+                echo '<td class="bg-light ">'.$obj->getEmail().'</td>';
+                echo '<td class="bg-light "><a class="btn btn-info" role="button" href="editar.php?accion=editar&idusuario='.$obj->getIdUsuario().'"><i class="bi bi-pencil"></i></a>  ';
                 echo '<a class="btn btn-primary" role="button" href="editar.php?accion=borrar&idusuario='.$obj->getIdUsuario().'"><i class="bi bi-trash3"></i></a>  ';
-                echo '<td><a class="btn btn-info" role="button" href="../Usuario/editar.php?accion=nuevo&tipo_id=-1&idusuario='.$obj->getIdUsuario().'"><i class="bi bi-plus-circle"></i></a></td></tr>';
+                echo '<td class="bg-light "><a class="btn btn-info" role="button" href="../Usuario/editar.php?accion=nuevo&tipo_id=-1&idusuario='.$obj->getIdUsuario().'"><i class="bi bi-plus-circle"></i></a></td></tr>';
             }  // &tipo_id=-1 
         }
         ?>

@@ -18,19 +18,19 @@
     <div class="row mb-12">
         <div class="col-sm-12 ">
             <div class="form-group has-feedback">
-                <label for="nombre" class="control-label">Nombre:</label>
-                    <label for="usnombre">Nombre:</label>
-                    <input id="usnombre" name="usnombre" type="text" class="form-control" value="<?php echo ($obj !=null) ? $obj->getNombre() : ""?>" required >
+                    <label for="nombre" class="control-label text-white py-2 w-100 bg-primary p-2">Nombre:</label>
+                    <!-- <label for="usnombre">Nombre:</label> -->
+                    <input id="usnombre" name="usnombre" type="text" class="form-control mb-4" value="<?php echo ($obj !=null) ? $obj->getNombre() : ""?>" required >
 
-                    <label for="usmail">Email:</label>
+                    <label for="usmail"  class="control-label text-white py-2 w-100 bg-primary p-2">Email:</label>
                     <input id="usmail" name="usmail" type="text" class="form-control" value="<?php echo ($obj !=null) ? $obj->getEmail() : ""?>" required >
             </div>
         </div>
     </div>
 	
-	<input type="submit" class="btn btn-primary btn-block" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>">
+	<input type="submit" class="btn btn-primary btn-block  m-2" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>">
 </form>
-<a href="index.php">Volver</a>
+<a href="index.php" class="btn bg-warning m-2">Volver</a>
 
 <?php
 include_once("../estructura/footer.php");
