@@ -2,10 +2,9 @@
 class Session {
 
     public function __construct(){
-        session_start();
-        $_SESSION['usuario'] = "";
-        $_SESSION['psw'] = "";
-        $_SESSION['rol'] = "";
+        @session_start([
+            'cookie_lifetime' => 400,
+        ]);
     }
     /**
      * Summary of getUsuario
@@ -54,7 +53,6 @@ class Session {
         $param['usnombre'] = $this->getUsuario();
         $param['uspass'] = $this->getPsw();
         $listaAbm = $objAbmUsuario->buscar($param);
-        //var_dump($listaAbm);
         if (count($listaAbm) > 0){
             if($this->getUsuario() == $listaAbm[0]->getNombre() and $this->getPsw() == $listaAbm[0]->getPassword()){
                 $resp = true;

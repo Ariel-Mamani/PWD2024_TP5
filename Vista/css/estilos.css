@@ -39,7 +39,11 @@ body {
 .dropdown-item{
     color: white;
 }
-
+.labelUsuario{
+    position: fixed;
+    right: 5%;
+    color: antiquewhite;
+}
 
 /*************************************************/
 /*********** Estilos para los submenús ***********/

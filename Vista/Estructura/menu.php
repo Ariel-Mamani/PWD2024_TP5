@@ -14,8 +14,9 @@
               <li><a class="dropdown-item" href="../Login/registro.php">Registrar</a></li>
               <li><a class="dropdown-item" href="../Usuarios/index.php">Lista usuarios</a></li>
             </ul>
-          </li>
+          </li>          
         </ul>
+        <label for="lusuario" class="labelUsuario" ><?php echo (isset($_SESSION['usuario'])) ? $_SESSION['usuario'] : "Anónimo"; ?>  </label>
       </div>
     </div>
   </nav>

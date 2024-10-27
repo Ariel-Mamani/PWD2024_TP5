@@ -1,18 +1,17 @@
 <?php
-//session_start();
 
 $titulo = "TP 5 - Login";
 include_once '../Estructura/header.php';
 echo "<div class='divtitulo'><h1>{$titulo}</h1>";
+
+
+// Crea el objeto de la sesion
+$objSession = new Session();
 if(!empty(data_submitted())){
     $recibido = data_submitted();
-    $objUsuario = new AbmUsuario;
-    // Crea el objeto de la sesion
-    $objSession = new Session();
-    $param['usnombre'] = $recibido['usuario'];
-    $param['uspass']= $recibido['clave_md5'];
+
     //carga nombre y pass sin validar aun
-    $objSession->iniciar($param['usnombre'],$param['uspass']);
+    $objSession->iniciar($recibido['usuario'],$recibido['clave_md5']);
 
     if($objSession->validar()){
         // Si es correcto, redirige a la página segura
