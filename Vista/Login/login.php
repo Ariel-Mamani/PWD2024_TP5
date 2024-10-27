@@ -18,23 +18,31 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
 
 <div class="divform rounded p-4 shadow">
 <!-- Formulario Login -->
-    <form id="form" name="form" action="./verificarLogin.php" method="get" class="full-height  p-5">
+    <form id="form" name="form" action="./verificarLogin.php" method="get" class="full-height p-5 needs-validation" novalidate>
         <!-- Nombre usuario  -->
         <div class="input-group mb-4">
             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="font-size: 22px; color: black;"></i></span>
             <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" required><br><br>
+            <!-- Mensajes aprobado y error -->
+            <div class="valid-feedback">Ok!</div>
+            <div class="invalid-feedback">El nombre de usuario solo debe contener letras sin números ni símbolos</div>
         </div>
         <!-- Contraseña -->
         <div class="input-group mb-4">
             <span class="input-group-text" id="basic-addon2"><i class="bi bi-lock-fill" style="font-size: 22px;"></i></span>
             <input id="clave" name="clave" type="password" class="form-control" placeholder="Contraseña" required onblur="return convertirClaveMD5()">
             <input type="hidden" name="clave_md5" id="clave_md5">
+            <!-- Mensajes aprobado y error -->
+            <div class="valid-feedback">Ok!</div>
+            <div class="invalid-feedback">Valor de contraseña incorrecto</div>
         </div>
         
         <input type="submit" value="Enviar" class="btn btn-primary mt-5" >
     </form>
 </div>
 </body>
+<!-- BOOTSTRAP con las validaciones de los campos -->
+<script type="text/javascript" src="../Js/validacionTP5.js"></script>
 <script>
     function convertirClaveMD5(){
         var clave = document.getElementById('clave').value;
@@ -42,6 +50,9 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
         //Borro el valor original de la contraseña en el campo clave 
         //document.getElementById('clave').value = ''; //onsubmit="return convertirClaveMD5()"
     }
+    document.getElementById("usuario").addEventListener("blur", function(){
+        validarUsuario(this);
+    });
 </script>
 <!-- Footer -->
 <?php include_once '../Estructura/footer.php'; ?>
