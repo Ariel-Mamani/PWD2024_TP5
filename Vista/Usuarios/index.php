@@ -6,12 +6,12 @@
     if (!isset($datos['accion'])){ $datos['accion']="listar"; }
     include_once ("accion.php");
 ?>
-<h3 class=" bg-primary">Lista de Usuarios </h3>
+<h2 class=" bg-primary p-3">Lista de Usuarios </h2>
 <div class="row float-left">
     <div class="col-md-12 float-left">
         <?php 
         if(isset($datos) && isset($datos['msg']) && $datos['msg']!=null) {
-        echo $datos['msg'];
+        echo "<h3 class ='bg-light text-danger text-center'>{$datos['msg']}</h3>";
         }
         ?>
     </div>
