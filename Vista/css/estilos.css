@@ -41,8 +41,15 @@ body {
 }
 .labelUsuario{
     position: fixed;
+    right: 10%;
+    margin: auto;
+    color: antiquewhite;
+}
+#btnSalir{
+    position: fixed;
     right: 5%;
     color: antiquewhite;
+    margin: auto;
 }
 
 /*************************************************/

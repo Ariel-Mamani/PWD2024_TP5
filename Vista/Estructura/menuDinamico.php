@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
     <div class="container-fluid">
       <a class="navbar-brand" href="../Inicio/principal.php">Grupo 5</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -16,7 +16,12 @@
             </ul>
           </li>          
         </ul>
-          <label for="lusuario" class="labelUsuario" >Anónimo  <img src="../Imagenes/anonimo.png" alt="Avatar Anonimo" style="width:40px;" class="rounded-pill"> </label>
+        <form action="../Login/verificarLogin.php">
+          <label for="lusuario" class="labelUsuario" ><?php echo (isset($_SESSION['usuario'])) ? $_SESSION['usuario'] .'  '.'<img src="../Imagenes/gatito.png" alt="Avatar Gatito" style="width:40px;" class="rounded-pill"> '
+          : "Anónimo ". '<img src="../Imagenes/anonimo.png" alt="Avatar Anonimo" style="width:40px;" class="rounded-pill"> '; ?>  </label>
+          <input type="text" name="salirSession" id="salirSession" value="1" hidden>
+          <button class="btn btn-primary" type="submit" id="btnSalir" >Salir</button>
+        </form>
       </div>
     </div>
   </nav>
