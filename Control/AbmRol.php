@@ -32,9 +32,9 @@ class AbmRol{
     private function cargarObjeto($param){
         $objRol = null;
            
-        if( array_key_exists('idrol',$param) and array_key_exists('rodescripcion',$param)){
+        if( array_key_exists('idrol',$param) and array_key_exists('roldescripcion',$param)){
             $objRol = new Rol();
-            $objRol->setear($param['idrol'], $param['rodescripcion']);
+            $objRol->setear($param['idrol'], $param['roldescripcion']);
         }
         return $objRol;
     }
@@ -125,8 +125,8 @@ class AbmRol{
         if ($param<>NULL){
             if  (isset($param['idrol']))
                 $where.=" and idrol =".$param['idrol'];
-            if  (isset($param['rodescripcion']))
-                 $where.=" and rodescripcion ='".$param['rodescripcion']."'";
+            if  (isset($param['roldescripcion']))
+                 $where.=" and roldescripcion ='".$param['roldescripcion']."'";
         }
         $objRol = new Rol();
         $arreglo = $objRol->listar($where);
@@ -140,7 +140,7 @@ class AbmRol{
      * @return array
      */
     public function filtrarPorNombre($nombre){
-        $where = " rodescripcion LIKE '%".$nombre."%'";   
+        $where = " roldescripcion LIKE '%".$nombre."%'";   
         $objRol = new Rol();
         $arreglo = $objRol->listar($where);  
         return $arreglo;

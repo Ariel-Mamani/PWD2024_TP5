@@ -1,57 +1,57 @@
 <?php
 class Usuario extends BaseDatos{
-    private $idUsuario;
-    private $nombre;
-    private $password;
-    private $email;
+    private $idusuario;
+    private $usnombre;
+    private $uspass;
+    private $usmail;
     private $mensajeoperacion;
 
     public function __construct()
     {
         parent::__construct();
-        $this->idUsuario = "";
-        $this->nombre = "";
-        $this->password = "";
-        $this->email = "";
+        $this->idusuario = "";
+        $this->usnombre = "";
+        $this->uspass = "";
+        $this->usmail = "";
         $this->mensajeoperacion = "";
     }
 
-    public function setear($idUsuario, $nombre, $password, $email)    {
-        $this->setIdUsuario($idUsuario);
-        $this->setNombre($nombre);
-        $this->setPassword($password);
-        $this->setEmail($email);
+    public function setear($idusuario, $usnombre, $uspass, $usmail)    {
+        $this->setidusuario($idusuario);
+        $this->setusnombre($usnombre);
+        $this->setuspass($uspass);
+        $this->setusmail($usmail);
     }
     // Metodo get y set ID
-    public function getIdUsuario(){
-        return $this->idUsuario;
+    public function getidusuario(){
+        return $this->idusuario;
     }
-    public function setIdUsuario($valor){
-        $this->idUsuario = $valor;
-    }
-    
-    // Metodo get y set NOMBRE
-    public function getNombre(){
-        return $this->nombre;
-    }
-    public function setNombre($valor){
-        $this->nombre = $valor;
+    public function setidusuario($valor){
+        $this->idusuario = $valor;
     }
     
-    // Metodo get y set PASSWORD
-    public function getPassword(){
-        return $this->password;
+    // Metodo get y set usnombre
+    public function getusnombre(){
+        return $this->usnombre;
     }
-    public function setPassword($valor){
-        $this->password = $valor;
+    public function setusnombre($valor){
+        $this->usnombre = $valor;
+    }
+    
+    // Metodo get y set uspass
+    public function getuspass(){
+        return $this->uspass;
+    }
+    public function setuspass($valor){
+        $this->uspass = $valor;
     }
         
-    // Metodo get y set EMAIL
-    public function getEmail(){
-        return $this->email;
+    // Metodo get y set usmail
+    public function getusmail(){
+        return $this->usmail;
     }
-    public function setEmail($valor){
-        $this->email = $valor;
+    public function setusmail($valor){
+        $this->usmail = $valor;
     }
 
     // Metodo get y set MENSAJE ERROR
@@ -64,7 +64,7 @@ class Usuario extends BaseDatos{
 
     public function cargar(){
         $exito = false;
-        $sql = "SELECT * FROM usuario WHERE idusuario =" . $this->getIdUsuario();
+        $sql = "SELECT * FROM usuario WHERE idusuario =" . $this->getidusuario();
         if($this ->Iniciar()){
             $res = $this->Ejecutar($sql);
             if($res > -1){
@@ -82,14 +82,14 @@ class Usuario extends BaseDatos{
 
     public function insertar(){
         $resp = false;
-        $sql  =  "INSERT INTO usuario(idusuario, usnombre, uspass, usmail) VALUES("
-        .$this->getIdUsuario().", '"
-        .$this->getNombre()."', '"
-        .$this->getPassword()."', '"
-        .$this->getEmail()."');";
+        $sql  =  "INSERT INTO usuario (idusuario, usnombre, uspass, usmail, usdeshabilitado) VALUES (null, '"
+        .$this->getusnombre()."', '"
+        .$this->getuspass()."', '"
+        .$this->getusmail()."', 
+        'null');";
         if ($this->Iniciar()) {
             if($elid = $this->Ejecutar($sql)){
-                $this->setIdUsuario($elid);
+                $this->setidusuario($elid);
                 $resp = true;
             }else{
                 $this->setmensajeoperacion("Usuario->insertar: ".$this->getError());
@@ -106,9 +106,9 @@ class Usuario extends BaseDatos{
     public function modificar(){
         $resp = false;
         $sql = "UPDATE usuario SET 
-        usnombre = '".$this->getNombre()."', 
-        uspass = '".$this->getPassword()."', 
-        usmail = '".$this->getEmail()."' WHERE idusuario = ".$this->getIdUsuario();
+        usnombre = '".$this->getusnombre()."', 
+        uspass = '".$this->getuspass()."', 
+        usmail = '".$this->getusmail()."' WHERE idusuario = ".$this->getidusuario();
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -123,7 +123,7 @@ class Usuario extends BaseDatos{
 
     public function eliminar(){
         $resp = false;
-        $sql = "UPDATE usuario SET usdeshabilitado = '".date("Y-m-d h:i:sa")."' WHERE idusuario = ".$this->getIdUsuario();
+        $sql = "UPDATE usuario SET usdeshabilitado = '".date("Y-m-d h:i:sa")."' WHERE idusuario = ".$this->getidusuario();
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
                 $resp = true;

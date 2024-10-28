@@ -47,17 +47,17 @@ class UsuarioRol extends BaseDatos{
     public function cargar(){
         $exito = false;
         $sql = "SELECT * FROM usuariorol WHERE 
-        idusuario = ".$this->getUsuario()->getIdUsuario()." AND 
-        idrol = ".$this->getRol()->getIdRol();
+        idusuario = ".$this->getUsuario()->getidusuario()." AND 
+        idrol = ".$this->getRol()->getidrol();
         if($this->Iniciar()){
             $res = $this->Ejecutar($sql);
             if($res > -1){
                 $row = $this->Registro();
                 $objUsuario = new Usuario();
-                $objUsuario->setIdUsuario($row['idusuario']);
+                $objUsuario->setidusuario($row['idusuario']);
                 $objUsuario->cargar();
                 $objRol = new Rol();
-                $objRol->setIdRol($row['idrol']);
+                $objRol->setidrol($row['idrol']);
                 $objRol->cargar(); 
                 $this->setear($objUsuario, $objRol);
                 $exito = true;             
@@ -74,8 +74,8 @@ class UsuarioRol extends BaseDatos{
     public function insertar(){
         $resp = false;
         $sql = "INSERT INTO usuariorol(idusuario, idrol) VALUES(" 
-        .$this->getUsuario()->getIdUsuario().", " 
-        .$this->getRol()->getIdRol().")";
+        .$this->getUsuario()->getidusuario().", " 
+        .$this->getRol()->getidrol().")";
         if($this->Iniciar()) {
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -96,9 +96,9 @@ class UsuarioRol extends BaseDatos{
     public function modificar(){
         $resp = false;
         $sql = "UPDATE usuariorol SET 
-        idusuario = '".$this->getUsuario()->getIdUsuario()."', 
-        idrol = '".$this->getRol()->getIdRol()."', 
-        WHERE idusuario = ".$this->getUsuario()->getIdUsuario()." idusuario = ".$this->getRol()->getIdRol();
+        idusuario = '".$this->getUsuario()->getidusuario()."', 
+        idrol = '".$this->getRol()->getidrol()."', 
+        WHERE idusuario = ".$this->getUsuario()->getidusuario()." idusuario = ".$this->getRol()->getidrol();
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -116,8 +116,8 @@ class UsuarioRol extends BaseDatos{
     public function eliminar(){
         $resp = false;
         $sql = "DELETE FROM usuariorol WHERE idusuario = " 
-        . $this->getUsuario()->getIdUsuario() . " AND idrol = " 
-        . $this->getRol()->getIdRol();
+        . $this->getUsuario()->getidusuario() . " AND idrol = " 
+        . $this->getRol()->getidrol();
         if($this->Iniciar()){
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -141,10 +141,10 @@ class UsuarioRol extends BaseDatos{
             if ($this->Ejecutar($sql)){
                 while ($row = $this->Registro()){
                     $objUsuario = new Usuario();
-                    $objUsuario->setIdUsuario($row['idusuario']);
+                    $objUsuario->setidusuario($row['idusuario']);
                     $objUsuario->cargar();
                     $objRol = new Rol();
-                    $objRol->setIdRol($row['idrol']);
+                    $objRol->setidrol($row['idrol']);
                     $objRol->cargar();
                     $obj = new UsuarioRol();
                     $obj->setear($objUsuario, $objRol);

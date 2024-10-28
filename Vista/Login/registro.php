@@ -22,7 +22,7 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
         <!-- Nombre usuario  -->
         <div class="input-group mb-4">
             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="font-size: 22px; color: black;"></i></span>
-            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" required><br><br>
+            <input type="text" name="usnombre" id="usnombre" class="form-control" placeholder="Usuario" required><br><br>
             <!-- Mensajes aprobado y error -->
             <div class="valid-feedback">Ok!</div>
             <div class="invalid-feedback">El nombre de usuario solo debe contener letras sin números ni símbolos</div>
@@ -30,8 +30,8 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
         <!-- Contraseña -->
         <div class="input-group mb-4">
             <span class="input-group-text" id="basic-addon2"><i class="bi bi-lock-fill" style="font-size: 22px;"></i></span>
-            <input id="clave" name="clave" type="password" class="form-control" placeholder="Contraseña" required>
-            <input type="hidden" name="clave_md5" id="clave_md5">
+            <input id="clave" name="clave" type="password" class="form-control" placeholder="Contraseña" required onblur="return convertirClaveMD5()">
+            <input type="hidden" name="uspass" id="uspass">
             <!-- investigar sobre password_hash() -->
             <!-- Mensajes aprobado y error -->
             <div class="valid-feedback">Ok!</div>
@@ -40,13 +40,13 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
         <!-- Email -->
         <div class="input-group">
             <span class="input-group-text">usuario123@example.com</span>
-            <input type="email" name="email" id="email" class="form-control" required><br><br>
+            <input type="email" name="usmail" id="usmail" class="form-control" required><br><br>
             <!-- Mensajes aprobado y error -->
             <div class="valid-feedback">Ok!</div>
             <div class="invalid-feedback">Email invalida</div>
         </div>
         
-        <input type="submit" value="Registrar" onsubmit="return convertirClaveMD5()" class="btn btn-primary mt-5">
+        <input type="submit" value="Registrar"  class="btn btn-primary mt-5">
         </div>
     </form>
 </div>
@@ -56,11 +56,11 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
 <script>
     function convertirClaveMD5(){
         var clave = document.getElementById('clave').value;
-        document.getElementById('clave_md5').value = hex_md5(clave);
+        document.getElementById('uspass').value = hex_md5(clave);
         //Borro el valor original de la contraseña en el campo clave 
-        document.getElementById('clave').value = ''; 
+       // document.getElementById('clave').value = ''; 
     }
-    document.getElementById("usuario").addEventListener("blur", function(){
+    document.getElementById("usnombre").addEventListener("blur", function(){
         validarUsuario(this);
     });
 </script>

@@ -77,7 +77,7 @@ class AbmUsuario{
      */
     public function alta($param){
         $resp = false;
-        $param['idusuario'] =null;                             //Campo autoincremento
+        $param['idusuario'] = null;                             //Campo autoincremento
         $objUsuario = $this->cargarObjeto($param);
         if ($objUsuario!=null and $objUsuario->insertar()){
             $resp = true;

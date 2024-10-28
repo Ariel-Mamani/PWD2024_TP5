@@ -1,37 +1,37 @@
 <?php
 class Rol extends BaseDatos{
-    private $idRol;
-    private $descripcion;
+    private $idrol;
+    private $roldescripcion;
     private $mensajeoperacion;
 
     public function __construct() {
         parent::__construct();
-        $this->idRol = "";
-        $this->descripcion = "";
+        $this->idrol = "";
+        $this->roldescripcion = "";
         $this->mensajeoperacion = "";
     }
 
-    public function setear($idRol, $descripcion) {
-        $this->setIdRol($idRol);
-        $this->setDescripcion($descripcion);
+    public function setear($idrol, $roldescripcion) {
+        $this->setidrol($idrol);
+        $this->setroldescripcion($roldescripcion);
     }
 
-    // Métodos Get y Set para idRol
-    public function getIdRol() {
-        return $this->idRol;
+    // Métodos Get y Set para idrol
+    public function getidrol() {
+        return $this->idrol;
     }
 
-    public function setIdRol($valor) {
-        $this->idRol = $valor;
+    public function setidrol($valor) {
+        $this->idrol = $valor;
     }
 
-    // Métodos Get y Set para descripcion
-    public function getDescripcion() {
-        return $this->descripcion;
+    // Métodos Get y Set para roldescripcion
+    public function getroldescripcion() {
+        return $this->roldescripcion;
     }
 
-    public function setDescripcion($valor) {
-        $this->descripcion = $valor;
+    public function setroldescripcion($valor) {
+        $this->roldescripcion = $valor;
     }
 
     // Métodos Get y Set para mensajeoperacion
@@ -50,14 +50,14 @@ class Rol extends BaseDatos{
      */
     public function cargar(){
         $resp = false;
-        $sql="SELECT * FROM rol WHERE idrol = ".$this->getIdRol();
+        $sql="SELECT * FROM rol WHERE idrol = ".$this->getidrol();
         if ($this->Iniciar()) {
             $res = $this->Ejecutar($sql);
             if($res>-1){
                 if($res>0){
                     $resp = true;
                     $row = $this->Registro();
-                    $this->setear($row['idrol'], $row['roldescripcion']);
+                    $this->setear($row['idrol'], $row['rolroldescripcion']);
                 }
             }
         } else {
@@ -72,10 +72,10 @@ class Rol extends BaseDatos{
      */
     public function insertar(){
         $resp = false;
-        $sql="INSERT INTO rol (roldescripcion)  VALUES ('".$this->getDescripcion()."');";
+        $sql="INSERT INTO rol (rolroldescripcion)  VALUES ('".$this->getroldescripcion()."');";
         if ($this->Iniciar()) {
             if ($elid = $this->Ejecutar($sql)) {
-                $this->setIdRol($elid);
+                $this->setidrol($elid);
                 $resp = true;
             } else {
                 $this->setMensajeoperacion("rol->insertar: ".$this->getError());
@@ -91,8 +91,8 @@ class Rol extends BaseDatos{
      */
     public function modificar(){
         $resp = false;
-        $sql="UPDATE rol SET roldescripcion = '".$this->getDescripcion()."' ".
-            " WHERE idrol = ".$this->getIdRol();
+        $sql="UPDATE rol SET rolroldescripcion = '".$this->getroldescripcion()."' ".
+            " WHERE idrol = ".$this->getidrol();
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
                 $resp = true;
@@ -110,7 +110,7 @@ class Rol extends BaseDatos{
      */
     public function eliminar(){
         $resp = false;
-        $sql="DELETE FROM rol WHERE idrol = ".$this->getIdRol();
+        $sql="DELETE FROM rol WHERE idrol = ".$this->getidrol();
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql) > 0) {
                 $resp = true;
@@ -140,7 +140,7 @@ class Rol extends BaseDatos{
                 if($res>0){
                     while ($row = $this->Registro()){
                             $objrol= new rol();
-                            $objrol->setear($row['idrol'], $row['roldescripcion']);
+                            $objrol->setear($row['idrol'], $row['rolroldescripcion']);
                             array_push($arreglo, $objrol);
                     }
                 } 

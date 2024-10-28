@@ -11,10 +11,10 @@ class Session {
      * @return string
      */
     public function getUsuario(){
-        return $_SESSION['usuario'];
+        return $_SESSION['usnombre'];
     }
     public function setUsuario($usr){
-        $_SESSION['usuario'] = $usr;
+        $_SESSION['usnombre'] = $usr;
     }
         /**
      * Summary of getUsuario
@@ -31,16 +31,16 @@ class Session {
      * @return string
      */
     public function getPsw(){
-        return $_SESSION['psw'];
+        return $_SESSION['uspass'];
     }
     public function setPsw($valor){
-        $_SESSION['psw'] = $valor;
+        $_SESSION['uspass'] = $valor;
     }
 
 
     public function iniciar($usuario, $psw){
-        $_SESSION['usuario'] = $usuario;
-        $_SESSION['psw'] = $psw;
+        $_SESSION['usnombre'] = $usuario;
+        $_SESSION['uspass'] = $psw;
     }
 
     /**
@@ -49,23 +49,34 @@ class Session {
     public function validar(){
         $resp = false;
         $param = array();
-        $objAbmUsuario = new AbmUsuario;
         $param['usnombre'] = $this->getUsuario();
         $param['uspass'] = $this->getPsw();
-        $listaAbm = $objAbmUsuario->buscar($param);
-        if (count($listaAbm) > 0){
-            if($this->getUsuario() == $listaAbm[0]->getNombre() and $this->getPsw() == $listaAbm[0]->getPassword()){
-                $resp = true;
-            }
+        $objAbmUsuario = new AbmUsuario;
+        $objAbmUsuarioRol = new AbmUsuarioRol();
+
+        $listaAbmUsuario = $objAbmUsuario->buscar($param);
+        if (count($listaAbmUsuario) > 0){
+           if ($listaAbmUsuario[0]->getusnombre() == $param['usnombre'] and $listaAbmUsuario[0]->getuspass() == $param['uspass']){
+            /* $param['idusuario'] = $listaAbmUsuario[0]->getIdUsuario();
+                $listaAbmUsuarioRol = $objAbmUsuarioRol->buscar($param);
+                $this->setRol($listaAbmUsuarioRol[0]->getRol()->getDescripcion())*/
+                $this->setRol('user');
+                $resp = true;      
+           }
         }
-            return $resp;
+        return $resp;
     }
 
     public function cerrar(){
+        $resp = false;
         // remove all session variables
-        session_unset();
-        // destroy the session
-        session_destroy();
+        if(session_status() === PHP_SESSION_ACTIVE){
+            session_unset();
+            // destroy the session
+            session_destroy();
+            $resp = true;
+        }
+        return $resp;
     }
 
 }

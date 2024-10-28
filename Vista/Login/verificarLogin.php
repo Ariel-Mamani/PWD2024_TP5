@@ -6,15 +6,17 @@ include_once '../Estructura/header.php';
 $objSession = new Session();
 if(!empty(data_submitted())){
     $recibido = data_submitted();
-    if(isset($recibido['salirSession']) and $recibido['salirSession'] == 1){
-        $objSession->cerrar();
-        header("Location: ../Inicio/principal.php");
+    if(isset($recibido['cerrarSession']) and $recibido['cerrarSession'] == 1){
+        if($objSession->cerrar()){
+            header("Location: ../Inicio/principal.php");
+        }
     }
 
     //carga nombre y pass sin validar aun
-    $objSession->iniciar($recibido['usuario'],$recibido['clave_md5']);
+    $objSession->iniciar($recibido['usnombre'],$recibido['uspass']);
 
     if($objSession->validar()){
+   
         // Si es correcto, redirige a la página segura
         header("Location: ./paginaSegura.php");
     }else{

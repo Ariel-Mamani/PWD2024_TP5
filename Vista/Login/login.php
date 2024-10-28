@@ -2,6 +2,7 @@
 $titulo = "TP 5 - Login ";
 
 include_once '../Estructura/header.php';
+$objSession = new Session();
 ?>
 <div class="divtitulo">
     <h1 class='text-center mb-4 text-white'><?php echo $titulo;?></h1>
@@ -18,11 +19,11 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
 
 <div class="divform rounded p-4 shadow">
 <!-- Formulario Login -->
-    <form id="form" name="form" action="./verificarLogin.php" method="get" class="full-height p-5 needs-validation" novalidate>
+    <form id="form" name="form" action="./verificarLogin.php" method="post" class="full-height p-5 needs-validation" novalidate>
         <!-- Nombre usuario  -->
         <div class="input-group mb-4">
             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="font-size: 22px; color: black;"></i></span>
-            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" required><br><br>
+            <input type="text" name="usnombre" id="usnombre" class="form-control" placeholder="Usuario" required><br><br>
             <!-- Mensajes aprobado y error -->
             <div class="valid-feedback">Ok!</div>
             <div class="invalid-feedback">El nombre de usuario solo debe contener letras sin números ni símbolos</div>
@@ -31,7 +32,7 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
         <div class="input-group mb-4">
             <span class="input-group-text" id="basic-addon2"><i class="bi bi-lock-fill" style="font-size: 22px;"></i></span>
             <input id="clave" name="clave" type="password" class="form-control" placeholder="Contraseña" required onblur="return convertirClaveMD5()">
-            <input type="hidden" name="clave_md5" id="clave_md5">
+            <input type="hidden" name="uspass" id="uspass">
             <!-- Mensajes aprobado y error -->
             <div class="valid-feedback">Ok!</div>
             <div class="invalid-feedback">Valor de contraseña incorrecto</div>
@@ -46,7 +47,7 @@ if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
 <script>
     function convertirClaveMD5(){
         var clave = document.getElementById('clave').value;
-        document.getElementById('clave_md5').value = hex_md5(clave); 
+        document.getElementById('uspass').value = hex_md5(clave); 
         //Borro el valor original de la contraseña en el campo clave 
         //document.getElementById('clave').value = ''; //onsubmit="return convertirClaveMD5()"
     }
