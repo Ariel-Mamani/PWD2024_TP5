@@ -1,18 +1,18 @@
 <?php
     include_once("../Estructura/headerSeguro.php");
     $resp = false;
-    $objTrans = new AbmUsuario();
+    $objAbmUsuario = new AbmUsuario();
 
     if(!isset($datos)){
         $datos = data_submitted();
     } 
     if (isset($datos['accion'])){
         if($datos['accion']=='listar' or $datos['accion']=='Limpiar'){
-            $lista = $objTrans->buscar(null);
+            $lista = $objAbmUsuario->buscar(null);
         } elseif($datos['accion']=='Filtrar'){
-            $lista = convert_array($objTrans->filtrarPorNombre($datos['usnombre']));
+            $lista = $objAbmUsuario->filtrarPorNombre($datos['usnombre']);
         }else{
-            $resp = $objTrans->abm($datos);
+            $resp = $objAbmUsuario->abm($datos);
             if($resp){
                 $mensaje = "La accion ".$datos['accion']." se realizo correctamente.";
             }else {

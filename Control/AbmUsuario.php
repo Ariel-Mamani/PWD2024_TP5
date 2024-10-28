@@ -42,6 +42,24 @@ class AbmUsuario{
         return $objUsuario;
     }
     
+       /**
+     * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
+     * Sin el campo uspass
+     * @param array $param
+     * @return Usuario
+     */
+    protected function cargarObjetoSinPass($param){
+        $objUsuario = null;
+           
+        if( array_key_exists('idusuario',$param) and 
+            array_key_exists('usnombre',$param) and 
+            array_key_exists('usmail',$param)){
+            $objUsuario = new Usuario();
+            $objUsuario->setear($param['idusuario'], $param['usnombre'], null, $param['usmail']);
+        }
+        return $objUsuario;
+    }
+    
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
@@ -109,9 +127,10 @@ class AbmUsuario{
      */
     public function modificacion($param){
         $resp = false;
+        var_dump($param);
         if ($this->seteadosCamposClaves($param)){
-            $objUsuario = $this->cargarObjeto($param);
-            if($objUsuario!=null and $objUsuario->modificar()){
+            $objUsuario = $this->cargarObjetoSinPass($param);
+            if($objUsuario!=null and $objUsuario->modificarSinPass()){
                 $resp = true;
             }
         }
