@@ -11,7 +11,7 @@ if(!empty(data_submitted())){
     $param['usmail']    = $recibido['usmail'];  
     $listaUsuario = $objAbmUsuario->buscar($param);
     if(empty($listaUsuario)){ // ¿verificamos con nombre de usuario y mail?
-         if($objAbmUsuario->alta($recibido)){
+        if($objAbmUsuario->alta($recibido)){
             $_SESSION['mensaje'] = "Se ha registrado exitosamente.";
             // Se REDIRIGE al formulario de login si el registro fue exitoso
             echo "<h1>SI</h1>";

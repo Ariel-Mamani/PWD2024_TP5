@@ -20,9 +20,11 @@ if(!empty(data_submitted())){
         header("Location: ".$VISTA."Login/paginaSegura.php");
         die();
     }else{
+        $_SESSION['mensaje'] = "Usted no esta registrado, primero debe registrarse";
+        // Guarda los datos de la sesión antes de redirigir porque sino se pierde el mensaje
+        session_write_close();
         // Si es incorrecto, cierra la sesión y redirige al login
         $objSession->cerrar();
-        $_SESSION['mensaje'] = "Usuario o contraseña incorrectos.";
         header("Location: ".$VISTA."Login/login.php");
         die();
     }

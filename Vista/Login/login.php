@@ -13,13 +13,15 @@ $objSession = new Session();
 // Mi idea es mostrar el mensaje de que el usuario se registro
 // Verifica si hay un mensaje en la sesión y lo muestra
 if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
-    echo "<h1>{$_SESSION['mensaje']}</h1>";
+    echo "<h1 class = 'bg-dark text-light p-2'> {$_SESSION['mensaje']}</h1>";
+    // Limpia el mensaje para que no vuelva a mostrarse en el próximo acceso
+    unset($_SESSION['mensaje']);
 }
 ?>
 
 <div class="divform rounded p-4 shadow">
 <!-- Formulario Login -->
-    <form id="form" name="form" action="./verificarLogin.php" method="post" class="full-height p-5 needs-validation" novalidate>
+    <form id="form" name="form" action="verificarLogin.php" method="post" class="full-height p-5 needs-validation" novalidate>
         <!-- Nombre usuario  -->
         <div class="input-group mb-4">
             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="font-size: 22px; color: black;"></i></span>

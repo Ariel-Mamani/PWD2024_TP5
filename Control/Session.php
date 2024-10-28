@@ -46,10 +46,10 @@ class Session {
         $objAbmUsuarioRol = new AbmUsuarioRol();
 
         $listaAbmUsuario = $objAbmUsuario->buscar($param);
-        if (count($listaAbmUsuario) > 0){
-           if ($listaAbmUsuario[0]->getusnombre() == $param['usnombre'] and $listaAbmUsuario[0]->getuspass() == $param['uspass']){
+        if(count($listaAbmUsuario) > 0){
+            if ($listaAbmUsuario[0]->getusnombre() == $param['usnombre'] and $listaAbmUsuario[0]->getuspass() == $param['uspass']){
                 $resp = true;      
-           }
+            }
         }
         return $resp;
     }
