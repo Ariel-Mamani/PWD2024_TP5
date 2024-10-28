@@ -1,6 +1,6 @@
 <?php
     $titulo = " Usuario ";
-    include_once("../estructura/header.php");
+    include_once("../estructura/headerSeguro.php");
     $datos = data_submitted();
     $AbmUsuario = new AbmUsuario();
     $obj =NULL;

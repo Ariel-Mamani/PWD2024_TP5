@@ -1,6 +1,6 @@
 <?php
     $titulo = " Gestion de Usuarios";
-    include_once("../Estructura/header.php");
+    include_once("../Estructura/headerSeguro.php");
     $datos = data_submitted();
     
     if (!isset($datos['accion'])){ $datos['accion']="listar"; }

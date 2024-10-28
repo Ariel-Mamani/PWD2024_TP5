@@ -12,7 +12,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="../Login/login.php">Login</a></li>
               <li><a class="dropdown-item" href="../Login/registro.php">Registrar</a></li>
-              <li><a class="dropdown-item" href="../Usuarios/index.php">Lista usuarios</a></li>
+              <li><a class="dropdown-item" href="<?php echo $VISTA ?>Usuarios/index.php">Lista usuarios</a></li>
             </ul>
           </li>          
         </ul>

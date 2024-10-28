@@ -11,30 +11,21 @@ class Session {
      * @return string
      */
     public function getUsuario(){
-        return $_SESSION['usnombre'];
+        $objAbmUsuario = new AbmUsuario();
+        $listaAbmUsuario = $objAbmUsuario->buscar($_SESSION);
+        return $listaAbmUsuario[0];
     }
-    public function setUsuario($usr){
-        $_SESSION['usnombre'] = $usr;
-    }
-        /**
-     * Summary of getUsuario
+    /**
+     * Summary of getRol
      * @return string
      */
     public function getRol(){
-        return $_SESSION['rol'];
+        $objAbmRol = new AbmRol();
+        $listaAbmRol = $objAbmRol->buscar($_SESSION);
+        return $listaAbmRol[0];
     }
-    public function setRol($usr){
-        $_SESSION['rol'] = $usr;
-    }
-    /**
-     * Summary of getPsw
-     * @return string
-     */
-    public function getPsw(){
-        return $_SESSION['uspass'];
-    }
-    public function setPsw($valor){
-        $_SESSION['uspass'] = $valor;
+    public function setRol($idrol){
+        $_SESSION['idrol'] = $idrol;
     }
 
 
@@ -49,18 +40,14 @@ class Session {
     public function validar(){
         $resp = false;
         $param = array();
-        $param['usnombre'] = $this->getUsuario();
-        $param['uspass'] = $this->getPsw();
+        $param['usnombre'] = $_SESSION['usnombre'];
+        $param['uspass'] = $_SESSION['uspass'];
         $objAbmUsuario = new AbmUsuario;
         $objAbmUsuarioRol = new AbmUsuarioRol();
 
         $listaAbmUsuario = $objAbmUsuario->buscar($param);
         if (count($listaAbmUsuario) > 0){
            if ($listaAbmUsuario[0]->getusnombre() == $param['usnombre'] and $listaAbmUsuario[0]->getuspass() == $param['uspass']){
-            /* $param['idusuario'] = $listaAbmUsuario[0]->getIdUsuario();
-                $listaAbmUsuarioRol = $objAbmUsuarioRol->buscar($param);
-                $this->setRol($listaAbmUsuarioRol[0]->getRol()->getDescripcion())*/
-                $this->setRol('user');
                 $resp = true;      
            }
         }
@@ -69,11 +56,21 @@ class Session {
 
     public function cerrar(){
         $resp = false;
-        // remove all session variables
         if(session_status() === PHP_SESSION_ACTIVE){
+            // remove all session variables
             session_unset();
             // destroy the session
             session_destroy();
+            $resp = true;
+        }
+        return $resp;
+    }
+    /**
+     * Verifica si la session está activa
+     */
+    public function activa(){
+        $resp = false;
+        if (session_status() === PHP_SESSION_ACTIVE){
             $resp = true;
         }
         return $resp;

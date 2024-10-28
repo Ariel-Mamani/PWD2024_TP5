@@ -1,8 +1,8 @@
 <?php
     include_once "../../configuracion.php";
     $objSession = new Session();
-    if(!$objSession->validar()){
-        header("Location: ./login.php");
+    if(!$objSession->activa()){
+        header("Location: ".$VISTA."Inicio/principal.php");
     }else{
         $titulo = "TP 5 - Login ";
 ?>

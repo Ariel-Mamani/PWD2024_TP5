@@ -1,14 +1,14 @@
 <?php
-$titulo = "TP 5 - Login";
-include_once '../Estructura/header.php';
-
+include_once '../../configuracion.php';
 // Crea el objeto de la sesion
 $objSession = new Session();
 if(!empty(data_submitted())){
     $recibido = data_submitted();
+
     if(isset($recibido['cerrarSession']) and $recibido['cerrarSession'] == 1){
         if($objSession->cerrar()){
-            header("Location: ../Inicio/principal.php");
+            header("Location: ".$VISTA."Inicio/principal.php");
+            die();
         }
     }
 
@@ -16,14 +16,15 @@ if(!empty(data_submitted())){
     $objSession->iniciar($recibido['usnombre'],$recibido['uspass']);
 
     if($objSession->validar()){
-   
         // Si es correcto, redirige a la página segura
-        header("Location: ./paginaSegura.php");
+        header("Location: ".$VISTA."Login/paginaSegura.php");
+        die();
     }else{
         // Si es incorrecto, cierra la sesión y redirige al login
         $objSession->cerrar();
         $_SESSION['mensaje'] = "Usuario o contraseña incorrectos.";
-        header("Location: ./login.php");
+        header("Location: ".$VISTA."Login/login.php");
+        die();
     }
     ?>
 

@@ -57,7 +57,7 @@ class Rol extends BaseDatos{
                 if($res>0){
                     $resp = true;
                     $row = $this->Registro();
-                    $this->setear($row['idrol'], $row['rolroldescripcion']);
+                    $this->setear($row['idrol'], $row['roldescripcion']);
                 }
             }
         } else {
@@ -72,7 +72,7 @@ class Rol extends BaseDatos{
      */
     public function insertar(){
         $resp = false;
-        $sql="INSERT INTO rol (rolroldescripcion)  VALUES ('".$this->getroldescripcion()."');";
+        $sql="INSERT INTO rol (roldescripcion)  VALUES ('".$this->getroldescripcion()."');";
         if ($this->Iniciar()) {
             if ($elid = $this->Ejecutar($sql)) {
                 $this->setidrol($elid);
@@ -91,7 +91,7 @@ class Rol extends BaseDatos{
      */
     public function modificar(){
         $resp = false;
-        $sql="UPDATE rol SET rolroldescripcion = '".$this->getroldescripcion()."' ".
+        $sql="UPDATE rol SET roldescripcion = '".$this->getroldescripcion()."' ".
             " WHERE idrol = ".$this->getidrol();
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
@@ -140,7 +140,7 @@ class Rol extends BaseDatos{
                 if($res>0){
                     while ($row = $this->Registro()){
                             $objrol= new rol();
-                            $objrol->setear($row['idrol'], $row['rolroldescripcion']);
+                            $objrol->setear($row['idrol'], $row['roldescripcion']);
                             array_push($arreglo, $objrol);
                     }
                 } 
