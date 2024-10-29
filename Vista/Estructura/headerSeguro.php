@@ -1,7 +1,7 @@
 <?php
     include_once "../../configuracion.php";
     $objSession = new Session();
-    if(!$objSession->activa()){
+    if(!$objSession->validar()){
         header("Location: ".$VISTA."Inicio/principal.php");
     }else{
         $titulo = "TP 5 - Login ";
@@ -21,4 +21,3 @@
     include_once "menuDinamico.php";
     }
   ?>
-<h1>Header Seguro</h1>

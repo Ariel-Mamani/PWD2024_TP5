@@ -1,6 +1,6 @@
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../Inicio/principal.php">Grupo 5</a>
+      <a class="navbar-brand" href="<?php echo $VISTA ?>Inicio/principal.php">Grupo 5</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,9 +10,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">TP N° 5</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../Login/login.php">Login</a></li>
-              <li><a class="dropdown-item" href="../Login/registro.php">Registrar</a></li>
-              <li><a class="dropdown-item" href="<?php echo $VISTA ?>Usuarios/index.php">Lista usuarios</a></li>
+              <li><a class="dropdown-item" href="<?php echo $VISTA ?>Login/login.php">Login</a></li>
+              <li><a class="dropdown-item" href="<?php echo $VISTA ?>Login/registro.php">Registrar</a></li>
             </ul>
           </li>          
         </ul>

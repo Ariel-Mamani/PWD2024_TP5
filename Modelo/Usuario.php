@@ -121,7 +121,7 @@ class Usuario extends BaseDatos{
         return $resp;
     }
 
-        /**
+    /**
      * Summary of modificar sin uspass
      * @return bool
      */
@@ -130,7 +130,7 @@ class Usuario extends BaseDatos{
         $sql = "UPDATE usuario SET 
         usnombre = '".$this->getusnombre()."', 
         usmail = '".$this->getusmail()."',
-        usdeshabilitado = '0000-00-00 00:00:00' WHERE idusuario = ".$this->getidusuario();
+        usdeshabilitado = 'null' WHERE idusuario = ".$this->getidusuario();
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -142,6 +142,30 @@ class Usuario extends BaseDatos{
         }
         return $resp;
     }
+    
+    /**
+     * Summary of modificar sin uspass
+     * @return bool
+     */
+    public function modificarPass(){
+        $resp = false;
+        $sql = "UPDATE usuario SET 
+        uspass = '".$this->getuspass()."',
+        usdeshabilitado = 'null' WHERE idusuario = ".$this->getidusuario();
+        if ($this->Iniciar()) {
+            if($this->Ejecutar($sql)){
+                $resp = true;
+            }else{
+                $this->setmensajeoperacion("Usuario->modificar: ".$this->getError());
+            }
+        }else{
+            $this->setmensajeoperacion("Usuario->modificar: ".$this->getError());
+        }
+        return $resp;
+    }
+    /**
+     * Eliminar, borrado lógico
+     */
     public function eliminar(){
         $resp = false;
         $sql = "UPDATE usuario SET usdeshabilitado = '".date("Y-m-d h:i:sa")."' WHERE idusuario = ".$this->getidusuario();

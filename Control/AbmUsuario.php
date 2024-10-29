@@ -10,6 +10,11 @@ class AbmUsuario{
                 $resp = true;
             }
         }
+        if($datos['accion']=='editarPass'){
+            if($this->modificacionPass($datos)){
+                $resp = true;
+            }
+        }
         if($datos['accion']=='borrar'){
             if($this->baja($datos)){
                 $resp =true;
@@ -56,6 +61,21 @@ class AbmUsuario{
             array_key_exists('usmail',$param)){
             $objUsuario = new Usuario();
             $objUsuario->setear($param['idusuario'], $param['usnombre'], null, $param['usmail']);
+        }
+        return $objUsuario;
+    }
+        /**
+     * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
+     * @param array $param
+     * @return Usuario
+     */
+    protected function cargarObjetoPass($param){
+        $objUsuario = null;
+           
+        if( array_key_exists('idusuario',$param) and 
+            array_key_exists('uspass',$param)){
+            $objUsuario = new Usuario();
+            $objUsuario->setear($param['idusuario'], null, $param['uspass'], null);
         }
         return $objUsuario;
     }
@@ -121,13 +141,12 @@ class AbmUsuario{
     }
     
     /**
-     * permite modificar un objeto
+     * permite modificar un objeto menos la password
      * @param array $param
      * @return boolean
      */
     public function modificacion($param){
         $resp = false;
-        var_dump($param);
         if ($this->seteadosCamposClaves($param)){
             $objUsuario = $this->cargarObjetoSinPass($param);
             if($objUsuario!=null and $objUsuario->modificarSinPass()){
@@ -137,6 +156,21 @@ class AbmUsuario{
         return $resp;
     }
     
+        /**
+     * permite modificar la password
+     * @param array $param
+     * @return boolean
+     */
+    public function modificacionPass($param){
+        $resp = false;
+        if ($this->seteadosCamposClaves($param)){
+            $objUsuario = $this->cargarObjetoPass($param);
+            if($objUsuario!=null and $objUsuario->modificarPass()){
+                $resp = true;
+            }
+        }
+        return $resp;
+    }
     /**
      * permite buscar un objeto
      * @param array $param

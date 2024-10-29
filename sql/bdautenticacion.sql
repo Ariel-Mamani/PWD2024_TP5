@@ -18,10 +18,10 @@ CREATE TABLE usuario (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO usuario (idusuario, usnombre, uspass, usmail, usdeshabilitado) VALUES 
-    (1, 'Jose', 'e10adc3949ba59abbe56e057f20f883e', 'jose@jose.com', null),
-    (2, 'Mari', 'e10adc3949ba59abbe56e057f20f883e', 'mari@jose.com', null),
-    (3, 'Ana', 'e10adc3949ba59abbe56e057f20f883e', 'ana@jose.com', null),
-    (4, 'Juana', 'e10adc3949ba59abbe56e057f20f883e', 'juana@jose.com', null);
+    (1, 'Jose', 'e10adc3949ba59abbe56e057f20f883e', 'jose@jose.com', 'null'),
+    (2, 'Mari', 'e10adc3949ba59abbe56e057f20f883e', 'mari@jose.com', 'null'),
+    (3, 'Ana', 'e10adc3949ba59abbe56e057f20f883e', 'ana@jose.com', 'null'),
+    (4, 'Juana', 'e10adc3949ba59abbe56e057f20f883e', 'juana@jose.com', 'null');
 -- --------------------------------------------------------
 
 -- --------------------------------------------------------
@@ -35,9 +35,9 @@ CREATE TABLE rol (
 
 INSERT INTO rol (idrol, roldescripcion) VALUES 
     (1, 'admin'),
-    (2, 'user1'),
-    (3, 'user2'),
-    (4, 'user3');
+    (2, 'cuchillo'),
+    (3, 'tenedor'),
+    (4, 'cuchara');
 -- --------------------------------------------------------
 
 -- --------------------------------------------------------
@@ -73,7 +73,7 @@ CREATE TABLE menu (
 INSERT INTO menu (idmenu, menunombre, menuurl) VALUES 
     (1, 'Lista Usuarios', '../Usuarios/index.php'),
     (2, 'Lista Roles', '../Rol/index.php'),
-    (3, 'Lista Usuarios', '../Usuarios/index.php');
+    (3, 'Lista Menu', '../Menu/index.php');
 -- --------------------------------------------------------
 
 -- --------------------------------------------------------

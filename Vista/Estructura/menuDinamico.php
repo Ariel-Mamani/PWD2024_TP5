@@ -10,8 +10,6 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">TP N° 5</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo $VISTA ?>Login/login.php">Login</a></li>
-              <li><a class="dropdown-item" href="<?php echo $VISTA ?>Login/registro.php">Registrar</a></li>
               <li><a class="dropdown-item" href="<?php echo $VISTA ?>Usuarios/index.php">Lista usuarios</a></li>
               <li><a class="dropdown-item" href="<?php echo $VISTA ?>Rol/index.php">Lista rol</a></li>
             </ul>
