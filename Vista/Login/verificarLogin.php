@@ -14,13 +14,13 @@ if(!empty(data_submitted())){
 
     //carga nombre y pass sin validar aun
     $objSession->iniciar($recibido['usnombre'],$recibido['uspass']);
-
-    if($objSession->validar()){
+    $respuesta = $objSession->validar();
+    if($respuesta){
         // Si es correcto, redirige a la página segura
         header("Location: ".$VISTA."Login/paginaSegura.php");
         die();
     }else{
-        $_SESSION['mensaje'] = "Usted no esta registrado, primero debe registrarse";
+        $mensaje = $objSession->getMensaje($respuesta);
         // Guarda los datos de la sesión antes de redirigir porque sino se pierde el mensaje
         session_write_close();
         // Si es incorrecto, cierra la sesión y redirige al login

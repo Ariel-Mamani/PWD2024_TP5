@@ -12,7 +12,7 @@ $objSession = new Session();
 // Mi idea es mostrar el mensaje de que el usuario se registro
 // Verifica si hay un mensaje en la sesión y lo muestra
 if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
-    echo "<h1 class = 'bg-dark text-light p-2'> {$_SESSION['mensaje']}</h1>";
+    echo "<h1 class='bg-dark text-light p-2'>{$_SESSION['mensaje']}</h1>";
     // Limpia el mensaje para que no vuelva a mostrarse en el próximo acceso
     unset($_SESSION['mensaje']);
 }

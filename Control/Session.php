@@ -75,6 +75,20 @@ class Session {
         }
         return $resp;
     }
+    /**
+     *  Retorna mensaje dependiendo del boleano que entre por parametros
+     */
+    public function getMensaje($bool = null) {
+        if($bool === true){
+            $_SESSION['mensaje'] = 'Se ha registrado exitosamente';
+        }elseif($bool === false){
+            $_SESSION['mensaje'] = 'Usted no está registrado, primero debe registrarse';
+        }else{
+            $_SESSION['mensaje'] = "El usuario o el email ya están registrados.";
+        }
+        return $_SESSION['mensaje'];
+    }
+    
 
 }
 ?>

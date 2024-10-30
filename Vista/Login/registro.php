@@ -10,9 +10,10 @@ include_once '../Estructura/header.php';
 // Se mostrara un mensaje ya que el usuario quiso entrar al login sin haberse registrado antes
 // Verifica si hay un mensaje en la sesión y lo muestra
 if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
-    echo "<h1>{$_SESSION['mensaje']}</h1>";
-    unset($_SESSION['mensaje']); // Limpia el mensaje después de mostrarlo
-} 
+    echo "<h1 class='bg-dark text-light p-2'>{$_SESSION['mensaje']}</h1>";
+    // Limpia el mensaje para que no vuelva a mostrarse en el próximo acceso
+    unset($_SESSION['mensaje']);
+}
 ?>
 <body>
 
