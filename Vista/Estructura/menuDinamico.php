@@ -10,16 +10,18 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">TP N° 5</a>
             <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="<?php echo $VISTA ?>Login/login.php">Login</a></li>
+              <li><a class="dropdown-item" href="<?php echo $VISTA ?>Login/registro.php">Registrar</a></li>
               <li><a class="dropdown-item" href="<?php echo $VISTA ?>Usuarios/index.php">Lista usuarios</a></li>
               <li><a class="dropdown-item" href="<?php echo $VISTA ?>Rol/index.php">Lista rol</a></li>
             </ul>
           </li>          
         </ul>
-        <form action="<?php echo $VISTA ?>Login/verificarLogin.php" method="post">
-          <label for="lusuario" class="labelUsuario" ><?php echo $_SESSION['usnombre'] .'<img src="../Imagenes/gatito.png" alt="Avatar Gatito" style="width:40px;" class="rounded-pill"> '; ?>  </label>
-          <!-- <label for="laberRol"><?php echo "Rol: ". $_SESSION['rol']; ?></label>    -->     
-          <input type="text" name="cerrarSession" id="cerrarSession" value="1" hidden>
-          <button class="btn btn-primary" type="submit" id="btnSalir" >Salir</button>
+        <form action="<?php echo $VISTA ?>Login/verificarLogin.php" method="post" class="d-flex align-items-center ms-auto">
+          <label for="lusuario" class="labelUsuario " style="position: relative; left:auto;"><?php echo $_SESSION['usnombre'] .'<img src="../Imagenes/gatito.png" alt="Avatar Gatito" style="width:40px;" class="rounded-pill m-3"> '; ?>  </label>
+          <!-- <label for="laberRol"><?php echo "Rol: ". $rol; ?></label>    -->     
+          <input type="text" name="cerrarSession " id="cerrarSession" value="1" hidden>
+          <button class="btn btn-danger" type="submit" id="btnSalir" style="right: 200px; position:relative;">Salir</button>
         </form>
       </div>
     </div>

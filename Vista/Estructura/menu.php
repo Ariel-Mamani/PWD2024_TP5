@@ -15,7 +15,9 @@
             </ul>
           </li>          
         </ul>
-          <label for="lusuario" class="labelUsuario" >Anónimo  <img src="../Imagenes/anonimo.png" alt="Avatar Anonimo" style="width:40px;" class="rounded-pill"> </label>
+        <div class="d-flex align-items-center ms-auto">
+          <label for="lusuario" class="labelUsuario" style="position:relative; ">Anónimo  <img src="../Imagenes/anonimo.png" alt="Avatar Anonimo" style="width:40px; " class="rounded-pill"> </label>
+        </div>
       </div>
     </div>
   </nav>
