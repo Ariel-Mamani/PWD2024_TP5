@@ -78,7 +78,8 @@ class Session {
     /**
      *  Retorna mensaje dependiendo del boleano que entre por parametros
      */
-    public function getMensaje($bool = null) {
+    public function getMensaje($bool = null){
+        // si no esta el === no funca XD
         if($bool === true){
             $_SESSION['mensaje'] = 'Se ha registrado exitosamente';
         }elseif($bool === false){
