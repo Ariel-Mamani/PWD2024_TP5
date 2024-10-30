@@ -12,8 +12,9 @@ class Session {
      */
     public function getUsuario(){
         $objAbmUsuario = new AbmUsuario();
-        $listaAbmUsuario = $objAbmUsuario->buscar($_SESSION);
-        return $listaAbmUsuario[0];
+        $listaUsuario = $objAbmUsuario->buscar($_SESSION);
+        $obj = $listaUsuario[0];
+        return $obj;
     }
     /**
      * Summary of getRol
@@ -21,8 +22,9 @@ class Session {
      */
     public function getRol(){
         $objAbmRol = new AbmRol();
-        $listaAbmRol = $objAbmRol->buscar($_SESSION);
-        return $listaAbmRol[0];
+        $listaRol = $objAbmRol->buscar($_SESSION);
+        $obj = $listaRol[0];
+        return $obj;
     }
     public function setRol($idrol){
         $_SESSION['idrol'] = $idrol;
@@ -45,9 +47,13 @@ class Session {
         $objAbmUsuario = new AbmUsuario;
         $objAbmUsuarioRol = new AbmUsuarioRol();
 
-        $listaAbmUsuario = $objAbmUsuario->buscar($param);
-        if(count($listaAbmUsuario) > 0){
-            if ($listaAbmUsuario[0]->getusnombre() == $param['usnombre'] and $listaAbmUsuario[0]->getuspass() == $param['uspass']){
+        $listaUsuario = $objAbmUsuario->buscar($param);
+        if(count($listaUsuario) > 0){
+            if ($listaUsuario[0]->getusnombre() == $param['usnombre'] and $listaUsuario[0]->getuspass() == $param['uspass']){
+                $param['idusuario'] = $listaUsuario[0]->getidusuario();
+                $listaUsuarioRol = $objAbmUsuarioRol->buscar($param);
+                $this->setRol($listaUsuarioRol[0]->getRol()->getidrol());
+           
                 $resp = true;      
             }
         }
