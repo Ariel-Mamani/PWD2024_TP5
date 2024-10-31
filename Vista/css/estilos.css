@@ -1,29 +1,158 @@
-/*.navbar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: black;
-    color: white;
-    padding: 10px;
+*{
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: url(../../Archivos/bg.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: animateBg 5s linear infinite;
 }
 
-.container {
-    margin-top: 60px;
+@keyframes animateBg {
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}
+
+.login-box{
+    position:relative;
+    width: 400px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(15px);
+}
+
+h2{
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 310px;
+    margin: 30px 0;
+    border-bottom: 2px solid #fff;
+}
+
+.input-box label{
     position: absolute;
-    top: 50px;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
 }
-*/
 
-body {
-    padding-bottom: 100px; /* Ajusta este valor según el tamaño del footer */
-    background-image: url(../../Archivos/flechas.jpg);
-    background-size: cover; /* La imagen se ajusta al tamaño del contenedor sin recortarse */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-position: center; /* Centra la imagen en el cuerpo */
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top: -5px;
 }
+
+.input-box input{
+    width: 100%;
+    height: 50px;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 1em;
+    color: #fff !important;
+    padding: 0 35px 0 5px;
+}
+
+.form-control{
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2em;
+    line-height: 57px;
+}
+
+.remember-forgot{
+    margin: -15px 0 15px;
+    font-size: .9em;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input{
+    margin-right: 3px;
+}
+
+.remember-forgot a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+button{
+    width: 100%;
+    height: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #000;
+    font-weight: 500;
+}
+
+.register-link{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    margin:25px 0 10px;
+}
+
+.register-link p a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover{
+    text-decoration: underline;
+}
+
+@media (max-width: 360px){
+    .login-box{
+        width: 100%;
+        height: 10vh;
+        border: none;
+        border-radius: 0;
+    }
+
+    .input-box{
+        width: 290px;
+    }
+}
+
 
 
 /**************************************************/
@@ -52,6 +181,8 @@ body {
     margin: auto;
 }
 
+
+
 /*************************************************/
 /*********** Estilos para los submenús ***********/
 /*************************************************/
@@ -72,277 +203,7 @@ body {
 }
 
 
-/**************************************************************************************/
-/************************ Estilos titulos, enunciados y textos ************************/
-/**************************************************************************************/
 
-/* Color texto titulo accion */
-#tituloAccion{
-    color: white;
-    text-align: center;
-}
-
-/* Color texto y fondo del enunciado */
-#enunciado {
-    color: white;
-    font-weight: bold;
-    margin-top: 5px;
-    width: 80%;
-    margin-left: 10%;
-    padding: 5px;
-    text-align: justify;
-    background-color: rgba(42, 42, 44, 0.5); /* 0.5 es el nivel de opacidad */
-    border-radius: 15px;
-}
-
-/* Color de textos */
-.text-extra{
-    color:white;
-}
-
-/* Color de textos importantes */
-.text-important{
-    color:aqua;
-}
-
-/* Estilo de subtitulo */
-.subtitulo{
-    color: white;
-    font-size: 25px;
-} 
-
-/***********************************************************************************/
-/************************ Estilos botones TP 1, TP 2 y TP 3 ************************/
-/***********************************************************************************/
-
-/* Color de botón y texto */
-.btn-tp1, .btn-tp2, .btn-tp3 {
-    color: white;
-    border-color: white;
-    border: 1px solid;
-    border-radius: 5px;
-    background-color: transparent;
-    text-decoration: none;
-    width: 150px;
-    height: 40px;
-    font-size: 16px;
-    text-align: center; /* Centra el texto horizontalmente */
-    line-height: 40px; /* Alinea verticalmente según la altura */
-    padding: 0; /* Elimina el padding para que line-height funcione mejor */
-}
-
-/* Color de botón, texto y puntero al pasar el mouse */
-.btn-tp1:hover, .btn-tp2:hover, .btn-tp3:hover {
-    cursor: pointer;
-    background-color: white;
-    color: black;
-    border-color: white;
-    border: 1px solid;
-}
-
-
-
-/*************************************************************/
-/******************* Estilos textarea TP 3 *******************/
-/*************************************************************/
-
-/* Centrado del textarea */
-#textarea {
-    text-align: center; /* Alinea el contenido horizontalmente */
-    margin-top: 20px;   /* Puedes ajustar este valor según lo que necesites */
-}
-
-
-
-/* Color de fondo del container_cine */
-.container_cine {
-    color: white;
-    font-weight: bold;
-    margin-top: 5px;
-    width: 80%;
-    margin-left: 10%;
-    padding: 5px;
-    text-align: justify;
-    background-color: rgba(42, 42, 44, 0.5); /* 0.5 es el nivel de opacidad */
-    border-radius: 15px;
-}
-
-/* Color de fondo del container_cine */
-.container_auto, .container_persona {
-    color: white;
-    font-weight: bold;
-    margin-top: 5px;
-    width: 80%;
-    margin-left: 10%;
-    padding: 5px;
-    text-align: justify;
-    background-color: rgba(42, 42, 44, 0.5); /* 0.5 es el nivel de opacidad */
-    border-radius: 15px;
-}
-
-/*************************************************************/
-/*********** Estilos boton azul de las tablas TP 4 ***********/
-/*************************************************************/
-.btn-color {
-    color: blue; /* Color del texto */
-    background-color: transparent; /* Fondo transparente */
-    border: 1px solid blue; /* Borde azul */
-    transition: background-color 0.3s, color 0.3s; /* Suaviza la transición */
-}
-
-.btn-color:hover {
-    background-color: blue; /* Fondo azul al pasar el mouse */
-    color: white; /* Texto blanco al pasar el mouse */
-}
-
-
-/********************************************************************/
-/************* Estilos letras de patentes en mayusculas *************/
-/********************************************************************/
-.uppercase {
-    text-transform: uppercase;
-}
-
-
-/********************************************************************/
-/************************** Estilos tablas **************************/
-/********************************************************************/
-
-/* Aplicar bordes redondeados a la primera y última celda de cada fila */
-.table-striped tbody tr td:first-child {
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    overflow: hidden;
-}
-.table-striped tbody tr td:last-child {
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    overflow: hidden;
-}
-
-/* Quitar las líneas de separación entre las filas y encabezado */
-.table-striped {
-    border-collapse: separate; /* Asegura que los bordes no colapsen */
-    border-spacing: 0; /* Elimina espacio entre las celdas */
-}
-
-/* Eliminar cualquier borde en las celdas del cuerpo de la tabla */
-.table-striped td {
-    border: none;
-}
-
-/* Eliminar cualquier borde en las celdas del encabezado */
-.table-striped th {
-    border: none;
-}
-
-/* Cambiar el color de texto de todas las filas a azul */
-.table-striped tbody tr {
-    color: blue;
-}
-
-/* Cambiar el fondo de las filas impares a color blanco */
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: white;
-    color: blue;
-}
-
-/* Cambiar el fondo de las filas pares a color blanco */
-.table-striped tbody tr:nth-of-type(even) {
-    background-color: white; /* Color de fondo para filas pares */
-    color: blue; /* Color del texto para filas pares */
-}
-
-/* Cambiar el fondo de las filas al pasar el mouse */
-.table-striped tbody tr:hover {
-    background-color: blue;
-    color: white;
-}
-
-/* Cambiar el color del botón cuando se pase el ratón por encima de la fila */
-.table-striped tbody tr:hover .btn-color {
-    background-color: #99f0ff;
-    border-color: #99f0ff;
-    color: blue;
-    border-radius: 5px;
-}
-/* Cambiar el color del botón cuando se pase el ratón por encima de la fila */
-.table-striped tbody tr:hover .btn-outline-danger {
-    background-color: #ff99cc;
-    border-color: #ff99cc;
-    color: blue;
-    border-radius: 5px;
-}
-/* Cambiar el color del botón cuando se pase el ratón por encima de la fila */
-.table-striped tbody tr:hover .btn-outline-success {
-    background-color: #7bfd7b;
-    border-color: #7bfd7b;
-    color: blue;
-    border-radius: 5px;
-}
-/* Cambiar el color del botón cuando se pase el ratón por encima de la fila */
-.table-striped tbody tr:hover .btn-outline-dark {
-    background-color: white;
-    border-color: white;
-    color: black;
-    border-radius: 5px;
-}
-
-/* Cambiar el borde y las letras del botón "Editar" cuando se pase el ratón por encima del botón */
-.table-striped tbody tr .btn-color:hover {
-    background-color: blue;
-    border-color: white;
-    color: white;
-}
-/* Cambiar el borde y las letras del botón "Borrar" cuando se pase el ratón por encima del botón */
-.table-striped tbody tr .btn-outline-danger:hover {
-    background-color: red;
-    border-color: white;
-    color: white;
-}
-/* Cambiar el borde y las letras del botón "Cambiar" cuando se pase el ratón por encima del botón */
-.table-striped tbody tr .btn-outline-success:hover {
-    background-color: green;
-    border-color: white;
-    color: white;
-}
-/* Cambiar el borde y las letras del botón "Ver Autos" cuando se pase el ratón por encima del botón */
-.table-striped tbody tr .btn-outline-dark:hover {
-    background-color: black;
-    border-color: white;
-    color: white;
-}
-
-/* Reducir el tamaño de los botones cuando se hace clic */
-.btn-color:active,
-.btn-outline-danger:active,
-.btn-outline-success:active,
-.btn-outline-dark:active {
-    transform: scale(0.95); /* Reduce el tamaño en un 5% */
-}
-
-
-
-/***************************************************************************/
-/************************ Estilos mensajes de error ************************/
-/***************************************************************************/
-
-/* Color y fondo de mensajes de error */
-.error {
-    color: white; /* Cambia el color del texto a blanco */
-    background-color: rgba(42, 42, 44, 0.5); /* 0.5 es el nivel de opacidad */
-}
-
-
-
-
-
-.divmenu {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-}
 .footer {
     padding: 10px;
     position: fixed;
@@ -352,54 +213,4 @@ body {
     background-color: black;
     color: white;
     text-align: center;
-}
-.boton{
-    background-color: green;
-    border-radius: 10px;
-    color: white;
-    font-size: x-large;
-}
-.divform label{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: x-large;
-    color: white;
-}
-.divtitulo {
-    background-color: transparent;
-    color: white;
-    font-weight: bold;
-    width: 100%; /* Ocupa todo el ancho */
-    margin: 0; /* Elimina márgenes */
-    padding: 10px;
-    padding-top: 5%;
-    text-align: center;
-    box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
-}
-.divform{
-    width: 50%;
-    margin: auto;
-    margin-top: 2%;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-    color: white;
-}
-.portada{
-    position: relative;
-    width: 50%;
-    margin: auto;
-    text-align: center;
-    padding: 3%;
-}
-.divformulario{
-    border: 1px solid blue;
-    width: 50%;
-    margin: auto;
-    margin-top: 1%;
-    padding: 10px;
-    text-align: left;
-    border-radius: 5px;
-}
-.form-label:hover{
-    cursor: pointer;
 }
