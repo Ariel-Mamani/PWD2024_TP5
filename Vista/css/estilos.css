@@ -25,6 +25,24 @@ section {
     }
 }
 
+h1{
+    color: #fff;
+    text-align: center;
+    margin: 0; /* Opcional */
+}
+
+.portada {
+    background-color: rgba(255, 255, 255, 0.5); /* Fondo blanco semi-transparente */
+    padding: 20px; /* Opcional: agrega algo de espacio alrededor de la imagen */
+    border-radius: 10px; /* Opcional: bordes redondeados */
+}
+
+.portada img {
+    width: 100%; /* Asegura que la imagen ocupe el 100% del ancho del contenedor */
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+    opacity: 0.7; /* Ajusta la opacidad de la imagen */
+}
+
 .login-container {
     display: flex;
     flex-direction: column;
