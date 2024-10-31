@@ -1,10 +1,14 @@
 <?php
     include_once "../../configuracion.php";
     $objSession = new Session();
-    if(!$objSession->validar()){
-        header("Location: ".$VISTA."Inicio/principal.php");
+   
+    if($objSession->validar()){
+      $titulo = "TP 5 - Login ";
     }else{
-        $titulo = "TP 5 - Login ";
+      header("Location: ".$VISTA."Inicio/principal.php");
+      die();
+     //echo '<script>window.history.back();<script>';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,5 +23,4 @@
 <body>
   <?php 
     include_once "menuDinamico.php";
-    }
   ?>

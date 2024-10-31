@@ -253,7 +253,8 @@ button{
 }
 #btnSalir{
     position: relative;
-    right: 300px;
+    right: 10px;
+    width: auto;
     color: antiquewhite;
     margin: auto;
 }

@@ -1,6 +1,5 @@
 <?php
   include_once('accionMenu.php');
-//  style="right: 200px; position:relative;"
 
 ?>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
@@ -24,7 +23,7 @@
         <form action="<?php echo $VISTA ?>Login/verificarLogin.php" method="post" class="d-flex align-items-center ms-auto">
           <label for="lusuario" class="labelUsuario " style="position: relative; left:auto;"><?php echo $usuario.' ('. $objSession->getRol()->getroldescripcion().')'.'<img src="../Imagenes/gatito.png" alt="Avatar Gatito" style="width:40px;" class="rounded-pill m-3"> '; ?>  </label>
          
-          <input type="text" name="cerrarSession " id="cerrarSession" value="1" hidden>
+          <input type="text" name="cerrarSession" id="cerrarSession" value="1" hidden>
           <button class="btn btn-danger" type="submit" id="btnSalir" >Salir</button>
         </form>
       </div>
