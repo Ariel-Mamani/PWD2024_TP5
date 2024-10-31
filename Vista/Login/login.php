@@ -6,6 +6,8 @@ $objSession = new Session();
 ?>
 
 <section>
+    <!-- div para colocar el mensaje -->
+    <div class="div-mensaje"></div>
 
     <?php 
     // El mensaje viene del script procesar_login.php y verificarLogin.php

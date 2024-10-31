@@ -3,6 +3,10 @@ $titulo = "TP 5 - Registrar ";
 include_once '../Estructura/header.php';
 ?>
 
+<section>
+    <!-- div para colocar el mensaje -->
+    <div class="div-mensaje"></div>
+
     <?php
     // El mensaje viene del script verificarLogin.php
     // Se mostrara un mensaje ya que el usuario quiso entrar al login sin haberse registrado antes
@@ -13,68 +17,72 @@ include_once '../Estructura/header.php';
         unset($_SESSION['mensaje']);
     }
     ?>
-<section>
 
     <body>
 
-    <div class="login-box">
-    <!-- Formulario de Registro -->
-        <form id="form" name="form" action="procesar_registro.php" method="get" class="needs-validation" novalidate>
+        <div class="register-box">
+        <!-- Formulario de Registro -->
+            <form id="form" name="form" action="procesar_registro.php" method="get" class="needs-validation" novalidate>
 
-        <!-- Titulo -->
-        <h2>Registro</h2>
+                <!-- Titulo -->
+                <h2>Registro</h2>
 
-            <!-- Nombre usuario  -->
-            <div class="input-group mb-4 input-box">
-                <!-- Icono -->
-                <span class="icon" id="basic-addon1">
-                    <ion-icon name="person"></ion-icon>
-                </span>
+                <!-- Nombre usuario  -->
+                <div class="input-group mb-4 input-box">
+                    <!-- Icono -->
+                    <span class="icon" id="basic-addon1">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
 
-                <input type="text" name="usnombre" id="usnombre" class="form-control" required>
-                <label>Usuario</label>
-                <!-- Mensajes aprobado y error -->
-                <div class="valid-feedback">Ok!</div>
-                <div class="invalid-feedback">El nombre de usuario solo debe contener letras sin números ni símbolos</div>
-            </div>
+                    <input type="text" name="usnombre" id="usnombre" class="form-control" required>
+                    <label>Usuario</label>
+                    <!-- Mensajes aprobado y error -->
+                    <div class="valid-feedback">Ok!</div>
+                    <div class="invalid-feedback">El nombre de usuario solo debe contener letras sin números ni símbolos</div>
+                </div>
 
-            <!-- Contraseña -->
-            <div class="input-group mb-4 input-box">
-                <!-- Icono -->
-                <span class="icon" id="basic-addon2">
-                    <ion-icon name="lock-closed"></ion-icon>
-                </span>
+                <!-- Contraseña -->
+                <div class="input-group mb-4 input-box">
+                    <!-- Icono -->
+                    <span class="icon" id="basic-addon2">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
 
-                <input id="clave" name="clave" type="password" class="form-control" required onblur="return convertirClaveMD5()">
-                <input type="hidden" name="uspass" id="uspass">
-                <label>Password</label>
-                <!-- investigar sobre password_hash() -->
+                    <input id="clave" name="clave" type="password" class="form-control" required onblur="return convertirClaveMD5()">
+                    <input type="hidden" name="uspass" id="uspass">
+                    <label>Password</label>
+                    <!-- investigar sobre password_hash() -->
+                    
+                    <!-- Mensajes aprobado y error -->
+                    <div class="valid-feedback">Ok!</div>
+                    <div class="invalid-feedback">Valor de contraseña incorrecto</div>
+                </div>
+
+                <!-- Email -->
+                <div class="input-group input-box">
+                    <!-- Icono -->
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+
+                    <input type="email" name="usmail" id="usmail" class="form-control" required>
+                    <label>usuario123@example.com</label>
+
+                    <!-- Mensajes aprobado y error -->
+                    <div class="valid-feedback">Ok!</div>
+                    <div class="invalid-feedback">Email invalida</div>
+                </div>
                 
-                <!-- Mensajes aprobado y error -->
-                <div class="valid-feedback">Ok!</div>
-                <div class="invalid-feedback">Valor de contraseña incorrecto</div>
-            </div>
+                <div class="botones">
+                    <!-- Boton registrar -->
+                    <input type="submit" value="Registrar" class="btn-registrar btn-primary mt-5">
 
-            <!-- Email -->
-            <div class="input-group input-box">
-                <!-- Icono -->
-                <span class="icon">
-                    <ion-icon name="mail"></ion-icon>
-                </span>
-
-                <input type="email" name="usmail" id="usmail" class="form-control" required>
-                <label>usuario123@example.com</label>
-
-                <!-- Mensajes aprobado y error -->
-                <div class="valid-feedback">Ok!</div>
-                <div class="invalid-feedback">Email invalida</div>
-            </div>
-            
-            <input type="submit" value="Registrar"  class="btn btn-primary mt-5">
-            </div>
-        </form>
-    </div>
-</body>
+                    <!-- Botón volver a login -->
+                    <input type="button" value="Ir a login" onclick="window.location.href='login.php'" class="btn-ir-login btn-primary mt-5">
+                </div>
+            </form>
+        </div>
+    </body>
 </section>
 
 <!-- Iconos -->
