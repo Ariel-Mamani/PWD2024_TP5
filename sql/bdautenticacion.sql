@@ -71,9 +71,9 @@ CREATE TABLE menu (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO menu (idmenu, menunombre, menuurl) VALUES 
-    (1, 'Lista Usuarios', '../Usuarios/index.php'),
-    (2, 'Lista Roles', '../Rol/index.php'),
-    (3, 'Lista Menu', '../Menu/index.php');
+    (1, 'Lista Usuarios', 'Usuarios/index.php'),
+    (2, 'Lista Roles', 'Rol/index.php'),
+    (3, 'Lista Menu', 'Menu/index.php');
 -- --------------------------------------------------------
 
 -- --------------------------------------------------------
@@ -91,9 +91,9 @@ CREATE TABLE menurol (
 INSERT INTO menurol (idmenu, idrol) VALUES 
     (1, 1),
     (2, 1),
-    (3, 1),
     (1, 2),
-    (1, 3);
+    (1, 3),
+    (2, 4);
 -- --------------------------------------------------------
 
 -- --------------------------------------------------------

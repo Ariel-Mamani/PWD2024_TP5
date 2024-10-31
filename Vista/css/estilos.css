@@ -175,8 +175,8 @@ button{
     color: antiquewhite;
 }
 #btnSalir{
-    position: fixed;
-    right: 5%;
+    position: relative;
+    right: 300px;
     color: antiquewhite;
     margin: auto;
 }

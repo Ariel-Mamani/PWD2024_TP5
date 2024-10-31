@@ -1,8 +1,8 @@
 <?php
-class AbmUsuarioRol{
-    //Espera como parametro un arreglo asociativo donde las claves coincidusuarioen con los nombres de las variables instancias del objeto
+class AbmMenu{
+    //Espera como parametro un arreglo asociativo donde las claves coincidmenuen con los nombres de las variables instancias del objeto
 
-
+    
     public function abm($datos){
         $resp = false;
         if($datos['accion']=='editar'){
@@ -24,47 +24,37 @@ class AbmUsuarioRol{
         return $resp;
 
     }
-    
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
-     * @return UsuarioRol
+     * @return Menu
      */
-    private function cargarObjeto($param){
-        $obj = null;
+    protected function cargarObjeto($param){
+        $objMenu = null;
            
-        if( array_key_exists('idusuario',$param) and array_key_exists('idrol',$param) ){
-            $obj = new UsuarioRol();
-            $objUsuario = new Usuario();
-            $objUsuario->setidusuario($param['idusuario']);
-            $objUsuario->cargar();
-            $objRol = new Rol();
-            $objRol->setidrol($param['idrol']);
-            $objRol->cargar();
-            $obj->setear($objUsuario, $objRol);
+        if( array_key_exists('idmenu',$param) and 
+            array_key_exists('menunombre',$param) and 
+            array_key_exists('menuurl',$param)){
+            $objMenu = new Menu();
+            $objMenu->setear($param['idmenu'], $param['menunombre'],  $param['menuurl']);
         }
-        return $obj;
+        return $objMenu;
     }
+
     
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
-     * @return UsuarioRol
+     * @return Menu
      */
-    private function cargarObjetoConClave($param){
-        $obj = null;
+    protected function cargarObjetoConClave($param){
+        $objMenu = null;
         
-        if( isset($param['idusuario']) and isset($param['idrol']) ){
-            $obj = new UsuarioRol();
-            $objUsuario = new Usuario();
-            $objUsuario->setidusuario($param['idusuario']);
-            $objUsuario->cargar();
-            $objRol = new Rol();
-            $objRol->setidrol($param['idrol']);
-            $objRol->cargar();
-            $obj->setear($objUsuario, $objRol);
+        if( isset($param['idmenu']) ){
+            $objMenu = new Menu();
+            $objMenu->setear($param['idmenu'], null,  null);
         }
-        return $obj;
+        return $objMenu;
     }
     
     
@@ -74,9 +64,9 @@ class AbmUsuarioRol{
      * @return boolean
      */
     
-    private function seteadosCamposClaves($param){
+    protected function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['idusuario']) and isset($param['idrol']))
+        if (isset($param['idmenu']))
             $resp = true;
         return $resp;
     }
@@ -87,8 +77,9 @@ class AbmUsuarioRol{
      */
     public function alta($param){
         $resp = false;
-        $objUsuarioRol = $this->cargarObjeto($param);
-        if ($objUsuarioRol!=null and $objUsuarioRol->insertar()){
+        $param['idmenu'] = null;                             //Campo autoincremento
+        $objMenu = $this->cargarObjeto($param);
+        if ($objMenu!=null and $objMenu->insertar()){
             $resp = true;
         }
         return $resp;
@@ -102,8 +93,8 @@ class AbmUsuarioRol{
     public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $objUsuarioRol = $this->cargarObjetoConClave($param);
-            if ($objUsuarioRol!=null and $objUsuarioRol->eliminar()){
+            $objMenu = $this->cargarObjetoConClave($param);
+            if ($objMenu!=null and $objMenu->eliminar()){
                 $resp = true;
             }
         }
@@ -112,21 +103,22 @@ class AbmUsuarioRol{
     }
     
     /**
-     * permite modificar un objeto
+     * permite modificar un objeto menos la password
      * @param array $param
      * @return boolean
      */
     public function modificacion($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $objUsuarioRol = $this->cargarObjeto($param);
-            if($objUsuarioRol!=null and $objUsuarioRol->modificar()){
+            $objMenu = $this->cargarObjeto($param);
+            if($objMenu!=null and $objMenu->modificar()){
                 $resp = true;
             }
         }
         return $resp;
     }
     
+
     /**
      * permite buscar un objeto
      * @param array $param
@@ -135,15 +127,29 @@ class AbmUsuarioRol{
     public function buscar($param){
         $where = " true ";
         if ($param<>NULL){
-            if  (isset($param['idusuario']))
-                $where.=" and idusuario =".$param['idusuario'];
-            if  (isset($param['idrol']))
-                $where.= " and idrol = ".$param['idrol'];
+            if  (isset($param['idmenu']))
+                $where.=" and idmenu =".$param['idmenu'];
+            if  (isset($param['menunombre']))
+                 $where.=" and menunombre ='".$param['menunombre']."'";
+            if  (isset($param['menuurl']))
+                $where.=" and menuurl ='".$param['menuurl']."'";    
         }
-        $obj = new UsuarioRol();
-        $arreglo = $obj->listar($where);
+        $objMenu = new Menu();
+        $arreglo = $objMenu->listar($where);
+        return $arreglo;
+        
+    }
+
+    /**
+     * permite buscar una Menu  por nombre parcial
+     * @param $nombre
+     * @return array
+     */
+    public function filtrarPorNombre($nombre){
+        $where = " menunombre LIKE '%".$nombre."%'";   
+        $objMenu = new Menu();
+        $arreglo = $objMenu->listar($where);  
         return $arreglo;
     }
-    
 }
 ?>
