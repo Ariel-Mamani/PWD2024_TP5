@@ -30,7 +30,7 @@ class Session {
         if ($this->validar()){
             $objAbmUsuarioRol = new AbmUsuarioRol();
             $listaUsuarioRol = $objAbmUsuarioRol->buscar($_SESSION);
-            if ($listaUsuarioRol > 0){
+            if (count($listaUsuarioRol) > 0){
                 $objRol = $listaUsuarioRol[0]->getRol();
             }
         }
