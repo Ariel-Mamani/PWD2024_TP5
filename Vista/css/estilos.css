@@ -60,7 +60,7 @@ h1{
     backdrop-filter: blur(15px);
     position:relative;
     box-shadow: #212529;
-    background-color: rgb(94, 247, 56);
+    background-color: #c6f053;
     position: relative;
 }
 
@@ -85,6 +85,23 @@ h1{
     width: 100%;
     max-width: 350px;
     height: 200px;
+    background: transparent;
+    border: 2px solid;
+    border-color: black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(15px);
+    position:relative;
+    box-shadow: #212529;
+    background-color: rgb(232, 240, 254);
+}
+
+.editarBorrar-box {
+    width: 100%;
+    max-width: 350px;
+    height: 450px;
     background: transparent;
     border: 2px solid;
     border-color: black;
@@ -222,7 +239,8 @@ button{
         width: 290px;
     }
 
-    .editar-pass-box {
+    .editar-pass-box,
+    .editarBorrar-box {
         width: 100%;
         height: 10vh;
         border: none;
@@ -281,7 +299,8 @@ button{
     color: white;
 }
 
-.btn-editar-pass-seg {
+.btn-editar-pass-seg,
+.btn-editarBorrar-usuario {
     margin-left: auto;
     padding: 5px;
     border-radius: 20px;
@@ -292,7 +311,8 @@ button{
     text-align: center;
 }
 
-.btn-editar-pass-seg:hover {
+.btn-editar-pass-seg:hover,
+.btn-editarBorrar-usuario:hover {
     border: 1px solid black;
     background-color: black;
     color: white;
@@ -407,7 +427,8 @@ button{
     border-radius: 20px;
 }
 
-.curva-editar-pass{
+.curva-editar-pass,
+.curva-editarBorrar{
     position: absolute;
     top: 0;
     left: 0;

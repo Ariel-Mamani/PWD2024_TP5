@@ -50,7 +50,7 @@
     
     <input type="submit" class="btn btn-primary btn-block m-2" value="<?php echo ($datos['accion'] != null) ? $datos['accion'] : "nose" ?>">
 </form>
-<a href="index.php" class="btn bg-warning m-2">Volver</a>
+<a href="../Login/paginaSegura.php" class="btn bg-warning m-2">Volver</a>
 
 <!-- Validaciones de Bootstrap -->
 <script type="text/javascript" src="../Js/validacionTP5.js"></script>

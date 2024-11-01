@@ -47,8 +47,9 @@
             <input type="submit" class="btn-editar-pass btn-block  m-2" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>">
         </form>
     </div>
-    <a href="index.php" class="btn-volver m-2">Volver</a>
+    <a href="../Login/paginaSegura.php" class="btn-volver m-2">Volver</a>
 </section>
+
 <!-- BOOTSTRAP con las validaciones de los campos -->
 <script type="text/javascript" src="../Js/validacionTP5.js"></script>
 <script>
