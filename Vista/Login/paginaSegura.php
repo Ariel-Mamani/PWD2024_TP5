@@ -23,7 +23,7 @@ include_once '../Estructura/headerSeguro.php';
     </div>
 
     <div>
-        <a class="btn btn-editar-rol m-3" role="button" href="<?php echo $VISTA?>/UsuarioRol/editarRol.php?accion=editarRol"><i class="bi bi-pencil"></i> Editar Rol</a> 
+        <a class="btn btn-editar-rol m-3" role="button" href="<?php echo $VISTA?>/UsuarioRol/editarRol.php?accion=editar"><i class="bi bi-pencil"></i> Editar Rol</a> 
     </div>
 </section>
 

@@ -89,7 +89,7 @@ class UsuarioRol extends BaseDatos{
     }
 
 
-  /**
+    /**
      * Summary of modificar
      * @return bool
      */
@@ -97,7 +97,7 @@ class UsuarioRol extends BaseDatos{
         $resp = false;
         $sql = "UPDATE usuariorol SET 
         idusuario = ".$this->getUsuario()->getidusuario().", 
-        idrol = ".$this->getRol()->getidrol().", 
+        idrol = ".$this->getRol()->getidrol()." 
         WHERE idusuario = ".$this->getUsuario()->getidusuario()." and idrol = ".$this->getRol()->getidrol();
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){

@@ -32,7 +32,6 @@ class AbmUsuarioRol{
      */
     private function cargarObjeto($param){
         $obj = null;
-           
         if( array_key_exists('idusuario',$param) and array_key_exists('idrol',$param) ){
             $obj = new UsuarioRol();
             $objUsuario = new Usuario();
@@ -123,6 +122,7 @@ class AbmUsuarioRol{
             if($objUsuarioRol!=null and $objUsuarioRol->modificar()){
                 $resp = true;
             }
+            var_dump($param);
         }
         return $resp;
     }

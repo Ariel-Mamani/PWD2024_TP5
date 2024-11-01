@@ -19,6 +19,8 @@
 
 <form method="post" action="accion.php">
     <input id="idusuario" name="idusuario" type="hidden" value="<?php echo ($obj != null) ? $obj->getidusuario() : "-1" ?>" readonly required>
+    <input id="idrol" name="idrol" type="hidden" value="<?php echo ($obj != null) ? $objSession->getRol()->getidrol() : "-1" ?>" readonly required>
+
     <input id="accion" name="accion" value="<?php echo ($datos['accion'] != null) ? $datos['accion'] : "nose" ?>" type="hidden">
     
     <div class="row mb-12">
@@ -26,7 +28,7 @@
             <div class="form-group has-feedback">
                 <!-- Selección de Rol -->
                 <div class="mb-3 form-floating">
-                    <select name="rol" id="rol" class="form-control text-primary" required>
+                    <select name="idrol" id="idrol" class="form-control text-primary" required>
                         <option value="" disabled selected>Seleccione un rol</option>
                         <?php
                         // Comprobar si hay roles disponibles en el arreglo $roles
@@ -34,7 +36,7 @@
                             foreach($roles as $rol){
                                 // Verificar si el rol actual coincide con el rol del usuario en sesión $tuRol
                                 $selected = ($rol->getroldescripcion() == $tuRol) ? "selected" : "";
-                                echo '<option value="' . $rol->getroldescripcion() . '" ' . $selected . '>' . $rol->getroldescripcion() . '</option>';
+                                echo '<option value="' . $rol->getidrol() . '" ' . $selected . '>' . $rol->getroldescripcion() . '</option>';
                             }
                         }
                         ?>
