@@ -18,6 +18,7 @@
         <!-- Curva -->
         <div class="curva-login" id="curva-login"></div>
 
+        <!-- Formulario -->
         <form method="post" action="accion.php" class="full-height p-5 needs-validation">
             <input id="idusuario" name ="idusuario" type="hidden" value="<?php echo ($obj !=null) ? $obj->getidusuario() : "-1"?>" readonly required>
             <input id="accion" name ="accion" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>" type="hidden">
@@ -43,7 +44,7 @@
                 </div>
             </div>
             
-            <input type="submit" class="btn-editar-pass btn-primary btn-block  m-2" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>">
+            <input type="submit" class="btn-editar-pass btn-block  m-2" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>">
         </form>
     </div>
     <a href="index.php" class="btn-volver m-2">Volver</a>

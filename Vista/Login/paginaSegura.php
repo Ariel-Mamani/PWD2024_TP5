@@ -18,12 +18,12 @@ include_once '../Estructura/headerSeguro.php';
     <!-- Titulo -->
     <h1>P&aacute;gina Segura</h1>
 
-    <div class="bg-light  m-3">
-        <a class="btn btn-info" role="button" href="<?php echo $VISTA?>/Usuarios/editarPass.php?accion=editarPass"><i class="bi bi-pencil"></i>Editar Contraseña</a> 
+    <div class="m-3">
+        <a class="btn btn-editar-pass-seg" role="button" href="<?php echo $VISTA?>/Usuarios/editarPass.php?accion=editarPass"><i class="bi bi-pencil"></i> Editar Contraseña</a> 
     </div>
 
     <div>
-        <a class="btn btn-warning m-3" role="button" href="<?php echo $VISTA?>/UsuarioRol/editarRol.php?accion=editarRol"><i class="bi bi-pencil"></i>Editar Rol</a> 
+        <a class="btn btn-editar-rol m-3" role="button" href="<?php echo $VISTA?>/UsuarioRol/editarRol.php?accion=editarRol"><i class="bi bi-pencil"></i> Editar Rol</a> 
     </div>
 </section>
 
