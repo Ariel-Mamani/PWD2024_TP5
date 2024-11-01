@@ -13,10 +13,10 @@
     <h1>Editar contrase&ntilde;a</h1>
     <br>
     
-    <!-- Editar rol Box -->
-    <div class="editar-rol-box">
+    <!-- Editar pass Box -->
+    <div class="editar-pass-box">
         <!-- Curva -->
-        <div class="curva-login" id="curva-login"></div>
+        <div class="curva-editar-pass" id="curva-editar-pass"></div>
 
         <!-- Formulario -->
         <form method="post" action="accion.php" class="full-height p-5 needs-validation">
