@@ -12,9 +12,11 @@ if(!empty(data_submitted())){
     $param['usnombre']  = $recibido['usnombre'];
     $param['usmail']    = $recibido['usmail'];  
     $listaUsuario = $objAbmUsuario->buscar($param);
-    if($objAbmUsuario->alta($recibido)) {
+    if($objAbmUsuario->alta($recibido)){
+        // Cuando se cargue el usuario lo busco
         $usuario = $objAbmUsuario->buscar($param);
-        if (!empty($usuario)) {
+        if(!empty($usuario)){
+            // Le doy un rol y lo cargo a la tabla usuarioRol
             $usuarioRol = ['idusuario' => $usuario[0]->getidusuario(), 'idrol' => 2];
             $objAbmUsuarioRol->alta($usuarioRol);
         }
