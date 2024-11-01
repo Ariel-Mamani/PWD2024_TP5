@@ -3,7 +3,7 @@ class Session {
 
     public function __construct(){
         @session_start([
-            'cookie_lifetime' => 400,
+            'cookie_lifetime' => 100,
         ]);
     }
     /**

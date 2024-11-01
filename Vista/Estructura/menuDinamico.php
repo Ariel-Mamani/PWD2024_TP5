@@ -14,9 +14,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">TP N° 5</a>
             <ul class="dropdown-menu">
-              <?php 
-                echo $cadenaMenu;
-              ?>  
+            <li><a class="dropdown-item" href="<?php echo $VISTA ?>Login/paginaSegura.php">Pagina Segura</a></li>
+              <?php echo $cadenaMenu;  ?>  
             </ul>
           </li>          
         </ul>
