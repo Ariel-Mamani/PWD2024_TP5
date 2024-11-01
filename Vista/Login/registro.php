@@ -19,13 +19,13 @@ include_once '../Estructura/header.php';
     ?>
 
     <body>
-
+        <!-- Register box -->
         <div class="register-box">
 
-        <!-- Curva -->
-        <div class="curva-registro" id="curva-registro"></div>
+            <!-- Curva -->
+            <div class="curva-registro" id="curva-registro"></div>
 
-        <!-- Formulario de Registro -->
+            <!-- Formulario de Registro -->
             <form id="form" name="form" action="procesar_registro.php" method="get" class="needs-validation" novalidate>
 
                 <!-- Titulo -->
