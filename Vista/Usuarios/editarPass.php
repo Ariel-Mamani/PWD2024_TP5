@@ -7,8 +7,8 @@
     $obj =$objSession->getUsuario();
 
 ?>	
-<form method="post" action="accion.php">
-    <input id="idusuario" name ="idusuario" type="hidden" value="<?php echo ($obj !=null) ? $obj->getidusuario() : "-1"?>" readonly required >
+<form method="post" action="accion.php" class="bg-success">
+    <input id="idusuario" name ="idusuario" type="hidden" value="<?php echo ($obj !=null) ? $obj->getidusuario() : "-1"?>" readonly required>
     <input id="accion" name ="accion" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>" type="hidden">
     <div class="row mb-12">
         <div class="col-sm-12 ">

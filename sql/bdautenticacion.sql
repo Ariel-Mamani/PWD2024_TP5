@@ -72,7 +72,8 @@ CREATE TABLE menu (
 
 INSERT INTO menu (idmenu, menunombre, menuurl) VALUES 
     (1, 'Lista Usuarios', 'Usuarios/index.php'),
-    (2, 'Lista Roles', 'Rol/index.php');
+    (2, 'Lista Roles', 'Rol/index.php'),
+    (3, 'Lista Usuario Rol', 'UsuarioRol/index.php');
 -- --------------------------------------------------------
 
 -- --------------------------------------------------------
@@ -92,7 +93,8 @@ INSERT INTO menurol (idmenu, idrol) VALUES
     (1, 2),
     (1, 3),
     (2, 1),
-    (2, 4);
+    (2, 4),
+    (3, 2);
 -- --------------------------------------------------------
 
 -- --------------------------------------------------------
