@@ -79,10 +79,10 @@ include_once '../Estructura/header.php';
                 
                 <div class="botones">
                     <!-- Boton registrar -->
-                    <button type="submit" value="Registrar" class="btn-registrar btn-primary mt-5">Registrarse</button>
+                    <button type="submit" value="Registrar" class="btn-registrar">Registrarse</button>
 
                     <!-- Botón volver a login -->
-                    <button type="submit" value="Ir a login" onclick="window.location.href='login.php'" class="btn-ir-login btn-primary mt-5">Ir a login</button>
+                    <button type="submit" value="Ir a login" onclick="window.location.href='login.php'" class="btn-ir-login">Ir a login</button>
                 </div>
             </form>
         </div>
