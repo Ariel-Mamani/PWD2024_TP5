@@ -20,8 +20,16 @@ $objSession = new Session();
     }
     ?>
 
+    <!-- Link logos redes sociales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Login box -->
     <div class="login-box">
-    <!-- Formulario Login -->
+
+        <!-- Curva -->
+        <div class="curva-login" id="curva-login"></div>
+
+        <!-- Formulario Login -->
         <form id="form" name="form" action="verificarLogin.php" method="post" class="full-height p-5 needs-validation" novalidate>
 
             <!-- Titulo -->
@@ -60,16 +68,30 @@ $objSession = new Session();
             
             <!-- Recuerdame y olvide contrasenia -->
             <div class="remember-forgot">
-                <label><input type="checkbox">Recuerdame</label>
+                <label><input type="checkbox" class="checkbox">Recuerdame</label>
                 <a href="#">Olvido su contrase&ntilde;a?</a>
             </div>
 
             <!-- Boton -->
-            <button type="submit">Login</button>
+            <button type="submit" class="btn-login">Login</button>
 
             <!-- Link para registrarse -->
             <div class="register-link">
                 <p>No tiene cuenta? <a href="registro.php">Registrarse</a></p>
+            </div>
+
+            <!-- Redes -->
+            <div class="redes">
+                <p>O iniciar sesi&oacute;n en</p>
+                <!-- Iconos redes -->
+                <div class="iconos-redes">
+                    <!-- Facebook -->
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <!-- Google -->
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                    <!-- X -->
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
             </div>
         </form>
     </div>

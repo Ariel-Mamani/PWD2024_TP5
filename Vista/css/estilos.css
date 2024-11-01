@@ -12,21 +12,12 @@ section {
     align-items: center;
     min-height: 100vh;
     width: 100%;
-    background: url(../../Archivos/bg.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
-    animation: animateBg 5s linear infinite;
+    background-color: aquamarine;
     padding: 20px; /* Añadir espacio adicional para hacer scroll si es necesario */
 }
 
-@keyframes animateBg {
-    100%{
-        filter: hue-rotate(360deg);
-    }
-}
-
 h1{
-    color: #fff;
+    color: black;
     text-align: center;
     margin: 0; /* Opcional */
 }
@@ -40,7 +31,6 @@ h1{
 .portada img {
     width: 100%; /* Asegura que la imagen ocupe el 100% del ancho del contenedor */
     height: auto; /* Mantiene la relación de aspecto de la imagen */
-    opacity: 0.7; /* Ajusta la opacidad de la imagen */
 }
 
 .login-container {
@@ -60,15 +50,18 @@ h1{
 .login-box {
     width: 100%;
     max-width: 400px;
-    height: 450px;
+    height: 550px;
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, .5);
+    border: 2px solid black;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(15px);
     position:relative;
+    box-shadow: #212529;
+    background-color: white;
+    position: relative;
 }
 
 .register-box {
@@ -76,18 +69,21 @@ h1{
     max-width: 400px;
     height: 550px;
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, .5);
+    border: 2px solid;
+    border-color: black;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(15px);
     position:relative;
+    box-shadow: #212529;
+    background-color: #c6f053;
 }
 
 h2{
     font-size: 2em;
-    color: #fff;
+    color: black;
     text-align: center;
 }
 
@@ -95,7 +91,7 @@ h2{
     position: relative;
     width: 310px;
     margin: 30px 0;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid black;
 }
 
 .input-box label{
@@ -104,7 +100,7 @@ h2{
     left: 5px;
     transform: translateY(-50%);
     font-size: 1em;
-    color: #fff;
+    color: black;
     pointer-events: none;
     transition: .5s;
 }
@@ -121,7 +117,7 @@ h2{
     border: none !important;
     outline: none !important;
     font-size: 1em;
-    color: #fff !important;
+    color: black !important;
     padding: 0 35px 0 5px;
 }
 
@@ -134,7 +130,7 @@ h2{
 .input-box .icon{
     position: absolute;
     right: 8px;
-    color: #fff;
+    color: black;
     font-size: 1.2em;
     line-height: 57px;
 }
@@ -142,7 +138,7 @@ h2{
 .remember-forgot{
     margin: -15px 0 15px;
     font-size: .9em;
-    color: #fff;
+    color: black;
     display: flex;
     justify-content: space-between;
 }
@@ -152,7 +148,7 @@ h2{
 }
 
 .remember-forgot a{
-    color: #fff;
+    color: black;
     text-decoration: none;
 }
 
@@ -163,25 +159,25 @@ h2{
 button{
     width: 100%;
     height: 40px;
-    background: #fff;
+    background: black;
     border: none;
     outline: none;
     border-radius: 40px;
     cursor: pointer;
     font-size: 1em;
-    color: #000;
+    color: white;
     font-weight: 500;
 }
 
 .register-link{
     font-size: .9em;
-    color: #fff;
+    color: black;
     text-align: center;
     margin:25px 0 10px;
 }
 
 .register-link p a{
-    color: #fff;
+    color: black;
     text-decoration: none;
     font-weight: 600;
 }
@@ -210,27 +206,113 @@ button{
     }
 }
 
-/* Contenedor de los botones */
 .botones {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
-/* Estilo para botón de registrar */
+.btn-login {
+    margin-left: auto;
+    padding: 5px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+}
+
+.btn-login:hover {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+}
+
 .btn-registrar {
     margin-right: auto;
     padding: 5px;
     border-radius: 20px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
 }
 
-/* Estilo para botón de ir a login */
+.btn-registrar:hover {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+}
+
 .btn-ir-login {
     margin-left: auto;
     padding: 5px;
     border-radius: 20px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
 }
 
+.btn-ir-login:hover {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+}
+
+.redes{
+    font-size: 14px;
+    color: black;
+    text-align: center;
+}
+
+.iconos-redes a{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 50%;
+    text-align: center;
+    margin: 15px 6px 0;
+    transition: .5s;
+}
+
+.iconos-redes a:hover{
+    background: black;
+}
+
+.iconos-redes a i{
+    font-size: 14px;
+    line-height: 35px;
+    color: black;
+    transition: .5s;
+}
+
+.iconos-redes a:hover i{
+    color: white;
+}
+
+.curva-login{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #c6f053;
+    z-index: -1;
+    clip-path: circle(98% at 0 0);
+    border-radius: 20px;
+}
+
+.curva-registro{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: -1;
+    clip-path: circle(98% at 0 0);
+    border-radius: 20px;
+}
 
 /**************************************************/
 /********************* Navbar *********************/

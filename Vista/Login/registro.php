@@ -21,6 +21,10 @@ include_once '../Estructura/header.php';
     <body>
 
         <div class="register-box">
+
+        <!-- Curva -->
+        <div class="curva-registro" id="curva-registro"></div>
+
         <!-- Formulario de Registro -->
             <form id="form" name="form" action="procesar_registro.php" method="get" class="needs-validation" novalidate>
 
@@ -75,10 +79,10 @@ include_once '../Estructura/header.php';
                 
                 <div class="botones">
                     <!-- Boton registrar -->
-                    <input type="submit" value="Registrar" class="btn-registrar btn-primary mt-5">
+                    <button type="submit" value="Registrar" class="btn-registrar btn-primary mt-5">Registrarse</button>
 
                     <!-- Botón volver a login -->
-                    <input type="button" value="Ir a login" onclick="window.location.href='login.php'" class="btn-ir-login btn-primary mt-5">
+                    <button type="submit" value="Ir a login" onclick="window.location.href='login.php'" class="btn-ir-login btn-primary mt-5">Ir a login</button>
                 </div>
             </form>
         </div>
