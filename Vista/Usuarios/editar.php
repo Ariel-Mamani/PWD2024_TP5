@@ -3,13 +3,24 @@
     include_once("../estructura/headerSeguro.php");
     $datos = data_submitted();
     $AbmUsuario = new AbmUsuario();
+    $objAbmUsuarioRol = new AbmUsuarioRol();
+    $objAbmRol = new AbmRol();
+    $listaRol = $objAbmRol->buscar(null);
+
     $obj =NULL;
+    $objRol = NULL;
     if (isset($datos['idusuario']) && $datos['idusuario'] <> -1){
         $listaUsuario = $AbmUsuario->buscar($datos);
         if (count($listaUsuario)==1){
             $obj= $listaUsuario[0];
+            $listaAbmUsuarioRol = $objAbmUsuarioRol->buscar($datos);
+            if (count($listaAbmUsuarioRol) == 1){
+                $objRol = $listaAbmUsuarioRol[0]->getRol();
+            }
         }
     }
+   // var_dump($objRol);
+   // var_dump($listaRol);
 ?>
 
 <section>
@@ -25,7 +36,7 @@
             <input id="accion" name ="accion" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>" type="hidden">
 
             <!-- Titulo -->
-            <h2>Editar/Eliminar Usuario</h2>
+            <h2><?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?> Usuario</h2>
 
             <!-- Nombre usuario  -->
             <div class="input-group mb-4 input-box">
@@ -35,7 +46,7 @@
                 </span>
 
                 <input id="usnombre" name="usnombre" type="text" class="form-control" value="<?php echo ($obj !=null) ? $obj->getusnombre() : ""?>" required>
-                <label>Ususario</label>
+                <label>Usuario</label>
 
                 <!-- Mensajes aprobado y error -->
                 <div class="valid-feedback">Ok!</div>
@@ -58,17 +69,6 @@
                 <div class="invalid-feedback">Valor de contraseña incorrecto</div>
             </div>
 
-
-            <!--<div class="row mb-12">
-                <div class="col-sm-12 ">
-                    <div class="form-group has-feedback">
-                            <label for="nombre" class="control-label text-white py-2 w-100 bg-primary p-2">Nombre:</label>
-                            <input id="usnombre" name="usnombre" type="text" class="form-control mb-4" value="<?php //echo ($obj !=null) ? $obj->getusnombre() : ""?>" required>
-                            <label for="usmail"  class="control-label text-white py-2 w-100 bg-primary p-2">Email:</label>
-                            <input id="usmail" name="usmail" type="text" class="form-control" value="<?php //echo ($obj !=null) ? $obj->getusmail() : ""?>" required>
-                    </div>
-                </div>
-            </div>-->
 
             <div class="botones">
                     <!-- Boton registrar -->

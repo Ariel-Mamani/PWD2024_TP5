@@ -12,6 +12,7 @@
         if($datos['accion']=='listar' or $datos['accion']=='Limpiar'){
             $lista = $objAbmUsuarioRol->buscar(null);
         }else{
+         
             $resp = $objAbmUsuarioRol->abm($datos);
             if($resp){
                 $mensaje = "La accion ".$datos['accion']." se realizo correctamente.";
@@ -22,7 +23,7 @@
             if($datos['accion'] == 'nuevo'){
                 echo ("<script>location.href = './editarRol.php?accion=nuevo&id=-1';</script>");
             }else{
-            echo ("<script>location.href = './index.php?msg=$mensaje';</script>");
+            echo ("<script>location.href = '../Login/paginaSegura.php?msg=$mensaje';</script>");
             }
         }
         }

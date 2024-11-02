@@ -28,7 +28,7 @@
             <div class="form-group has-feedback">
                 <!-- Selección de Rol -->
                 <div class="mb-3 form-floating">
-                    <select name="idrol" id="idrol" class="form-control text-primary" required>
+                    <select name="idrolnuevo" id="idrolnuevo" class="form-control text-primary" required>
                         <option value="" disabled selected>Seleccione un rol</option>
                         <?php
                         // Comprobar si hay roles disponibles en el arreglo $roles

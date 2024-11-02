@@ -91,13 +91,13 @@ class UsuarioRol extends BaseDatos{
 
     /**
      * Summary of modificar
+     * @param mixed $nuevo
      * @return bool
      */
-    public function modificar(){
+    public function modificar($nuevo){
         $resp = false;
         $sql = "UPDATE usuariorol SET 
-        idusuario = ".$this->getUsuario()->getidusuario().", 
-        idrol = ".$this->getRol()->getidrol()." 
+        idrol = ".$nuevo." 
         WHERE idusuario = ".$this->getUsuario()->getidusuario()." and idrol = ".$this->getRol()->getidrol();
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){

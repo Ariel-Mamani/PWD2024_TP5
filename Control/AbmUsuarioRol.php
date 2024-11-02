@@ -119,10 +119,10 @@ class AbmUsuarioRol{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objUsuarioRol = $this->cargarObjeto($param);
-            if($objUsuarioRol!=null and $objUsuarioRol->modificar()){
+            if($objUsuarioRol!=null and $objUsuarioRol->modificar($param['idrolnuevo'])){
+
                 $resp = true;
             }
-            var_dump($param);
         }
         return $resp;
     }

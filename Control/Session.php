@@ -2,9 +2,7 @@
 class Session {
 
     public function __construct(){
-        @session_start([
-            'cookie_lifetime' => 100,
-        ]);
+        @session_start();
     }
     /**
      * Summary of getUsuario
@@ -40,7 +38,12 @@ class Session {
     public function validar(){
         $resp = false;
         if ($this->activa() and isset($_SESSION['idusuario'])){
-            $resp = true;
+            if (isset($_SESSION['tiempo']) and (time() - $_SESSION['tiempo'] > 280)) {
+                session_destroy();  //$this->cerrar();         
+            }else {
+                $_SESSION['tiempo']=time(); //Si hay actividad seteamos el valor al tiempo actual
+                $resp = true;
+            }
         }
         return $resp;    
     }
