@@ -71,9 +71,16 @@ CREATE TABLE menu (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO menu (idmenu, menunombre, menuurl) VALUES 
-    (1, 'Lista Usuarios', 'Usuarios/index.php'),
-    (2, 'Lista Roles', 'Rol/index.php'),
-    (3, 'Lista Usuario Rol', 'UsuarioRol/index.php');
+    (1, 'Lista Usuarios', 'usuarios/index.php'),
+    (2, 'Lista Roles', 'rol/index.php'),
+    (3, 'Pagina Segura', 'login/paginasegura.php'),
+    (4, 'null', 'usuarios/editar.php'),
+    (5, 'null', 'rol/editar.php'),
+    (6, 'null', 'usuarios/editarpass.php'),
+    (7, 'null', 'usuariorol/editarrol.php'),
+    (8, 'null', 'rol/accion.php'),
+    (9, 'null', 'usuarios/accion.php'),
+    (10, 'null', 'usuariorol/accion.php');
 -- --------------------------------------------------------
 
 -- --------------------------------------------------------
@@ -89,15 +96,14 @@ CREATE TABLE menurol (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO menurol (idmenu, idrol) VALUES 
-    (1, 1),
-    (1, 2),
-    (1, 3),
-    (2, 1),
-    (2, 4),
-    (3, 2);
+    (1, 1), (1, 2), (1, 3),
+    (2, 1), (2, 4), (3, 1),
+    (3, 2), (3, 3), (3, 4),
+    (4, 1), (5, 1), (6, 1),
+    (6, 2), (6, 3), (6, 4),
+    (7, 1), (7, 2), (7, 3),
+    (7, 4), (8, 1), (9, 1),
+    (9, 2), (9, 3), (9, 4),
+    (10, 1), (10, 2), (10, 3), (10, 4);
 -- --------------------------------------------------------
 
--- --------------------------------------------------------
---
--- Volcado de tabla para la tabla 
---

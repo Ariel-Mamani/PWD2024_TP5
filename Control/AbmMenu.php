@@ -128,11 +128,11 @@ class AbmMenu{
         $where = " true ";
         if ($param<>NULL){
             if  (isset($param['idmenu']))
-                $where.=" and idmenu =".$param['idmenu'];
+                $where.=" and idmenu = ".$param['idmenu'];
             if  (isset($param['menunombre']))
-                 $where.=" and menunombre ='".$param['menunombre']."'";
+                 $where.=" and menunombre = '".$param['menunombre']."'";
             if  (isset($param['menuurl']))
-                $where.=" and menuurl ='".$param['menuurl']."'";    
+                $where.=" and menuurl = '".$param['menuurl']."'";    
         }
         $objMenu = new Menu();
         $arreglo = $objMenu->listar($where);

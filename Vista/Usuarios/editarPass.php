@@ -2,10 +2,13 @@
     $titulo = " Usuario Cambiar Contrase&ntilde;a ";
     include_once("../estructura/headerSeguro.php");
     $datos = data_submitted();
-    $AbmUsuario = new AbmUsuario();
-    
-    $obj =$objSession->getUsuario();
-
+    if (empty($datos)){
+        header("Location: ".$VISTA."Inicio/principal.php");
+        die();
+    }else{
+        $AbmUsuario = new AbmUsuario();
+        $obj =$objSession->getUsuario();
+    }
 ?>
 
 <section>

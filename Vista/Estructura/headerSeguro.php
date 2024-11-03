@@ -2,12 +2,11 @@
     include_once "../../configuracion.php";
     $objSession = new Session();
    
-    if($objSession->validar()){
+    if($objSession->validar() and $objSession->validarRol()){
       $titulo = "TP 5 - Login ";
     }else{
       header("Location: ".$VISTA."Inicio/principal.php");
       die();
-     //echo '<script>window.history.back();<script>';
     }
 ?>
 <!DOCTYPE html>

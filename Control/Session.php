@@ -6,7 +6,7 @@ class Session {
     }
     /**
      * Summary of getUsuario
-     * @return string
+     * @return Usuario
      */
     public function getUsuario(){
         $obj = null;
@@ -21,7 +21,7 @@ class Session {
     }
     /**
      * Summary of getRol
-     * @return string
+     * @return Rol
      */
     public function getRol(){
         $objRol = null;
@@ -100,5 +100,27 @@ class Session {
         return $_SESSION['mensaje'];
     }
     
+        
+    public function validarRol(){
+        $resp = false;
+        $param['idrol'] = $this->getRol()->getidrol();
+       // $cortar = strlen($VISTA);
+        $enlace_actual = substr(strtolower('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']),35);
+        $param['menuurl'] = $enlace_actual;
+        $objAbmMenu = new AbmMenu();
+        $listaMenu = $objAbmMenu->buscar($param);
+        if(count($listaMenu) == 1){
+            $param['idmenu'] = $listaMenu[0]->getidmenu();
+            $objAbmMenuRol = new AbmMenuRol();
+            $listaMenuRol = $objAbmMenuRol->buscar($param);
+            if(count($listaMenuRol) > 0){
+                $resp = true;
+            }
+        }
+        return $resp;
+    }
+ 
+
+
 }
 ?>

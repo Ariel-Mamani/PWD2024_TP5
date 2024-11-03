@@ -2,15 +2,19 @@
     $Titulo = " Rol ";
     include_once("../estructura/headerSeguro.php");
     $datos = data_submitted();
-    $AbmRol = new AbmRol();
-    $obj =NULL;
-    if (isset($datos['idrol']) && $datos['idrol'] <> -1){
-        $listaRol = $AbmRol->buscar($datos);
-        if (count($listaRol)==1){
-            $obj= $listaRol[0];
+    if (empty($datos)){
+        header("Location: ".$VISTA."Inicio/principal.php");
+        die();
+    }else{
+        $AbmRol = new AbmRol();
+        $obj =NULL;
+        if (isset($datos['idrol']) && $datos['idrol'] <> -1){
+            $listaRol = $AbmRol->buscar($datos);
+            if (count($listaRol)==1){
+                $obj= $listaRol[0];
+            }
         }
     }
-
 ?>	
 <form method="post" action="accion.php">
     <input id="idrol" name ="idrol" type="hidden" value="<?php echo ($obj !=null) ? $obj->getidrol() : "-1"?>" readonly required >

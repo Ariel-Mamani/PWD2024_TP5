@@ -1,26 +1,31 @@
 <?php
     $titulo = " Usuario ";
     include_once("../estructura/headerSeguro.php");
-    $datos = data_submitted();
-    $AbmUsuario = new AbmUsuario();
-    $objAbmUsuarioRol = new AbmUsuarioRol();
-    $objAbmRol = new AbmRol();
-    $listaRol = $objAbmRol->buscar(null);
 
-    $obj =NULL;
-    $objRol = NULL;
-    if (isset($datos['idusuario']) && $datos['idusuario'] <> -1){
-        $listaUsuario = $AbmUsuario->buscar($datos);
-        if (count($listaUsuario)==1){
-            $obj= $listaUsuario[0];
-            $listaAbmUsuarioRol = $objAbmUsuarioRol->buscar($datos);
-            if (count($listaAbmUsuarioRol) == 1){
-                $objRol = $listaAbmUsuarioRol[0]->getRol();
+    $datos = data_submitted();
+    if (empty($datos)){
+        header("Location: ".$VISTA."Inicio/principal.php");
+        die();
+    }else{
+
+        $AbmUsuario = new AbmUsuario();
+        $objAbmUsuarioRol = new AbmUsuarioRol();
+        $objAbmRol = new AbmRol();
+        $listaRol = $objAbmRol->buscar(null);
+
+        $obj =NULL;
+        $objRol = NULL;
+        if (isset($datos['idusuario']) && $datos['idusuario'] <> -1){
+            $listaUsuario = $AbmUsuario->buscar($datos);
+            if (count($listaUsuario)==1){
+                $obj= $listaUsuario[0];
+                $listaAbmUsuarioRol = $objAbmUsuarioRol->buscar($datos);
+                if (count($listaAbmUsuarioRol) == 1){
+                    $objRol = $listaAbmUsuarioRol[0]->getRol();
+                }
             }
         }
     }
-   // var_dump($objRol);
-   // var_dump($listaRol);
 ?>
 
 <section>
