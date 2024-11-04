@@ -62,7 +62,7 @@
         </div>
     </div> 
 
-        <table class="table table-sm  bg-primary " id="myTable">
+        <table class="table table-sm  bg-primary myTable" id="myTable">
             <thead>
                 <tr class="header" style="color:white">
                     <th scope="col" style="width:10%;">#</th>
@@ -76,10 +76,10 @@
                 <?php
                 if( count($lista)>0){
                     foreach ($lista as $obj) {
-                        echo '<tr><td class="bg-light ">'.$obj->getidusuario().'</td>';
-                        echo '<td class="bg-light ">'.$obj->getusnombre().'</td>';
-                        echo '<td class="bg-light ">'.$obj->getusmail().'</td>';
-                        echo '<td class="bg-light "><a class="btn btn-info" role="button" href="editar.php?accion=editar&idusuario='.$obj->getidusuario().'"><i class="bi bi-pencil"></i></a>  ';
+                        echo '<tr><td>'.$obj->getidusuario().'</td>';
+                        echo '<td>'.$obj->getusnombre().'</td>';
+                        echo '<td>'.$obj->getusmail().'</td>';
+                        echo '<td><a class="btn btn-info" role="button" href="editar.php?accion=editar&idusuario='.$obj->getidusuario().'"><i class="bi bi-pencil"></i></a>  ';
                         echo '<a class="btn btn-primary" role="button" href="editar.php?accion=borrar&idusuario='.$obj->getidusuario().'"><i class="bi bi-trash3"></i></a> </td></tr> ';
                     } 
                 }
