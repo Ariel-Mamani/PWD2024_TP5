@@ -451,7 +451,7 @@ button{
 /******************************************** TABLAS *******************************************/
 /***********************************************************************************************/
 .myTable tbody tr:nth-child(odd) { /* Filas impares */
-    background-color: #c6f053;
+    background-color: #d2f572;
 }
 
 .myTable tbody tr:nth-child(even) { /* Filas pares */
