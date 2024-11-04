@@ -16,6 +16,10 @@
 ?>
 
 <section>
+    <!-- Titulo -->
+    <h1>Editar rol</h1>
+    <br>
+    
     <!-- Probando boludeces XD -->
     <h2><?php echo $obj->getusnombre() . " - ID: " . $obj->getidusuario() . " - Rol: " . $tuRol; ?></h2>
     <br>
