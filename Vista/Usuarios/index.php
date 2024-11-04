@@ -13,7 +13,7 @@
         <div class="col-md-12 float-left">
             <?php 
             if(isset($datos) && isset($datos['msg']) && $datos['msg']!=null) {
-            echo "<h3 class ='bg-light text-danger text-center'>{$datos['msg']}</h3>";
+            echo "<h3 class ='text-danger text-center'>{$datos['msg']}</h3><br>";
             }
             ?>
         </div>
@@ -64,26 +64,26 @@
 
         <table class="table table-sm  bg-primary " id="myTable">
             <thead>
-            <tr class="header">
-                <th scope="col" style="width:10%;">#</th>
-                <th scope="col" style="width:35%;">Nombre</th>
-                <th scope="col" style="width:35%;">Mail</th>
-                <th scope="col" style="width:20%;">Acciones</th>
-            </tr>
+                <tr class="header" style="color:white">
+                    <th scope="col" style="width:10%;">#</th>
+                    <th scope="col" style="width:35%;">Nombre</th>
+                    <th scope="col" style="width:35%;">Mail</th>
+                    <th scope="col" style="width:20%;">Acciones</th>
+                </tr>
             </thead>
-            <tbody>
 
-            <?php
-            if( count($lista)>0){
-                foreach ($lista as $obj) {
-                    echo '<tr><td class="bg-light ">'.$obj->getidusuario().'</td>';
-                    echo '<td class="bg-light ">'.$obj->getusnombre().'</td>';
-                    echo '<td class="bg-light ">'.$obj->getusmail().'</td>';
-                    echo '<td class="bg-light "><a class="btn btn-info" role="button" href="editar.php?accion=editar&idusuario='.$obj->getidusuario().'"><i class="bi bi-pencil"></i></a>  ';
-                    echo '<a class="btn btn-primary" role="button" href="editar.php?accion=borrar&idusuario='.$obj->getidusuario().'"><i class="bi bi-trash3"></i></a> </td></tr> ';
-                } 
-            }
-            ?>
+            <tbody>
+                <?php
+                if( count($lista)>0){
+                    foreach ($lista as $obj) {
+                        echo '<tr><td class="bg-light ">'.$obj->getidusuario().'</td>';
+                        echo '<td class="bg-light ">'.$obj->getusnombre().'</td>';
+                        echo '<td class="bg-light ">'.$obj->getusmail().'</td>';
+                        echo '<td class="bg-light "><a class="btn btn-info" role="button" href="editar.php?accion=editar&idusuario='.$obj->getidusuario().'"><i class="bi bi-pencil"></i></a>  ';
+                        echo '<a class="btn btn-primary" role="button" href="editar.php?accion=borrar&idusuario='.$obj->getidusuario().'"><i class="bi bi-trash3"></i></a> </td></tr> ';
+                    } 
+                }
+                ?>
             </tbody>
         </table>
     </div>

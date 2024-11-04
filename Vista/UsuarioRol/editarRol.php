@@ -39,7 +39,7 @@
                             <span class="icon" id="basic-addon2">
                                 <i class="bi bi-chevron-down"></i>
                             </span>
-                            
+
                             <input id="clave" name="clave" type="password" class="form-control" required onblur="return convertirClaveMD5()">
                             <input type="hidden" name="uspass" id="uspass">
                             <label>Tu rol actual</label>
@@ -60,7 +60,7 @@
                         </div>
 
                         <!-- Botones -->
-                        <div class="botones">
+                        <div>
                             <!-- Boton editar rol -->
                             <input type="submit" class="btn-editar-pass btn-block  m-2" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>">
                             <!-- Botón volver a pagina segura -->
