@@ -8,7 +8,7 @@
 ?>
 
 <section>
-    <h2 class=" bg-primary p-3">Lista de Usuarios </h2>
+    <h2 class="p-3">Lista de Usuarios </h2>
     <div class="row float-left">
         <div class="col-md-12 float-left">
             <?php 
@@ -22,12 +22,34 @@
     <div class="table-responsive">
         <!-- input de filtro -->
         <div class="mb-2">
-            <form action="index.php" method="post" class="container mt-5 p-4 border rounded shadow bg-light" novalidate>
-                <label for="filtrar" class="form-label fw-bold ">Filtro</label>
-                <input name="usnombre" id="usnombre" type="text" pattern="[A-z0-9]" >
-                <input type="submit" name="accion" id="accion" class="btn btn-info btn-sm" role="button" value="Filtrar">
-                <input type="submit" name="accion" id="accion" class="btn btn-info btn-sm" role="button" value="Limpiar">
-            </form>
+
+            <!-- Login box -->
+            <div class="filtro-box">
+
+                <!-- Curva -->
+                <div class="curva-filtro" id="curva-filtro"></div>
+
+                <!-- Formulario -->
+                <form action="index.php" method="post" class="full-height p-5" novalidate>
+
+                    <!-- Filtro  -->
+                    <div class="input-group mb-4 input-box">
+                        <!-- Icono -->
+                        <span class="icon" id="basic-addon1">
+                            <i class="bi bi-pencil"></i>
+                        </span>
+
+                        <input type="text" name="usnombre" id="usnombre" pattern="[A-z0-9]">
+                        <label>Filtro</label>
+                    </div>
+
+                    <!-- Botones -->
+                    <div>
+                        <input type="submit" name="accion" id="accion" class="btn-filtrar btn-sm" role="button" value="Filtrar">
+                        <input type="submit" name="accion" id="accion" class="btn-limpiar btn-sm" role="button" value="Limpiar">
+                    </div>    
+                </form>
+            </div>
 
             <!-- Boton Nuevo -->
             <div class="row float-left m-5">
@@ -38,7 +60,8 @@
                 </div>
             </div>
         </div>
-        </div> 
+    </div> 
+
         <table class="table table-sm  bg-primary " id="myTable">
             <thead>
             <tr class="header">
