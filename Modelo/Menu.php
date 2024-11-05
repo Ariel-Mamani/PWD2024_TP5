@@ -1,9 +1,14 @@
 <?php
+
+/*
+Este código define la clase Menu, que extiende de la clase BaseDatos, para manejar operaciones sobre la tabla menu de una base de datos.
+*/
+
 class Menu extends BaseDatos{
-    private $idmenu;
+    private $idmenu; //Identificador único del menú.
     private $menunombre;
     private $menuurl;
-    private $mensajeoperacion;
+    private $mensajeoperacion; //Mensaje de error o información sobre la última operación.
 
     public function __construct()
     {
@@ -43,7 +48,7 @@ class Menu extends BaseDatos{
         $this->menuurl = $valor;
     }
 
-    // Metodo get y set MENSAJE ERROR
+    // Metodo get y set mensajeoperacion
     public function getmensajeoperacion(){
         return $this->mensajeoperacion;
     }
@@ -51,6 +56,13 @@ class Menu extends BaseDatos{
         $this->mensajeoperacion = $valor; 
     }
 
+
+    /**
+     * Carga un menú de la base de datos a partir de su idmenu.
+     * Ejecuta un SELECT y, si encuentra el menú, llama a setear para cargar sus datos. Si no, almacena el mensaje de error en mensajeoperacion.
+     * Retorna true si carga el menú correctamente, y false en caso contrario.
+     * @return bool $exito
+     */
     public function cargar(){
         $exito = false;
         $sql = "SELECT * FROM menu WHERE idmenu =" . $this->getidmenu();
@@ -68,8 +80,14 @@ class Menu extends BaseDatos{
         }
         return $exito;
     }
+
+
     /**
-     * Summary of insertar hace falta insertar un menu????
+     * Summary of insertar ---hace falta insertar un menu???? --> SI HICIERA FALTA YA LO TENEMOS, SINO NO MOLESTA QUE ESTÉ---
+     * Inserta un nuevo menú en la base de datos.
+     * Crea una sentencia INSERT con menunombre y menuurl, y establece idmenu en null (autoincremental).
+     * Al finalizar, guarda el idmenu asignado por la base de datos.
+     * Retorna true si la inserción es exitosa y false en caso de error.
      * @return bool
      */
     public function insertar(){
@@ -90,9 +108,13 @@ class Menu extends BaseDatos{
         }
         return $resp;
     }
+
+
     /**
      * Summary of modificar
-     * @return bool
+     * Actualiza el menunombre y menuurl de un menú en la base de datos, identificándolo por idmenu.
+     * Retorna true si la modificación es exitosa, y false en caso contrario.
+     * @return bool $resp
      */
     public function modificar(){
         $resp = false;
@@ -114,6 +136,9 @@ class Menu extends BaseDatos{
     
     /**
      * Eliminar, borrado lógico
+     * Realiza un borrado lógico, cambiando usdeshabilitado al valor de la fecha y hora actual, sin eliminar realmente el registro de la base de datos.
+     * Retorna true si el borrado es exitoso, y false en caso contrario.
+     * @return bool $resp
      */
     public function eliminar(){
         $resp = false;
@@ -130,6 +155,13 @@ class Menu extends BaseDatos{
         return $resp;
     }
 
+
+    /**
+     * Retorna una lista de objetos Menu que cumplen con el parámetro where especificado.
+     * Ejecuta un SELECT y, por cada resultado, crea un objeto Menu, lo carga con setear, y lo añade al arreglo arreglo.
+     * Retorna un arreglo de objetos Menu.
+     * @return array $arreglo
+     */
     public function listar($parametro=""){
         $arreglo = array();
         $sql = "SELECT * FROM menu ";
@@ -141,10 +173,9 @@ class Menu extends BaseDatos{
             if($res > -1){
                 if($res > 0){
                     while ($row = $this->Registro()){
-                   
-                            $obj = new menu();
-                            $obj->setear($row['idmenu'], $row['menunombre'],  $row['menuurl']);
-                            array_push($arreglo, $obj);
+                        $obj = new menu();
+                        $obj->setear($row['idmenu'], $row['menunombre'],  $row['menuurl']);
+                        array_push($arreglo, $obj);
                         
                     }
                 }
@@ -154,7 +185,6 @@ class Menu extends BaseDatos{
         }
         return $arreglo;
     }
-
 }
 
 ?>
