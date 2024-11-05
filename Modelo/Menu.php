@@ -2,6 +2,7 @@
 
 /*
 Este código define la clase Menu, que extiende de la clase BaseDatos, para manejar operaciones sobre la tabla menu de una base de datos.
+Permite realizar operaciones básicas de CRUD (crear, leer, actualizar y eliminar) y maneja los errores mediante el atributo mensajeoperacion. La clase es muy útil para trabajar con menús de manera estructurada, facilitando la conexión y las operaciones con la base de datos.
 */
 
 class Menu extends BaseDatos{

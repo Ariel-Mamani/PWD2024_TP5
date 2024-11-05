@@ -1,7 +1,8 @@
 <?php
 
 /*
-Este código define una clase MenuRol que representa una relación entre Menu y Rol en una base de datos. Esta clase permite gestionar las relaciones entre un menú y un rol (por ejemplo, asignando un rol específico a un menú). 
+Este código define una clase MenuRol que representa una relación entre Menu y Rol en una base de datos. Esta clase permite gestionar las relaciones entre un menú y un rol (por ejemplo, asignando un rol específico a un menú).
+Facilita la creación, modificación, eliminación y búsqueda de relaciones entre Menu y Rol en una base de datos. Esta clase es útil para gestionar permisos o asociaciones entre menús y roles en una aplicación de software, permitiendo establecer qué roles tienen acceso a cada elemento del menú. 
 */
 
 class MenuRol extends BaseDatos{

@@ -1,4 +1,9 @@
 <?php
+
+/*
+Este código define una clase Usuario que hereda de BaseDatos. La clase Usuario representa a un usuario en una base de datos y ofrece métodos para realizar operaciones básicas (CRUD): crear, leer, actualizar y eliminar
+*/
+
 class Usuario extends BaseDatos{
     private $idusuario;
     private $usnombre;
@@ -16,6 +21,7 @@ class Usuario extends BaseDatos{
         $this->mensajeoperacion = "";
     }
 
+    //Este método asigna valores a las propiedades del usuario. Llama a los métodos set correspondientes para actualizar cada propiedad.
     public function setear($idusuario, $usnombre, $uspass, $usmail)    {
         $this->setidusuario($idusuario);
         $this->setusnombre($usnombre);

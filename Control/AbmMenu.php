@@ -1,4 +1,9 @@
 <?php
+
+/*
+Este código permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre objetos de tipo Menu, encapsulando toda la lógica de interacción con la base de datos en una sola clase AbmMenu. Este enfoque organiza la lógica y facilita el mantenimiento del código.
+*/
+
 class AbmMenu{
     //Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
 
