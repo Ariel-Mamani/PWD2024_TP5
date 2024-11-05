@@ -13,12 +13,12 @@
         $objAbmRol = new AbmRol();
         $listaRol = $objAbmRol->buscar(null);
 
-        $obj =NULL;
+        $obj = NULL;
         $objRol = NULL;
         if (isset($datos['idusuario']) && $datos['idusuario'] <> -1){
             $listaUsuario = $AbmUsuario->buscar($datos);
-            if (count($listaUsuario)==1){
-                $obj= $listaUsuario[0];
+            if (count($listaUsuario) == 1){
+                $obj = $listaUsuario[0];
                 $listaAbmUsuarioRol = $objAbmUsuarioRol->buscar($datos);
                 if (count($listaAbmUsuarioRol) == 1){
                     $objRol = $listaAbmUsuarioRol[0]->getRol();
@@ -37,11 +37,11 @@
 
         <!-- Formulario editarBorrar -->
         <form method="post" action="accion.php">
-            <input id="idusuario" name ="idusuario" type="hidden" value="<?php echo ($obj !=null) ? $obj->getidusuario() : "-1"?>" readonly required >
-            <input id="accion" name ="accion" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>" type="hidden">
+            <input id="idusuario" name="idusuario" type="hidden" value="<?php echo ($obj != null) ? $obj->getidusuario() : "-1"?>" readonly required >
+            <input id="accion" name="accion" value="<?php echo ($datos['accion'] != null) ? $datos['accion'] : "nose"?>" type="hidden">
 
             <!-- Titulo -->
-            <h2><?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?> Usuario</h2>
+            <h2><?php echo ($datos['accion'] != null) ? $datos['accion'] : "nose"?> Usuario</h2>
 
             <!-- Nombre usuario  -->
             <div class="input-group mb-4 input-box">
@@ -65,7 +65,7 @@
                     <ion-icon name="mail"></ion-icon>
                 </span>
 
-                <input id="usmail" name="usmail" type="text" class="form-control" value="<?php echo ($obj !=null) ? $obj->getusmail() : ""?>" required>
+                <input id="usmail" name="usmail" type="text" class="form-control" value="<?php echo ($obj != null) ? $obj->getusmail() : ""?>" required>
                 <input type="hidden" name="uspass" id="uspass">
                 <label>E-mail</label>
                 
@@ -77,7 +77,7 @@
 
             <div class="botones">
                     <!-- Boton registrar -->
-                    <input type="submit" class="btn-editarBorrar-usuario btn-block  m-2" value="<?php echo ($datos['accion'] !=null) ? $datos['accion'] : "nose"?>">
+                    <input type="submit" class="btn-editarBorrar-usuario btn-block  m-2" value="<?php echo ($datos['accion'] != null) ? $datos['accion'] : "nose"?>">
 
                     <!-- Botón volver a login -->
                     <button type="button" onclick="history.back()" class="btn-volver">Volver</button>

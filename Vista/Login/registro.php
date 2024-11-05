@@ -35,7 +35,7 @@ include_once '../Estructura/header.php';
                 <div class="input-group mb-4 input-box">
                     <!-- Icono -->
                     <span class="icon" id="basic-addon1">
-                        <ion-icon name="person"></ion-icon>
+                        <i class="bi bi-person"></i>
                     </span>
 
                     <input type="text" name="usnombre" id="usnombre" class="form-control" required>
@@ -49,7 +49,7 @@ include_once '../Estructura/header.php';
                 <div class="input-group mb-4 input-box">
                     <!-- Icono -->
                     <span class="icon" id="basic-addon2">
-                        <ion-icon name="lock-closed"></ion-icon>
+                        <i class="bi bi-lock"></i>
                     </span>
 
                     <input id="clave" name="clave" type="password" class="form-control" required onblur="return convertirClaveMD5()">
@@ -66,7 +66,7 @@ include_once '../Estructura/header.php';
                 <div class="input-group input-box">
                     <!-- Icono -->
                     <span class="icon">
-                        <ion-icon name="mail"></ion-icon>
+                        <i class="bi bi-envelope"></i>
                     </span>
 
                     <input type="email" name="usmail" id="usmail" class="form-control" required>
@@ -88,10 +88,6 @@ include_once '../Estructura/header.php';
         </div>
     </body>
 </section>
-
-<!-- Iconos -->
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 <!-- BOOTSTRAP con las validaciones de los campos -->
 <script type="text/javascript" src="../Js/validacionTP5.js"></script>
