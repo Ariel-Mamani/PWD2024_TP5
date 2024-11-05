@@ -23,7 +23,7 @@
         <!-- input de filtro -->
         <div class="mb-2">
 
-            <!-- Login box -->
+            <!-- filtro box -->
             <div class="filtro-box">
 
                 <!-- Curva -->
