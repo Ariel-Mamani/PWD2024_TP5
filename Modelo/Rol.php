@@ -1,6 +1,12 @@
 <?php
+
+/*
+
+Este código define una clase Rol, que representa la entidad de un rol en una base de datos. La clase hereda de BaseDatos, lo que permite ejecutar operaciones en la base de datos, como inserciones, actualizaciones y consultas.
+*/
+
 class Rol extends BaseDatos{
-    private $idrol;
+    private $idrol; //Identifica de manera única un rol en la base de datos.
     private $roldescripcion;
     private $mensajeoperacion;
 
@@ -11,6 +17,7 @@ class Rol extends BaseDatos{
         $this->mensajeoperacion = "";
     }
 
+    //Permite asignar valores a las propiedades idrol y roldescripcion.
     public function setear($idrol, $roldescripcion) {
         $this->setidrol($idrol);
         $this->setroldescripcion($roldescripcion);
@@ -43,14 +50,18 @@ class Rol extends BaseDatos{
         $this->mensajeoperacion = $valor;
     }
 
-    
+
     /**
      * Summary of cargar
-     * @return bool
+     * Busca en la base de datos un rol específico según su idrol. 
+     * Si encuentra un rol, carga su descripción en el objeto actual.
+     * @return bool $resp
      */
     public function cargar(){
         $resp = false;
-        $sql="SELECT * FROM rol WHERE idrol = ".$this->getidrol();
+
+        $sql = "SELECT * FROM rol WHERE idrol = ".$this->getidrol();
+
         if ($this->Iniciar()) {
             $res = $this->Ejecutar($sql);
             if($res>-1){
@@ -60,19 +71,24 @@ class Rol extends BaseDatos{
                     $this->setear($row['idrol'], $row['roldescripcion']);
                 }
             }
-        } else {
+        }else{
             $this->setMensajeoperacion("rol->cargar: ".$this->getError());
         }
         return $resp;
     }
-    
- /**
+
+
+    /**
      * Summary of insertar
+     * Inserta un nuevo rol en la base de datos con la descripción dada. 
+     * Si la inserción es exitosa, asigna el idrol generado a la propiedad idrol del objeto actual.
      * @return bool
      */
     public function insertar(){
         $resp = false;
+
         $sql="INSERT INTO rol (roldescripcion)  VALUES ('".$this->getroldescripcion()."');";
+
         if ($this->Iniciar()) {
             if ($elid = $this->Ejecutar($sql)) {
                 $this->setidrol($elid);
@@ -80,53 +96,66 @@ class Rol extends BaseDatos{
             } else {
                 $this->setMensajeoperacion("rol->insertar: ".$this->getError());
             }
-        } else {
+        }else{
             $this->setMensajeoperacion("rol->insertar: ".$this->getError());
         }
         return $resp;
     }
     /**
      * Summary of modificar
-     * @return bool
+     * Actualiza la descripción del rol en la base de datos para el idrol actual. 
+     * Devuelve true si la actualización es exitosa.
+     * @return bool $resp
      */
     public function modificar(){
         $resp = false;
+
         $sql="UPDATE rol SET roldescripcion = '".$this->getroldescripcion()."' ".
             " WHERE idrol = ".$this->getidrol();
+
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
                 $resp = true;
             } else {
                 $this->setMensajeoperacion("rol->modificar: ".$this->getError());
             }
-        } else {
+        }else{
             $this->setMensajeoperacion("rol->modificar: ".$this->getError());
         }
         return $resp;
     }
+
+
     /**
      * Summary of eliminar
-     * @return bool
+     * Elimina el rol de la base de datos según su idrol. 
+     * Devuelve true si la eliminación es exitosa
+     * @return bool $resp
      */
     public function eliminar(){
         $resp = false;
+
         $sql="DELETE FROM rol WHERE idrol = ".$this->getidrol();
+
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql) > 0) {
                 $resp = true;
-            } else {
+            }else{
                 $this->setMensajeoperacion("rol->eliminar: ".$this->getError());
             }
-        } else {
+        }else{
             $this->setMensajeoperacion("rol->eliminar: ".$this->getError());
         }
         return $resp;
     }
 
-      /**
+
+    /**
      * Summary of listar
+     * Devuelve un arreglo de objetos Rol que cumplen con un criterio opcional ($parametro). 
+     * Cada registro en la base de datos se convierte en un objeto Rol, y se añade al arreglo.
      * @param mixed $parametro
-     * @return array
+     * @return array $arreglo
      */
     public function listar($parametro=""){
         $arreglo = array();
@@ -150,7 +179,6 @@ class Rol extends BaseDatos{
         }
         return $arreglo;
     }
-    
 }
 
 ?>

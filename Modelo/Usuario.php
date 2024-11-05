@@ -1,7 +1,9 @@
 <?php
 
 /*
-Este código define una clase Usuario que hereda de BaseDatos. La clase Usuario representa a un usuario en una base de datos y ofrece métodos para realizar operaciones básicas (CRUD): crear, leer, actualizar y eliminar
+Este código define una clase Usuario que hereda de BaseDatos. La clase Usuario representa a un usuario en una base de datos y ofrece métodos para realizar operaciones básicas (CRUD): crear, leer, actualizar y eliminar.
+Esta clase permite gestionar usuarios en una base de datos, proporcionando métodos para crear, leer, actualizar y deshabilitar usuarios. 
+Los métodos están bien estructurados para manejar cualquier error y mantener un registro en mensajeoperacion en caso de que falle alguna operación.
 */
 
 class Usuario extends BaseDatos{
@@ -22,7 +24,7 @@ class Usuario extends BaseDatos{
     }
 
     //Este método asigna valores a las propiedades del usuario. Llama a los métodos set correspondientes para actualizar cada propiedad.
-    public function setear($idusuario, $usnombre, $uspass, $usmail)    {
+    public function setear($idusuario, $usnombre, $uspass, $usmail){
         $this->setidusuario($idusuario);
         $this->setusnombre($usnombre);
         $this->setuspass($uspass);
@@ -68,9 +70,19 @@ class Usuario extends BaseDatos{
         $this->mensajeoperacion = $valor; 
     }
 
+
+    /**
+     * Busca en la base de datos los datos de un usuario específico por idusuario y los carga en las propiedades del objeto. 
+     * Devuelve true si fue exitoso o false en caso de error, almacenando un mensaje de error en mensajeoperacion.
+     * @return bool $exito
+     */
     public function cargar(){
+        //Inicializo variables
         $exito = false;
+
+        //Ejecuta consulta SELECT a la BD
         $sql = "SELECT * FROM usuario WHERE idusuario =" . $this->getidusuario();
+
         if($this ->Iniciar()){
             $res = $this->Ejecutar($sql);
             if($res > -1){
@@ -86,13 +98,24 @@ class Usuario extends BaseDatos{
         return $exito;
     }
 
+
+    /**
+     * Este método inserta un nuevo usuario en la base de datos con los datos del objeto actual (usnombre, uspass, usmail). 
+     * Asigna automáticamente el idusuario generado a la propiedad correspondiente.
+     * Devuelve true si fue exitoso, o false en caso de error.
+     * @return bool $resp
+     */
     public function insertar(){
+        //Inicializo variables
         $resp = false;
+
+        //Ejecuta consulta INSERT INTO a la BD
         $sql  =  "INSERT INTO usuario (idusuario, usnombre, uspass, usmail, usdeshabilitado) VALUES (null, '"
         .$this->getusnombre()."', '"
         .$this->getuspass()."', '"
         .$this->getusmail()."', 
         'null');";
+
         if ($this->Iniciar()) {
             if($elid = $this->Ejecutar($sql)){
                 $this->setidusuario($elid);
@@ -105,16 +128,24 @@ class Usuario extends BaseDatos{
         }
         return $resp;
     }
+
+
     /**
      * Summary of modificar
-     * @return bool
+     * Actualiza los datos del usuario en la base de datos, incluyendo usnombre, uspass y usmail, para el idusuario especificado. 
+     * Devuelve true si fue exitoso.
+     * @return bool $resp
      */
     public function modificar(){
+        //Inicializo variables
         $resp = false;
+
+        //Ejecuta consulta UPDATE a la BD
         $sql = "UPDATE usuario SET 
         usnombre = '".$this->getusnombre()."', 
         uspass = '".$this->getuspass()."', 
         usmail = '".$this->getusmail()."' WHERE idusuario = ".$this->getidusuario();
+
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -127,16 +158,23 @@ class Usuario extends BaseDatos{
         return $resp;
     }
 
+
     /**
      * Summary of modificar sin uspass
-     * @return bool
+     * Modifica los datos del usuario excepto la contraseña (uspass).
+     * Omite el campo usdeshabilitado.
+     * @return bool $resp
      */
     public function modificarSinPass(){
+        //Inicializo variables
         $resp = false;
+
+        //Ejecuta consulta UPDATE a la BD
         $sql = "UPDATE usuario SET 
         usnombre = '".$this->getusnombre()."', 
         usmail = '".$this->getusmail()."',
         usdeshabilitado = 'null' WHERE idusuario = ".$this->getidusuario();
+
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -148,16 +186,23 @@ class Usuario extends BaseDatos{
         }
         return $resp;
     }
-    
+
+
     /**
      * Summary of modificar sin uspass
-     * @return bool
+     * Modifica solo la contraseña (uspass).
+     * Omite el campo usdeshabilitado.
+     * @return bool $resp
      */
     public function modificarPass(){
+        //Inicializo variables
         $resp = false;
+
+        //Ejecuta consulta UPDATE a la BD
         $sql = "UPDATE usuario SET 
         uspass = '".$this->getuspass()."',
         usdeshabilitado = 'null' WHERE idusuario = ".$this->getidusuario();
+
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -169,12 +214,21 @@ class Usuario extends BaseDatos{
         }
         return $resp;
     }
+
+
     /**
      * Eliminar, borrado lógico
+     * Realiza un "borrado lógico" del usuario, es decir, marca el usuario como deshabilitado sin eliminarlo físicamente. 
+     * Para esto, almacena la fecha y hora actuales en el campo usdeshabilitado.
+     * @return bool $resp
      */
     public function eliminar(){
+        //Inicializo variables
         $resp = false;
+
+        //Ejecuta consulta UPDATE a la BD
         $sql = "UPDATE usuario SET usdeshabilitado = '".date("Y-m-d h:i:sa")."' WHERE idusuario = ".$this->getidusuario();
+
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
                 $resp = true;
@@ -187,12 +241,23 @@ class Usuario extends BaseDatos{
         return $resp;
     }
 
+
+    /**
+     * Obtiene una lista de usuarios habilitados de la base de datos. 
+     * Si el campo usdeshabilitado tiene un valor de 0000-00-00 00:00:00 (lo que indica que no está deshabilitado), crea un nuevo objeto Usuario y lo añade a un arreglo que se devuelve al final.
+     * @return array $arreglo
+     */
     public function listar($parametro=""){
+        //Inicializo variables
         $arreglo = array();
+
+        //Ejecuta consulta SELECT a la BD
         $sql = "SELECT * FROM usuario ";
+
         if ($parametro != "") {
             $sql .= " WHERE " .$parametro;
         }
+
         if ($this->Iniciar()) {
             $res = $this->Ejecutar($sql);
             if($res > -1){
@@ -211,7 +276,6 @@ class Usuario extends BaseDatos{
         }
         return $arreglo;
     }
-
 }
 
 ?>

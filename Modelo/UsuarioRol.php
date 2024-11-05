@@ -1,4 +1,18 @@
 <?php
+
+/*
+Este código define una clase UsuarioRol que también extiende de BaseDatos. Esta clase representa la relación entre un usuario y un rol en una base de datos, permitiendo vincular usuarios con roles específicos y gestionar estas asociaciones.
+
+La clase UsuarioRol gestiona la relación entre usuarios y roles en una base de datos. Permite:
+
+Buscar relaciones usuario-rol.
+Insertar nuevas relaciones.
+Modificar el rol asignado a un usuario.
+Eliminar una relación específica.
+Listar todas las relaciones usuario-rol que cumplen con una condición.
+Estos métodos utilizan las instancias de Usuario y Rol para acceder a los datos de cada entidad y manejan errores mediante mensajeoperacion.
+*/
+
 class UsuarioRol extends BaseDatos{
     private $objUsuario; // Objeto de la clase Usuario
     private $objRol;     // Objeto de la clase Rol
@@ -11,6 +25,7 @@ class UsuarioRol extends BaseDatos{
         $this->mensajeoperacion = "";
     }
 
+    //Asigna un usuario y un rol a la relación, utilizando los métodos setUsuario y setRol.
     public function setear($objUsuario, $objRol){
         $this->setUsuario($objUsuario);
         $this->setRol($objRol);
@@ -43,7 +58,13 @@ class UsuarioRol extends BaseDatos{
         $this->mensajeoperacion = $valor;
     }
 
-    //Método para buscar una relación usuario-rol
+
+    /**
+     * Método para buscar una relación usuario-rol
+     * Busca en la base de datos una relación usuario-rol específica, utilizando el idusuario y idrol del objeto Usuario y Rol asociados. 
+     * Si encuentra una coincidencia, carga los datos del usuario y el rol y actualiza el objeto UsuarioRol.
+     * @return bool $exito
+     */
     public function cargar(){
         $exito = false;
         $sql = "SELECT * FROM usuariorol WHERE 
@@ -70,7 +91,13 @@ class UsuarioRol extends BaseDatos{
         return $exito;
     }
 
-    // Método para insertar una nueva relación usuario-rol
+
+    /**
+     * Método para insertar una nueva relación usuario-rol
+     * Inserta una nueva relación usuario-rol en la tabla usuariorol, utilizando los IDs del usuario y el rol. 
+     * Devuelve true si la inserción fue exitosa o false en caso de error.
+     * @return bool $false
+     */
     public function insertar(){
         $resp = false;
         $sql = "INSERT INTO usuariorol(idusuario, idrol) VALUES(" 
@@ -91,8 +118,10 @@ class UsuarioRol extends BaseDatos{
 
     /**
      * Summary of modificar
+     * Este método actualiza la relación para un idusuario dado, asignándole un nuevo idrol. Toma el nuevo rol como parámetro
+     * Devuelve true si la actualización fue exitosa.
      * @param mixed $nuevo
-     * @return bool
+     * @return bool $resp
      */
     public function modificar($nuevo){
         $resp = false;
@@ -112,7 +141,12 @@ class UsuarioRol extends BaseDatos{
     }
 
 
-    //Método para eliminar una relación usuario-rol
+    /**
+     * Método para eliminar una relación usuario-rol
+     * Elimina una relación usuario-rol específica de la tabla usuariorol, basada en el idusuario y idrol del objeto actual. 
+     * Devuelve true si la eliminación fue exitosa.
+     * @return bool $resp
+     */
     public function eliminar(){
         $resp = false;
         $sql = "DELETE FROM usuariorol WHERE idusuario = " 
@@ -130,13 +164,21 @@ class UsuarioRol extends BaseDatos{
         return $resp;
     }
 
-    // Método para listar todas las relaciones usuario-rol
+
+    /**
+     * Método para listar todas las relaciones usuario-rol
+     * Este método devuelve un arreglo de todas las relaciones usuario-rol que cumplen con un parámetro opcional ($parametro). 
+     * Para cada registro encontrado en la tabla usuariorol, crea un objeto UsuarioRol con un Usuario y un Rol y lo añade al arreglo de resultados.
+     * @return array $arreglo
+     */
     public function listar($parametro = ""){
         $arreglo = array();
         $sql = "SELECT * FROM usuariorol ";
+
         if($parametro != ""){
             $sql .= " WHERE " . $parametro;
         }
+
         if($this->Iniciar()){
             if ($this->Ejecutar($sql)){
                 while ($row = $this->Registro()){
