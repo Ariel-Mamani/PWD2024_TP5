@@ -57,4 +57,5 @@
     </table>
 </div>
 
+<!-- Footer -->
 <?php include_once("../estructura/footer.php"); ?>

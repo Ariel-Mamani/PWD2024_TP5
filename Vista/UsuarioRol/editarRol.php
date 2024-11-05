@@ -20,8 +20,8 @@
     <h1>Editar rol</h1>
     <br>
     
-    <!-- Probando boludeces XD -->
-    <h2><?php echo $obj->getusnombre() . " - ID: " . $obj->getidusuario() . " - Rol: " . $tuRol; ?></h2>
+    <!-- Datos del usuario actual -->
+    <h2><?php echo "Ususario: " . $obj->getusnombre() . "<br>ID: " . $obj->getidusuario() . "<br>Rol: " . $tuRol; ?></h2>
     <br>
 
     <!-- Editar rol -->
@@ -73,8 +73,6 @@
                     </div>
                 </div>
             </div>
-            
-            
         </form>
     </div>
 </section>

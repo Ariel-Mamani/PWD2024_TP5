@@ -1,11 +1,23 @@
 <?php
+
+/*
+La clase Session administra y verifica las sesiones de usuario, incluyendo su autenticación, roles, y el estado de actividad de la sesión.
+
+
+*/
+
 class Session {
 
+    //Inicia la sesión usando session_start(), permitiendo que se almacenen y accedan variables de sesión durante la ejecución.
     public function __construct(){
         @session_start();
     }
+
+
     /**
      * Summary of getUsuario
+     * Obtiene el objeto Usuario actual de la sesión, si el usuario está validado. 
+     * Usa AbmUsuario para buscar al usuario en la base de datos.
      * @return Usuario
      */
     public function getUsuario(){
@@ -19,8 +31,12 @@ class Session {
         }
         return $obj;
     }
+
+
     /**
-     * Summary of getRol
+     * Summary of getRol.
+     * Obtiene el rol del usuario si la sesión es válida. 
+     * Utiliza AbmUsuarioRol para obtener la relación entre el usuario y el rol, devolviendo el primer rol de la lista asociada.
      * @return Rol
      */
     public function getRol(){
@@ -35,6 +51,12 @@ class Session {
         return $objRol;
     }
 
+
+    /**
+     * Verifica si la sesión está activa y si el usuario tiene un idusuario definido en la sesión. 
+     * También verifica si el tiempo de inactividad ha excedido los 280 segundos; si es así, cierra la sesión.
+     * @return bool $resp
+     */
     public function validar(){
         $resp = false;
         if ($this->activa() and isset($_SESSION['idusuario'])){
@@ -48,6 +70,12 @@ class Session {
         return $resp;    
     }
 
+
+    /**
+     * Inicia la sesión para un usuario si el nombre de usuario y la contraseña son válidos. 
+     * Utiliza AbmUsuario para buscar el usuario, y si lo encuentra, almacena el idusuario en la sesión.
+     * @return bool $resp
+     */
     public function iniciar($usuario, $psw){
         $resp = false;
         $param['usnombre'] = $usuario;
@@ -63,7 +91,11 @@ class Session {
         return $resp;
     }
 
-    
+
+    /**
+     * Cierra la sesión destruyendo las variables y la sesión misma.
+     * @return bool $resp
+     */
     public function cerrar(){
         $resp = false;
         if(session_status() === PHP_SESSION_ACTIVE){
@@ -75,8 +107,12 @@ class Session {
         }
         return $resp;
     }
+
+
     /**
-     * Verifica si la session está activa
+     * Verifica si la session está activa.
+     * Verifica si la sesión está activa retornando true si session_status está en PHP_SESSION_ACTIVE.
+     * @return bool $resp
      */
     public function activa(){
         $resp = false;
@@ -85,8 +121,12 @@ class Session {
         }
         return $resp;
     }
+
+
     /**
-     *  Retorna mensaje dependiendo del boleano que entre por parametros
+     *  Retorna mensaje dependiendo del boleano que entre por parametros.
+     * Este método permite establecer mensajes de sesión basados en el parámetro $bool, que indica si el registro fue exitoso o fallido. 
+     * El mensaje queda almacenado en la variable de sesión mensaje.
      */
     public function getMensaje($bool = null){
         // si no esta el === no funca XD
@@ -99,8 +139,13 @@ class Session {
         }
         return $_SESSION['mensaje'];
     }
-    
-        
+
+
+    /**
+     * Verifica si el usuario tiene permiso para acceder a una URL específica basada en su rol. 
+     * Primero obtiene el rol del usuario actual y luego verifica si el rol tiene acceso a la URL actual.
+     * @return bool $resp
+     */
     public function validarRol(){
         $resp = false;
         $param['idrol'] = $this->getRol()->getidrol();
@@ -119,8 +164,5 @@ class Session {
         }
         return $resp;
     }
- 
-
-
 }
 ?>
