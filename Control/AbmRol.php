@@ -5,19 +5,19 @@ class AbmRol{
     
     public function abm($datos){
         $resp = false;
-        if($datos['accion']=='editar'){
+        if($datos['accion'] == 'editar'){
             if($this->modificacion($datos)){
                 $resp = true;
             }
         }
-        if($datos['accion']=='borrar'){
+        if($datos['accion'] == 'borrar'){
             if($this->baja($datos)){
-                $resp =true;
+                $resp = true;
             }
         }
-        if($datos['accion']=='nuevo'){
+        if($datos['accion'] == 'nuevo'){
             if($this->alta($datos)){
-                $resp =true;
+                $resp = true;
             }
             
         }
@@ -31,7 +31,7 @@ class AbmRol{
      */
     private function cargarObjeto($param){
         $objRol = null;
-           
+        
         if( array_key_exists('idrol',$param) and array_key_exists('roldescripcion',$param)){
             $objRol = new Rol();
             $objRol->setear($param['idrol'], $param['roldescripcion']);
@@ -74,9 +74,9 @@ class AbmRol{
      */
     public function alta($param){
         $resp = false;
-        $param['idrol'] =null;                             //Campo autoincremento
+        $param['idrol'] = null;                             //Campo autoincremento
         $objRol = $this->cargarObjeto($param);
-        if ($objRol!=null and $objRol->insertar()){
+        if ($objRol != null and $objRol->insertar()){
             $resp = true;
         }
         return $resp;
@@ -91,7 +91,7 @@ class AbmRol{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objRol = $this->cargarObjetoConClave($param);
-            if ($objRol!=null and $objRol->eliminar()){
+            if ($objRol != null and $objRol->eliminar()){
                 $resp = true;
             }
         }
@@ -108,13 +108,14 @@ class AbmRol{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objRol = $this->cargarObjeto($param);
-            if($objRol!=null and $objRol->modificar()){
+            if($objRol != null and $objRol->modificar()){
                 $resp = true;
             }
         }
         return $resp;
     }
-    
+
+
     /**
      * permite buscar un objeto
      * @param array $param
@@ -124,15 +125,15 @@ class AbmRol{
         $where = " true ";
         if ($param<>NULL){
             if  (isset($param['idrol']))
-                $where.=" and idrol =".$param['idrol'];
+                $where .= " and idrol =".$param['idrol'];
             if  (isset($param['roldescripcion']))
-                 $where.=" and roldescripcion ='".$param['roldescripcion']."'";
+                $where .= " and roldescripcion ='".$param['roldescripcion']."'";
         }
         $objRol = new Rol();
         $arreglo = $objRol->listar($where);
         return $arreglo;
-        
     }
+
 
     /**
      * permite buscar una Rol  por nombre parcial

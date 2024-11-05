@@ -5,24 +5,24 @@ class AbmUsuario{
     
     public function abm($datos){
         $resp = false;
-        if($datos['accion']=='editar'){
+        if($datos['accion'] == 'editar'){
             if($this->modificacion($datos)){
                 $resp = true;
             }
         }
-        if($datos['accion']=='editarPass'){
+        if($datos['accion'] == 'editarPass'){
             if($this->modificacionPass($datos)){
                 $resp = true;
             }
         }
-        if($datos['accion']=='borrar'){
+        if($datos['accion'] == 'borrar'){
             if($this->baja($datos)){
-                $resp =true;
+                $resp = true;
             }
         }
-        if($datos['accion']=='nuevo'){
+        if($datos['accion'] == 'nuevo'){
             if($this->alta($datos)){
-                $resp =true;
+                $resp = true;
             }
             
         }
@@ -36,7 +36,7 @@ class AbmUsuario{
      */
     protected function cargarObjeto($param){
         $objUsuario = null;
-           
+        
         if( array_key_exists('idusuario',$param) and 
             array_key_exists('usnombre',$param) and 
             array_key_exists('uspass',$param) and 
@@ -46,8 +46,9 @@ class AbmUsuario{
         }
         return $objUsuario;
     }
-    
-       /**
+
+
+    /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * Sin el campo uspass
      * @param array $param
@@ -55,7 +56,7 @@ class AbmUsuario{
      */
     protected function cargarObjetoSinPass($param){
         $objUsuario = null;
-           
+        
         if( array_key_exists('idusuario',$param) and 
             array_key_exists('usnombre',$param) and 
             array_key_exists('usmail',$param)){
@@ -64,14 +65,16 @@ class AbmUsuario{
         }
         return $objUsuario;
     }
-        /**
+
+
+    /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
      * @return Usuario
      */
     protected function cargarObjetoPass($param){
         $objUsuario = null;
-           
+        
         if( array_key_exists('idusuario',$param) and 
             array_key_exists('uspass',$param)){
             $objUsuario = new Usuario();
@@ -79,7 +82,8 @@ class AbmUsuario{
         }
         return $objUsuario;
     }
-    
+
+
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
@@ -94,21 +98,21 @@ class AbmUsuario{
         }
         return $objUsuario;
     }
-    
-    
+
+
     /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
      * @param array $param
      * @return boolean
      */
-    
     protected function seteadosCamposClaves($param){
         $resp = false;
         if (isset($param['idusuario']))
             $resp = true;
         return $resp;
     }
-    
+
+
     /**
      * 
      * @param array $param
@@ -117,12 +121,13 @@ class AbmUsuario{
         $resp = false;
         $param['idusuario'] = null;                             //Campo autoincremento
         $objUsuario = $this->cargarObjeto($param);
-        if ($objUsuario!=null and $objUsuario->insertar()){
+        if ($objUsuario != null and $objUsuario->insertar()){
             $resp = true;
         }
         return $resp;
-        
     }
+
+
     /**
      * permite eliminar un objeto 
      * @param array $param
@@ -132,14 +137,14 @@ class AbmUsuario{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objUsuario = $this->cargarObjetoConClave($param);
-            if ($objUsuario!=null and $objUsuario->eliminar()){
+            if ($objUsuario != null and $objUsuario->eliminar()){
                 $resp = true;
             }
         }
-        
         return $resp;
     }
-    
+
+
     /**
      * permite modificar un objeto menos la password
      * @param array $param
@@ -149,14 +154,15 @@ class AbmUsuario{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objUsuario = $this->cargarObjetoSinPass($param);
-            if($objUsuario!=null and $objUsuario->modificarSinPass()){
+            if($objUsuario != null and $objUsuario->modificarSinPass()){
                 $resp = true;
             }
         }
         return $resp;
     }
-    
-        /**
+
+
+    /**
      * permite modificar la password
      * @param array $param
      * @return boolean
@@ -165,12 +171,14 @@ class AbmUsuario{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objUsuario = $this->cargarObjetoPass($param);
-            if($objUsuario!=null and $objUsuario->modificarPass()){
+            if($objUsuario != null and $objUsuario->modificarPass()){
                 $resp = true;
             }
         }
         return $resp;
     }
+
+
     /**
      * permite buscar un objeto
      * @param array $param
@@ -178,21 +186,21 @@ class AbmUsuario{
      */
     public function buscar($param){
         $where = " true ";
-        if ($param<>NULL){
+        if ($param <> NULL){
             if  (isset($param['idusuario']))
                 $where.=" and idusuario =".$param['idusuario'];
             if  (isset($param['usnombre']))
-                 $where.=" and usnombre ='".$param['usnombre']."'";
-                 if  (isset($param['uspass']))
-                 $where.=" and uspass ='".$param['uspass']."'";
+                $where.=" and usnombre ='".$param['usnombre']."'";
+                if  (isset($param['uspass']))
+                $where.=" and uspass ='".$param['uspass']."'";
             if  (isset($param['usmail']))
                 $where.=" and usmail ='".$param['usmail']."'";    
         }
         $objUsuario = new Usuario();
         $arreglo = $objUsuario->listar($where);
         return $arreglo;
-        
     }
+
 
     /**
      * permite buscar una Usuario  por nombre parcial

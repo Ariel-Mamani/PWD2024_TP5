@@ -3,6 +3,15 @@
 /*
 
 Este código define una clase Rol, que representa la entidad de un rol en una base de datos. La clase hereda de BaseDatos, lo que permite ejecutar operaciones en la base de datos, como inserciones, actualizaciones y consultas.
+
+La clase Rol permite:
+
+Cargar un rol desde la base de datos.
+Insertar un nuevo rol.
+Modificar la descripción de un rol.
+Eliminar un rol específico.
+Listar todos los roles que cumplan con un criterio opcional.
+Esta clase es esencial para gestionar roles en una aplicación y se comunica con la base de datos mediante la clase BaseDatos.
 */
 
 class Rol extends BaseDatos{
