@@ -8,6 +8,7 @@ include_once '../Estructura/header.php';
     <div class="div-mensaje"></div>
 
     <?php
+    $objSession = new Session();
     // El mensaje viene del script verificarLogin.php
     // Se mostrara un mensaje ya que el usuario quiso entrar al login sin haberse registrado antes
     // Verifica si hay un mensaje en la sesión y lo muestra

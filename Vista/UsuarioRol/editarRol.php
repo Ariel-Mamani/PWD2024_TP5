@@ -36,31 +36,20 @@
             <div class="row mb-12">
                 <div class="col-sm-12 ">
                     <div class="form-group has-feedback">
-
-                        <!-- Contraseña -->
-                        <div class="input-group mb-4 input-box">
-                            <!-- Icono -->
-                            <span class="icon" id="basic-addon2">
-                                <i class="bi bi-chevron-down"></i>
-                            </span>
-
-                            <input id="clave" name="clave" type="password" class="form-control" required onblur="return convertirClaveMD5()">
-                            <input type="hidden" name="uspass" id="uspass">
-                            <label>Tu rol actual</label>
-
-                            <select name="idrolnuevo" id="idrolnuevo" class="form-control select-rol" required>
-                                <option value="" disabled selected>Seleccione un rol</option>
-                                <?php
-                                // Comprobar si hay roles disponibles en el arreglo $roles
-                                if(count($roles) > 0){
-                                    foreach($roles as $rol){
-                                        // Verificar si el rol actual coincide con el rol del usuario en sesión $tuRol
-                                        $selected = ($rol->getroldescripcion() == $tuRol) ? "selected" : "";
-                                        echo '<option value="' . $rol->getidrol() . '" ' . $selected . '>' . $rol->getroldescripcion() . '</option>';
-                                    }
-                                }
-                                ?>
-                            </select>
+                    <label>Tu rol actual</label>
+                    <select name="idrolnuevo" id="idrolnuevo" class="form-control select-rol" required>
+                        <option value="" disabled selected>Seleccione un rol</option>
+                        <?php
+                        // Comprobar si hay roles disponibles en el arreglo $roles
+                        if(count($roles) > 0){
+                            foreach($roles as $rol){
+                                // Verificar si el rol actual coincide con el rol del usuario en sesión $tuRol
+                                $selected = ($rol->getroldescripcion() == $tuRol) ? "selected" : "";
+                                echo '<option value="' . $rol->getidrol() . '" ' . $selected . '>' . $rol->getroldescripcion() . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
                         </div>
 
                         <!-- Botones -->

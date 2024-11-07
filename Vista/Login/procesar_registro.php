@@ -12,7 +12,9 @@ if(!empty(data_submitted())){
     $param['usnombre']  = $recibido['usnombre'];
     $param['usmail']    = $recibido['usmail'];  
     $listaUsuario = $objAbmUsuario->buscar($param);
-    if($objAbmUsuario->alta($recibido)){
+    // Intentar registrar el usuario
+    if(!$objAbmUsuario->alta($recibido)){
+        $objSession = new Session();
         // Cuando se cargue el usuario lo busco
         $usuario = $objAbmUsuario->buscar($param);
         if(!empty($usuario)){

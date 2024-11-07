@@ -129,16 +129,17 @@ class Session {
      * El mensaje queda almacenado en la variable de sesión mensaje.
      */
     public function getMensaje($bool = null){
-        // si no esta el === no funca XD
         if($bool === true){
             $_SESSION['mensaje'] = 'Se ha registrado exitosamente';
-        }elseif($bool === false){
+        } elseif($bool === false){
             $_SESSION['mensaje'] = 'Usted no está registrado, primero debe registrarse';
-        }else{
+        } else {
             $_SESSION['mensaje'] = "El usuario o el email ya están registrados.";
         }
+        session_write_close();
         return $_SESSION['mensaje'];
     }
+    
 
 
     /**

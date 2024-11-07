@@ -11,7 +11,7 @@ if(!empty(data_submitted())){
             die();
         }
     }
-    echo "22 ";
+    $auto = 'assadasdasdasddsadsdsa';
     //carga nombre y pass sin validar aun
     if(isset($recibido['usnombre']) and isset($recibido['uspass'])){
         $respuesta = $objSession->iniciar($recibido['usnombre'],$recibido['uspass']);
@@ -20,15 +20,15 @@ if(!empty(data_submitted())){
             header("Location: ".$VISTA."Login/paginaSegura.php");
             die();
         }else{
-            $mensaje = $objSession->getMensaje($respuesta);
+            // Si sacamos la instancia del objetoSesion no llega el mensaje al login
+            $objSession = new Session(); 
+            $mensaje = $objSession->getMensaje($respuesta);            
             // Guarda los datos de la sesión antes de redirigir porque sino se pierde el mensaje
             session_write_close();
             // Si es incorrecto, cierra la sesión y redirige al login
             $objSession->cerrar();
             header("Location: ".$VISTA."Login/login.php");
-            die();
         }
     }
 }
-
 ?>

@@ -1,10 +1,9 @@
 <?php
 $titulo = "TP 5 - Login ";
-
 include_once '../Estructura/header.php';
+include_once 'verificarLogin.php';
 $objSession = new Session();
 ?>
-
 <section>
     <!-- div para colocar el mensaje -->
     <div class="div-mensaje"></div>
@@ -13,13 +12,13 @@ $objSession = new Session();
     // El mensaje viene del script procesar_login.php y verificarLogin.php
     // Mi idea es mostrar el mensaje de que el usuario se registro
     // Verifica si hay un mensaje en la sesión y lo muestra
-    if (isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != '') {
-        echo "<h1 class='bg-dark text-light p-2'>{$_SESSION['mensaje']}</h1>";
+    $objSession = new Session();
+    if(isset($_SESSION['mensaje']) && $_SESSION['mensaje'] != ''){
+        echo "<h1 class='bg-dark text-light p-3 mb-3'>{$_SESSION['mensaje']}</h1>";
         // Limpia el mensaje para que no vuelva a mostrarse en el próximo acceso
         unset($_SESSION['mensaje']);
     }
     ?>
-
     <!-- Link logos redes sociales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
@@ -110,6 +109,7 @@ $objSession = new Session();
         validarUsuario(this);
     });
 </script>
+
 
 <!-- Footer -->
 <?php include_once '../Estructura/footer.php'; ?>
