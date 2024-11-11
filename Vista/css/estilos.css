@@ -1,0 +1,614 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: white;
+    padding: 20px; /* Añadir espacio adicional para hacer scroll si es necesario */
+}
+
+h1{
+    color: black;
+    text-align: center;
+    margin: 0; /* Opcional */
+}
+
+h2{
+    font-size: 2em;
+    color: black;
+    text-align: center;
+}
+
+.bold_footer{
+    font-weight: bold;
+    color: white;
+}
+
+.bold{
+    font-weight: bold;
+    color: black;
+}
+
+.portada {
+    background-color: rgba(255, 255, 255, 0.5); /* Fondo blanco semi-transparente */
+    padding: 20px; /* Opcional: agrega algo de espacio alrededor de la imagen */
+    border-radius: 10px; /* Opcional: bordes redondeados */
+}
+
+.portada img {
+    width: 100%; /* Asegura que la imagen ocupe el 100% del ancho del contenedor */
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.div-mensaje {
+    width: 100%;
+}
+
+.form-control{
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.select-rol{
+    color: black;
+    background:  transparent;
+}
+
+/* Estilo para el contenedor de la imagen */
+.imagen_de_portada {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* La imagen ocupará el 70% de la altura de la ventana */
+    overflow: hidden; /* Oculta la parte inferior de la imagen */
+}
+
+/* Estilo para la imagen */
+.imagen_portada {
+    width: 100%;
+    height: 100%; /* La imagen ocupa todo el contenedor */
+    object-fit: cover; /* Hace que la imagen ocupe todo el contenedor sin deformarse */
+    object-position: top; /* Asegura que la imagen se enfoque en la parte superior */
+}
+
+/* Estilo para el contenedor del título */
+.container_titulo {
+    position: absolute;
+    top: 50%; /* Centrado verticalmente */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el centro al 50% de su propio tamaño */
+    color: white; /* Color blanco para el texto */
+    text-align: center; /* Centra el texto */
+    z-index: 1; /* Asegura que el título esté por encima de la imagen */
+}
+
+/* Estilo para el título */
+.titulo_principal {
+    font-size: 3rem; /* Ajusta el tamaño del título */
+    font-weight: bold; /* Establece el peso de la fuente */
+}
+
+
+
+/***********************************************************************************************/
+/******************************************* NAVBAR ********************************************/
+/***********************************************************************************************/
+/* Color de fondo del menu desplegable */
+.dropdown-menu{
+    background-color: #212529;
+}
+
+/* Color de texto en menu desplegable */
+.dropdown-item{
+    color: white;
+}
+.labelUsuario{
+    position: fixed;
+    right: 10%;
+    margin: auto;
+    color: antiquewhite;
+}
+#btnSalir{
+    position: relative;
+    right: 10px;
+    width: auto;
+    color: antiquewhite;
+    margin: auto;
+}
+
+
+/***********************************************************************************************/
+/******************************************* SUBMENU *******************************************/
+/***********************************************************************************************/
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+    display: none;
+    position: absolute;
+}
+
+.dropdown-submenu:hover .dropdown-menu {
+    display: block;
+}
+
+
+
+/***********************************************************************************************/
+/********************************************* BOX *********************************************/
+/***********************************************************************************************/
+
+.login-box,
+.register-box,
+.editar-pass-box,
+.editarBorrar-box,
+.filtro-box,
+.mensaje-box,
+.editar-rol-box {
+    width: 100%;
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(15px);
+    box-shadow: #212529;
+    position: relative;
+}
+
+.login-box{
+    max-width: 400px;
+    height: 550px;
+    background-color: #c6f053;
+}
+.register-box {
+    max-width: 400px;
+    height: 500px;
+    background-color: #c6f053;
+}
+
+.editar-pass-box {
+    max-width: 350px;
+    height: 200px;
+    background-color: rgb(232, 240, 254);
+}
+
+.editarBorrar-box {
+    max-width: 350px;
+    height: 450px;
+    background-color: rgb(232, 240, 254);
+}
+
+.filtro-box {
+    max-width: 650px;
+    height: 180px;
+    background-color: rgb(232, 240, 254);
+}
+
+.mensaje-box{
+    max-width: 650px;
+    height: 100px;
+    background-color: rgb(232, 240, 254);
+}
+
+.editar-rol-box{
+    max-width: 400px;
+    height: 200px;
+    background-color: rgb(232, 240, 254);
+}
+
+@media (max-width: 360px){
+    .login-box,
+    .register-box,
+    .editar-pass-box,
+    .editarBorrar-box{
+        width: 100%;
+        height: 10vh;
+        border: none;
+        border-radius: 0;
+    }
+
+    .input-box{
+        width: 290px;
+    }
+
+    .mensaje-box,
+    .filtro-box{
+        width: 100px;
+    }
+}
+
+
+
+/***********************************************************************************************/
+/******************************************** CURVAS *******************************************/
+/***********************************************************************************************/
+.curva-login,
+.curva-registro{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(232, 240, 254);
+    z-index: -1;
+    clip-path: circle(98% at 0 0);
+    border-radius: 20px;
+}
+
+.curva-editar-pass,
+.curva-editarBorrar,
+.curva-filtro,
+.curva-editar-rol{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #c6f053;
+    z-index: -1;
+    clip-path: circle(50% at 50%);
+    border-radius: 20px;
+}
+
+
+
+/***********************************************************************************************/
+/****************************************** INPUT-BOX ******************************************/
+/***********************************************************************************************/
+.input-box{
+    position: relative;
+    width: 310px;
+    margin: 30px 0;
+    border-bottom: 2px solid black;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: black;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top: -5px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 50px;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 1em;
+    color: black !important;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    color: black;
+    font-size: 1.2em;
+    line-height: 57px;
+}
+
+
+
+/***********************************************************************************************/
+/*************************************** REMEMBER-FORGOT ***************************************/
+/***********************************************************************************************/
+.remember-forgot{
+    margin: -15px 0 15px;
+    font-size: .9em;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input{
+    margin-right: 3px;
+}
+
+.remember-forgot a{
+    color: black;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+
+
+/***********************************************************************************************/
+/**************************************** REGISTER-LINK ****************************************/
+/***********************************************************************************************/
+.register-link{
+    font-size: .9em;
+    color: black;
+    text-align: center;
+    margin:25px 0 10px;
+}
+
+.register-link p a{
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover{
+    text-decoration: underline;
+}
+
+
+/***********************************************************************************************/
+/******************************************* BOTONES *******************************************/
+/***********************************************************************************************/
+button{
+    width: 100%;
+    height: 40px;
+    background: black;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+}
+
+.botones {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.btn-login,
+.btn-registrar,
+.btn-ir-login,
+.btn-editar-pass-seg,
+.btn-editarBorrar-usuario,
+.btn-editar-rol,
+.btn-editar-pass,
+.btn-volver,
+.btn-filtrar,
+.btn-limpiar {
+    margin-left: auto;
+    padding: 5px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+}
+
+.btn-login:hover,
+.btn-registrar:hover,
+.btn-ir-login:hover,
+.btn-editar-pass-seg:hover,
+.btn-editarBorrar-usuario:hover,
+.btn-editar-rol:hover,
+.btn-editar-pass:hover,
+.btn-volver:hover,
+.btn-filtrar:hover,
+.btn-limpiar:hover {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+}
+
+.btn-editar-pass-seg,
+.btn-editarBorrar-usuario {
+    width: 200px;
+    text-align: center;
+}
+
+.btn-editar-rol {
+    width: 150px;
+    text-align: center;
+}
+
+.btn-editar-pass {
+    width: 120px;
+    text-align: center;
+}
+
+.btn-volver,
+.btn-filtrar,
+.btn-limpiar {
+    text-decoration: none;
+    width: 70px;
+    text-align: center;
+}
+
+
+/***********************************************************************************************/
+/******************************************** REDES ********************************************/
+/***********************************************************************************************/
+/* Estilo del contenedor general */
+.div_btn_contacto {
+    display: flex;
+    justify-content: space-between; /* Espacio uniforme entre las columnas */
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
+    padding: 20px; /* Espaciado alrededor del contenedor */
+}
+
+/* Estilo para cada red social */
+.red_social {
+    text-align: center; /* Centra el contenido de cada red social */
+    flex: 1; /* Hace que cada red social ocupe el mismo espacio */
+}
+
+/* Estilo para los nombres de las redes sociales */
+.nombre_icono_red_social {
+    font-size: 18px;
+    color: black;
+    margin-bottom: 10px; /* Añade espacio entre el nombre y el ícono */
+}
+
+/* Estilo para los íconos de las redes sociales */
+.icono_facebook,
+.icono_instagram,
+.icono_linkedin {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px; /* Añade espacio entre el ícono y el nombre */
+    object-fit: contain; /* Asegura que el ícono se mantenga en su proporción original */
+    cursor: pointer;
+}
+
+
+
+/***********************************************************************************************/
+/******************************************** TABLAS *******************************************/
+/***********************************************************************************************/
+.tabla {
+    width: 100%;
+    border-collapse: collapse; /* Elimina los bordes entre las celdas */
+}
+
+.tabla td {
+    text-align: center; /* Centra las imágenes dentro de las celdas */
+    padding: 10px;
+}
+
+.tabla img {
+    width: 250px; /* Establece el ancho fijo de las imágenes */
+    height: 250px; /* Establece la altura fija de las imágenes */
+    object-fit: cover; /* Recorta la imagen si excede las dimensiones */
+}
+
+
+
+/***********************************************************************************************/
+/*************************************** SOBRE NOSOTROS ****************************************/
+/***********************************************************************************************/
+.tiulo_sobre_nosotros{
+    font-size: 25px;
+}
+
+.sobre_nosotros, .texto_envio{
+    text-align: center;
+    font-size: 20px;
+    max-width: 95%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .sobre_nosotros {
+        font-size: 1rem;
+    }
+}
+
+
+
+/***********************************************************************************************/
+/******************************************** ANCLA ********************************************/
+/***********************************************************************************************/
+#ancla {
+    position: fixed; /* Fija el ancla en la pantalla */
+    bottom: 20px;    /* Distancia desde la parte inferior de la pantalla */
+    right: 20px;     /* Distancia desde la parte derecha de la pantalla */
+    background-color: white; /* Color de fondo */
+    color: black;    /* Color del texto */
+    padding: 10px 15px; /* Espaciado interno */
+    border-radius: 50%; /* Bordes redondeados */
+    text-decoration: none; /* Quitar el subrayado */
+    font-size: 14px; /* Tamaño de la fuente */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para el botón */
+    z-index: 1000; /* Asegura que el enlace esté encima de otros elementos */
+    display: flex; /* Utiliza flexbox para organizar los elementos */
+    flex-direction: column; /* Coloca la imagen arriba del texto */
+    align-items: center; /* Centra horizontalmente el contenido */
+}
+
+/* Color de botón, texto y puntero al pasar el mouse */
+#ancla:hover {
+    background-color: rgb(173, 170, 170); /* Color al pasar el mouse */
+}
+
+.icono_ir_arriba {
+    width: 24px; /* Ajusta el tamaño de la imagen */
+    height: 24px;
+    margin-bottom: 5px; /* Espaciado entre la imagen y el texto */
+}
+
+
+
+/***********************************************************************************************/
+/******************************************** FOOTER *******************************************/
+/***********************************************************************************************/
+.footer {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.footer_container {
+    display: flex;
+    justify-content: space-around; /* Distribuye las columnas horizontalmente */
+}
+
+.footer_column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    text-align: center;
+}
+
+.logo_circular {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.footer_social_links,
+.footer_redes {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.logo_footer{
+    height: 50px;
+    width: 50px;
+}
+
+.fondo_icono_footer{
+    background-color: white;
+}
