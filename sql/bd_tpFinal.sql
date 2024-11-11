@@ -6,20 +6,18 @@ USE bdcarritocompras;
 
 -- Tabla Menu
 CREATE TABLE menu (
-    idmenu BIGINT(20) NOT NULL,
+    idmenu BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     menombre VARCHAR(50) NOT NULL,
     medescripcion VARCHAR(124),
     idpadre BIGINT(20),
-    medeshabilitado TIMESTAMP,
-    PRIMARY KEY (idmenu)
-);
+    medeshabilitado TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Tabla Rol
 CREATE TABLE rol (
-    idrol BIGINT(20) NOT NULL,
-    rodescripcion VARCHAR(50),
-    PRIMARY KEY (idrol)
-);
+    idrol BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    rodescripcion VARCHAR(50)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Tabla Menu Rol
 CREATE TABLE menurol (
@@ -28,18 +26,17 @@ CREATE TABLE menurol (
     PRIMARY KEY (idmenu, idrol),
     FOREIGN KEY (idmenu) REFERENCES menu(idmenu),
     FOREIGN KEY (idrol) REFERENCES rol(idrol)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Tabla Usuario
 
 CREATE TABLE usuario (
-    idusuario BIGINT(20) NOT NULL,
+    idusuario BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     usnombre VARCHAR(50),
     uspass INT(11),
     usmail VARCHAR(50),
-    usdeshabilitado TIMESTAMP,
-    PRIMARY KEY (idusuario)
-);
+    usdeshabilitado TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Tabla Usuario Rol
 CREATE TABLE usuariorol (
@@ -48,53 +45,48 @@ CREATE TABLE usuariorol (
     PRIMARY KEY (idusuario, idrol),
     FOREIGN KEY (idusuario) REFERENCES usuario(idusuario),
     FOREIGN KEY (idrol) REFERENCES rol(idrol)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Tabla Compra
 CREATE TABLE compra (
-    idcompra BIGINT(20) NOT NULL,
+    idcompra BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     cofecha TIMESTAMP,
     idusuario BIGINT(20),
-    PRIMARY KEY (idcompra),
     FOREIGN KEY (idusuario) REFERENCES usuario(idusuario)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Tabla Producto
 CREATE TABLE producto (
-    idproducto BIGINT(20) NOT NULL,
+    idproducto BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     pronombre INT(11),
     prodetalle VARCHAR(512),
-    procantstock INT(11),
-    PRIMARY KEY (idproducto)
-);
+    procantstock INT(11)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Tabla Compra Item
 CREATE TABLE compraitem (
-    idcompraitem BIGINT(20) UNSIGNED NOT NULL,
+    idcompraitem BIGINT(20) UNSIGNED  NOT NULL PRIMARY KEY AUTO_INCREMENT,
     idproducto BIGINT(20),
     idcompra BIGINT(20),
     cicantidad INT(11),
-    PRIMARY KEY (idcompraitem),
     FOREIGN KEY (idproducto) REFERENCES producto(idproducto),
     FOREIGN KEY (idcompra) REFERENCES compra(idcompra)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Tabla Estado Tipo
 CREATE TABLE compraestadotipo (
-    idcompraestadotipo INT(11) NOT NULL,
+    idcompraestadotipo INT(11)  NOT NULL PRIMARY KEY,
     cetdescripcion VARCHAR(50),
-    cetdetalle VARCHAR(256),
-    PRIMARY KEY (idcompraestadotipo)
-);
+    cetdetalle VARCHAR(256)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Tabla Compra Estado
 CREATE TABLE compraestado (
-    idcompraestado BIGINT(20) UNSIGNED NOT NULL,
+    idcompraestado BIGINT(20) UNSIGNED  NOT NULL PRIMARY KEY,
     idcompra BIGINT(20),
     idcompraestadotipo INT(11),
     cefechainit TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     cefechafin TIMESTAMP NULL,
-    PRIMARY KEY (idcompraestado),
     FOREIGN KEY (idcompra) REFERENCES compra(idcompra),
     FOREIGN KEY (idcompraestadotipo) REFERENCES compraestadotipo(idcompraestadotipo)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
