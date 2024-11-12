@@ -37,7 +37,7 @@ class AbmMenu{
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto.
      * Este método crea y carga un objeto Menu con los valores contenidos en $param.
-     * Si existen en $param las claves idmenu, menunombre, y menuurl, crea un nuevo Menu, asignando esos valores mediante el método setear (presumiblemente del objeto Menu).
+     * Si existen en $param las claves idmenu, menunombre, y medescripcion, crea un nuevo Menu, asignando esos valores mediante el método setear (presumiblemente del objeto Menu).
      * Retorna el objeto Menu si los parámetros están correctos; si no, retorna null.
      * @param array $param
      * @return Menu
@@ -46,10 +46,18 @@ class AbmMenu{
         $objMenu = null;
         
         if( array_key_exists('idmenu',$param) and 
-            array_key_exists('menunombre',$param) and 
-            array_key_exists('menuurl',$param)){
-            $objMenu = new Menu();
-            $objMenu->setear($param['idmenu'], $param['menunombre'],  $param['menuurl']);
+            array_key_exists('menombre',$param) and 
+            array_key_exists('medescripcion',$param) and 
+            array_key_exists('idpadre', $param) and 
+            array_key_exists('medeshabilitado', $param)){
+                $objMenuPadre = null;
+                if ($param['idpadre'] != ''){
+                    $objMenuPadre = new Menu();
+                    $objMenuPadre->setIdmenu($param['idpadre']);
+                    $objMenuPadre->cargar();
+                }
+                $objMenu = new Menu();
+                $objMenu->setear($param['idmenu'], $param['menombre'],  $param['medescripcion'], $objMenuPadre, $param['medeshabilitado'] );
         }
         return $objMenu;
     }
@@ -57,7 +65,7 @@ class AbmMenu{
 
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves.
-     * Este método es similar a cargarObjeto, pero solo carga el objeto Menu con la clave idmenu (sin menunombre ni menuurl), lo cual es útil para identificar un menú sin cargar toda su información.
+     * Este método es similar a cargarObjeto, pero solo carga el objeto Menu con la clave idmenu (sin menunombre ni medescripcion), lo cual es útil para identificar un menú sin cargar toda su información.
      * Retorna un objeto Menu si idmenu está definido en $param; si no, retorna null.
      * @param array $param
      * @return Menu
@@ -67,7 +75,7 @@ class AbmMenu{
         
         if( isset($param['idmenu']) ){
             $objMenu = new Menu();
-            $objMenu->setear($param['idmenu'], null,  null);
+            $objMenu->setear($param['idmenu'], null,  null, null, null);
         }
         return $objMenu;
     }
@@ -150,7 +158,7 @@ class AbmMenu{
     /**
      * permite buscar un objeto.
      * Realiza una búsqueda de menús en la base de datos.
-     * Construye una condición WHERE en SQL en función de los valores en $param (como idmenu, menunombre y menuurl).
+     * Construye una condición WHERE en SQL en función de los valores en $param (como idmenu, menunombre y medescripcion).
      * Llama a listar en el objeto Menu, que devuelve una lista de menús que coinciden con los criterios.
      * Retorna un arreglo con los menús encontrados.
      * @param array $param
@@ -163,27 +171,13 @@ class AbmMenu{
                 $where .= " and idmenu = ".$param['idmenu'];
             if (isset($param['menunombre']))
                 $where .= " and menunombre = '".$param['menunombre']."'";
-            if (isset($param['menuurl']))
-                $where .= " and menuurl = '".$param['menuurl']."'";    
+            if (isset($param['medescripcion']))
+                $where .= " and medescripcion = '".$param['medescripcion']."'";    
         }
         $objMenu = new Menu();
         $arreglo = $objMenu->listar($where);
         return $arreglo;
     }
 
-
-    /**
-     * permite buscar una Menu por nombre parcial.
-     * Similar a buscar, pero aquí la condición WHERE busca menús cuyo menunombre contenga una cadena parcial (LIKE '%$nombre%').
-     * Retorna un arreglo con los menús que coinciden con el nombre parcial.
-     * @param $nombre
-     * @return array $arreglo
-     */
-    public function filtrarPorNombre($nombre){
-        $where = " menunombre LIKE '%".$nombre."%'";   
-        $objMenu = new Menu();
-        $arreglo = $objMenu->listar($where);  
-        return $arreglo;
-    }
 }
 ?>

@@ -154,18 +154,18 @@ class Menu {
     public function insertar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="INSERT INTO menu( menombre ,  medescripcion ,  idpadre ,  medeshabilitado)  ";
-        $sql.="VALUES('".$this->getMenombre()."','".$this->getMedescripcion()."',";
+        $sql="INSERT INTO menu ( menombre ,  medescripcion ,  idpadre ,  medeshabilitado)  ";
+        $sql.="VALUES ('".$this->getMenombre()."', '".$this->getMedescripcion()."', ";
         if ($this->getObjMenu()!= null)
             $sql.=$this->getObjMenu()->getIdmenu().",";
         else
-            $sql.="null,";
-        if ($this->getMedeshabilitado()!=null)
+            $sql.=" null, ";
+    /*    if ($this->getMedeshabilitado()!=null)
             $sql.= "'".$this->getMedeshabilitado()."'";
-        else 
-            $sql.="null";
+        else */
+            $sql.=" null";
         $sql.= ");";
-     // echo $sql;
+      echo $sql;
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setIdmenu($elid);
