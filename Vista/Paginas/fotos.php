@@ -49,8 +49,8 @@ include_once '../Estructura/header.php';
             </tr>
             <tr>
                 <td><img src="../../Archivos/Peluqueria/salon7.jfif" alt="Foto 7"></td>
-                <td><img src="../../Archivos/Peluqueria/salon8.jfif" alt="Foto 8"></td>
-                <td><img src="../../Archivos/Peluqueria/salon9.jfif" alt="Foto 9"></td>
+                <td><img src="../../Archivos/Peluqueria/peinado1.jfif" alt="Foto 8"></td>
+                <td><img src="../../Archivos/Peluqueria/peinado2.jfif" alt="Foto 9"></td>
             </tr>
         </table>
     </div>
