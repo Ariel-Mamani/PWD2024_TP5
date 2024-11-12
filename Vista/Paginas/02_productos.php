@@ -16,6 +16,7 @@ include_once '../Estructura/header.php';
             <!-- Titulo en la pagina -->
             <div class="container_titulo">
                 <h1 class="display-4 text-center titulo_principal text-light">Pelitos</h1>
+                <h2 class="text-light">Nuestros Productos</h2>
             </div>
         </div>    
     </div>
