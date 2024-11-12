@@ -15,27 +15,32 @@
                         <a class="nav-link" href="../Paginas/01_reservar.php">P&aacute;gina Principal</a>
                     </li>
 
-                    <!-- Boton 3 - Informacion Util -->
+                    <!-- Boton 3 - Comprar -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Paginas/02_productos.php">Comprar</a>
+                    </li>
+
+                    <!-- Boton 4 - Informacion Util -->
                     <li class="nav-item">
                         <a class="nav-link" href="../Paginas/informacion_util.php">Informaci&oacute;n &Uacute;til</a>
                     </li>
 
-                    <!-- Boton 4 - Sobre Nosotros -->
+                    <!-- Boton 5 - Sobre Nosotros -->
                     <li class="nav-item">
                         <a class="nav-link" href="../Paginas/sobre_nosotros.php">Sobre Nosotros</a>
                     </li>
 
-                    <!-- Boton 5 - Fotos -->
+                    <!-- Boton 6 - Fotos -->
                     <li class="nav-item">
                         <a class="nav-link" href="../Paginas/fotos.php">Fotos</a>
                     </li>
 
-                    <!-- Boton 6 - Contacto -->
+                    <!-- Boton 7 - Contacto -->
                     <li class="nav-item">
                         <a class="nav-link" href="../Paginas/contacto.php">Contacto</a>
                     </li>
 
-                    <!-- Boton 7 - Login -->
+                    <!-- Boton 8 - Login -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Login/Registro</a>
                         <ul class="dropdown-menu">
