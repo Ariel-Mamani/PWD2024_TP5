@@ -34,13 +34,9 @@
             <!-- Tercera columna - Información adicional -->
             <div class="col-sm-12 col-md-4 footer_column">
                 <p class="bold_footer">La Empresa</p>
-                <p>Sobre nosotros</p>
-                <p>Términos y condiciones</p>
-                <p>Política de privacidad</p>
-                <br>
-                <p class="bold_footer">Salones</p>
-                <p>Publicá tu negocio</p>
-                <p>Contactanos</p>
+                <a class="links_footer_tienda" href="../Paginas/sobre_nosotros.php">Sobre nosotros</a>
+                <a class="links_footer_tienda" href="#">T&eacute;rminos y condiciones</a>
+                <a class="links_footer_tienda" href="#">Pol&iacute;tica de privacidad</a>
             </div>
         </div>
     </div>

@@ -615,6 +615,11 @@ button{
     border-radius: 5%;
 }
 
+.links_footer_tienda{
+    text-decoration: none;
+    color: white;
+}
+
 .footer_nav{
     background-color: rgb(173, 170, 170);
     text-align: center;

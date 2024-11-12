@@ -1,5 +1,5 @@
 <?php
-$titulo = "Página Principal"; //Titulo en la pestaña
+$titulo = "Sobre Nosotros"; //Titulo en la pestaña
 include_once '../Estructura/header.php';
 ?>
 
