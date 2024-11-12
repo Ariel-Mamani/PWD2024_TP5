@@ -19,7 +19,7 @@ section {
 h1{
     color: black;
     text-align: center;
-    margin: 0; /* Opcional */
+    margin: 0;
 }
 
 h2{
@@ -39,14 +39,14 @@ h2{
 }
 
 .portada {
-    background-color: rgba(255, 255, 255, 0.5); /* Fondo blanco semi-transparente */
-    padding: 20px; /* Opcional: agrega algo de espacio alrededor de la imagen */
-    border-radius: 10px; /* Opcional: bordes redondeados */
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .portada img {
-    width: 100%; /* Asegura que la imagen ocupe el 100% del ancho del contenedor */
-    height: auto; /* Mantiene la relación de aspecto de la imagen */
+    width: 100%;
+    height: auto;
 }
 
 .login-container {
@@ -74,7 +74,6 @@ h2{
     background:  transparent;
 }
 
-/* Estilo para el contenedor de la imagen */
 .imagen_de_portada {
     position: relative;
     width: 100%;
@@ -82,29 +81,26 @@ h2{
     overflow: hidden; /* Oculta la parte inferior de la imagen */
 }
 
-/* Estilo para la imagen */
 .imagen_portada {
     width: 100%;
-    height: 100%; /* La imagen ocupa todo el contenedor */
+    height: 100%;
     object-fit: cover; /* Hace que la imagen ocupe todo el contenedor sin deformarse */
     object-position: top; /* Asegura que la imagen se enfoque en la parte superior */
 }
 
-/* Estilo para el contenedor del título */
 .container_titulo {
     position: absolute;
     top: 50%; /* Centrado verticalmente */
     left: 50%; /* Centrado horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta el centro al 50% de su propio tamaño */
-    color: white; /* Color blanco para el texto */
-    text-align: center; /* Centra el texto */
-    z-index: 1; /* Asegura que el título esté por encima de la imagen */
+    color: white;
+    text-align: center;
+    z-index: 1;
 }
 
-/* Estilo para el título */
 .titulo_principal {
-    font-size: 3rem; /* Ajusta el tamaño del título */
-    font-weight: bold; /* Establece el peso de la fuente */
+    font-size: 3rem;
+    font-weight: bold;
 }
 
 
@@ -112,12 +108,10 @@ h2{
 /***********************************************************************************************/
 /******************************************* NAVBAR ********************************************/
 /***********************************************************************************************/
-/* Color de fondo del menu desplegable */
 .dropdown-menu{
     background-color: #212529;
 }
 
-/* Color de texto en menu desplegable */
 .dropdown-item{
     color: white;
 }
@@ -454,34 +448,30 @@ button{
 /***********************************************************************************************/
 /******************************************** REDES ********************************************/
 /***********************************************************************************************/
-/* Estilo del contenedor general */
 .div_btn_contacto {
     display: flex;
     justify-content: space-between; /* Espacio uniforme entre las columnas */
     align-items: center; /* Alinea los elementos verticalmente en el centro */
-    padding: 20px; /* Espaciado alrededor del contenedor */
+    padding: 20px;
 }
 
-/* Estilo para cada red social */
 .red_social {
-    text-align: center; /* Centra el contenido de cada red social */
+    text-align: center;
     flex: 1; /* Hace que cada red social ocupe el mismo espacio */
 }
 
-/* Estilo para los nombres de las redes sociales */
 .nombre_icono_red_social {
     font-size: 18px;
     color: black;
-    margin-bottom: 10px; /* Añade espacio entre el nombre y el ícono */
+    margin-bottom: 10px;
 }
 
-/* Estilo para los íconos de las redes sociales */
 .icono_facebook,
 .icono_instagram,
 .icono_linkedin {
     width: 50px;
     height: 50px;
-    margin-bottom: 10px; /* Añade espacio entre el ícono y el nombre */
+    margin-bottom: 10px;
     object-fit: contain; /* Asegura que el ícono se mantenga en su proporción original */
     cursor: pointer;
 }
@@ -502,8 +492,8 @@ button{
 }
 
 .tabla img {
-    width: 250px; /* Establece el ancho fijo de las imágenes */
-    height: 250px; /* Establece la altura fija de las imágenes */
+    width: 250px;
+    height: 250px;
     object-fit: cover; /* Recorta la imagen si excede las dimensiones */
 }
 
@@ -537,30 +527,30 @@ button{
 /***********************************************************************************************/
 #ancla {
     position: fixed; /* Fija el ancla en la pantalla */
-    bottom: 20px;    /* Distancia desde la parte inferior de la pantalla */
-    right: 20px;     /* Distancia desde la parte derecha de la pantalla */
-    background-color: white; /* Color de fondo */
-    color: black;    /* Color del texto */
+    bottom: 20px;
+    right: 20px;
+    background-color: white;
+    color: black;
     padding: 10px 15px; /* Espaciado interno */
-    border-radius: 50%; /* Bordes redondeados */
-    text-decoration: none; /* Quitar el subrayado */
-    font-size: 14px; /* Tamaño de la fuente */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para el botón */
-    z-index: 1000; /* Asegura que el enlace esté encima de otros elementos */
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
     display: flex; /* Utiliza flexbox para organizar los elementos */
     flex-direction: column; /* Coloca la imagen arriba del texto */
     align-items: center; /* Centra horizontalmente el contenido */
 }
 
-/* Color de botón, texto y puntero al pasar el mouse */
 #ancla:hover {
-    background-color: rgb(173, 170, 170); /* Color al pasar el mouse */
+    background-color: rgb(173, 170, 170);
+    border: black solid 1px;
 }
 
 .icono_ir_arriba {
-    width: 24px; /* Ajusta el tamaño de la imagen */
+    width: 24px;
     height: 24px;
-    margin-bottom: 5px; /* Espaciado entre la imagen y el texto */
+    margin-bottom: 5px;
 }
 
 
@@ -611,4 +601,10 @@ button{
 
 .fondo_icono_footer{
     background-color: white;
+    border-radius: 5%;
+}
+
+.footer_nav{
+    background-color: rgb(173, 170, 170);
+    text-align: center;
 }
