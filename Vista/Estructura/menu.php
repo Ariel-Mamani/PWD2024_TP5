@@ -10,22 +10,27 @@
                 <ul class="navbar-nav"> 
                     <!-- Menu TP 5 -->
 
-                    <!-- Boton 2 - Sobre Nosotros -->
+                    <!-- Boton 2 - Pagina Principal -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Paginas/01_reservar.php">P&aacute;gina Principal</a>
+                    </li>
+
+                    <!-- Boton 3 - Sobre Nosotros -->
                     <li class="nav-item">
                         <a class="nav-link" href="../Paginas/sobre_nosotros.php">Sobre Nosotros</a>
                     </li>
 
-                    <!-- Boton 3 - Fotos -->
+                    <!-- Boton 4 - Fotos -->
                     <li class="nav-item">
                         <a class="nav-link" href="../Paginas/fotos.php">Fotos</a>
                     </li>
 
-                    <!-- Boton 4 - Contacto -->
+                    <!-- Boton 5 - Contacto -->
                     <li class="nav-item">
                         <a class="nav-link" href="../Paginas/contacto.php">Contacto</a>
                     </li>
 
-                    <!-- Boton 5 - Login -->
+                    <!-- Boton 6 - Login -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Login/Registro</a>
                         <ul class="dropdown-menu">
