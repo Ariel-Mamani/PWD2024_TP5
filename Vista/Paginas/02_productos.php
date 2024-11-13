@@ -1,6 +1,9 @@
 <?php
 $titulo = "Profesionales"; //Titulo en la pestaña
 include_once '../Estructura/header.php';
+$objProdcuto = new Producto;
+$arregloProductos = $objProdcuto->listar();
+
 ?>
 
 <!-- Aquí va el contenido principal de tu página -->
@@ -21,7 +24,20 @@ include_once '../Estructura/header.php';
         </div>    
     </div>
 
-
+    <!-- Container de Productos -->
+    <?php
+    foreach($arregloProductos as $producto){
+        echo "<div class='targeta-producto'>";
+        echo "<img src='../../Archivos/Productos/{$producto->getProNombre()}.png' alt='{$producto->getProNombre()}'>";
+        echo "<h3>{$producto->getProNombre()}</h3>";
+        echo "<p>{$producto->getProDetalle()}</p>";
+        echo "<p>{$producto->getProPrecio()}</p>";
+        echo "<p>{$producto->getProImagen()}</p>";
+        echo "<p><b>Stock:</b> {$producto->getProStock()}</p>";
+        echo "<button>Agregar al carrito</button>";
+        echo "</div>";
+    }
+    ?>
 
 
     <!--Ancla de fondo a Inicio-->

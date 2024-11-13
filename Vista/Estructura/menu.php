@@ -48,6 +48,7 @@
                         <li><a class="dropdown-item" href="<?php echo $VISTA ?>Login/registro.php">Registrar</a></li>
                         </ul>
                     </li>
+                    <li><a href="carrito.html"><span id="cuenta-carrito">0</span><i class="bi bi-cart " style="font-size: 25px;"></i></a></li>
                 </ul>
 
                 <div class="d-flex align-items-center ms-auto">
