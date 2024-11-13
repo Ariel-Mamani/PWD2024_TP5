@@ -35,8 +35,8 @@
             <div class="col-sm-12 col-md-4 footer_column">
                 <p class="bold_footer">La Empresa</p>
                 <a class="links_footer_tienda" href="../Paginas/sobre_nosotros.php">Sobre nosotros</a>
-                <a class="links_footer_tienda" href="#">T&eacute;rminos y condiciones</a>
-                <a class="links_footer_tienda" href="#">Pol&iacute;tica de privacidad</a>
+                <a class="links_footer_tienda" href="../Paginas/terminos_y_condiciones.php">T&eacute;rminos y condiciones</a>
+                <a class="links_footer_tienda" href="../Paginas/politica_de_privacidad.php">Pol&iacute;tica de privacidad</a>
             </div>
         </div>
     </div>

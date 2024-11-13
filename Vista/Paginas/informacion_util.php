@@ -32,6 +32,7 @@ include_once '../Estructura/header.php';
         <br>
         <p><i class="bi bi-clock"></i> Lunes de 12 a 18 hs. Martes a Viernes de 13 a 21 hs. Sábados de 9 a 18 hs.</p>
         <p><i class="bi bi-telephone"></i> 299 4111222</p>
+        <p><i class="bi bi-envelope"></i> pelitos@pelitos.com</p>
         <p><i class="bi bi-geo-alt"></i> Dr. Luis Federico Leloir 250, Neuqu&eacute;n, Neuqu&eacute;n.</p>
         <br><br>
     </div>
