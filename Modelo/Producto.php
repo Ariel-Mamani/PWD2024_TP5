@@ -3,7 +3,9 @@ class Producto extends BaseDatos{
     private $idproducto;
     private $pronombre;
     private $prodetalle;
+    private $proprecio;
     private $procantstock;
+    private $proimagen;
     private $mensajeoperacion;
 
     public function __construct()
@@ -12,15 +14,19 @@ class Producto extends BaseDatos{
         $this->idproducto = '';
         $this->pronombre = '';
         $this->prodetalle = '';
+        $this->proprecio = 0;
         $this->procantstock = '';
+        $this->proimagen = '';
         $this->mensajeoperacion = "";
     }
 
-    public function setear($idproducto, $pronombre, $prodetalle, $procantstock){
+    public function setear($idproducto, $pronombre, $prodetalle, $proprecio, $procantstock, $proimagen){
         $this->setIdProducto($idproducto);
         $this->setProNombre($pronombre);
         $this->setProDetalle($prodetalle);
+        $this->setProPrecio($proprecio);
         $this->setProStock($procantstock);
+        $this->setProImagen($proimagen);
     }
 
     //Get y Set IDproducto
@@ -44,12 +50,27 @@ class Producto extends BaseDatos{
     public function setProDetalle($valor){
         $this->prodetalle = $valor;
     }
+    //Get y Set proprecio
+    public function getProPrecio(){
+        return $this->proprecio;
+    }
+    public function setProPrecio($valor){
+        $this->proprecio = $valor;
+    }
     //Get y Set procantstock
     public function getProStock(){
         return $this->procantstock;
     }
     public function setProStock($valor){
         $this->procantstock = $valor;
+    }
+
+    //Get y Set proimagen
+    public function getProImagen(){
+        return $this->proimagen;
+    }
+    public function setProImagen($valor){
+        $this->proimagen = $valor;
     }
 
     // Metodo get y set MENSAJE ERROR
@@ -76,7 +97,7 @@ class Producto extends BaseDatos{
             $res = $this->Ejecutar($sql);
             if($res > -1){
                 $row = $this->Registro();
-                $this->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['procantstock']);
+                $this->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['proprecio'], $row['procantstock'], $row['proimagen']);
                 $exito = true;
             }else{
                 $this->setmensajeoperacion("Producto->cargar: ".$this->getError());
@@ -96,10 +117,12 @@ class Producto extends BaseDatos{
         $resp = false;
 
         //Ejecuta consulta INSERT INTO a la BD
-        $sql  =  "INSERT INTO producto (idproducto, pronombre, prodetalle, procantstock) VALUES (null, '"
+        $sql  =  "INSERT INTO producto (idproducto, pronombre, prodetalle, proprecio, procantstock, proimagen) VALUES (null, '"
         .$this->getProNombre()."', '"
-        .$this->getProDetalle()."', '"
-        .$this->getProStock()."');";
+        .$this->getProDetalle()."', "
+        .$this->getProPrecio().", '"
+        .$this->getProStock()."', '"
+        .$this->getProImagen()."');";
 
         if ($this->Iniciar()) {
             if($elid = $this->Ejecutar($sql)){
@@ -125,7 +148,10 @@ class Producto extends BaseDatos{
         $sql = "UPDATE producto SET 
         pronombre = '".$this->getProNombre()."', 
         prodetalle = '".$this->getProDetalle()."', 
-        procantstock = '".$this->getProStock()."' WHERE idproducto = ".$this->getIdProducto();
+        proprecio = ".$this->getProPrecio().", 
+        procantstock = '".$this->getProStock()."' 
+        proimagen = '".$this->getProImagen()."' 
+        WHERE idproducto = ".$this->getIdProducto();
 
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){
@@ -171,7 +197,7 @@ class Producto extends BaseDatos{
             if($res > -1){
                 while($row = $this->Registro()){
                     $objProducto = new Producto();
-                    $objProducto->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['procantstock']);
+                    $objProducto->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['proprecio'], $row['procantstock'], $row['proimagen']);
                     array_push($arreglo, $objProducto);
                 }
             }else{

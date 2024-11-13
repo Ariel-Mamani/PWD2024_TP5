@@ -60,7 +60,9 @@ CREATE TABLE producto (
     idproducto BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     pronombre INT(11),
     prodetalle VARCHAR(512),
-    procantstock INT(11)
+    proprecio INT(9),
+    procantstock INT(11),
+    proimagen VARCHAR(50)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Tabla Compra Item
