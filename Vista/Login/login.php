@@ -98,11 +98,12 @@ $objSession = new Session();
 </section>
 
 <!-- BOOTSTRAP con las validaciones de los campos -->
-<script type="text/javascript" src="../Js/validacionTP5.js"></script>
+<script type="text/javascript" src="../js/validacionTp5.js"></script>
 <script>
     function convertirClaveMD5(){
         var clave = document.getElementById('clave').value;
         document.getElementById('uspass').value = hex_md5(clave); 
+        return true;
         //Borro el valor original de la contraseña en el campo clave 
         //document.getElementById('clave').value = ''; //onsubmit="return convertirClaveMD5()"
     }

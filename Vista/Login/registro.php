@@ -90,7 +90,7 @@ include_once '../Estructura/header.php';
 </section>
 
 <!-- BOOTSTRAP con las validaciones de los campos -->
-<script type="text/javascript" src="../Js/validacionTP5.js"></script>
+<script type="text/javascript" src="../js/validacionTp5.js"></script>
 <script>
     function convertirClaveMD5(){
         var clave = document.getElementById('clave').value;
