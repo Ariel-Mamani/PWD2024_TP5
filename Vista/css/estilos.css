@@ -543,6 +543,7 @@ button{
     color: black;
     padding: 10px 15px; /* Espaciado interno */
     border-radius: 50%;
+    border: black solid 2px;
     text-decoration: none;
     font-size: 14px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
