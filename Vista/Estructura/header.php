@@ -1,6 +1,13 @@
 <?php
-  include_once "../../configuracion.php";
-
+    include_once "../../configuracion.php";
+    $objSession = new Session();
+   
+    if($objSession->validar() ){ //and $objSession->validarRol()){
+      $titulo = "TP 5 - Login ";
+    }else{
+      header("Location: ".$VISTA."Inicio/principal.php");
+      die();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,5 +20,6 @@
 
 </head>
 <body>
-  <?php include_once "menu.php"; ?>
-
+  <?php 
+    include_once "menu.php";
+  ?>

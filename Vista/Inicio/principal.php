@@ -1,6 +1,6 @@
 <?php
 $titulo = "Grupo 5 PWD 2024";
-include_once '../Estructura/header.php';
+include_once '../Estructura/header_N.php';
 ?>
 <section>
     <div class="divtitulo">

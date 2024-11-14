@@ -1,7 +1,7 @@
 <?php
 $titulo = "TP 5 - Login ";
 
-include_once '../Estructura/header.php';
+include_once '../Estructura/header_N.php';
 $objSession = new Session();
 ?>
 

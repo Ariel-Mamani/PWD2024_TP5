@@ -1,6 +1,6 @@
 <?php
 $titulo = "TP 5 - Registrar ";
-include_once '../Estructura/header.php';
+include_once '../Estructura/header_N.php';
 ?>
 
 <section>

@@ -263,7 +263,7 @@ class Usuario extends BaseDatos{
             if($res > -1){
                 if($res > 0){
                     while ($row = $this->Registro()){
-                        if ($row['usdeshabilitado'] == '0000-00-00 00:00:00'){
+                        if ($row['usdeshabilitado'] == NULL ){
                             $obj = new Usuario();
                             $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail']);
                             array_push($arreglo, $obj);
