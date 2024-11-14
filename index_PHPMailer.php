@@ -7,18 +7,18 @@ use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
-
+include_once 'respuesta_mail_contacto.php';
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
 try {
     //Server settings
-    $mail->SMTPDebug = 2;                      //Enable verbose debug output
+    $mail->SMTPDebug = 0;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.mail.yahoo.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'dariofuentealba@yahoo.com.ar';                     //SMTP username
-    $mail->Password   = 'pvhxdvgsctwaukrv';                               //SMTP password
+    $mail->Password   = 'wscvbxyiccpwspda';                               //SMTP password
     $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -40,11 +40,11 @@ try {
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Asunto: Respuesta de formulario';
 
-    //$file = fopen('repuesta_mail_contacto.php', 'r');
-    //$str = fread ($file, filesize('repuesta_mail_contacto.php'));
-    //$str = trim($str);
-    //fclose($file);
-    $mail->Body = 'Aquí está la respuesta a su consulta en el formulario.';//$str; //'Aquí está la respuesta a su consulta en el formulario.';
+    $file = fopen('respuesta_mail_contacto.php', 'r');
+    $str = fread ($file, filesize('respuesta_mail_contacto.php'));
+    $str = trim($str);
+    fclose($file);
+    $mail->Body = $str;//'Aquí está la respuesta a su consulta en el formulario.';//$str; //'Aquí está la respuesta a su consulta en el formulario.';
     //ALTERNATIVA AL BODY
     //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
