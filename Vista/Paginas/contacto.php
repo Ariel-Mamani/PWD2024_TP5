@@ -1,6 +1,6 @@
 <?php
   $titulo = "Contacto"; //Titulo en la pestania
-  include_once "../Estructura/header.php";
+  include_once "../Estructura/header_N.php";
 ?>
 
 <!-- Aquí va el contenido principal de tu página -->

@@ -12,7 +12,7 @@
         if ($listaMenuRol >0){
             foreach($listaMenuRol as $menuRol){
                 $menu = $menuRol->getMenu()->getMenombre();
-                if ($menu <> 'null'){
+                if ($menu <> ''){
                     $url = $menuRol->getMenu()->getMedescripcion();
                     $cadenaMenu .= '<li><a class="dropdown-item" href="'.$VISTA.$url.'">'.$menu.'</a></li>'; 
                 }

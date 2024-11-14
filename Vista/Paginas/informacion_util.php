@@ -1,6 +1,6 @@
 <?php
 $titulo = "Información Útil"; //Titulo en la pestaña
-include_once '../Estructura/header.php';
+include_once '../Estructura/header_N.php';
 ?>
 
 <!-- Aquí va el contenido principal de tu página -->
