@@ -79,7 +79,7 @@ CREATE TABLE compra (
 -- Tabla Producto
 CREATE TABLE producto (
     idproducto BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    pronombre INT(11),
+    pronombre VARCHAR(50),
     prodetalle VARCHAR(512),
     proprecio INT(9),
     procantstock INT(11),
