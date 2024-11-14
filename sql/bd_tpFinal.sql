@@ -122,7 +122,7 @@ CREATE TABLE compraestado (
 INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VALUES
     (1, 'Productos', 'Paginas/02_productos.php', null, null),
     (2, null, 'Login/paginaSegura.php', null, null),
-    (3, null, 'Login/paginaSegura.php', null, null),
+    (3, null, 'Login/paginaSegura.php', null, null);
 --
 -- Volcado de datos para la tabla rol
 --

@@ -26,7 +26,7 @@
     <div class="separador"></div>
     <br><br>
 
-    <!-- Texto contacto -->
+    <!-- Texto contacto (redes) -->
     <div class="div_texto_contacto"  id="texto_contacto">
         <h1>
             Puede contactarse a trav&eacute;z de nuestras redes.
@@ -53,6 +53,61 @@
             <p class="nombre_icono_red_social">LinkedIn</p>
             <img src="../../Iconos/logo-linkedin.svg" alt="logo_linkedin" class="icono_linkedin" href="#">
         </div>
+    </div>
+
+
+    <!-- Separador -->
+    <div class="separador"></div>
+    <br><br><br><br><br><br>
+
+    <!-- Texto contacto (formulario) -->
+    <div class="div_texto_contacto"  id="texto_contacto">
+        <h1>
+            O m&aacute;ndenos un mensaje y le responderemos.
+        </h1>
+    </div>
+
+    <!-- Contenedor principal centrado -->
+    <div class="div_formulario container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <!-- Formulario -->
+        <form method="post" action="../Accion/#.php" id="contacto" name="contacto" class="row g-3 mt-3 needs-validation form_contacto" novalidate style="max-width: 500px;">
+            
+            <!-- Apellido y Nombre -->
+            <div class="mb-3 form-floating text-primary mb-4">
+                <input class="form-control" id="apellido_y_nombre" name="apellido_y_nombre" type="text" pattern="^\s*[A-Za-z]+(\s[A-Za-z]+)*\s*$" placeholder="Apellido y nombre" required>
+                <label for="apellido_y_nombre" class="form-label">Apellido y nombre</label>
+                <div class="valid-feedback">Ok!</div>
+                <div class="invalid-feedback">Sólo se permiten letras, números y espacios</div>
+            </div>
+
+            <!-- Ciudad -->
+            <div class="mb-3 form-floating text-primary mb-4">
+                <input class="form-control" id="ciudad" name="ciudad" type="text" pattern="^\s*[A-Za-z]+(\s[A-Za-z]+)*\s*$" placeholder="Ciudad" required>
+                <label for="ciudad" class="form-label">Ciudad</label>
+                <div class="valid-feedback">Ok!</div>
+                <div class="invalid-feedback">Sólo se permiten letras y espacios</div>
+            </div>
+
+            <!-- Mail -->
+            <div class="mb-3 form-floating text-primary mb-4">
+                <input class="form-control" id="mail" name="mail" type="email" placeholder="Dirección de e-mail" required>
+                <label for="mail" class="form-label">e-mail</label>
+                <div class="valid-feedback">Ok!</div>
+                <div class="invalid-feedback">Ingresa un e-mail válido</div>
+            </div>
+
+            <!-- Comentarios -->
+            <div class="mb-3 form-floating text-primary mb-4">
+                <textarea class="form-control" id="comentarios" name="comentarios" placeholder="Comentarios aquí" style="height: 250px;"></textarea>
+                <label for="comentarios" class="form-label">Comentarios</label>
+            </div>
+
+            <!-- Botón Enviar -->
+            <div class="col-md-4 d-flex justify-content-center">
+                <input id="accion" name="accion" value="nuevo" type="hidden">
+                <button class="btn btn-primary" type="submit">Enviar</button>
+            </div>
+        </form>
     </div>
 </div>
 <br><br>

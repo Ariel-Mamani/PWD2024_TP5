@@ -476,6 +476,26 @@ button{
     cursor: pointer;
 }
 
+.div_formulario{
+    width: 50%;
+    margin: auto;
+    margin-top: 2%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: black;
+}
+
+.div_formulario label{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
+    color: black;
+}
+
+.div_formulario input, .div_formulario textarea{
+    background: rgb(211, 209, 209);
+}
+
 
 
 /***********************************************************************************************/
