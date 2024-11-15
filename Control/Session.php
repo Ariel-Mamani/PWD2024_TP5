@@ -51,6 +51,24 @@ class Session {
         return $objRol;
     }
 
+    /**
+     * Summary of getCompra
+     * Obtiene el objeto Compra actual de la sesión, si el usuario está validado. 
+     * 
+     * @return Usuario
+     */
+    public function getCompra(){
+        $obj = null;
+        if ($this->validar()){
+            $objAbmCompra = new AbmCompra();
+            $listaCompra = $objAbmCompra->buscar($_SESSION);
+            if ($listaCompra >0){
+                $obj = $listaCompra[0];
+            }
+        }
+        return $obj;
+    }
+
 
     /**
      * Verifica si la sesión está activa y si el usuario tiene un idusuario definido en la sesión. 
@@ -147,12 +165,11 @@ class Session {
      * Primero obtiene el rol del usuario actual y luego verifica si el rol tiene acceso a la URL actual.
      * @return bool $resp
      */
-    public function validarRol(){
+    public function validarRol($cortar){
         $resp = false;
         $param['idrol'] = $this->getRol()->getidrol();
-       // $cortar = strlen($VISTA);
-        $enlace_actual = substr(strtolower('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']),35);
-        $param['menuurl'] = $enlace_actual;
+        $enlace_actual = substr(strtolower('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']), $cortar);
+        $param['medescripcion'] = $enlace_actual;
         $objAbmMenu = new AbmMenu();
         $listaMenu = $objAbmMenu->buscar($param);
         if(count($listaMenu) == 1){
