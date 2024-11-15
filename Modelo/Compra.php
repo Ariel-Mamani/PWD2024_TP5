@@ -124,6 +124,7 @@ class Compra extends BaseDatos{
         return $resp;
     }
 
+
     /**
      * Borra un registro de la tabla con el idcompra correspondiente
      */
@@ -172,5 +173,35 @@ class Compra extends BaseDatos{
             $this->setMensajeOperacion("Compra->listar: " . $this->getError());
         }
         return $arreglo;
+    }
+
+
+
+
+        
+    /**
+     *  Actualiza un registro al valor de idcompraestadotipo = cancelar de acuerdo con el idcompra
+     */
+    public function cancelar(){
+        $resp = false;
+        $objCompraEstado = new CompraEstado();
+        $objCET = new CompraEstadoTipo();
+        $param['cetdescripcion'] = 'cancelada';
+         
+        $sql = "UPDATE compraestado SET 
+                idcompra = " . $this->getIdCompra() . ", 
+                idcompraestadotipo = " . $objCompraEstado->getUsuario()->getidusuario() . "
+                WHERE idcompraestado = " . $objCompraEstado->getIdCompra()." and idusuario = ".$objCompraEstado->getUsuario()->getidusuario();
+
+        if($objCompraEstado->Iniciar()){
+            if($objCompraEstado->Ejecutar($sql)){
+                $resp = true;
+            }else{
+                $objCompraEstado->setMensajeOperacion("Compra->modificar: " . $objCompraEstado->getError());
+            }
+        }else{
+            $objCompraEstado->setMensajeOperacion("Compra->modificar: " . $objCompraEstado->getError());
+        }
+        return $resp;
     }
 }
