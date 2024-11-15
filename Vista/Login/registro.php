@@ -103,4 +103,4 @@ include_once '../Estructura/header_N.php';
     });
 </script>
 <!-- Footer -->
-<?php include_once '../Estructura/footer.php'; ?>
+<?php include_once '../Estructura/footer_tienda.php'; ?>

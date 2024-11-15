@@ -3,7 +3,7 @@
     $objSession = new Session();
     $cortar = strlen($VISTA);
     if($objSession->validar() and $objSession->validarRol($cortar)){
-      $titulo = "TP 5 - Login ";
+      $titulo = "TP Final";
     }else{
       header("Location: ".$VISTA."Inicio/principal.php");
       die();

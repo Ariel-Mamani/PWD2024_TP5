@@ -113,7 +113,7 @@ $objSession = new Session();
 </script>
 
 <!-- Footer -->
-<?php include_once '../Estructura/footer.php'; ?>
+<?php include_once '../Estructura/footer_tienda.php'; ?>
 
 
 
