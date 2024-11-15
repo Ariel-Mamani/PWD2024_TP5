@@ -12,6 +12,7 @@
   
   <!-- LINK CSS -->
   <link rel="stylesheet" type="text/css" href="../css/estilos.css">
+  <link rel="stylesheet" type="text/css" href="../css/estiloProducto.css";
   <!-- LINK JS -->
   <script src="../Js/funciones.js"></script>
   <!-- MD5  -->
