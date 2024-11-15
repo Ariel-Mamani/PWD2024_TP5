@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';
-include_once 'Modelo/Conector/BaseDatos.php';
+
 // Crear conexión a la base de datos
 $servername = "localhost";
 $username = "root";
@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
         $mail->Host       = 'smtp.mail.yahoo.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'dariofuentealba@yahoo.com.ar';
-        $mail->Password   = 'zpnqkawfclopyzxp';
+        $mail->Password   = 'ahjoxjgftksziwsi';
         $mail->SMTPSecure = 'ssl';
         $mail->Port       = 465;
 
