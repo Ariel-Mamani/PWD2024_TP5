@@ -70,7 +70,7 @@
     <!-- Contenedor principal centrado -->
     <div class="div_formulario container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <!-- Formulario -->
-        <form method="post" action="../Accion/#.php" id="contacto" name="contacto" class="row g-3 mt-3 needs-validation form_contacto" novalidate style="max-width: 500px;">
+        <form method="post" action="../Accion/accion_enviar_correo_por_formulario.php" id="contacto" name="contacto" class="row g-3 mt-3 needs-validation form_contacto" novalidate style="max-width: 500px;">
             
             <!-- Apellido y Nombre -->
             <div class="mb-3 form-floating text-primary mb-4">
