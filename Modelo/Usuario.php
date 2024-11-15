@@ -114,7 +114,7 @@ class Usuario extends BaseDatos{
         .$this->getusnombre()."', '"
         .$this->getuspass()."', '"
         .$this->getusmail()."', 
-        'null');";
+        NULL);";
 
         if ($this->Iniciar()) {
             if($elid = $this->Ejecutar($sql)){

@@ -17,17 +17,17 @@ if(!empty(data_submitted())){
         $usuario = $objAbmUsuario->buscar($param);
         if(!empty($usuario)){
             // Le doy un rol y lo cargo a la tabla usuarioRol
-            $usuarioRol = ['idusuario' => $usuario[0]->getidusuario(), 'idrol' => 2];
+            $usuarioRol = ['idusuario' => $usuario[0]->getidusuario(), 'idrol' => 4];
             $objAbmUsuarioRol->alta($usuarioRol);
         }
         $mensaje = $objSession->getMensaje(true);
-        header("Location: login.php");
-        exit();
+        header("Location: ".$VISTA."Login/login.php");
+        die();
     }else{
         $mensaje = $objSession->getMensaje();
         echo "<h1>No</h1>";
         header("Location: login.php");
-        exit();
+        die();
     }
 }
 

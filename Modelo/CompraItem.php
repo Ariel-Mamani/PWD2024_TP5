@@ -64,9 +64,7 @@ class CompraItem extends BaseDatos{
     // Método para cargar un CompraItem desde la base de datos
     public function cargar() {
         $exito = false;
-        $sql = "SELECT * FROM compraitem WHERE idcompraitem = " . $this->getIdCompraItem()." AND 
-        idproducto = ".$this->getProducto()->getIdProducto()." AND 
-        idcompra = ".$this->getCompra()->getIdCompra() ; //Para que la consulta funcione, los objetos Producto y Compra asociados deben tener sus respectivos id cargados antes de llamar a cargar(). Si no es el caso, la consulta podría fallar.
+        $sql = "SELECT * FROM compraitem WHERE idcompraitem = " . $this->getIdCompraItem();
         if ($this->Iniciar()) {
             $res = $this->Ejecutar($sql);
             if ($res > -1) {
@@ -81,7 +79,7 @@ class CompraItem extends BaseDatos{
                 $compra->setIdCompra($row['idcompra']);
                 $compra->cargar();
 
-                $this->setear($row['idcompraitem'], $producto, $compra, $row['cicantidad']);
+                $this->setear($this->getIdCompraItem(), $this->getProducto(), $this->getCompra(), $row['cicantidad']);
                 $exito = true;
             } else {
                 $this->setMensajeOperacion("CompraItem->cargar: " . $this->getError());
@@ -117,8 +115,8 @@ class CompraItem extends BaseDatos{
     public function modificar(){
         $resp = false;
         $sql = "UPDATE compraitem SET 
-                idproducto = " . $this->getProducto()->getIdProducto() . ", 
-                idcompra = " . $this->getCompra()->getIdCompra() . ", 
+             /*   idproducto = " . $this->getProducto()->getIdProducto() . ", 
+                idcompra = " . $this->getCompra()->getIdCompra() . ", */
                 cicantidad = " . $this->getCiCantidad() . "
                 WHERE idcompraitem = " . $this->getIdCompraItem();
 
@@ -137,10 +135,7 @@ class CompraItem extends BaseDatos{
     // Método para eliminar un CompraItem
     public function eliminar() {
         $resp = false;
-        $sql = "DELETE FROM compraitem WHERE idcompraitem = " . $this->getIdCompraItem()." AND 
-        idproducto = ".$this->getProducto()->getIdProducto()." AND 
-        idcompra = ".$this->getCompra()->getIdCompra() ;;
-
+        $sql = "DELETE FROM compraitem WHERE idcompraitem = " . $this->getIdCompraItem(); 
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
                 $resp = true;

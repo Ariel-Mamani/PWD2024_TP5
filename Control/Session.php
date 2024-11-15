@@ -78,7 +78,7 @@ class Session {
     public function validar(){
         $resp = false;
         if ($this->activa() and isset($_SESSION['idusuario'])){
-            if (isset($_SESSION['tiempo']) and (time() - $_SESSION['tiempo'] > 280)) {
+            if (isset($_SESSION['tiempo']) and (time() - $_SESSION['tiempo'] > 3600)) {
                 session_destroy();  //$this->cerrar();         
             }else {
                 $_SESSION['tiempo']=time(); //Si hay actividad seteamos el valor al tiempo actual

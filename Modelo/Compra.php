@@ -60,8 +60,7 @@ class Compra extends BaseDatos{
      */
     public function cargar(){
         $exito = false;
-        $sql = "SELECT * FROM compra WHERE idcompra = " . $this->getIdCompra()." AND 
-                idusuario = ".$this->getUsuario()->getidusuario(); ;
+        $sql = "SELECT * FROM compra WHERE idcompra = " . $this->getIdCompra();
         if ($this->Iniciar()) {
             $res = $this->Ejecutar($sql);
             if($res > -1){
@@ -85,9 +84,8 @@ class Compra extends BaseDatos{
      */
     public function insertar(){
         $resp = false;
-        $sql = "INSERT INTO compra (cofecha, idusuario) VALUES (null,
-                '" . $this->getCoFecha() . "', 
-                " . $this->getUsuario()->getidusuario() . ");";
+        $sql = "INSERT INTO compra (idusuario) VALUES (
+                ".$this->getUsuario()->getidusuario().");";
 
         if($this->Iniciar()){
             if($elid = $this->Ejecutar($sql)){
@@ -178,30 +176,4 @@ class Compra extends BaseDatos{
 
 
 
-        
-    /**
-     *  Actualiza un registro al valor de idcompraestadotipo = cancelar de acuerdo con el idcompra
-     */
-    public function cancelar(){
-        $resp = false;
-        $objCompraEstado = new CompraEstado();
-        $objCET = new CompraEstadoTipo();
-        $param['cetdescripcion'] = 'cancelada';
-         
-        $sql = "UPDATE compraestado SET 
-                idcompra = " . $this->getIdCompra() . ", 
-                idcompraestadotipo = " . $objCompraEstado->getUsuario()->getidusuario() . "
-                WHERE idcompraestado = " . $objCompraEstado->getIdCompra()." and idusuario = ".$objCompraEstado->getUsuario()->getidusuario();
-
-        if($objCompraEstado->Iniciar()){
-            if($objCompraEstado->Ejecutar($sql)){
-                $resp = true;
-            }else{
-                $objCompraEstado->setMensajeOperacion("Compra->modificar: " . $objCompraEstado->getError());
-            }
-        }else{
-            $objCompraEstado->setMensajeOperacion("Compra->modificar: " . $objCompraEstado->getError());
-        }
-        return $resp;
-    }
 }
