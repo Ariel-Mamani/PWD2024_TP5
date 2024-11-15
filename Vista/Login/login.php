@@ -77,12 +77,12 @@ $objSession = new Session();
 
             <!-- Link para registrarse -->
             <div class="register-link">
-                <p>No tiene cuenta? <a href="registro.php">Registrarse</a></p>
+                <p style="color: black;">No tiene cuenta? <a href="registro.php">Registrarse</a></p>
             </div>
 
             <!-- Redes -->
             <div class="redes">
-                <p>O iniciar sesi&oacute;n en</p>
+                <p style="color: black;">O iniciar sesi&oacute;n en</p>
                 <!-- Iconos redes -->
                 <div class="iconos-redes">
                     <!-- Facebook -->

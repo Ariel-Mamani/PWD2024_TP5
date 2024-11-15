@@ -349,13 +349,13 @@ h2{
 /***********************************************************************************************/
 .register-link{
     font-size: .9em;
-    color: black;
+    color: black !important;
     text-align: center;
     margin:25px 0 10px;
 }
 
 .register-link p a{
-    color: black;
+    color: black !important;
     text-decoration: none;
     font-weight: 600;
 }
@@ -448,6 +448,39 @@ button{
 /***********************************************************************************************/
 /******************************************** REDES ********************************************/
 /***********************************************************************************************/
+.redes{
+    font-size: 14px;
+    color: black;
+    text-align: center;
+}
+
+.iconos-redes a{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 50%;
+    text-align: center;
+    margin: 15px 6px 0;
+    transition: .5s;
+}
+
+.iconos-redes a:hover{
+    background: black;
+}
+
+.iconos-redes a i{
+    font-size: 14px;
+    line-height: 35px;
+    color: black;
+    transition: .5s;
+}
+
+.iconos-redes a:hover i{
+    color: white;
+}
+
 .div_btn_contacto {
     display: flex;
     justify-content: space-between; /* Espacio uniforme entre las columnas */
