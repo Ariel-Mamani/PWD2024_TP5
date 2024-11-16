@@ -244,7 +244,7 @@ class Usuario extends BaseDatos{
 
     /**
      * Obtiene una lista de usuarios habilitados de la base de datos. 
-     * Si el campo usdeshabilitado tiene un valor de 0000-00-00 00:00:00 (lo que indica que no está deshabilitado), crea un nuevo objeto Usuario y lo añade a un arreglo que se devuelve al final.
+     * Si el campo usdeshabilitado tiene un valor de NULL (lo que indica que no está deshabilitado), crea un nuevo objeto Usuario y lo añade a un arreglo que se devuelve al final.
      * @return array $arreglo
      */
     public function listar($parametro=""){

@@ -20,11 +20,11 @@ class AbmMenu{
                 $resp = true;
             }
         }
-        if($datos['accion'] == 'borrar'){
+     /*   if($datos['accion'] == 'borrar'){
             if($this->baja($datos)){
                 $resp = true;
             }
-        }
+        }*/
         if($datos['accion'] == 'nuevo'){
             if($this->alta($datos)){
                 $resp = true;
@@ -122,7 +122,7 @@ class AbmMenu{
      * @param array $param
      * @return boolean $resp
      */
-    public function baja($param){
+ /*   public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objMenu = $this->cargarObjetoConClave($param);
@@ -131,7 +131,7 @@ class AbmMenu{
             }
         }
         return $resp;
-    }
+    }*/
 
 
     /**

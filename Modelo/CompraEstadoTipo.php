@@ -72,11 +72,8 @@ class CompraEstadoTipo extends BaseDatos{
         }
         return $exito;
     }
-
-    /**
-     * 
-     */
-    public function insertar(){
+/*
+     public function insertar(){
         $resp = false;
         $sql = "INSERT INTO compraestadotipo (idcompraestadotipo, cetdescripcion, cetdetalle) VALUES 
                 (" . $this->getIdCompraEstadoTipo() . ", '" . $this->getCetDescripcion() . "', '" . $this->getCetDetalle() . "')";
@@ -92,9 +89,6 @@ class CompraEstadoTipo extends BaseDatos{
         return $resp;
     }
 
-    /**
-     * 
-     */
     public function modificar(){
         $resp = false;
         $sql = "UPDATE compraestadotipo SET cetdescripcion = '" . $this->getCetDescripcion() . "', 
@@ -111,9 +105,6 @@ class CompraEstadoTipo extends BaseDatos{
         return $resp;
     }
 
-    /**
-     * 
-     */
     public function eliminar(){
         $resp = false;
         $sql = "DELETE FROM compraestadotipo WHERE idcompraestadotipo = " . $this->getIdCompraEstadoTipo();
@@ -127,7 +118,7 @@ class CompraEstadoTipo extends BaseDatos{
             $this->setMensajeOperacion("CompraEstadoTipo->eliminar: " . $this->getError());
         }
         return $resp;
-    }
+    }*/
 
     /**
      * 

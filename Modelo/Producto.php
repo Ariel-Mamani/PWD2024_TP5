@@ -170,7 +170,7 @@ class Producto extends BaseDatos{
      */
     public function eliminar(){
         $resp = false;
-        $sql = "DELETE FROM producto WHERE idproducto = " . $this->getIdProducto();
+        $sql = "UPDATE producto SET prodeshabilitado = '".date("Y-m-d h:i:sa")."' WHERE idproducto = " . $this->getIdProducto(); //'".date("Y-m-d h:i:sa")."'
         if($this->Iniciar()){
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -196,9 +196,11 @@ class Producto extends BaseDatos{
             $res = $this->Ejecutar($sql);
             if($res > -1){
                 while($row = $this->Registro()){
-                    $objProducto = new Producto();
-                    $objProducto->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['proprecio'], $row['procantstock'], $row['proimagen']);
-                    array_push($arreglo, $objProducto);
+                    if ($row['prodeshabilitado'] == NULL){
+                        $objProducto = new Producto();
+                        $objProducto->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['proprecio'], $row['procantstock'], $row['proimagen']);
+                        array_push($arreglo, $objProducto);
+                    }
                 }
             }else{
                 $this->setmensajeoperacion("Producto->listar: " . $this->getError());

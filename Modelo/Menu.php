@@ -233,8 +233,7 @@ class Menu {
         }
         $res = $base->Ejecutar($sql);
         if($res>-1){
-            if($res>0){
-                
+            if($res>0){          
                 while ($row = $base->Registro()){
                     $obj = new Menu();
                     $objMenuPadre =null;
@@ -245,12 +244,9 @@ class Menu {
                     }
                     $obj->setear($row['idmenu'], $row['menombre'],$row['medescripcion'],$objMenuPadre,$row['medeshabilitado']); 
                     array_push($arreglo, $obj);
-                }
-                
+                }              
             }
-            
         } 
-        
         return $arreglo;
     }
     }

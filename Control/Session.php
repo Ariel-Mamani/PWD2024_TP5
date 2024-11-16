@@ -2,8 +2,6 @@
 
 /*
 La clase Session administra y verifica las sesiones de usuario, incluyendo su autenticación, roles, y el estado de actividad de la sesión.
-
-
 */
 
 class Session {
@@ -12,7 +10,6 @@ class Session {
     public function __construct(){
         @session_start();
     }
-
 
     /**
      * Summary of getUsuario
@@ -31,7 +28,6 @@ class Session {
         }
         return $obj;
     }
-
 
     /**
      * Summary of getRol.
@@ -55,7 +51,7 @@ class Session {
      * Summary of getCompra
      * Obtiene el objeto Compra actual de la sesión, si el usuario está validado. 
      * 
-     * @return Usuario
+     * @return Compra
      */
     public function getCompra(){
         $obj = null;
@@ -88,7 +84,6 @@ class Session {
         return $resp;    
     }
 
-
     /**
      * Inicia la sesión para un usuario si el nombre de usuario y la contraseña son válidos. 
      * Utiliza AbmUsuario para buscar el usuario, y si lo encuentra, almacena el idusuario en la sesión.
@@ -109,7 +104,6 @@ class Session {
         return $resp;
     }
 
-
     /**
      * Cierra la sesión destruyendo las variables y la sesión misma.
      * @return bool $resp
@@ -126,7 +120,6 @@ class Session {
         return $resp;
     }
 
-
     /**
      * Verifica si la session está activa.
      * Verifica si la sesión está activa retornando true si session_status está en PHP_SESSION_ACTIVE.
@@ -139,7 +132,6 @@ class Session {
         }
         return $resp;
     }
-
 
     /**
      *  Retorna mensaje dependiendo del boleano que entre por parametros.
@@ -157,8 +149,6 @@ class Session {
         session_write_close();
         return $_SESSION['mensaje'];
     }
-    
-
 
     /**
      * Verifica si el usuario tiene permiso para acceder a una URL específica basada en su rol. 
@@ -182,5 +172,32 @@ class Session {
         }
         return $resp;
     }
+/************************************************************************************************ */
+//          Compras                 
+/************************************************************************************************ */
+
+/**
+ * Toma el idusuario de la session activa y cargael idcompra en la sesion
+ * @return bool
+ */
+public function iniciarCompra(){
+    $resp = false;
+    $param['idusuario'] = $this->getUsuario()->getidusuario();
+    $param['cofecha'] = date("Y-m-d h:i:sa");
+    $objAbmCompra = new AbmCompra();
+    if($param['idcompra'] = $objAbmCompra->alta($param)){ 
+        $objAbmCompraEstado = new AbmCompraEstado();
+        $param['idcompraestadotipo'] = 1; // estado ingresada = 1
+        $param['cefechainit'] = $param['cofecha'] ;
+        if($objAbmCompraEstado->alta($param)){
+            $resp = true;
+            $_SESSION['idcompra'] = $param['idcompra'];
+        }
+    }
+    return $resp;
+}
+
+
+
 }
 ?>

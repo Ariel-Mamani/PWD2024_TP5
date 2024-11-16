@@ -10,11 +10,11 @@ class AbmRol{
                 $resp = true;
             }
         }
-        if($datos['accion'] == 'borrar'){
+     /*   if($datos['accion'] == 'borrar'){
             if($this->baja($datos)){
                 $resp = true;
             }
-        }
+        }*/
         if($datos['accion'] == 'nuevo'){
             if($this->alta($datos)){
                 $resp = true;
@@ -87,7 +87,7 @@ class AbmRol{
      * @param array $param
      * @return boolean
      */
-    public function baja($param){
+/*    public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objRol = $this->cargarObjetoConClave($param);
@@ -97,7 +97,7 @@ class AbmRol{
         }
         
         return $resp;
-    }
+    }*/
     
     /**
      * permite modificar un objeto

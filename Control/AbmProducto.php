@@ -115,7 +115,7 @@ class AbmProducto{
         $objProducto = new Producto();
         $resp= false;
         $objProducto -> SetIdProducto($idProducto);
-        $objProducto -> cargar($idProducto);
+        $objProducto -> cargar();
         if($objProducto !=null && $objProducto -> eliminar()){
             $resp= true;
         }

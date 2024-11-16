@@ -82,9 +82,7 @@ class CompraEstado extends BaseDatos{
     // Métodos para la interacción con la base de datos
     public function cargar(){
         $exito = false;
-        $sql = "SELECT * FROM compraestado WHERE idcompraestado = " . $this->getIdCompraEstado()." AND 
-        idcompra = ".$this->getCompra()->getIdCompra()." AND 
-        idcompraestadotipo = ".$this->getCompraEstadoTipo()->getIdCompraEstadoTipo() ;
+        $sql = "SELECT * FROM compraestado WHERE idcompraestado = " . $this->getIdCompraEstado() ;
         if($this->Iniciar()){
             $res = $this->Ejecutar($sql);
             if($res > -1){
@@ -142,9 +140,7 @@ class CompraEstado extends BaseDatos{
                 idcompraestadotipo = " . $this->getCompraEstadoTipo()->getIdCompraEstadoTipo() . ", 
                 cefechainit = '" . $this->getCeFechaInit() . "', 
                 cefechafin = '" . $this->getCeFechaFin() . "' 
-                WHERE idcompraestado = " . $this->getIdCompraEstado()." AND 
-                    idcompra = ".$this->getCompra()->getIdCompra()." AND 
-                    idcompraestadotipo = ".$this->getCompraEstadoTipo()->getIdCompraEstadoTipo();
+                WHERE idcompraestado = " . $this->getIdCompraEstado();
         if($this->Iniciar()){
             if($this->Ejecutar($sql)){
                 $resp = true;
@@ -156,7 +152,7 @@ class CompraEstado extends BaseDatos{
         }
         return $resp;
     }
-
+/*
     public function eliminar(){
         $resp = false;
         $sql = "DELETE FROM compraestado WHERE idcompraestado = " . $this->getIdCompraEstado()." AND 
@@ -173,7 +169,7 @@ class CompraEstado extends BaseDatos{
         }
         return $resp;
     }
-
+*/
 
     public function listar($condicion = ""){
         $arreglo = [];

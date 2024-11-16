@@ -10,7 +10,7 @@ class AbmCompra{
      */
     public function abm($datos){
         $resp = false;
-        if($datos['accion'] == 'editar'){
+     /*   if($datos['accion'] == 'editar'){
             if($this->modificacion($datos)){
                 $resp = true;
             }
@@ -19,7 +19,7 @@ class AbmCompra{
             if($this->baja($datos)){
                 $resp = true;
             }
-        }
+        }*/
         if($datos['accion'] == 'nuevo'){
             if($this->alta($datos)){
                 $resp = true;
@@ -98,7 +98,7 @@ class AbmCompra{
         $param['idcompra'] = null;                    //Campo autoincremento
         $objCompra = $this->cargarObjeto($param);
         if ($objCompra != null and $objCompra->insertar()){
-            $resp = true;
+            $resp =  $objCompra->getIdCompra();         //Devuelve el idcompra
         }
         return $resp;
     }
@@ -112,7 +112,7 @@ class AbmCompra{
      * @param array $param
      * @return boolean $resp
      */
-    public function baja($param){
+/*    public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objCompra = $this->cargarObjetoConClave($param);
@@ -122,7 +122,7 @@ class AbmCompra{
         }
         return $resp;
     }
-
+*/
 
     /**
      * permite modificar un objeto menos la password.
@@ -133,7 +133,7 @@ class AbmCompra{
      * @param array $param
      * @return boolean $resp
      */
-    public function modificacion($param){
+ /*   public function modificacion($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objCompra = $this->cargarObjeto($param);
@@ -142,7 +142,7 @@ class AbmCompra{
             }
         }
         return $resp;
-    }
+    }*/
 
 
     /**
@@ -171,67 +171,116 @@ class AbmCompra{
 
 
 
-
-
-
 /**
- * @param int
- * @return int
- */
-    public function iniciar($idusuario){
-        $idcompra = 0;
-
-        return $idcompra;
-    }
-
-/**
- * @param int
- * @param int
+ * Toma de la session activa el idcompra
+ * Recibe en $param['idproducto']
+ * @param array
  * @return bool
  */
-    public function agregarProducto($idProducto, $idcompra){
+    public function agregarProducto($param){
         $resp = false;
-
-
+        $param['cicantidad'] = 1;
+        $objSession = new Session();
+        $param['idcompra'] = $objSession->getCompra()->getIdCompra();
+        $objAbmCompraItem = new AbmCompraItem();
+        $listaCompraItem = $objAbmCompraItem->buscar($param);
+        if(count($listaCompraItem) > 0){
+            $objCompraItem = $listaCompraItem[0]; 
+            $cant = $objCompraItem->getCiCantidad();
+            $cant++;
+            $objCompraItem->setCiCantidad($cant);
+            if($objCompraItem->modificar()){
+                $resp = true;
+            }
+        }elseif($objAbmCompraItem->alta($param)){
+            $resp = true;
+        }
         return $resp;
     }
 
 /**
- * @param int
- * @param int
+ * Toma de la session activa el idcompra
+ * Recibe en $param['idproducto']
+ * @param array
  * @return bool
  */
-public function quitarProducto($idProducto, $idcompra){
+public function quitarProducto($param){
     $resp = false;
-
-
+    $objSession = new Session();
+    $param['idcompra'] = $objSession->getCompra()->getIdCompra();
+    $objAbmCompraItem = new AbmCompraItem();
+    $listaCompraItem = $objAbmCompraItem->buscar($param);
+    if(count($listaCompraItem) > 0){
+        $objCompraItem = $listaCompraItem[0]; 
+        $cant = $objCompraItem->getCiCantidad();
+        if($cant > 0) {$cant--;}
+        $objCompraItem->setCiCantidad($cant);
+        if($objCompraItem->modificar()){
+            $resp = true;
+        }
+    }
     return $resp;
 }
 
 /**
- * @param int
+ * Toma de la session activa el idcompra
+ * Recibe en $param['idproducto']
+ * @param array
  * @return bool
  */
-public function finalizar($idcompra){
+public function cancelarProducto($param){
     $resp = false;
-
-
+    $objSession = new Session();
+    $param['idcompra'] = $objSession->getCompra()->getIdCompra();
+    $objAbmCompraItem = new AbmCompraItem();
+    $listaCompraItem = $objAbmCompraItem->buscar($param);
+    if(count($listaCompraItem) > 0){
+        $objCompraItem = $listaCompraItem[0]; 
+        if($objCompraItem->eliminar()){
+            $resp = true;
+        }
+    }
     return $resp;
 }
 
 /**
- * @param int
+ * Toma de la Session el idcompra
+ * @return bool
+ */
+public function finalizar(){
+    $resp = false;
+    $objSession = new Session();
+    $param['idcompra'] = $objSession->getCompra()->getIdCompra();
+    $param['idcompraestadotipo'] = 1; // ingresada
+    $objAbmCompraEstado = new AbmCompraEstado();
+    $listaAbmCompraEstado = $objAbmCompraEstado->buscar($param);
+    if (count($listaAbmCompraEstado) > 0){
+        $objCompraEstado = $listaAbmCompraEstado[0];
+        $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
+        if ($objCompraEstado->modificar()){
+            $resp = true;
+        }
+    }
+    return $resp;
+}
+
+/**
+ * Recibe en $param el idcompra a cancelar
+ * @param array
  * @return bool
  */
 public function cancelarCompra($param){
     $resp = false;
-    if ($this->seteadosCamposClaves($param)){
-        $objUsuario = $this->cargarObjeto($param);
-        if($objUsuario != null and $objUsuario->modificar()){
+    $param['idcompraestadotipo'] = 3; // cancelada
+    $objAbmCompraEstado = new AbmCompraEstado();
+    $listaAbmCompraEstado = $objAbmCompraEstado->buscar($param);
+    if (count($listaAbmCompraEstado) > 0){
+        $objCompraEstado = $listaAbmCompraEstado[0];
+        $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
+        if ($objCompraEstado->modificar()){
             $resp = true;
         }
     }
-
     return $resp;
 }
 

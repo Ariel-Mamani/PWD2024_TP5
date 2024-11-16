@@ -14,7 +14,7 @@ $(document).ready(function (){
         if($(this).data('stock') > 0 ){
             // Enviar datos al servidor mediante una solicitud AJAX
             $.ajax({
-                url: 'agregarCarrito.php',  // URL del archivo que procesa la solicitud
+                url: '../Carrito/agregarCarrito.php',  // URL del archivo que procesa la solicitud
                 method: 'POST',             // Método para enviar los datos 
                 data: {                     // Datos que se envían al servidor
                     idArt: idArt,
@@ -45,7 +45,7 @@ $(document).ready(function () {
     $('.eliminar-carrito').on('click', function () {
         var index = $(this).data('index');
         $.ajax({
-            url: 'eliminarCarrito.php',
+            url: '../Carrito/eliminarCarrito.php',
             method: 'POST',
             data: {
                 index: index
