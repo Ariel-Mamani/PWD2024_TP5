@@ -44,6 +44,7 @@ include_once "../Estructura/header_N.php";
     </tbody>
 </table>
 
+
 <script>
     $(document).ready(function(){
         //Realiza una solicitud AJAX para obtener los datos en formato JSON
@@ -63,6 +64,9 @@ include_once "../Estructura/header_N.php";
                     row.append($('<td>').text(producto.prodetalle));
                     row.append($('<td>').text(producto.proprecio));
                     row.append($('<td>').text(producto.procantstock));
+                    row.append($('<td>').html('<button class="btn-eliminar" data-id="' + producto.idproducto + '">Eliminar</button>'));
+                    row.append($('<td>').html('<button class="btn-editar" data-id="' + producto.idproducto + '">Editar</button>'));
+                    
                     tbody.append(row);
                 });
             },
@@ -71,6 +75,33 @@ include_once "../Estructura/header_N.php";
             }
         });
     });
+</script>
+<script>
+    $(document).on('click', '.btn-eliminar', function() {
+    var idProducto = $(this).data('id'); // Obtener el ID del producto a eliminar
+
+    // Confirmar la eliminación
+    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+        $.ajax({
+            url: 'accion/eliminar_Producto.php', // Cambia esto a la ruta correcta de tu archivo PHP
+            method: 'POST',
+            data: { idproducto: idProducto },
+            success: function(response) {
+                if (response.success) {
+                    // Eliminar la fila de la tabla
+                    $('button[data-id="' + idProducto + '"]').closest('tr').remove();
+                    alert('Producto eliminado con éxito.');
+                } else {
+                    alert('Error al eliminar el producto: ' + response.message);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error al eliminar el producto:', textStatus, errorThrown);
+                alert('Error al eliminar el producto. Inténtalo de nuevo.');
+            }
+        });
+    }
+});
 </script>
 
 

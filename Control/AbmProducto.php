@@ -100,7 +100,7 @@ class AbmProducto{
      * @param array $param
      * @return boolean
      */
-    public function baja($param){
+   /* public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objProducto = $this->cargarObjetoConClave($param);
@@ -108,6 +108,18 @@ class AbmProducto{
                 $resp = true;
             }
         }
+        return $resp;
+    }*/
+
+    public function baja($idProducto){
+        $objProducto = new Producto();
+        $resp= false;
+        $objProducto -> SetIdProducto($idProducto);
+        $objProducto -> cargar($idProducto);
+        if($objProducto !=null && $objProducto -> eliminar()){
+            $resp= true;
+        }
+
         return $resp;
     }
 
