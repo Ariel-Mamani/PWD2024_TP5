@@ -1,11 +1,9 @@
 <?php
-$titulo = "Profesionales"; //Titulo en la pestaña
+$titulo = "Productos"; //Titulo en la pestaña
 include_once '../Estructura/header.php';
 $objProdcuto = new Producto;
 $arregloProductos = $objProdcuto->listar();
-
 ?>
-
 <!-- Aquí va el contenido principal de tu página -->
 <div class="main-content">
 
@@ -23,18 +21,26 @@ $arregloProductos = $objProdcuto->listar();
             </div>
         </div>    
     </div>
-
     <!-- Container de Productos -->
+    <!-- Si quiern mostrar los productos con AJAX, haganlo pero que funcione el boton Agregar 
+    Yo lo hice con AJAX pero lo unico que no me funcionaba era el boton agregar :(  pipipi
+    Asi que deje esta version que es la que funca bien-->
     <?php
     foreach($arregloProductos as $producto){
         echo "<div class='targeta-producto'>";
         echo "<img src='../../Archivos/Productos/{$producto->getProNombre()}.png' alt='{$producto->getProNombre()}'>";
         echo "<h3>{$producto->getProNombre()}</h3>";
         echo "<p>{$producto->getProDetalle()}</p>";
-        echo "<p>{$producto->getProPrecio()}</p>";
+        echo "<p>$ {$producto->getProPrecio()}</p>";
         echo "<p>{$producto->getProImagen()}</p>";
         echo "<p><b>Stock:</b> {$producto->getProStock()}</p>";
-        echo "<button>Agregar al carrito</button>";
+        echo "<button class='btn btn-primary agregar-carrito' 
+                data-id='{$producto->getIdProducto()}'
+                data-nombre= '{$producto->getProNombre()}'
+                data-precio= '{$producto->getProPrecio()}'
+                data-stock= '{$producto->getProStock()}'>Agregar al carrito
+            </button>";
+
         echo "</div>";
     }
     ?>
