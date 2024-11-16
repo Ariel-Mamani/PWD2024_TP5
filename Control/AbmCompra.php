@@ -182,18 +182,30 @@ class AbmCompra{
         $param['cicantidad'] = 1;
         $objSession = new Session();
         $param['idcompra'] = $objSession->getCompra()->getIdCompra();
-        $objAbmCompraItem = new AbmCompraItem();
-        $listaCompraItem = $objAbmCompraItem->buscar($param);
-        if(count($listaCompraItem) > 0){
-            $objCompraItem = $listaCompraItem[0]; 
-            $cant = $objCompraItem->getCiCantidad();
-            $cant++;
-            $objCompraItem->setCiCantidad($cant);
-            if($objCompraItem->modificar()){
-                $resp = true;
+        $objAbmProducto = new AbmProducto();
+        $listaProducto = $objAbmProducto->buscar($param);
+        if(count($listaProducto) > 0){
+            $objProducto = $listaProducto[0];
+            $stock = $objProducto->getProStock();
+            if($stock > 0){
+                $stock--;
+                $objProducto->setProStock($stock);
+                if ($objProducto->modificar()){
+                    $objAbmCompraItem = new AbmCompraItem();
+                    $listaCompraItem = $objAbmCompraItem->buscar($param);
+                    if(count($listaCompraItem) > 0){
+                        $objCompraItem = $listaCompraItem[0]; 
+                        $cant = $objCompraItem->getCiCantidad();
+                        $cant++;
+                        $objCompraItem->setCiCantidad($cant);
+                        if($objCompraItem->modificar()){
+                            $resp = true;
+                        }
+                    }elseif($objAbmCompraItem->alta($param)){
+                        $resp = true;
+                    }
+                }
             }
-        }elseif($objAbmCompraItem->alta($param)){
-            $resp = true;
         }
         return $resp;
     }
@@ -208,15 +220,25 @@ public function quitarProducto($param){
     $resp = false;
     $objSession = new Session();
     $param['idcompra'] = $objSession->getCompra()->getIdCompra();
-    $objAbmCompraItem = new AbmCompraItem();
-    $listaCompraItem = $objAbmCompraItem->buscar($param);
-    if(count($listaCompraItem) > 0){
-        $objCompraItem = $listaCompraItem[0]; 
-        $cant = $objCompraItem->getCiCantidad();
-        if($cant > 0) {$cant--;}
-        $objCompraItem->setCiCantidad($cant);
-        if($objCompraItem->modificar()){
-            $resp = true;
+    $objAbmProducto = new AbmProducto();
+    $listaProducto = $objAbmProducto->buscar($param);
+    if(count($listaProducto) > 0){
+        $objProducto = $listaProducto[0];
+        $stock = $objProducto->getProStock();
+        $stock++;
+        $objProducto->setProStock($stock);
+        if ($objProducto->modificar()){
+            $objAbmCompraItem = new AbmCompraItem();
+            $listaCompraItem = $objAbmCompraItem->buscar($param);
+            if(count($listaCompraItem) > 0){
+                $objCompraItem = $listaCompraItem[0]; 
+                $cant = $objCompraItem->getCiCantidad();
+                if($cant > 0) {$cant--;}
+                $objCompraItem->setCiCantidad($cant);
+                if($objCompraItem->modificar()){
+                    $resp = true;
+                }
+            }
         }
     }
     return $resp;
