@@ -9,6 +9,7 @@
   
   <!--LINK JS - JQUERY-->
   <script src="../Librerias/node_modules/jquery/dist/jquery.min.js"></script>
+ 
   
   <!-- LINK CSS -->
   <link rel="stylesheet" type="text/css" href="../css/estilos.css">
