@@ -1,8 +1,14 @@
 <?php
-session_start();
+// session_start();
 $titulo = "Carrito"; 
 include_once '../Estructura/header.php';
-
+//Hay que verificar si el que ingresa al carrito es un usuario registrado
+$session = new Session();
+if (!$session->validar()) {
+    // Si el usuario no está registrado
+    header('Location: registro.php'); 
+    exit(); // Detener la ejecución del script
+}
 //Si existe, significa que el usuario ya tiene un carrito almacenado en su sesion 
 // Si el usuario no tiene un carrito activo, se crea uno vacio
 // OJO AL PIOJO

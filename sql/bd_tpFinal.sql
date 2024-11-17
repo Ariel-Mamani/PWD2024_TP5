@@ -121,7 +121,7 @@ CREATE TABLE compraestado (
 --
 INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VALUES
     (1, 'Venta', 'Paginas/02_productos.php', null, null),
-    (2, '', 'Login/paginaSegura.php', null, null),
+    (2, '', 'Paginas/carrito.php', null, null),
     (3, '', 'Login/paginaSegura.php', null, null),
     (4, 'Menu', 'menu/menu_list.php', null, null),
     (5, '', 'menu/accion/listar_menu.php', null, null),
@@ -196,8 +196,8 @@ INSERT INTO `compraestadotipo` (`idcompraestadotipo`, `cetdescripcion`, `cetdeta
 
 -- Volcado de datos para la tabla PRODUCTO
 --
-INSERT INTO producto (idproducto, pronombre, prodetalle, proprecio, procantstock, proimagen, usdeshabilitado) VALUES 
+INSERT INTO producto (idproducto, pronombre, prodetalle, proprecio, procantstock, proimagen, prodeshabilitado) VALUES 
     (1, 'Acondicionador Garnier', 'Higiene personal', 2000, 20, 'acondicionador', NULL),
     (2, 'Shampoo Garnier', 'Higiene personal', 3000, 50, 'shampoo', NULL),
-    (3, 'Tijera', 'Aseo', 4000, 10, 'tijera', NULL,
+    (3, 'Tijera', 'Aseo', 4000, 10, 'tijera', NULL),
     (4, 'Cera Barba', 'Higiene personal', 2500, 15, 'cera', NULL);
