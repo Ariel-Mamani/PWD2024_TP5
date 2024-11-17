@@ -152,6 +152,17 @@ class AbmProducto{
         return $resp;
     }
 
+    public function modificarP ($param){
+        $resp = false;
+        $objProducto = new Producto();
+        $objProducto -> setear($param['idproducto'],$param['pronombre'],$param['prodetalle'],$param['proprecio'],$param['procantstock'],$param['proimagen']);
+        if($objProducto -> modificar()){
+            $resp = true;
+        }
+
+        return $resp;
+    }
+
 
 
     /**
@@ -178,6 +189,18 @@ class AbmProducto{
         $objProducto = new Producto();
         $arreglo = $objProducto->listar($where);
         return $arreglo;
+    }
+
+
+
+    public function buscarProducto($idProducto){
+        $objProducto = new Producto();
+        $productoEncontrado = null;
+        if($objProducto -> buscar($idProducto)){
+            $productoEncontrado = $objProducto;
+        }
+
+        return $productoEncontrado;
     }
 
 

@@ -81,6 +81,31 @@ class Producto extends BaseDatos{
         $this->mensajeoperacion = $valor; 
     }
 
+
+    public function buscar($idproducto){
+        $base= new BaseDatos();
+        $consulta = "SELECT * FROM producto where idproducto= " . $idproducto;
+        $exito = false;
+        if($base ->Iniciar()){
+            if($base -> Ejecutar($consulta)){
+                if($row= $base -> Registro()){
+                    $this -> setProPrecio($row['proprecio']);
+                    $this -> setProDetalle($row['prodetalle']);
+                    $this -> setProNombre($row['pronombre']);
+                    $this -> setProImagen($row['proimagen']);
+                    $this -> SetIdProducto($idproducto);
+                    $this -> setProStock($row['procantstock']);
+                    $exito = true;
+                }
+            }else{
+                $this-> setmensajeoperacion($base -> getError());
+            }
+        }else{
+            $this -> setmensajeoperacion($base -> getError());
+        }
+        return $exito;
+    }
+
     /**
      * Busca en la base de datos los datos de un producto específico por idproducto y 
      * los carga en las propiedades del objeto. 
@@ -149,7 +174,7 @@ class Producto extends BaseDatos{
         pronombre = '".$this->getProNombre()."', 
         prodetalle = '".$this->getProDetalle()."', 
         proprecio = ".$this->getProPrecio().", 
-        procantstock = '".$this->getProStock()."' 
+        procantstock = '".$this->getProStock()."', 
         proimagen = '".$this->getProImagen()."' 
         WHERE idproducto = ".$this->getIdProducto();
 
