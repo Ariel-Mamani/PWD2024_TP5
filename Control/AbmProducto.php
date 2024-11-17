@@ -37,7 +37,7 @@ class AbmProducto{
     protected function cargarObjeto($param){
         $objProducto = null;
         
-        if( array_key_exists('idProducto',$param) and 
+        if( array_key_exists('idproducto',$param) and 
             array_key_exists('pronombre',$param) and 
             array_key_exists('prodetalle',$param) and 
             array_key_exists('proprecio',$param) and 
@@ -59,9 +59,9 @@ class AbmProducto{
     protected function cargarObjetoConClave($param){
         $objProducto = null;
         
-        if( isset($param['idProducto']) ){
+        if( isset($param['idproducto']) ){
             $objProducto = new Producto();
-            $objProducto->setear($param['idProducto'], null, null, null, null, null);
+            $objProducto->setear($param['idproducto'], null, null, null, null, null);
         }
         return $objProducto;
     }
@@ -74,7 +74,7 @@ class AbmProducto{
      */
     protected function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['idProducto']))
+        if (isset($param['idproducto']))
             $resp = true;
         return $resp;
     }
@@ -86,7 +86,7 @@ class AbmProducto{
      */
     public function alta($param){
         $resp = false;
-        $param['idProducto'] = null;                             //Campo autoincremento
+        $param['idproducto'] = null;                             //Campo autoincremento
         $objProducto = $this->cargarObjeto($param);
         if ($objProducto != null and $objProducto->insertar()){
             $resp = true;
@@ -96,9 +96,9 @@ class AbmProducto{
 
     public function ingresarDatos($param){
         $resp = false;
-        $param['idProducto']= null;
+        $param['idproducto']= null;
         $objProducto = new Producto();
-        $objProducto-> setear($param['idProducto'],$param['pronombre'],$param['prodetalle'],$param['proprecio'],$param['procantstock'],$param['proimagen']);
+        $objProducto-> setear($param['idproducto'],$param['pronombre'],$param['prodetalle'],$param['proprecio'],$param['procantstock'],$param['proimagen']);
         if($objProducto -> insertar()){
             $resp = true;
         }
@@ -173,8 +173,8 @@ class AbmProducto{
     public function buscar($param){
         $where = " true ";
         if ($param <> NULL){
-            if  (isset($param['idProducto']))
-                $where.=" and idProducto =".$param['idProducto'];
+            if  (isset($param['idproducto']))
+                $where.=" and idproducto =".$param['idproducto'];
             if  (isset($param['pronombre']))
                 $where.=" and pronombre ='".$param['pronombre']."'";
             if  (isset($param['prodetalle']))
