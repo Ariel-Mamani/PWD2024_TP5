@@ -191,3 +191,13 @@ INSERT INTO `compraestadotipo` (`idcompraestadotipo`, `cetdescripcion`, `cetdeta
 (3, 'cancelada', 'el cliente puede cancelar su compra en curso o un usuario administrador podra cancelar una compra en cualquier estado y un usuario cliente solo en estado = 1 '),
 (4, 'enviada', 'cuando el usuario administrador envia a uno de las compras en estado = 2 '),
 (5, 'recibida', 'cuando el usuario administrador confirma la llegada a destino de una compra en estado = 4 ');
+
+
+
+-- Volcado de datos para la tabla PRODUCTO
+--
+INSERT INTO producto (idproducto, pronombre, prodetalle, proprecio, procantstock, proimagen, usdeshabilitado) VALUES 
+    (1, 'Acondicionador Garnier', 'Higiene personal', 2000, 20, 'acondicionador', NULL),
+    (2, 'Shampoo Garnier', 'Higiene personal', 3000, 50, 'shampoo', NULL),
+    (3, 'Tijera', 'Aseo', 4000, 10, 'tijera', NULL,
+    (4, 'Cera Barba', 'Higiene personal', 2500, 15, 'cera', NULL);
