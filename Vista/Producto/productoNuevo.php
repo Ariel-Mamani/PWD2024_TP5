@@ -19,35 +19,67 @@ include_once "../Estructura/header_N.php";
 
 <!--Formularios-->
 
-        <form method="post" action="productoAccion.php" id="formProductoNuevo" name="formProductoNuevo" class="row g-3 mt-3 needs-validation" enctype="multipart/form-data" novalidate>
+   <form method="post" action="accion/productoAgregar.php" id="formProductoNuevo" name="formProductoNuevo"  class="row g-3 mt-3 needs-validation" enctype="multipart/form-data" novalidate>
+    <div class="mb-3 form-floating text-primary mb-4">
+        <input class="form-control" type="text" id="pronombre" name="pronombre" require>
+        <label for="pronombre" class="form-label">Nombre del Producto</label>
+    </div>
 
-        <div class="mb-3 form-floating text-primary mb-4">
-            <input class="form-control" type="text" id="pronombre" name="pronombre" require>
-            <label for="pronombre" class="form-label">Nombre Producto</label>
-        </div>
+    <div class="mb-3 form-floating text-primary mb-4">
+        <input class="form-control" type="text" id="prodetalle" name="prodetalle" require>
+        <label for="prodetalle" class="form-label">Detalles del Producto</label>
+    </div>
 
+    <div class="mb-3 form-floating text-primary mb-4">
+        <input type="text" class="form-control" id="proprecio" name="proprecio" require>
+        <label for="proprecio" class="form-label">Precio</label>
+    </div>
+    <div class="mb-3 form-floating text-primary mb-4">
+        <input type="text" class="form-control" id="procantstock" name="procantstock"  require>
+        <label for="procantstock" class="form-label">Ingrese la cantidad de stock </label>
+    </div>
+    
 
-        <div class="mb-3 form-floating text-primary mb-4">
-            <input class="form-control" type="text" id="prodetalle" name="prodetalle" require>
-            <label for="prodetalle" class="form-label">Detalles del Producto</label>
-        </div>
+    <div class="mb-3 form-floating text-primary mb-4">
+        <input type="text" class="form-control" id="proimagen" name="proimagen" require>
+        <label for="proimagen">Ingrese la URL donde esta la imagen</label>
+    </div>
 
-
-        <div class="mb-3 form-floating text-primary mb-4">
-            <input class="form-control" type="text" id="proprecio" name="proprecio" require>
-            <label for="proprecio" class="form-label">Precio del Producto</label>
-        </div>
-
-
-        <div class="mb-3 form-floating text-primary mb-4">
-            <input class="form-control" type="file" id="proimagen" name="proimagen" require>
-            <label for="proimagen" class="form-label">Ingrese la imagen del producto</label>
-        </div>
-
-        <div class="col-md-4">
-            <button class="btn btn-primary" type="submit">Añadir</button>
-        </div>
-        </form>
+    <div class="col-md-4">
+        <button class="btn btn-primary" type="submit">Añadir</button>
+        <a href="../Producto/Productos_lista.php" role="button">Volver</a>
+    </div>
+   </form>
 
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('#formProductoNuevo').on('submit', function(event){
+            event.preventDefault();
+
+            var formData = new FormData(this); // Cambiado $this a this
+
+            $.ajax({
+                url: 'accion/productoAgregar.php',
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    if(response.success){ // Corregido 'succes' a 'success'
+                        alert('Producto añadido con éxito.');
+                        $('#formProductoNuevo')[0].reset();
+                    } else {
+                        alert('Error al añadir el producto: ' + response.message); // Corregido 'menssage' a 'message'
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error al añadir el producto:', textStatus, errorThrown);
+                    alert('Error al añadir el producto. Inténtelo de nuevo');
+                }
+            });
+        });
+    });
+</script>

@@ -78,11 +78,11 @@ include_once "../Estructura/header_N.php";
 </script>
 <script>
     $(document).on('click', '.btn-eliminar', function() {
-    var idProducto = $(this).data('id'); // Obtener el ID del producto a eliminar
+    var idProducto = $(this).data('id'); // Obtener el ID del producto a eliminar de el atributo data-id
 
     // Confirmar la eliminación
     if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
-        $.ajax({
+        $.ajax({ // llamada a AJAX  que permite enviar un solicitud al servidor sin recargar la pagina
             url: 'accion/eliminar_Producto.php', // Cambia esto a la ruta correcta de tu archivo PHP
             method: 'POST',
             data: { idproducto: idProducto },

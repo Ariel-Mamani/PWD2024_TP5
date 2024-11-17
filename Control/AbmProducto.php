@@ -94,6 +94,18 @@ class AbmProducto{
         return $resp;
     }
 
+    public function ingresarDatos($param){
+        $resp = false;
+        $param['idProducto']= null;
+        $objProducto = new Producto();
+        $objProducto-> setear($param['idProducto'],$param['pronombre'],$param['prodetalle'],$param['proprecio'],$param['procantstock'],$param['proimagen']);
+        if($objProducto -> insertar()){
+            $resp = true;
+        }
+
+        return $resp;
+    }
+
 
     /**
      * permite eliminar un objeto 
