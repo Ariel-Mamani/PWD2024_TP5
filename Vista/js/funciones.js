@@ -24,6 +24,7 @@ $(document).ready(function (){
                     precioVenta: precioVenta
                 },
                 success: function (response){
+                    location.reload();
                     alert('Artículo agregado al carrito!');
                 },
                 error: function (){
@@ -51,7 +52,7 @@ $(document).ready(function () {
                 index: index
             },
             success: function (response) {
-                alert('Articulo eliminada del carrito!');
+                // alert('Articulo eliminada del carrito!');
                 location.reload();
             }
         });

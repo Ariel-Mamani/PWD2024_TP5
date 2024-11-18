@@ -1,14 +1,15 @@
 <?php
 session_start();
+include_once '../../configuracion.php';
+$datos = data_submitted();
 
-
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if(!empty($datos)){
     // Obtiene los datos enviados desde la solicitud AJAX
-    $idArt = $_POST['idArt'];
-    $nombre = $_POST['nombre'];
-    $cantidad = $_POST['cantidad'];
-    $stock = $_POST['stock'];
-    $precioVenta = $_POST['precioVenta'];
+    $idArt = $datos['idArt'];
+    $nombre = $datos['nombre'];
+    $cantidad = $datos['cantidad'];
+    $stock = $datos['stock'];
+    $precioVenta = $datos['precioVenta'];
 
     // Si el carrito no existe en la sesion, lo inicializa como un arreglo vacio
     if(!isset($_SESSION['carrito'])){
@@ -36,8 +37,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             'precioVenta' => $precioVenta
         ];
     }
-    
-    // Retorna una respuesta en formato JSON para informar que la operación fue exitosa
     echo json_encode(['success' => true]);
 }
 ?>
+

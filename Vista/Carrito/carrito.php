@@ -1,5 +1,4 @@
 <?php
-// session_start();
 $titulo = "Carrito"; 
 include_once '../Estructura/header.php';
 $session = new Session();
@@ -16,9 +15,6 @@ if (!$session->validar()) {
 // Si el usuario no tiene un carrito activo, se crea uno vacio
 // OJO AL PIOJO
 $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
-//echo '<pre>';
-//print_r($carrito); // Probandoooooooooooo
-//echo '</pre>';
 
 ?>
 
@@ -30,7 +26,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar al carrito</title>
 
-<script src="../js/functiones.js"></script>
+<script src="../js/funciones.js"></script>
 </head>
 
 <form action="" method="post">
@@ -59,7 +55,19 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
                             foreach ($carrito as $index => $item) :
                             $totalItem = $item['cantidad'] * $item['precioVenta'];
                             $totalGeneral += $totalItem;
-                            
+                            $obProducto = new Producto();
+                            $elProducto = $obProducto->listar("idproducto = " . $item['idArt']);
+                            $nuevoStock = $item['stock']-$item['cantidad'];
+                            if (!empty($elProducto)) {
+                                $producto = $elProducto[0];
+                                $producto->setProStock($nuevoStock);
+                                
+                                if($producto->modificar()) {
+                                    echo "Producto modificado con éxito.";
+                                }else{
+                                    echo "Error al modificar el producto: " . $producto->getmensajeoperacion();
+                                }
+                            }
                         ?>
                         <tr>
                             <td><?php echo $index + 1; ?></td>
@@ -67,7 +75,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
                             <td><?php echo htmlspecialchars($item['cantidad']); ?></td>
                             <td><?php echo '$' . htmlspecialchars($item['precioVenta']); ?></td>
                             <td>
-                                <button class="btn btn-danger eliminar-carrito" data-index="<?php echo $index; ?>"><i class="bi bi-trash-fill"></i></button>
+                                <button class="btn btn-danger eliminar-carrito" data-index="<?php echo $index; ?>" data-id='<?php echo $item['idArt'];?>'><i class="bi bi-trash-fill"></i></button>
                                 <button><i class="bi bi-caret-up-fill"></i></button>
                                 <button><i class="bi bi-caret-down-fill"></i></button>
                             </td>
@@ -88,21 +96,29 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
     </div>
 </form>
 <?php
-//  $obProducto = new Producto();
-//  $elProducto = $obProducto->listar(2);
- 
-// if (!empty($elProducto)) {
-//     $producto = $elProducto[0];
-//     $producto->setProStock(107);
-    
-//     if ($producto->modificar()) {
-//         echo "Producto modificado con éxito.";
-//     } else {
-//         echo "Error al modificar el producto: " . $producto->getmensajeoperacion();
-//     }
-// }
-?>
-<?php
     include_once '../Estructura/footer_tienda.php';
 ?>
 
+<!----- Script para borrar un producto de la tabla y deshabiltarla de la base de datos------>
+<script>
+$(document).on('click', '.eliminar-carrito', function() {
+    var idProducto = $(this).data('id'); // Obtener el ID del producto a eliminar
+    $.ajax({
+        url: 'decrementarProducto.php', 
+        method: 'POST',
+        data: { idproducto: idProducto },
+        success: function(response) {
+    console.log(response); // Para verificar la respuesta del servidor
+    if (response.success) {
+        alert('Producto eliminado con éxito.');
+    } else {
+        alert('Error al eliminar el producto: ' + response.message);
+    }
+},
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error al eliminar el producto:', textStatus, errorThrown);
+            alert('Error al eliminar el producto. Inténtalo de nuevo.');
+        }
+    });
+});
+</script>
