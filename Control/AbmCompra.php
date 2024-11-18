@@ -112,7 +112,7 @@ class AbmCompra{
      * @param array $param
      * @return boolean $resp
      */
-/*    public function baja($param){
+    public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objCompra = $this->cargarObjetoConClave($param);
@@ -122,7 +122,7 @@ class AbmCompra{
         }
         return $resp;
     }
-*/
+
 
     /**
      * permite modificar un objeto menos la password.
@@ -133,7 +133,7 @@ class AbmCompra{
      * @param array $param
      * @return boolean $resp
      */
- /*   public function modificacion($param){
+    public function modificacion($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objCompra = $this->cargarObjeto($param);
@@ -142,7 +142,7 @@ class AbmCompra{
             }
         }
         return $resp;
-    }*/
+    }
 
 
     /**

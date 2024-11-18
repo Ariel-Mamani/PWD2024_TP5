@@ -7,9 +7,10 @@ class Compra extends BaseDatos{
 
     public function __construct()
     {   
+        parent::__construct();
         $this->idcompra = '';
         $this->cofecha = '';
-        $this->objUsuario = new Usuario;
+        $this->objUsuario = new Usuario();
         $this->mensajeoperacion = '';
     }
 
@@ -67,6 +68,7 @@ class Compra extends BaseDatos{
                 $row = $this->Registro();
                 $objUsuario = new Usuario();
                 $objUsuario->setidusuario($row['idusuario']);
+                $objUsuario->cargar();
                 $this->setear($row['idcompra'], $row['cofecha'], $objUsuario);
                 $exito = true;
             }else{
@@ -104,7 +106,7 @@ class Compra extends BaseDatos{
     /**
      *  Actualiza un registro existente de acuerdo con el idcompra
      */
-  /*  public function modificar(){
+    public function modificar(){
         $resp = false;
         $sql = "UPDATE compra SET 
                 cofecha = '" . $this->getCoFecha() . "', 
@@ -121,13 +123,13 @@ class Compra extends BaseDatos{
             $this->setMensajeOperacion("Compra->modificar: " . $this->getError());
         }
         return $resp;
-    }*/
+    }
 
 
     /**
      * Borra un registro de la tabla con el idcompra correspondiente
      */
-  /*  public function eliminar(){
+    public function eliminar(){
         $resp = false;
         $sql = "DELETE FROM compra WHERE idcompra = " . $this->getIdCompra(). " AND idusuario = " 
         . $this->getUsuario()->getidusuario();
@@ -142,15 +144,14 @@ class Compra extends BaseDatos{
             $this->setMensajeOperacion("Compra->eliminar: " . $this->getError());
         }
         return $resp;
-    }*/
+    }
 
     /**
      * Recupera múltiples registros de la tabla. Permite añadir una condición para filtrar
      */
     public function listar($condicion = ""){
         $arreglo = array();
-        $sql = "SELECT * FROM compra";
-        
+        $sql = "SELECT * FROM compra";     
         if($condicion != ""){
             $sql .= " WHERE " . $condicion;
         }

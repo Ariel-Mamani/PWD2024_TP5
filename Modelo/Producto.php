@@ -237,5 +237,35 @@ class Producto extends BaseDatos{
         return $arreglo;
     }
     
+    
+    /**
+     * Recupera múltiples registros de la tabla. Permite añadir una condición para filtrar
+     */
+    public function listarCompra($condicion = ""){
+        $arreglo = array();
+        $sql = "SELECT * FROM compra";     
+        if($condicion != ""){
+            $sql .= " WHERE " . $condicion;
+        }
+        if($this->Iniciar()){
+            $res = $this->Ejecutar($sql);
+            if($res > -1){
+                while($row = $this->Registro()){
+                    $objUsuario = new Usuario();
+                    $objUsuario->setidusuario($row['idusuario']);
+                    $objUsuario->cargar();
+                    $objCompra = new Compra();
+                    $objCompra->setear($row['idcompra'], $row['cofecha'], $objUsuario);
+                    array_push($arreglo, $objCompra);
+                }
+            }else{
+                $this->setMensajeOperacion("Compra->listar: " . $this->getError());
+            }
+        }else{
+            $this->setMensajeOperacion("Compra->listar: " . $this->getError());
+        }
+        return $arreglo;
+    }
+
 
 }

@@ -28,7 +28,7 @@ $arregloProductos = $objProdcuto->listar();
     <?php
     foreach($arregloProductos as $producto){
         echo "<div class='targeta-producto'>";
-        echo "<img src='../../Archivos/Productos/{$producto->getProImagen()}.png' alt='{$producto->getProNombre()}'>";
+        echo "<img src='../../Archivos/Productos/{$producto->getProImagen()}' alt='{$producto->getProNombre()}'>";
         echo "<h3>{$producto->getProNombre()}</h3>";
         echo "<p>{$producto->getProDetalle()}</p>";
         echo "<p>$ {$producto->getProPrecio()}</p>";

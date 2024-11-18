@@ -7,6 +7,7 @@ class CompraItem extends BaseDatos{
     private $mensajeoperacion;
 
     public function __construct() {
+        parent::__construct();
         $this->idcompraitem = '';
         $this->producto = new Producto;  
         $this->compra = new Compra;    

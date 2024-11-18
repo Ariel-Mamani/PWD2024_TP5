@@ -29,8 +29,8 @@ spl_autoload_register(function ($class_name){
     $directorys = array(
         $GLOBALS['ROOT'].'Modelo/',
         $GLOBALS['ROOT'].'Modelo/Conector/',
-        $GLOBALS['ROOT'].'Control/',
-        $GLOBALS['ROOT'].'Vista/'
+        $GLOBALS['ROOT'].'Control/'
+//        $GLOBALS['ROOT'].'Vista/'
       //  $GLOBALS['ROOT'].'util/class/',
         );
     //print_r($directorys) ;

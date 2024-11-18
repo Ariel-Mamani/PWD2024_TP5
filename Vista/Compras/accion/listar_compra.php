@@ -1,19 +1,26 @@
 <?php 
 include_once "../../../configuracion.php";
 $data = data_submitted();
-$objControl = new AbmCompra();
-$list = $objControl->buscar(NULL);
+$param['idcompraestadotipo'] = 1; //Compra ingresada
+$objAbmCompraEstado = new AbmCompraEstado();
+$listaCompraEstado = $objAbmCompraEstado->buscar($param);
+$listaCompra = array();
+if(count($listaCompraEstado) > 0){
+    foreach($listaCompraEstado as $objCompraEstado){
+        if( $objCompraEstado->getCeFechaFin() == NULL){   
+            array_push($listaCompra, $objCompraEstado->getCompra());
+        }
+    }
+}
 $arreglo_salida =  array();
-foreach ($list as $elem ){
-    
+foreach ($listaCompra as $elem ){
     $nuevoElem['idcompra']  = $elem->getIdCompra();
     $nuevoElem["cofecha"]   = $elem->getCoFecha();
-    $nuevoElem["idusuario"] = $elem->getUsuario()->getIdUsuario();
-    $nuevoElem["usnombre"] = $elem->getUsuario()->getUsNombre();
-   
+    $nuevoElem["idusuario"] = $elem->getUsuario()->getidusuario();
+    $nuevoElem["usnombre"]  = $elem->getUsuario()->getusnombre();
     array_push($arreglo_salida,$nuevoElem);
 }
-//verEstructura($arreglo_salida);
+
 echo json_encode($arreglo_salida);
 
 ?>

@@ -9,6 +9,7 @@ class CompraEstado extends BaseDatos{
     private $mensajeoperacion;
 
     public function __construct() {
+        parent::__construct();
         $this->idcompraestado = '';
         $this->compra = new Compra();
         $this->compraestadotipo = new CompraEstadoTipo();

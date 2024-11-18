@@ -20,11 +20,12 @@ include_once "../Estructura/header.php";
 <script type="text/javascript" src="../js/jquery-easyui-1.6.6/jquery.easyui.min.js"></script>
 </head>
 <body>
-<h2>ABM - Compra</h2>
+<h2>Compras Ingresadas</h2>
 <p>Seleccione la acci&oacute;n que desea realizar.</p>
 
 <table id="dg" title="Administrador de item Compra" class="easyui-datagrid" style="width:900px;height:750px"
-    url="accion/listar_compra.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+    url="accion/listar_compra.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" striped="true" data="1">
+
     <thead>
         <tr>
             <th field="idcompra" width="10">ID Compra</th>
@@ -40,18 +41,18 @@ include_once "../Estructura/header.php";
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editCompra()">Editar Compra</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyCompra()">Baja Compra</a>
 
-    <select id="cc" class="easyui-combogrid" name="dept" style="width:220px;"
+   <!-- <select id="cc" class="easyui-combogrid" name="dept" style="width:220px;"
         data-options="
             panelWidth:220,
             value:'Estado de la compra',
-            idField:'code',
-            textField:'name',
+            idField:'idcompraestadotipo',
+            textField:'cetdescripcion',
             url:'accion/tipo_list.php',
             columns:[[
                 {field:'idcompraestadotipo',title:'Id',width:40},
                 {field:'cetdescripcion',title:'Descripci&oacute;',width:180},
             ]]
-        "></select>
+        "></select> -->
 
 </div>
             
@@ -81,6 +82,7 @@ include_once "../Estructura/header.php";
                 $('#fm').form('clear');
                 url = 'accion/alta_compra.php';
             }
+
             function editCompra(){
                 var row = $('#dg').datagrid('getSelected');
                 if (row){
@@ -89,6 +91,7 @@ include_once "../Estructura/header.php";
                     url = 'accion/edit_compra.php?accion=mod&idcompra='+row.idCompra;
                 }
             }
+
             function saveCompra(){
             	//alert(" Accion");
                 $('#fm').form('submit',{
@@ -113,6 +116,7 @@ include_once "../Estructura/header.php";
                     }
                 });
             }
+
             function destroyCompra(){
                 var row = $('#dg').datagrid('getSelected');
                 if (row){
@@ -135,6 +139,8 @@ include_once "../Estructura/header.php";
                     });
                 }
             }
+
+
+
 </script>
-            </body>
-            </html>
+         
