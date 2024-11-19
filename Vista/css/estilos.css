@@ -103,6 +103,10 @@ h2{
     font-weight: bold;
 }
 
+.letras{
+    color: black;
+}
+
 
 
 /***********************************************************************************************/
@@ -548,6 +552,44 @@ button{
     width: 250px;
     height: 250px;
     object-fit: cover; /* Recorta la imagen si excede las dimensiones */
+}
+
+
+
+/***********************************************************************************************/
+/****************************************** PRODUCTOS ******************************************/
+/***********************************************************************************************/
+.containerProducto{
+    display:  grid;
+    grid-template-columns: 300px 300px 300px;
+    grid-template-rows: 400px 400px 400px;
+    background-color: aqua;
+    align-items:  center;
+    gap: 20px;
+}
+
+.containerProducto > div{
+    background-color: blue;
+    margin: 10px;
+    padding: 10px;
+    font-size: 1.5em;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.containerProducto > div > img{
+    width: 80%;
+    border-radius: 10px;
+}
+.containerProducto > div > label, p{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: antiquewhite;
+}
+
+.containerProducto > div > a {
+    margin: 10px;
+    text-decoration: none;
+    color: red;
 }
 
 

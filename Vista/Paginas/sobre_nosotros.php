@@ -36,11 +36,11 @@ include_once '../Estructura/header_N.php';
 
     <!-- Sobre nosotros -->
     <div class="sobre_nosotros">
-        <p class="tiulo_sobre_nosotros">Bienvenidos a <b>Pelitos</b></p>
-        <p>En <b>Pelitos</b>, nos especializamos en ofrecer una experiencia de cuidado y estilo personalizado para toda la familia. Cada corte y tratamiento está hecho con dedicación y profesionalismo, pensado para resaltar lo mejor de cada persona.</p>
-        <p>Ofrecemos una variedad de servicios, desde cortes modernos y coloración hasta tratamientos de cuidado capilar, ideales para quienes valoran una atención al detalle y un toque especial. Nuestro equipo apasionado está comprometido en crear looks únicos que se adapten a tu estilo y personalidad.</p>
-        <p>Ya sea que busques un cambio de look, un tratamiento especial o simplemente un retoque, <b>Pelitos</b> está aquí para ti. Nos enorgullece crear estilos que no solo se ven bien, sino que también te hacen sentir genial.</p>
-        <p>Gracias por confiar en nosotros y ser parte de nuestra comunidad. ¡Visítanos y descubre lo que podemos hacer por ti y tu cabello!</p>
+        <p class="tiulo_sobre_nosotros letras">Bienvenidos a <b>Pelitos</b></p>
+        <p class="letras">En <b>Pelitos</b>, nos especializamos en ofrecer una experiencia de cuidado y estilo personalizado para toda la familia. Cada corte y tratamiento está hecho con dedicación y profesionalismo, pensado para resaltar lo mejor de cada persona.</p>
+        <p class="letras">Ofrecemos una variedad de servicios, desde cortes modernos y coloración hasta tratamientos de cuidado capilar, ideales para quienes valoran una atención al detalle y un toque especial. Nuestro equipo apasionado está comprometido en crear looks únicos que se adapten a tu estilo y personalidad.</p>
+        <p class="letras">Ya sea que busques un cambio de look, un tratamiento especial o simplemente un retoque, <b>Pelitos</b> está aquí para ti. Nos enorgullece crear estilos que no solo se ven bien, sino que también te hacen sentir genial.</p>
+        <p class="letras">Gracias por confiar en nosotros y ser parte de nuestra comunidad. ¡Visítanos y descubre lo que podemos hacer por ti y tu cabello!</p>
     </div>
     <br>
 
