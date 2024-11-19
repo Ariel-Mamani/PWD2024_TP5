@@ -1,6 +1,6 @@
 <?php 
 $titulo = "TP FINAL";
-include_once "../Estructura/header_N.php";
+include_once "../Estructura/header.php";
 
 
 
