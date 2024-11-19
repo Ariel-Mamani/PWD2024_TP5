@@ -1,8 +1,7 @@
 <?php
 $titulo = "Productos"; //Titulo en la pestaña
 include_once '../Estructura/header.php';
-$objProdcuto = new Producto;
-$arregloProductos = $objProdcuto->listar();
+
 ?>
 
 <!-- Aquí va el contenido principal de tu página -->
@@ -26,24 +25,9 @@ $arregloProductos = $objProdcuto->listar();
     <!-- Si quiern mostrar los productos con AJAX, haganlo pero que funcione el boton Agregar 
     Yo lo hice con AJAX pero lo unico que no me funcionaba era el boton agregar :(  pipipi
     Asi que deje esta version que es la que funca bien-->
-    <?php
-    foreach($arregloProductos as $producto){
-        echo "<div class='targeta-producto'>";
-        echo "<img src='../../Archivos/Productos/{$producto->getProImagen()}' alt='{$producto->getProNombre()}'>";
-        echo "<h3>{$producto->getProNombre()}</h3>";
-        echo "<p class='letras'>{$producto->getProDetalle()}</p>";
-        echo "<p class='letras'>$ {$producto->getProPrecio()}</p>";
-        echo "<p class='letras'>{$producto->getProImagen()}</p>";
-        echo "<p class='letras'><b>Stock:</b> {$producto->getProStock()}</p>";
-        echo "<button class='btn btn-primary agregar-carrito' 
-                data-id='{$producto->getIdProducto()}'
-                data-nombre= '{$producto->getProNombre()}'
-                data-precio= '{$producto->getProPrecio()}'
-                data-stock= '{$producto->getProStock()}' >Agregar al carrito
-            </button>";
-        echo "</div>";
-    }
-    ?>
+    <div id="grid-container">
+
+    </div>
 
 
     <!--Ancla de fondo a Inicio-->
@@ -60,3 +44,37 @@ $arregloProductos = $objProdcuto->listar();
 <?php
     include_once '../Estructura/footer_tienda.php';
 ?>
+
+
+
+<script>
+    $(document).ready(function(){
+        // obtener datos de la base de datos
+        $.ajax({
+            type:'GET',
+            url:'../Producto/accion/listar_Productos.php',
+            dataType:'json',
+            success: function(data){
+                //genera div para cada producto
+                $.each(data, function(index,producto){
+                    // Crear el div para el producto
+                    var divProducto = $('<div class="producto">');
+                    divProducto.html( 
+                        '<p>' +  producto.pronombre + '</p>' +
+                        '<p>Precio: $' + producto.proprecio + '</p>' +
+                        '<p>Stock: ' + producto.procantstock + '</p>' + 
+                        '<img class="grid-img" src="../../Archivos/Productos/'+producto.proimagen+ '.png" alt="' + producto.pronombre + '" stlye="width:50%; heigth:auto">' +
+                        '<button tpye="submit" class="btn-compra">Añadir al carro</button>'
+                    );
+
+                    //Agregar contenido al div
+                    $('#grid-container').append(divProducto);
+                });
+            },
+            error: function(xhr,status,error){
+                console.error("Error al obtener datos: ", error);
+                console.log('Respuesta:', xhr.responseText);
+            }
+        });
+    });
+</script>
