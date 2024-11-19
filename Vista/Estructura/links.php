@@ -13,6 +13,7 @@
 
   <!-- LINK CSS -->
   <link rel="stylesheet" type="text/css" href="../css/estilos.css">
+  <link rel="stylesheet" href="../css/estilo_02producto.css">
 
   <!-- LINK JS -->
   <script src="../Js/funciones.js"></script>
