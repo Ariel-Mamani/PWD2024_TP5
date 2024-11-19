@@ -38,7 +38,7 @@ include_once "../Estructura/header.php";
 
 <div id="toolbar">
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newCompra()">Nuevo Compra </a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editCompra()">Editar Compra</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="DetalleCompra()">Detalle Compra</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyCompra()">Baja Compra</a>
 
    <!-- <select id="cc" class="easyui-combogrid" name="dept" style="width:220px;"
@@ -83,12 +83,12 @@ include_once "../Estructura/header.php";
                 url = 'accion/alta_compra.php';
             }
 
-            function editCompra(){
+            function DetalleCompra(){
                 var row = $('#dg').datagrid('getSelected');
                 if (row){
-                    $('#dlg').dialog('open').dialog('center').dialog('setTitle','Editar Compra');
+                    $('#dlg').dialog('open').dialog('center').dialog('setTitle','Detalle de la Compra');
                     $('#fm').form('load',row);
-                    url = 'accion/edit_compra.php?accion=mod&idcompra='+row.idCompra;
+                    url = 'accion/detalle_compra.php?accion=mod&idcompra='+row.idCompra;
                 }
             }
 
