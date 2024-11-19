@@ -63,7 +63,8 @@ include_once '../Estructura/header.php';
                         '<p>' +  producto.pronombre + '</p>' +
                         '<p>Precio: $' + producto.proprecio + '</p>' +
                         '<p>Stock: ' + producto.procantstock + '</p>' + 
-                        '<img class="grid-img" src="../../Archivos/Productos/'+producto.proimagen+ '.png" alt="' + producto.pronombre + '" stlye="width:50%; heigth:auto">' 
+                        '<img class="grid-img" src="../../Archivos/Productos/'+producto.proimagen+ '.png" alt="' + producto.pronombre + '" stlye="width:50%; heigth:auto">' +
+                        '<button tpye="submit" class="btn-compra">Añadir al carro</button>'
                     );
 
                     //Agregar contenido al div
