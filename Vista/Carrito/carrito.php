@@ -15,7 +15,6 @@ if (!$session->validar()) {
 // Si el usuario no tiene un carrito activo, se crea uno vacio
 // OJO AL PIOJO
 $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
-
 ?>
 
 <!DOCTYPE html>
@@ -54,20 +53,6 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
                             $totalGeneral = 0;
                             foreach ($carrito as $index => $item) :
                             $totalItem = $item['cantidad'] * $item['precioVenta'];
-                            $totalGeneral += $totalItem;
-                            $obProducto = new Producto();
-                            $elProducto = $obProducto->listar("idproducto = " . $item['idArt']);
-                            $nuevoStock = $item['stock']-$item['cantidad'];
-                            if (!empty($elProducto)) {
-                                $producto = $elProducto[0];
-                                $producto->setProStock($nuevoStock);
-                                
-                                if($producto->modificar()) {
-                                    echo "Producto modificado con éxito.";
-                                }else{
-                                    echo "Error al modificar el producto: " . $producto->getmensajeoperacion();
-                                }
-                            }
                         ?>
                         <tr>
                             <td><?php echo $index + 1; ?></td>
@@ -99,10 +84,10 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
     include_once '../Estructura/footer_tienda.php';
 ?>
 
-<!----- Script para borrar un producto de la tabla y deshabiltarla de la base de datos------>
+<!-- Script para decrementar la cantidad de productos agegados e incrementa el stock en la BD si elimino cantidad------>
 <script>
 $(document).on('click', '.eliminar-carrito', function() {
-    var idProducto = $(this).data('id'); // Obtener el ID del producto a eliminar
+    var idProducto = $(this).data('id'); // Obtener el ID del producto a decrementar
     $.ajax({
         url: 'decrementarProducto.php', 
         method: 'POST',

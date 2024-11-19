@@ -24,7 +24,6 @@ $(document).ready(function (){
                     precioVenta: precioVenta
                 },
                 success: function (response){
-                    location.reload();
                     alert('Artículo agregado al carrito!');
                 },
                 error: function (){
@@ -39,8 +38,7 @@ $(document).ready(function (){
 
 
 
-
-//Funcion para elimar del carrito las peliculas agregadas
+//Funcion para eliminar los productos del carrito
 
 $(document).ready(function () {
     $('.eliminar-carrito').on('click', function () {
@@ -58,3 +56,5 @@ $(document).ready(function () {
         });
     });
 });
+
+

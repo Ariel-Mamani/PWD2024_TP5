@@ -11,6 +11,25 @@ if(!empty($datos)){
     $stock = $datos['stock'];
     $precioVenta = $datos['precioVenta'];
 
+    $abmProducto = new AbmProducto();
+
+    $elProducto = $abmProducto->buscar(['idproducto' => $idArt]); // Filtra por ID específico
+
+    $producto = $elProducto[0];
+    $stockActual = $producto->getProStock() - $cantidad; 
+        $producto->setProStock($stockActual);
+
+    $paramModificacion = [
+        'idproducto' => $producto->getIdProducto(),
+        'pronombre' => $producto->getProNombre(),
+        'prodetalle' => $producto->getProDetalle(),
+        'proprecio' => $producto->getProPrecio(),
+        'procantstock' => $producto->getProStock(),
+        'proimagen' => $producto->getProImagen()
+    ];
+
+    $abmProducto->modificacion($paramModificacion);
+
     // Si el carrito no existe en la sesion, lo inicializa como un arreglo vacio
     if(!isset($_SESSION['carrito'])){
         $_SESSION['carrito'] = [];

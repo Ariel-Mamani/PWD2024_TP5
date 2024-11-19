@@ -1,12 +1,11 @@
 <?php
 header('Content-Type: application/json');
-
 include_once '../../configuracion.php';
 $datos = data_submitted();
 
 $abmProducto = new AbmProducto();
 
-if (isset($datos['idproducto'])) {
+if (isset($datos['idproducto']) && !empty($datos['idproducto'])) {
     $elProducto = $abmProducto->buscar($datos);
 
     if (!empty($elProducto)) {

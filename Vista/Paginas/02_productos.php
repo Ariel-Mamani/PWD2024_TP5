@@ -4,6 +4,7 @@ include_once '../Estructura/header.php';
 $objProdcuto = new Producto;
 $arregloProductos = $objProdcuto->listar();
 ?>
+
 <!-- Aquí va el contenido principal de tu página -->
 <div class="main-content">
 
@@ -38,9 +39,8 @@ $arregloProductos = $objProdcuto->listar();
                 data-id='{$producto->getIdProducto()}'
                 data-nombre= '{$producto->getProNombre()}'
                 data-precio= '{$producto->getProPrecio()}'
-                data-stock= '{$producto->getProStock()}'>Agregar al carrito
+                data-stock= '{$producto->getProStock()}' >Agregar al carrito
             </button>";
-
         echo "</div>";
     }
     ?>
