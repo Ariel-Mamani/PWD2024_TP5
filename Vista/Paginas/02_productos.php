@@ -31,10 +31,10 @@ $arregloProductos = $objProdcuto->listar();
         echo "<div class='targeta-producto'>";
         echo "<img src='../../Archivos/Productos/{$producto->getProImagen()}' alt='{$producto->getProNombre()}'>";
         echo "<h3>{$producto->getProNombre()}</h3>";
-        echo "<p>{$producto->getProDetalle()}</p>";
-        echo "<p>$ {$producto->getProPrecio()}</p>";
-        echo "<p>{$producto->getProImagen()}</p>";
-        echo "<p><b>Stock:</b> {$producto->getProStock()}</p>";
+        echo "<p class='letras'>{$producto->getProDetalle()}</p>";
+        echo "<p class='letras'>$ {$producto->getProPrecio()}</p>";
+        echo "<p class='letras'>{$producto->getProImagen()}</p>";
+        echo "<p class='letras'><b>Stock:</b> {$producto->getProStock()}</p>";
         echo "<button class='btn btn-primary agregar-carrito' 
                 data-id='{$producto->getIdProducto()}'
                 data-nombre= '{$producto->getProNombre()}'
@@ -52,6 +52,9 @@ $arregloProductos = $objProdcuto->listar();
         Ir arriba
     </a>
 </div>
+
+<!-- Div para los alert -->
+<div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
 
 <!-- Footer -->
 <?php
