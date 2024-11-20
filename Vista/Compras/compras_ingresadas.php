@@ -10,18 +10,20 @@ include_once "../Estructura/header.php";
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Basic CRUD Application - jQuery EasyUI CRUD Demo</title>
-<link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/color.css">
-<link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/demo/demo.css">
-<script type="text/javascript" src="../js/jquery-easyui-1.6.6/jquery.min.js"></script>
-<script type="text/javascript" src="../js/jquery-easyui-1.6.6/jquery.easyui.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Basic CRUD Application - jQuery EasyUI CRUD Demo</title>
+    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/demo/demo.css">
+    <script type="text/javascript" src="../js/jquery-easyui-1.6.6/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-easyui-1.6.6/jquery.easyui.min.js"></script>
 </head>
+
 <body>
+    <br><br>
 <h2>Compras Ingresadas</h2>
-<p>Seleccione la acci&oacute;n que desea realizar.</p>
+<p class="letras">Seleccione la acci&oacute;n que desea realizar.</p>
 
 <table id="dg" title="Administrador de item Compra" class="easyui-datagrid" style="width:900px;height:750px"
     url="accion/listar_compra.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" striped="true" data="1">
@@ -41,7 +43,7 @@ include_once "../Estructura/header.php";
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="DetalleCompra()">Detalle Compra</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyCompra()">Baja Compra</a>
 
-   <!-- <select id="cc" class="easyui-combogrid" name="dept" style="width:220px;"
+    <!-- <select id="cc" class="easyui-combogrid" name="dept" style="width:220px;"
         data-options="
             panelWidth:220,
             value:'Estado de la compra',
@@ -53,9 +55,8 @@ include_once "../Estructura/header.php";
                 {field:'cetdescripcion',title:'Descripci&oacute;',width:180},
             ]]
         "></select> -->
-
 </div>
-            
+
 <div id="dlg" class="easyui-dialog" style="width:600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
     <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
         <h3>Compra Informacion</h3>
@@ -72,7 +73,12 @@ include_once "../Estructura/header.php";
     <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCompra()" style="width:90px">Aceptar</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
 </div>
+<br><br>
 
+<!-- Footer -->
+<?php
+    include_once '../Estructura/footer_tienda.php';
+?>
 
 
 <script type="text/javascript">
@@ -109,7 +115,6 @@ include_once "../Estructura/header.php";
                                 msg: result.errorMsg
                             });
                         } else {
-                           
                             $('#dlg').dialog('close');        // close the dialog
                             $('#dg').datagrid('reload');    // reload 
                         }
@@ -123,24 +128,20 @@ include_once "../Estructura/header.php";
                     $.messager.confirm('Confirm','Seguro que desea eliminar el Compra?', function(r){
                         if (r){
                             $.post('accion/eliminar_compra.php?idcompra='+row.idCompra,{idCompra:row.id},
-                               function(result){
-                               	 alert("Volvio Serviodr");   
-                                 if (result.respuesta){
-                                   	 
+                            function(result){
+                                alert("Volvio Serviodr");
+
+                                if (result.respuesta){
                                     $('#dg').datagrid('reload');    // reload the  data
                                 } else {
                                     $.messager.show({    // show error message
                                         title: 'Error',
                                         msg: result.errorMsg
-                                  });
+                                    });
                                 }
                             },'json');
                         }
                     });
                 }
             }
-
-
-
 </script>
-         

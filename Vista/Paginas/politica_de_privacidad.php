@@ -16,7 +16,7 @@ include_once '../Estructura/header_N.php';
             <!-- Titulo en la pagina -->
             <div class="container_titulo">
                 <h1 class="display-4 text-center titulo_principal text-light">Pelitos</h1>
-                <h2 class="text-light">Sobre Nosotros</h2>
+                <h2 class="text-light">Pol&iacute;tica de Privacidad</h2>
             </div>
         </div>    
     </div>
@@ -40,48 +40,31 @@ include_once '../Estructura/header_N.php';
 
     <!-- Sobre nosotros -->
     <div class="politica_de_privacidad">
-        <p class="letras">En Pelitos nos comprometemos a proteger la privacidad de nuestros clientes. Esta política de privacidad explica cómo recopilamos, utilizamos, almacenamos y protegemos la información personal que nos proporcionas al usar nuestros servicios, ya sea a través de nuestro sitio web, aplicación móvil o en nuestras instalaciones.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint dolore libero odit voluptas ex alias fuga facere, iste nisi molestias exercitationem consequuntur magni? Exercitationem facilis veritatis, labore id debitis fuga!</p>
 
         <p class="letras"><b>1. Información que recopilamos</b></p>
-        <p class="letras">Recopilamos la siguiente información personal de nuestros clientes:</p>
-        <ul>
-            <li>Datos de contacto: Nombre, correo electrónico, número de teléfono.</li>
-            <li>Información de la reserva: Fecha, hora y tipo de servicio solicitado.</li>
-            <li>Datos de pago: Información de tarjetas de crédito/débito o datos de pago electrónico (si corresponde).</li>
-            <li>Otra información: Detalles adicionales sobre preferencias o requerimientos para los servicios.</li>
-        </ul>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quo vitae, facere unde atque eum nemo voluptatum ratione dignissimos id aliquam nostrum culpa ipsa magni delectus dolores vero numquam architecto?</p>
 
         <p class="letras"><b>2. Cómo usamos la información</b></p>
-        <p class="letras">La información que recopilamos se utiliza para:</p>
-        <ul>
-            <li>Gestionar y confirmar las reservas de nuestros clientes.</li>
-            <li>Proporcionar un servicio personalizado y de calidad.</li>
-            <li>Mejorar nuestra oferta de productos y servicios.</li>
-            <li>Comunicarnos contigo en relación con tus reservas, promociones y novedades relacionadas con Pelitos.</li>
-            <li>Cumplir con nuestras obligaciones legales y contractuales.</li>
-        </ul>
+        <p class="letras">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est sint repudiandae temporibus distinctio, pariatur obcaecati minima asperiores voluptate fugiat ipsam ullam, vero quidem maiores aperiam labore assumenda modi omnis quod.</p>
 
         <p class="letras"><b>3. Protección de la información</b></p>
-        <p class="letras">Tomamos medidas razonables para proteger tu información personal contra el acceso no autorizado, la alteración o la destrucción. Utilizamos tecnología de encriptación en la transmisión de datos y almacenamos la información en servidores seguros.</p>
+        <p class="letras">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis sed ex mollitia laboriosam illo accusamus nam iusto amet dolore dolores! Sunt sequi nihil eveniet maiores ad ipsam, accusamus dolorem quas!</p>
 
         <p class="letras"><b>4. Compartir tu información</b></p>
-        <p class="letras">No vendemos, intercambiamos ni alquilamos tu información personal a terceros. Sin embargo, podemos compartirla con:
-
-Proveedores de servicios: Cuando contratamos proveedores externos para realizar tareas relacionadas con la operación de nuestro negocio, como procesadores de pagos o servicios de atención al cliente.
-Requerimientos legales: Si estamos obligados por ley, podremos divulgar tu información para cumplir con las normativas y regulaciones aplicables.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates illum maiores sed, dolorem ullam dicta repellendus sint aperiam unde amet quis id quaerat at necessitatibus ab officiis molestias. Eaque, fugiat!</p>
 
         <p class="letras"><b>5. Cookies</b></p>
-        <p class="letras">Utilizamos cookies en nuestro sitio web para mejorar la experiencia del usuario. Las cookies son pequeños archivos que se almacenan en tu dispositivo y que nos ayudan a recordar tus preferencias y a analizar cómo interactúas con nuestro sitio. Puedes desactivar las cookies a través de la configuración de tu navegador, pero algunas funciones de nuestro sitio pueden no funcionar correctamente.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, id. Magnam atque repudiandae, dignissimos dolorem deserunt non odio in quos harum facere labore ipsa quia voluptate, culpa similique, quisquam hic!</p>
 
         <p class="letras"><b>6. Tus derechos</b></p>
-        <p class="letras">Tienes derecho a acceder, corregir o eliminar la información personal que hemos recopilado sobre ti. También puedes optar por no recibir comunicaciones de marketing, aunque esto no afectará las comunicaciones relacionadas con tus reservas.</p>
-        <p class="letras">Para ejercer tus derechos, puedes contactarnos en cualquier momento a través de la siguiente dirección de correo electrónico: pelitos@pelitos.com.</p>
+        <p class="letras">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi explicabo veniam quis dolore sequi cumque quibusdam? Minus tempora maxime, repellendus reprehenderit dignissimos quo ad rem? Vel ex nesciunt totam repudiandae!</p>
 
         <p class="letras"><b>7. Enlaces a otros sitios web</b></p>
-        <p class="letras">Nuestro sitio web puede contener enlaces a sitios web de terceros. No nos hacemos responsables de la privacidad ni del contenido de esos sitios. Te recomendamos leer las políticas de privacidad de cualquier sitio web que visites.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod repellat ex enim illo eos iure? Commodi, vel. Soluta corrupti exercitationem cum! Aliquam enim aliquid possimus magni quibusdam eveniet vitae ullam.</p>
 
         <p class="letras"><b>8. Cambios en la política de privacidad</b></p>
-        <p class="letras">Pelitos se reserva el derecho de modificar esta política de privacidad en cualquier momento. Cualquier cambio será publicado en esta página y, en su caso, se notificará a nuestros clientes.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quis nemo, nesciunt perferendis inventore est voluptatem iusto fugit doloremque aliquid accusamus eius modi officiis! Incidunt, amet! Sit, pariatur et. Harum?</p>
 
         <p class="letras"><b>9. Contacto</b></p>
         <p class="letras">Si tienes preguntas sobre esta política de privacidad, o si deseas obtener más información sobre cómo manejamos tus datos personales, no dudes en contactarnos:</p>

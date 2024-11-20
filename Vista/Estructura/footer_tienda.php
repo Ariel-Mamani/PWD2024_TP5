@@ -41,6 +41,6 @@
         </div>
     </div>
     <div class="footer_nav">
-        <span>&copy; Copyright Pelitos 2024 - Argentina</span>
+        <span>&copy; Copyright Pelitos 2001 - Argentina</span>
     </div>
 </footer>

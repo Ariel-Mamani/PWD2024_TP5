@@ -16,7 +16,7 @@ include_once '../Estructura/header_N.php';
             <!-- Titulo en la pagina -->
             <div class="container_titulo">
                 <h1 class="display-4 text-center titulo_principal text-light">Pelitos</h1>
-                <h2 class="text-light">Sobre Nosotros</h2>
+                <h2 class="text-light">T&eacute;rminos y Condiciones</h2>
             </div>
         </div>    
     </div>
@@ -29,7 +29,7 @@ include_once '../Estructura/header_N.php';
     <!-- Texto contacto -->
     <div class="div_texto_contacto"  id="texto_contacto">
         <h1>
-            Términos y Condiciones de Pelitos.
+            T&eacute;rminos y Condiciones de Pelitos.
         </h1>
         <br>
         <h3>
@@ -41,44 +41,43 @@ include_once '../Estructura/header_N.php';
     <!-- Sobre nosotros -->
     <div class="terminos_y_condiciones">
         <p class="tiulo_terminos_y_condiciones letras">Bienvenidos a <b>Pelitos</b></p>
-        <p class="letras">Al utilizar nuestros servicios de reserva de turnos y demás servicios disponibles en nuestra plataforma, usted acepta los siguientes términos y condiciones. Le rogamos que los lea detenidamente antes de proceder con la reserva de su turno.</p>
+        <p class="letras">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates voluptate quia optio illo consequatur itaque obcaecati sunt, minus nostrum alias accusantium voluptatum magni numquam cumque odio corrupti reprehenderit molestiae? Totam?</p>
 
         <p class="letras"><b>1. Aceptación de los Términos</b></p>
-        <p class="letras">Al hacer una reserva a través de nuestro sistema o utilizar nuestros servicios, usted acepta cumplir con estos Términos y Condiciones. Si no está de acuerdo con alguna parte de estos términos, no debe utilizar nuestros servicios.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero dolorum, quaerat excepturi aliquid repellat in natus? Sapiente alias odit, nostrum aspernatur ipsa est dolores iure, impedit sint animi tenetur! Cumque?</p>
 
         <p class="letras"><b>2. Reserva de Turnos</b></p>
-        <p class="letras">Proceso de Reserva: La reserva de un turno se realiza a través de nuestro sistema online en el que deberá seleccionar el servicio, la fecha y la hora. Para completar la reserva, deberá ingresar su nombre, teléfono y correo electrónico.
-        <p class="letras">Confirmación de Reserva: Una vez que su reserva sea realizada con éxito, recibirá un correo electrónico con los detalles de su turno, incluyendo la fecha, hora y el servicio solicitado.</p>
-        <p class="letras">Política de Cancelación: Las cancelaciones deben realizarse con al menos 24 horas de antelación para evitar cargos adicionales. Si no se cancela con antelación, se podrá aplicar una tarifa por no presentación.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt voluptatum rerum blanditiis, laudantium amet, harum dolores, nihil nemo esse corrupti obcaecati? Sunt libero non totam. Explicabo cumque maiores beatae distinctio!</p>
+        <p class="letras">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit rerum fugit, esse quaerat recusandae totam quae? Maiores officiis ex ratione minus impedit. Sequi asperiores dicta nulla, numquam fugit necessitatibus tempore!</p>
 
         <p class="letras"><b>3. Servicios</b></p>
-        <p class="letras">En Pelitos ofrecemos una variedad de servicios de peluquería, que incluyen cortes de cabello, tintes, peinados, y más. Cada servicio tiene una duración estimada que se reflejará en el sistema de reservas.</p>
+        <p class="letras">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus et praesentium sunt laboriosam obcaecati eveniet voluptate, ad, iure facilis ex necessitatibus harum consectetur animi, repellendus placeat voluptatem libero deleniti nam?</p>
 
         <p class="letras"><b>4. Precios</b></p>
-        <p class="letras">Precios y Pagos: Los precios de nuestros servicios están claramente indicados al momento de realizar la reserva. Estos precios son orientativos y pueden estar sujetos a cambios sin previo aviso.</p>
-        <p class="letras">Métodos de Pago: Los pagos se realizarán al momento de la prestación del servicio. Aceptamos pagos en efectivo, tarjetas de crédito o débito, y otros métodos de pago electrónicos disponibles en el establecimiento.</p>
+        <p class="letras">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta in iure minus. Molestias, deserunt maiores sint cupiditate dolore velit quo perspiciatis assumenda quidem facere laudantium non in sapiente, corrupti quasi?</p>
+        <p class="letras">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam suscipit architecto alias aut veritatis doloremque perferendis, deserunt vero rerum! Esse recusandae, rem tempore harum facere illo aliquid doloremque tempora eius!</p>
 
         <p class="letras"><b>5. Responsabilidad del Cliente</b></p>
-        <p class="letras">Salud y Seguridad: El cliente es responsable de informar al personal de la peluquería sobre cualquier condición de salud que pueda afectar a la realización de los servicios (alergias, infecciones, etc.).</p>
-        <p class="letras">Comportamiento del Cliente: Se espera que los clientes mantengan un comportamiento respetuoso durante su visita. Cualquier conducta inapropiada o agresiva puede resultar en la cancelación del servicio y la expulsión del establecimiento sin reembolso.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia cupiditate veritatis architecto voluptatibus, hic vero illum neque nostrum corrupti. Doloremque nemo aspernatur facilis ratione molestiae dignissimos eaque maxime dolor sapiente.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident voluptate laudantium dolorem sequi cupiditate maiores ad tenetur dignissimos repellendus nemo, nulla quia architecto reprehenderit libero ea rerum voluptates repellat rem.</p>
 
         <p class="letras"><b>6. Política de Privacidad</b></p>
-        <p class="letras">Nos comprometemos a proteger la privacidad de nuestros clientes. Los datos personales proporcionados al realizar una reserva, como nombre, teléfono y correo electrónico, serán utilizados únicamente para la gestión de la reserva y para ponernos en contacto con usted en relación con nuestros servicios. No compartiremos su información con terceros sin su consentimiento explícito.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat debitis veritatis blanditiis voluptatem, sequi nihil quam dolore. Autem maxime molestiae a excepturi sit iure error quo? Tenetur nisi quisquam praesentium.</p>
 
         <p class="letras"><b>7. Modificaciones en los Servicios</b></p>
-        <p class="letras">Nos reservamos el derecho de modificar, suspender o descontinuar nuestros servicios en cualquier momento, sin previo aviso. Esto incluye cambios en la disponibilidad de los servicios, precios y horarios de atención.</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit autem facere architecto consectetur delectus laborum, repellat saepe, quis pariatur qui voluptate temporibus ullam officia atque nesciunt, fuga doloribus a corporis.</p>
 
         <p class="letras"><b>8. Limitación de Responsabilidad</b></p>
-        <p class="letras">Pelitos no será responsable por daños indirectos, incidentales o consecuentes que resulten del uso de nuestros servicios, incluidos los daños a la propiedad, lesiones o problemas derivados del uso de productos de peluquería. La responsabilidad total de Pelitos se limita al costo de los servicios prestados.</p>
+        <p class="letras">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur qui quaerat incidunt praesentium accusantium ea rem iusto voluptatum velit eligendi consectetur ad, voluptatibus omnis dicta possimus maxime ipsam distinctio eveniet?</p>
 
         <p class="letras"><b>9. Derechos de Propiedad Intelectual</b></p>
-        <p class="letras">Todo el contenido del sitio web, incluyendo imágenes, logos, textos, y diseños, son propiedad de Pelitos y están protegidos por las leyes de propiedad intelectual.</p>
+        <p class="letras">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum a saepe odio voluptatibus libero itaque ipsum, repellat amet odit at quia voluptates temporibus blanditiis quasi labore? Architecto quo nisi repellendus?</p>
 
         <p class="letras"><b>10. Modificaciones de los Términos y Condiciones</b></p>
-        <p class="letras">Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Las modificaciones se publicarán en nuestro sitio web, y será su responsabilidad revisarlos periódicamente. Si continúa utilizando nuestros servicios después de cualquier cambio, se considerará que acepta los nuevos términos.</p>
+        <p class="letras">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo, similique modi. Laboriosam voluptatem quasi iste doloribus totam nobis natus, distinctio deleniti deserunt iure beatae alias repudiandae possimus et, enim vero!</p>
 
         <p class="letras"><b>11. Jurisdicción y Ley Aplicable</b></p>
-        <p class="letras">Estos Términos y Condiciones se regirán por las leyes de [país o región]. Cualquier disputa relacionada con estos términos será resuelta en los tribunales competentes de [ciudad o país].</p>
+        <p class="letras">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore eaque impedit ut. Est pariatur mollitia, perspiciatis tempora voluptas cum veritatis consequatur minus ipsa ipsam, nisi excepturi maiores itaque corporis quod?</p>
 
         <p class="letras"><b>12. Contacto</b></p>
         <p class="letras">Si tiene alguna pregunta sobre estos Términos y Condiciones, puede ponerse en contacto con nosotros a través de los siguientes medios:</p>

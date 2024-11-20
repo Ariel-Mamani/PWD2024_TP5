@@ -95,7 +95,11 @@ h2{
     transform: translate(-50%, -50%); /* Ajusta el centro al 50% de su propio tamaño */
     color: white;
     text-align: center;
-    z-index: 1;
+    z-index: 1000;
+    background-color: rgba(42, 42, 44, 0.7); /* 0.7 es el nivel de opacidad */
+    border-radius: 15px;
+    border: white solid 1px;
+    width: 20%;
 }
 
 .titulo_principal {
@@ -594,6 +598,103 @@ button{
     width: 250px;
     height: 250px;
     object-fit: cover; /* Recorta la imagen si excede las dimensiones */
+}
+
+.table-striped thead {
+    background: black;
+    color: white;
+}
+/* Aplicar bordes redondeados a la primera y última celda de cada fila */
+.table-striped tbody tr td:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    overflow: hidden;
+}
+.table-striped tbody tr td:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: hidden;
+}
+
+/* Quitar las líneas de separación entre las filas y encabezado */
+.table-striped {
+    border-collapse: separate; /* Asegura que los bordes no colapsen */
+    border-spacing: 0; /* Elimina espacio entre las celdas */
+    text-align: center;
+}
+
+/* Eliminar cualquier borde en las celdas del cuerpo de la tabla */
+.table-striped td {
+    border: none;
+}
+
+/* Eliminar cualquier borde en las celdas del encabezado */
+.table-striped th {
+    border: none;
+}
+
+/* Cambiar el fondo de las filas impares a color blanco */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: white;
+}
+
+/* Cambiar el fondo de las filas pares a color blanco */
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: white; /* Color de fondo para filas pares */
+}
+
+/* Cambiar el fondo de las filas al pasar el mouse */
+.table-striped tbody tr:hover {
+    background-color: blue;
+    color: white;
+}
+
+/* Cambiar el color del botón cuando se pase el ratón por encima de la fila */
+.table-striped tbody tr:hover .btn-color {
+    background-color: #99f0ff;
+    border-color: #99f0ff;
+    color: blue;
+    border-radius: 5px;
+}
+/* Cambiar el color del botón cuando se pase el ratón por encima de la fila */
+.table-striped tbody tr:hover .btn-outline-danger {
+    background-color: #ff99cc;
+    border-color: #ff99cc;
+    color: blue;
+    border-radius: 5px;
+}
+/* Cambiar el color del botón cuando se pase el ratón por encima de la fila */
+.table-striped tbody tr:hover .btn-outline-success {
+    background-color: #7bfd7b;
+    border-color: #7bfd7b;
+    color: blue;
+    border-radius: 5px;
+}
+/* Cambiar el color del botón cuando se pase el ratón por encima de la fila */
+.table-striped tbody tr:hover .btn-outline-dark {
+    background-color: white;
+    border-color: white;
+    color: black;
+    border-radius: 5px;
+}
+
+/* Cambiar el borde y las letras del botón "Editar" cuando se pase el ratón por encima del botón */
+.table-striped tbody tr .btn-color:hover {
+    background-color: blue;
+    border-color: white;
+    color: white;
+}
+/* Cambiar el borde y las letras del botón "Borrar" cuando se pase el ratón por encima del botón */
+.table-striped tbody tr .btn-outline-danger:hover {
+    background-color: red;
+    border-color: white;
+    color: white;
+}
+
+/* Reducir el tamaño de los botones cuando se hace clic */
+.btn-color:active,
+.btn-outline-danger:active {
+    transform: scale(0.95); /* Reduce el tamaño en un 5% */
 }
 
 

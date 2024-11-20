@@ -1,77 +1,103 @@
 <?php 
 $titulo = "TP FINAL";
 include_once "../Estructura/header.php";
-
-
-
 ?>
 
+<!-- Aquí va el contenido principal de tu página -->
+<div class="main-content">
+
+    <!--Ancla que vienen al Inicio desde el fondo-->
+    <a name="Fondo a Inicio"></a>
+
+    <!-- Titulo -->
+    <div class="idTitulo">
+        <br><br>
+        <h1>Lista de Productos</h1>
+    </div>
+
+    <!-- Filtro buscador -->
+    <div class="mb-2">
+        <form action="Productos_lista.php" method="post" class="container mt-5 p-4 border rounded shadow" novalidate>
+            <label for="buscar" class="form-label fw-bold">Buscar por Nombre:</label>
+            <input name="nombreProducto" id="nombreProducto" type="text" pattern="[A-z0-9]" >
+            <input type="submit" name="buscar" id="buscar" class="btn btn-info btn-sm" role="button" value="Buscar">
+            <div class="text-important"><i class="bi bi-info-circle-fill"></i> Buscar en vacio para refrescar</div>
+        </form>
+    </div>
+    <br>
+
+    <!-- Boton Agregar nuevo producto -->
+    <div class="container mt-3">
+        <a href="productoNuevo.php" class="btn btn-primary" role="button">Agregar nuevo producto</a>
+    </div>
+    <br><br>
+
+    <table id="tablaProductos" class="table table-hover table-striped">
+        <thead>
+            <tr class="text-center">
+                <th field="idproducto">Id Producto</th>
+                <th field="pronombre">Nombre</th>
+                <th field="prodetalle">Detalles</th>
+                <th field="proprecio">Precio</th>
+                <th field="procantstock">Stock</th>
+                <th field="proimagen">Imagen</th>
+                <th>Eliminar</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <?php
+                //Datos de los productos
+            ?>
+        </tbody>
+    </table>
+    <br><br>
+
+    <!-- Boton Agregar nuevo producto -->
+    <div class="container mt-3">
+        <a href="productoNuevo.php" class="btn btn-primary" role="button">Agregar nuevo producto</a>
+    </div>
+    <br><br>
 
 
 
-<body>
+    <div id="modalEditar" style="display:none">
+        <h3>Editar Producto</h3>
 
-<div class="idTitulo">
-    <h1>Nuestos Productos</h1>
+        <form id="formEditarProducto">
+            <input type="hidden" id="idproductoM" name="idproducto">
+            <label for="pronombre">Nombre del Producto:</label>
+            <input type="text" id="pronombreM" name="pronombre" require>
+            <br>
+            <label for="prodetalle">Detalles del Producto:</label>
+            <input type="text" id="prodetalleM" name="prodetalle" require>
+            <br>
+            <label for="proprecio">Precio:</label>
+            <input type="text" id="proprecioM" name="proprecio" require>
+            <br>
+            <label for="procantstock">Cantidad de Stock</label>
+            <input type="text" id="procantstockM" name="procantstock" require>
+            <br>
+            <label for="proimagen">Url de la imagen</label>
+            <input type="text" id="proimagenM" name="proimagen" require>
+            <br>
+            <button type="submit">Guardar Cambios</button>
+            <button type="button" id="btnCancelar">Cancelar</button>
+        </form>
+    </div>
+
+    <!--Ancla de fondo a Inicio-->
+    <a id="ancla" href="#Fondo a Inicio">
+        <img src="../../Iconos/punta_de_flecha_hacia_arriba.png" alt="ir_arriba" class="icono_ir_arriba">
+        Ir arriba
+    </a>
 </div>
 
-<div class="text-center mb-4">
-    <h2>Lista de Productos</h2>
-</div>
-
-<div class="container mt-3">
-    <a href="productoNuevo.php" class="btn btn-primary" role="button">Agregar</a>
-</div>
-
-
-
-<table id="tablaProductos">
-    <thead>
-        <tr>
-            <th field="idproducto">Id Producto</th>
-            <th field="pronombre">Nombre del Producto</th>
-            <th field="prodetalle">Detalles de Producto</th>
-            <th field="proprecio">Precio</th>
-            <th field="procantstock">Cantidad de Stock</th>
-            <th field="proimagen">Url de la Imagen</th>
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody>
-            <!-- Los datos de los productos se agregaran aquí-->
-    </tbody>
-
-</table>
-
-
-
-
-<div id="modalEditar" style="display:none">
-    <h3>Editar Producto</h3>
-
-    <form id="formEditarProducto">
-        <input type="hidden" id="idproductoM" name="idproducto">
-        <label for="pronombre">Nombre del Producto:</label>
-        <input type="text" id="pronombreM" name="pronombre" require>
-        <br>
-        <label for="prodetalle">Detalles del Producto:</label>
-        <input type="text" id="prodetalleM" name="prodetalle" require>
-        <br>
-        <label for="proprecio">Precio:</label>
-        <input type="text" id="proprecioM" name="proprecio" require>
-        <br>
-        <label for="procantstock">Cantidadde Stock</label>
-        <input type="text" id="procantstockM" name="procantstock" require>
-        <br>
-        <label for="proimagen">Url de la imagen</label>
-        <input type="text" id="proimagenM" name="proimagen" require>
-        <br>
-        <button type="submit">Guardar Cambios</button>
-        <button type="button" id="btnCancelar">Cancelar</button>
-    </form>
-</div>
-
+<!-- Footer -->
+<?php
+    include_once '../Estructura/footer_tienda.php';
+?>
 
 <!---- Script para listar los productos en la base de datos---->
 <script>$(document).ready(function() {
@@ -93,7 +119,8 @@ include_once "../Estructura/header.php";
                 row.append($('<td>').text(producto.proprecio));
                 row.append($('<td>').text(producto.procantstock));
                 row.append($('<td>').text(producto.proimagen));
-                row.append($('<td>').html('<button class="btn-eliminar" data-id="' + producto.idproducto + '">Eliminar</button> <button class="btn-modificar" data-id="' + producto.idproducto + '">Editar</button>')); // Botón de eliminar
+                row.append($('<td>').html('<button class="btn-eliminar" data-id="' + producto.idproducto + '"><i class="bi bi-trash"></i></button>')); // Botón de eliminar
+                row.append($('<td>').html('<button class="btn-modificar" data-id="' + producto.idproducto + '"><i class="bi bi-pencil"></i></button>')); //Boton editar
                 
                 tbody.append(row);
             });

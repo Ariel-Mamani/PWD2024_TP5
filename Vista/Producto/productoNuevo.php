@@ -8,49 +8,47 @@ include_once "../Estructura/header_N.php";
 
 
 <div class="divtitulo">
+    <br><br>
     <h1>Agregar Nuevo Producto</h1>
 </div>
 
 <div class="container_auto mt-5 p-4 rounded shadow">
 
-    <h3 class="text-center text-ligth mb-4">Ingrese un nuevo producto</h3>
+    <div class="row div_formulario">
 
-    <div class="row">
+        <!--Formularios-->
+        <form method="post" action="accion/productoAgregar.php" id="formProductoNuevo" name="formProductoNuevo"  class="row g-3 mt-3 needs-validation" enctype="multipart/form-data" novalidate>
+            <div class="mb-3 form-floating text-primary mb-4">
+                <input class="form-control" type="text" id="pronombre" name="pronombre" require>
+                <label for="pronombre" class="form-label">Nombre del Producto</label>
+            </div>
 
-<!--Formularios-->
+            <div class="mb-3 form-floating text-primary mb-4">
+                <input class="form-control" type="text" id="prodetalle" name="prodetalle" require>
+                <label for="prodetalle" class="form-label">Detalles del Producto</label>
+            </div>
 
-   <form method="post" action="accion/productoAgregar.php" id="formProductoNuevo" name="formProductoNuevo"  class="row g-3 mt-3 needs-validation" enctype="multipart/form-data" novalidate>
-    <div class="mb-3 form-floating text-primary mb-4">
-        <input class="form-control" type="text" id="pronombre" name="pronombre" require>
-        <label for="pronombre" class="form-label">Nombre del Producto</label>
-    </div>
+            <div class="mb-3 form-floating text-primary mb-4">
+                <input type="text" class="form-control" id="proprecio" name="proprecio" require>
+                <label for="proprecio" class="form-label">Precio</label>
+            </div>
+            <div class="mb-3 form-floating text-primary mb-4">
+                <input type="text" class="form-control" id="procantstock" name="procantstock"  require>
+                <label for="procantstock" class="form-label">Stock </label>
+            </div>
+            
 
-    <div class="mb-3 form-floating text-primary mb-4">
-        <input class="form-control" type="text" id="prodetalle" name="prodetalle" require>
-        <label for="prodetalle" class="form-label">Detalles del Producto</label>
-    </div>
+            <div class="mb-3 form-floating text-primary mb-4">
+                <input type="text" class="form-control" id="proimagen" name="proimagen" require>
+                <label for="proimagen">Ingrese la URL donde esta la imagen</label>
+            </div>
 
-    <div class="mb-3 form-floating text-primary mb-4">
-        <input type="text" class="form-control" id="proprecio" name="proprecio" require>
-        <label for="proprecio" class="form-label">Precio</label>
-    </div>
-    <div class="mb-3 form-floating text-primary mb-4">
-        <input type="text" class="form-control" id="procantstock" name="procantstock"  require>
-        <label for="procantstock" class="form-label">Ingrese la cantidad de stock </label>
-    </div>
-    
-
-    <div class="mb-3 form-floating text-primary mb-4">
-        <input type="text" class="form-control" id="proimagen" name="proimagen" require>
-        <label for="proimagen">Ingrese la URL donde esta la imagen</label>
-    </div>
-
-    <div class="col-md-4">
-        <button class="btn btn-primary" type="submit">Añadir</button>
-        <a href="../Producto/Productos_lista.php" role="button">Volver</a>
-    </div>
-   </form>
-
+            <!-- Botones Guardar nuevo producto y Volver -->
+            <div class="container col-md-5">
+                <button class="btn btn-primary" type="submit">Guardar nuevo producto</button>
+                <a href="../Producto/Productos_lista.php" class="btn btn-primary" role="button">Volver</a>
+            </div>
+        </form>
     </div>
 </div>
 

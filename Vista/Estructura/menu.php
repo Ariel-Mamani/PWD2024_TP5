@@ -12,7 +12,7 @@
         <ul class="navbar-nav"> 
           <!-- Menu TP 5 -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">TP N° 5</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Acciones</a>
             <ul class="dropdown-menu">
               <?php echo $cadenaMenu;  ?>  
             </ul>
