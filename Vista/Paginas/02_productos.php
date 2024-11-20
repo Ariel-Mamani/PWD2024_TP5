@@ -4,6 +4,7 @@ include_once '../Estructura/header.php';
 
 ?>
 
+
 <!-- Aquí va el contenido principal de tu página -->
 <div class="main-content">
 
@@ -63,13 +64,38 @@ include_once '../Estructura/header.php';
                         '<p>' +  producto.pronombre + '</p>' +
                         '<p>Precio: $' + producto.proprecio + '</p>' +
                         '<p>Stock: ' + producto.procantstock + '</p>' + 
-                        '<img class="grid-img" src="../../Archivos/Productos/'+producto.proimagen+ '" alt="' + producto.pronombre + '" stlye="width:50%; heigth:auto">' +
-                        '<button tpye="submit" class="btn-compra">Añadir al carro</button>'
+                        '<img class="grid-img" src="../../Archivos/Productos/'+producto.proimagen+'.png" alt="' + producto.pronombre + '" stlye="width:50%; heigth:auto">' +
+                        '<button type="button" class="btn-compra"' + 'data-nombre="' + producto.pronombre + '"' + 'data-precio="'+ 
+                        producto.proprecio + '">' + 'Añadir al carro </button>' 
                     );
 
                     //Agregar contenido al div
                     $('#grid-container').append(divProducto);
                 });
+                
+//Manejar el click en el boton "Añadir al carro"
+$('.btn-compra').on('click', function(){
+    var nombre = $(this).data('nombre');
+    var precio= $(this).data('precio');
+
+    //enviar datos al archivo carrito.php
+
+    $.ajax({
+        type:'POST',
+        url: '../Carrito/carrito2.php',
+        data:{nombre: nombre, precio: precio},
+        success: function(response){
+            $('#notification-container').html('<div class="alert alert-success">Producto añadido al carrito.</div>');
+            alert('El producto fue añadido con exito');
+        },
+        error:function(xhr,status,error){
+            console.error("Error al añadir al carrito:", error);
+            console.log(xhr.responseText);
+        }
+    });
+
+
+});
             },
             error: function(xhr,status,error){
                 console.error("Error al obtener datos: ", error);
@@ -78,3 +104,4 @@ include_once '../Estructura/header.php';
         });
     });
 </script>
+

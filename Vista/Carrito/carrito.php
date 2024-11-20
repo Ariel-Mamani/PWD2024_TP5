@@ -4,6 +4,8 @@ include_once '../Estructura/header.php';
 $session = new Session();
 $user = $session->getUsuario()->getusnombre();
 $correo = $session->getUsuario()->getusmail();
+$datos = data_submitted();
+
 
 //Hay que verificar si el que ingresa al carrito es un usuario registrado
 if (!$session->validar()) {
@@ -26,6 +28,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
     <title>Agregar al carrito</title>
 
 <script src="../js/funciones.js"></script>
+<h3><?php $datos['nombre']  ?></h3>
 </head>
 
 <form action="" method="post">
@@ -58,11 +61,10 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
                             <td><?php echo $index + 1; ?></td>
                             <td><?php echo htmlspecialchars($item['nombre']); ?></td>
                             <td><?php echo htmlspecialchars($item['cantidad']); ?></td>
-                            <td><?php echo '$' . htmlspecialchars($item['precioVenta']); ?></td>
+                            <td><?php echo '$' . htmlspecialchars($item['precio']); ?></td>
                             <td>
                                 <button class="btn btn-danger eliminar-carrito" data-index="<?php echo $index; ?>" data-id='<?php echo $item['idArt'];?>'><i class="bi bi-trash-fill"></i></button>
-                                <button><i class="bi bi-caret-up-fill"></i></button>
-                                <button><i class="bi bi-caret-down-fill"></i></button>
+                                
                             </td>
                         </tr>
                         <?php endforeach; ?>

@@ -1,7 +1,11 @@
 <?php
-session_start();
+
 include_once '../../configuracion.php';
 $datos = data_submitted();
+$objSession = new Session();
+$abmCompra = new AbmCompra();
+
+$objSession->iniciarCompra();
 
 if(!empty($datos)){
     // Obtiene los datos enviados desde la solicitud AJAX
@@ -11,52 +15,10 @@ if(!empty($datos)){
     $stock = $datos['stock'];
     $precioVenta = $datos['precioVenta'];
 
-    $abmProducto = new AbmProducto();
+    $producto = ['idproducto' => $idArt];
+    $abmCompra->agregarProducto($producto);
 
-    $elProducto = $abmProducto->buscar(['idproducto' => $idArt]); // Filtra por ID específico
 
-    $producto = $elProducto[0];
-    $stockActual = $producto->getProStock() - $cantidad; 
-        $producto->setProStock($stockActual);
-
-    $paramModificacion = [
-        'idproducto' => $producto->getIdProducto(),
-        'pronombre' => $producto->getProNombre(),
-        'prodetalle' => $producto->getProDetalle(),
-        'proprecio' => $producto->getProPrecio(),
-        'procantstock' => $producto->getProStock(),
-        'proimagen' => $producto->getProImagen()
-    ];
-
-    $abmProducto->modificacion($paramModificacion);
-
-    // Si el carrito no existe en la sesion, lo inicializa como un arreglo vacio
-    if(!isset($_SESSION['carrito'])){
-        $_SESSION['carrito'] = [];
-    }
-
-    // Variable para verificar si el producto ya está en el carrito
-    $itemExists = false;
-    // Recorre los productos en el carrito
-    foreach ($_SESSION['carrito'] as &$item) {
-        if ($item['idArt'] == $idArt) { 
-            $item['cantidad'] += $cantidad;    // Aumenta la cantidad del producto
-            $itemExists = true;
-            break;
-        }
-    }
-
-    // Si el producto no estaba en el carrito, lo agrega como un nuevo item
-    if(!$itemExists){
-        $_SESSION['carrito'][] = [
-            'idArt' => $idArt,
-            'nombre' => $nombre,
-            'cantidad' => $cantidad,
-            'stock' => $stock,
-            'precioVenta' => $precioVenta
-        ];
-    }
-    echo json_encode(['success' => true]);
 }
 ?>
 
