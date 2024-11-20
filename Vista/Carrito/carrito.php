@@ -64,8 +64,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
                             <td><?php echo '$' . htmlspecialchars($item['precio']); ?></td>
                             <td>
                                 <button class="btn btn-danger eliminar-carrito" data-index="<?php echo $index; ?>" data-id='<?php echo $item['idArt'];?>'><i class="bi bi-trash-fill"></i></button>
-                                <button><i class="bi bi-caret-up-fill"></i></button>
-                                <button><i class="bi bi-caret-down-fill"></i></button>
+                                
                             </td>
                         </tr>
                         <?php endforeach; ?>
