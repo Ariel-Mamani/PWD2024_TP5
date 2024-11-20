@@ -120,19 +120,9 @@ CREATE TABLE compraestado (
 -- Volcado de datos para la tabla menu
 --
 INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VALUES
-    (1, 'Venta', 'Paginas/02_productos.php', null, null),
-    (2, '', 'Paginas/carrito.php', null, null),
-    (3, '', 'Login/paginaSegura.php', null, null),
-    (4, 'Menu', 'menu/menu_list.php', null, null),
-    (5, '', 'menu/accion/listar_menu.php', null, null),
-    (6, '', 'menu/accion/edit_menu.php', null, null),
-    (7, '', 'menu/accion/alta_menu.php', null, null),
-    (10, 'Compras', 'Compra/iniciadas.php', null, null),
-    (20, 'Productos', 'Producto/Productos_lista.php', null, null),
-    (21, '', 'Producto/ProductoNuevo.php', null, null),
-    (22, '', 'Producto/ProductosAccion.php', null, null),
-    (23, '', 'Producto/accion/eliminar_Producto.php', null, null),
-    (24, '', 'Producto/accion/listar_Productos.php', null, null);
+    (1, 'Productos', 'Paginas/02_productos.php', null, null),
+    (2, null, 'Login/paginaSegura.php', null, null),
+    (3, null, 'Login/paginaSegura.php', null, null);
 --
 -- Volcado de datos para la tabla rol
 --
@@ -157,17 +147,7 @@ INSERT INTO menurol (idmenu, idrol) VALUES
     (3, 3),
     (1, 4),
     (2, 4),
-    (3, 4),
-    (4, 1),
-    (5, 1),
-    (6, 1),
-    (7, 1),
-    (10, 1),
-    (20, 1),
-    (21, 1),
-    (22, 1),  
-    (23, 1),
-    (24, 1);    
+    (3, 4);  
 
 --
 -- Volcado de datos para la tabla usuario
@@ -186,18 +166,8 @@ INSERT INTO usuariorol (idusuario, idrol) VALUES
 --
 
 INSERT INTO `compraestadotipo` (`idcompraestadotipo`, `cetdescripcion`, `cetdetalle`) VALUES
-(1, 'ingresada', 'cuando el usuario : cliente inicia la compra de uno o mas productos del carrito'),
+(1, 'iniciada', 'cuando el usuario : cliente inicia la compra de uno o mas productos del carrito'),
+(5, 'finalizar', ''),
 (2, 'aceptada', 'cuando el usuario administrador da ingreso a uno de las compras en estado = 1 '),
-(3, 'cancelada', 'el cliente puede cancelar su compra en curso o un usuario administrador podra cancelar una compra en cualquier estado y un usuario cliente solo en estado = 1 '),
-(4, 'enviada', 'cuando el usuario administrador envia a uno de las compras en estado = 2 '),
-(5, 'recibida', 'cuando el usuario administrador confirma la llegada a destino de una compra en estado = 4 ');
-
-
-
--- Volcado de datos para la tabla PRODUCTO
---
-INSERT INTO producto (idproducto, pronombre, prodetalle, proprecio, procantstock, proimagen, prodeshabilitado) VALUES 
-    (1, 'Acondicionador Garnier', 'Higiene personal', 2000, 20, 'acondicionador', NULL),
-    (2, 'Shampoo Garnier', 'Higiene personal', 3000, 50, 'shampoo', NULL),
-    (3, 'Tijera', 'Aseo', 4000, 10, 'tijera', NULL),
-    (4, 'Cera Barba', 'Higiene personal', 2500, 15, 'cera', NULL);
+(3, 'enviada', 'cuando el usuario administrador envia a uno de las compras en estado =2 '),
+(4, 'cancelada', 'un usuario administrador podra cancelar una compra en cualquier estado y un usuario cliente solo en estado=1 ');

@@ -196,7 +196,18 @@ public function iniciarCompra(){
     }
     return $resp;
 }
-
+    /**
+     * Verifica si la sesión está activa y si el usuario tiene un idusuario definido en la sesión. 
+     * También verifica si el tiempo de inactividad ha excedido los 280 segundos; si es así, cierra la sesión.
+     * @return bool $resp
+     */
+    public function validarCompra(){
+        $resp = false;
+        if ($this->activa() and isset($_SESSION['idusuario']) and isset($_SESSION['idcompra'])){
+                $resp = true;
+        }
+        return $resp;    
+    }
 
 
 }
