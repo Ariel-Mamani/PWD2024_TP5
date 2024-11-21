@@ -27,7 +27,11 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
     <title>Agregar al carrito</title>
 
 <script src="../js/funciones.js"></script>
+<<<<<<< HEAD
 
+=======
+<h3><?php // $datos['nombre']  ?></h3>
+>>>>>>> 787318c138e5cf085794887eac8a9bb926b6d66a
 </head>
 
 <form action="" method="post">

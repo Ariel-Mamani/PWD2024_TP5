@@ -1,7 +1,7 @@
 <?php
 include_once "../../../configuracion.php";
 $data = data_submitted();
-$respuesta = false;
+
 $arreglo_salida =  array();
 if (isset($data['idcompra'])){
     $objAbmCompraItem = new AbmCompraItem();

@@ -20,3 +20,11 @@
 
   <!-- MD5  -->
   <meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="../js/md5.js"></script>
+
+  <!-- Jquery easyui -->
+    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/demo/demo.css">
+    <script type="text/javascript" src="../js/jquery-easyui-1.6.6/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-easyui-1.6.6/jquery.easyui.min.js"></script>
