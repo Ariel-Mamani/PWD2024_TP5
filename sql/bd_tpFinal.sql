@@ -141,9 +141,9 @@ INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VAL
     (34, '', 'Carrito/incrementarCarrito.php', null, null),
     (35, '', 'Carrito/carrito_list.php', null, null),
     (36, '', 'Carrito/eliminarProducto.php', null, null),
-    (37, 'Gráfico', 'Graficos/productos_vendidos_graf_de_barras.php', null, null),
-    (38, '', 'Graficos/productos_vendidos_graf_de_barras.png', null, null),
-    (39, '', 'Graficos/mostrar_grafico.php', null, null);
+    (40, 'Gráfico', 'Graficos/productos_vendidos_graf_de_barras.php', null, null),
+    (41, '', 'Graficos/productos_vendidos_graf_de_barras.png', null, null),
+    (42, '', 'Graficos/mostrar_grafico.php', null, null);
 --
 -- Volcado de datos para la tabla rol
 --
@@ -198,9 +198,9 @@ INSERT INTO menurol (idmenu, idrol) VALUES
     (34, 4),
     (35, 4),
     (36, 1),
-    (37, 1),           
-    (38, 1),           
-    (39, 1);           
+    (40, 1),           
+    (41, 1),           
+    (42, 1);           
 
 --
 -- Volcado de datos para la tabla usuario

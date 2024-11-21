@@ -14,7 +14,7 @@ $objAbmProducto = new AbmProducto(); // Instancia de la clase para manejar produ
 $cantidadProductosVendidos = $objAbmProducto->contarProductosVendidos();
 
 // Configurar los datos para el gráfico
-$labels = array_keys($cantidadProductosVendidos); // Nombres o IDs de los productos
+$labels = array_keys($cantidadProductosVendidos); // Nombres de los productos
 $valores = array_values($cantidadProductosVendidos); // Cantidades vendidas
 
 // Verificar que hay datos para graficar
@@ -43,12 +43,12 @@ $barplot->SetShadow('gray', 3); // Sombra de las barras
 $graph->Add($barplot);
 
 // Configurar las etiquetas del eje X
-$graph->xaxis->SetTickLabels($labels);
+$graph->xaxis->SetTickLabels($labels);  // Nombres de los productos en el eje X
 $graph->xaxis->SetLabelAngle(50); // Inclina las etiquetas si son largas
 
-//Ruta donde se guardara la imagen
-$ruta = "productos_vendidos_graf_de_barras.png";
+// Ruta donde se guardará la imagen
+$ruta = "grafico.png";
 
-//Mostrar el gráfico
-$graph->Stroke($ruta);  //Esto genera la imagen para mostrar
+// Mostrar el gráfico
+$graph->Stroke($ruta);  // Esto genera la imagen para mostrar
 ?>
