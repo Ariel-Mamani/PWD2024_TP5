@@ -2,10 +2,7 @@ CREATE DATABASE bdcarritocompras;
 
 USE bdcarritocompras;
 
--- --------------------------------------------------------
--- ------------------
--- --------------------------------------------------------
--- Tabla Menu
+
 CREATE TABLE menu (
     idmenu BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     menombre VARCHAR(50) NOT NULL,
@@ -14,21 +11,13 @@ CREATE TABLE menu (
     medeshabilitado TIMESTAMP NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
--- ------------------
--- --------------------------------------------------------
 
--- Tabla Rol
 CREATE TABLE rol (
     idrol BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     rodescripcion VARCHAR(50)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
--- ------------------
--- --------------------------------------------------------
 
--- Tabla Menu Rol
 CREATE TABLE menurol (
     idmenu BIGINT(20) NOT NULL,
     idrol BIGINT(20) NOT NULL,
@@ -37,11 +26,6 @@ CREATE TABLE menurol (
     FOREIGN KEY (idrol) REFERENCES rol(idrol)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
--- ------------------
--- --------------------------------------------------------
-
--- Tabla Usuario
 
 CREATE TABLE usuario (
     idusuario BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -50,10 +34,8 @@ CREATE TABLE usuario (
     usmail VARCHAR(50),
     usdeshabilitado TIMESTAMP NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- --------------------------------------------------------
--- ------------------
--- --------------------------------------------------------
--- Tabla Usuario Rol
+
+
 CREATE TABLE usuariorol (
     idusuario BIGINT(20) NOT NULL,
     idrol BIGINT(20) NOT NULL,
@@ -62,11 +44,7 @@ CREATE TABLE usuariorol (
     FOREIGN KEY (idrol) REFERENCES rol(idrol)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
--- ------------------
--- --------------------------------------------------------
 
--- Tabla Compra
 CREATE TABLE compra (
     idcompra BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     cofecha TIMESTAMP,
@@ -74,7 +52,7 @@ CREATE TABLE compra (
     FOREIGN KEY (idusuario) REFERENCES usuario(idusuario)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Tabla Producto
+
 CREATE TABLE producto (
     idproducto BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     pronombre VARCHAR(50),
@@ -85,7 +63,7 @@ CREATE TABLE producto (
     prodeshabilitado TIMESTAMP NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Tabla Compra Item
+
 CREATE TABLE compraitem (
     idcompraitem BIGINT(20) UNSIGNED  NOT NULL PRIMARY KEY AUTO_INCREMENT,
     idproducto BIGINT(20),
@@ -95,7 +73,7 @@ CREATE TABLE compraitem (
     FOREIGN KEY (idcompra) REFERENCES compra(idcompra)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Tabla Estado Tipo
+
 CREATE TABLE compraestadotipo (
     idcompraestadotipo INT(11)  NOT NULL PRIMARY KEY,
     cetdescripcion VARCHAR(50),
@@ -103,7 +81,6 @@ CREATE TABLE compraestadotipo (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- Tabla Compra Estado
 CREATE TABLE compraestado (
     idcompraestado BIGINT(20) UNSIGNED  NOT NULL PRIMARY KEY,
     idcompra BIGINT(20),
@@ -114,9 +91,7 @@ CREATE TABLE compraestado (
     FOREIGN KEY (idcompraestadotipo) REFERENCES compraestadotipo(idcompraestadotipo)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla menu
---
+
 INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VALUES
     (1, 'Venta', 'Paginas/02_productos.php', null, null),
     (2, '', 'Paginas/carrito.php', null, null),
@@ -144,18 +119,15 @@ INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VAL
     (40, 'Gráfico', 'Graficos/productos_vendidos_graf_de_barras.php', null, null),
     (41, '', 'Graficos/grafico.png', null, null),
     (42, '', 'Graficos/mostrar_grafico.php', null, null);
---
--- Volcado de datos para la tabla rol
---
+
+
 INSERT INTO rol (idrol, rodescripcion) VALUES 
     (1, 'superadmin'),
     (2, 'admin'),
     (3, 'deposito'),
     (4, 'cliente');
-    
---
--- Volcado de datos para la tabla menurol
---
+
+
 INSERT INTO menurol (idmenu, idrol) VALUES 
     (1, 1),
     (2, 1),
@@ -202,21 +174,14 @@ INSERT INTO menurol (idmenu, idrol) VALUES
     (41, 1),           
     (42, 1);           
 
---
--- Volcado de datos para la tabla usuario
--- 
+
 INSERT INTO usuario (idusuario, usnombre, uspass, usmail, usdeshabilitado) VALUES
     (1, 'Jose', 'e10adc3949ba59abbe56e057f20f883e', 'jose@jose.com', null);
 
---
--- Volcado de datos para la tabla usuario
--- 
+
 INSERT INTO usuariorol (idusuario, idrol) VALUES
     (1, 1);
 
---
--- Volcado de datos para la tabla `compraestadotipo`
---
 
 INSERT INTO `compraestadotipo` (`idcompraestadotipo`, `cetdescripcion`, `cetdetalle`) VALUES
 (1, 'ingresada', 'cuando el usuario : cliente inicia la compra de uno o mas productos del carrito'),
@@ -226,9 +191,6 @@ INSERT INTO `compraestadotipo` (`idcompraestadotipo`, `cetdescripcion`, `cetdeta
 (5, 'recibida', 'cuando el usuario administrador confirma la llegada a destino de una compra en estado = 4 ');
 
 
-
--- Volcado de datos para la tabla PRODUCTO
---
 INSERT INTO producto (idproducto, pronombre, prodetalle, proprecio, procantstock, proimagen, prodeshabilitado) VALUES 
     (1, 'Acondicionador Garnier', 'Higiene personal', 2000, 20, 'acondicionador', NULL),
     (2, 'Shampoo Garnier', 'Higiene personal', 3000, 50, 'shampoo', NULL),

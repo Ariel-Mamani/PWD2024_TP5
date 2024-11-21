@@ -19,7 +19,7 @@ include_once "../Estructura/header.php";
     <!-- Imagen del gráfico -->
     <div class="img_grafico">
         <div>
-            <img src="productos_vendidos_graf_de_barras.png" alt="Gráfico de Productos Vendidos">
+            <img src="grafico.png" alt="Gráfico de Productos Vendidos">
         </div>
     </div>
 
