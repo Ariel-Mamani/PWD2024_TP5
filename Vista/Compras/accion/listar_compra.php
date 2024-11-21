@@ -36,12 +36,4 @@ foreach ($listaCompra as $elem ){
 }
 //var_dump($arreglo_salida);
 echo json_encode($arreglo_salida);
-
-
-
-
-
-
-
-  
 ?>

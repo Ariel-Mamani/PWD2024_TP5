@@ -7,14 +7,11 @@ if (isset($data['idusuario'])){
         $respuesta = $objC->alta($data);
         if (!$respuesta){
             $mensaje = " La accion  ALTA No pudo concretarse";
-            
         }
 }
 $retorno['respuesta'] = $respuesta;
 if (isset($mensaje)){
-    
     $retorno['errorMsg']=$mensaje;
-   
 }
- echo json_encode($retorno);
+echo json_encode($retorno);
 ?>
