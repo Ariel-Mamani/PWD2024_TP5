@@ -4,10 +4,11 @@ include_once '../Estructura/header.php';
 $user = $objSession->getUsuario()->getusnombre();
 $correo = $objSession->getUsuario()->getusmail();
 $objAbmCompra = new AbmCompra();
-$carrito = $objAbmCompra->mostrarCompra();
+$carrito = $objAbmCompra->mostrarCompra(); //Muestra los productos del carrito
 
 
 //Hay que verificar si el que ingresa al carrito es un usuario registrado
+//Verifica si el usuario tiene productos en el carrito
 if (!$objSession->validarCompra()) {
     echo " <h3><b>No hay Productos en el  CARRITO</b></h3>";
 }
@@ -16,11 +17,13 @@ echo $_SESSION['idusuario'];
 ?>
 
 <form action="" method="post">
+    <!-- Informacion del usuario -->
     <b>Usuario: </b><?php echo $user; ?><br>
     <b>Correo: </b><?php echo $correo; ?><br>
     <b>Fecha: </b> <?php echo date('d-m-Y'); ?><br><br>
     <div class="container">
         <div class="table-responsive">
+            <!-- Tabla con productos que hay en el carrito -->
             <table class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                     <tr>
@@ -57,10 +60,15 @@ echo $_SESSION['idusuario'];
                         <?php endif; ?>
                     </tbody>
             </table><br>
+
+            <!-- Muestra el valor total de todos los productos en el carrito -->
             <h4>
                 Total: <?php echo '$' . number_format(isset($totalGeneral) ? $totalGeneral : 0, 2); ?>
-            </h4> <!-- Muestra el total -->
+            </h4>
+
+            <!-- Guarda los datos del carrito -->
             <button type="button" id="SaveCompra" class="btn btn-primary">Guardar Registro</button>
+            <br><br>
         </div>
     </div>
 </form>
