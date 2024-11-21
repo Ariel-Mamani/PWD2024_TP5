@@ -189,10 +189,12 @@ public function iniciarCompra(){
         $objAbmCompraEstado = new AbmCompraEstado();
         $param['idcompraestadotipo'] = 1; // estado ingresada = 1
         $param['cefechainit'] = $param['cofecha'] ;
+        $param['cefechafin'] = NULL;
         if($objAbmCompraEstado->alta($param)){
             $resp = true;
             $_SESSION['idcompra'] = $param['idcompra'];
         }
+
     }
     return $resp;
 }

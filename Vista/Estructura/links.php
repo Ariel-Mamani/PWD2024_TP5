@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../css/estilo_02producto.css">
 
   <!-- LINK JS -->
-  <script src="../Js/funciones.js"></script>
+  <script src="../js/funciones.js"></script>
 
   <!-- MD5  -->
   <meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="../js/md5.js"></script>

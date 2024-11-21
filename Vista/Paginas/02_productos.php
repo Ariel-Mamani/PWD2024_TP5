@@ -1,17 +1,12 @@
 <?php
 $titulo = "Productos"; //Titulo en la pestaña
 include_once '../Estructura/header.php';
-
-
 ?>
-
 
 <!-- Aquí va el contenido principal de tu página -->
 <div class="main-content">
-
     <!--Ancla que vienen al Inicio desde el fondo-->
     <a name="Fondo a Inicio"></a>
-
     <!-- Portada -->
     <div class="portada_imagen">
         <div class="imagen_de_portada">
@@ -30,7 +25,6 @@ include_once '../Estructura/header.php';
     <div id="grid-container">
 
     </div>
-
 
     <!--Ancla de fondo a Inicio-->
     <a id="ancla" href="#Fondo a Inicio">
@@ -65,8 +59,8 @@ include_once '../Estructura/header.php';
                         '<p>' +  producto.pronombre + '</p>' +
                         '<p>Precio: $' + producto.proprecio + '</p>' +
                         '<p>Stock: ' + producto.procantstock + '</p>' + 
-                        '<input type="number" id="cantidad" name="cantidad" min="1" max="'+ producto.procantstock+'" placeholder="Cantidad">' +
-                        '<img class="grid-img" src="../../Archivos/Productos/'+producto.proimagen+'.png" alt="' + producto.pronombre + '" stlye="width:50%; heigth:auto">' +
+                        '<input type="number" id="cantidad" name="cantidad" min="1" max="'+ producto.procantstock+'" value="1">' +
+                        '<img class="grid-img" src="../../Archivos/Productos/'+producto.proimagen+'" alt="' + producto.pronombre + '" stlye="width:50%; heigth:auto">' +
                         '<button type="button" class="btn-compra"'+ 'data-id="'+ producto.idproducto+ '"' +
                         'data-nombre="'+ producto.pronombre+ '"'+ 
                         'data-precio="' + producto.proprecio + '"' +
@@ -100,10 +94,10 @@ include_once '../Estructura/header.php';
                         type: 'POST',
                         url: '../Carrito/agregarCarrito.php',
                         data: {
-                            idArt: idArt,
-                            nombre: nombre,
-                            cantidad: cantidad,
-                            precioVenta: precio,
+                            idproducto: idArt,
+                            pronombre: nombre,
+                            cicantidad: cantidad,
+                            proprecio: precio,
                             stock: stock // Usar el stock del botón
                         },
                         success: function(response) {

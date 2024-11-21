@@ -317,8 +317,13 @@ public function mostrarCompra(){
     $listaCompraItem = $objAbmCompraItem->buscar($param);
     $listaProductos = array();
     if(count($listaCompraItem) >0){
-        $objProducto = $listaCompraItem[0]->getProducto();
-        array_push($listaProductos, $objProducto);
+        foreach ($listaCompraItem as $objCompraItem){
+            $productos['idproducto']    = $objCompraItem->getProducto()->getIdProducto();
+            $productos['pronombre']     = $objCompraItem->getProducto()->getProNombre();
+            $productos['proprecio']     = $objCompraItem->getProducto()->getProPrecio();
+            $productos['cicantidad']    = $objCompraItem->getCiCantidad();
+            array_push($listaProductos, $productos);
+        }
     }
     return $listaProductos;
 }

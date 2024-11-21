@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once "../Estructura/header.php";
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $index = $_POST['index'];

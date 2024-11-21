@@ -1,5 +1,5 @@
 <?php
-include_once "../../../configuracion.php";
+include_once "../../Estructura/header.php.php";
 $data = data_submitted();
 
 $arreglo_salida =  array();

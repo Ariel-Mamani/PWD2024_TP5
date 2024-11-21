@@ -117,10 +117,10 @@ class CompraEstado extends BaseDatos{
 
     public function insertar(){
         $resp = false;
-        $sql = "INSERT INTO compraestado (idcompraestado, idcompra, idcompraestadotipo, cefechainit, cefechafin) VALUES 
-                (" . $this->getIdCompraEstado() . ", " . $this->getCompra()->getIdCompra() . ", " . 
-                $this->getCompraEstadoTipo()->getIdCompraEstadoTipo() . ", '" . $this->getCeFechaInit() . "', '" . 
-                $this->getCeFechaFin() . "')";
+        $sql = "INSERT INTO compraestado (idcompra, idcompraestadotipo, cefechainit, cefechafin) VALUES 
+                    (".$this->getCompra()->getIdCompra().", ". 
+                    $this->getCompraEstadoTipo()->getIdCompraEstadoTipo().", '".$this->getCeFechaInit()."', '". 
+                    $this->getCeFechaFin()."')";
         if($this->Iniciar()){
             if($this->Ejecutar($sql)){
                 $resp = true;
