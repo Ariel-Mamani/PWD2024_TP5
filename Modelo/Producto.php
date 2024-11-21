@@ -268,4 +268,32 @@ class Producto extends BaseDatos{
     }
 
 
+    /**
+     * Cuenta la cantidad de productos vendidos.
+     * @return array $arreglo
+     */
+    public function contarProductosVendidos(){
+        $arreglo = array(); //Este arreglo almacenara la cantidad vendida por producto
+        
+        //Realiza una consulta para obtener las compras y las cantidades de cada producto vendido
+        $sql = "SELECT idproducto, SUM(cicantidad) as cantidad_vendida
+                FROM compraitem
+                GROUP BY idproducto";
+        
+        if($this->Iniciar()){
+            $res = $this->Ejecutar($sql);
+            if($res > -1){
+                while($row = $this->Registro()){
+                    //Crea un arreglo con el idproducto y la cantidad vendida
+                    $arreglo[$row['idproducto']] = $row['cantidad_vendida'];
+                }
+            }else{
+                $this->setmensajeoperacion("Producto->contarProductosVendidos: " . $this->getError());
+            }
+        }else{
+            $this->setmensajeoperacion("Producto->contarProductosVendidos: " . $this->getError());
+        }
+        return $arreglo;
+    }
+        
 }

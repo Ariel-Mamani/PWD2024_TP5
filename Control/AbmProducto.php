@@ -215,5 +215,15 @@ class AbmProducto{
         $arreglo = $objProducto->listar($where);  
         return $arreglo;
     }
+
+
+/**
+     * Método para contar productos vendidos utilizando la clase Producto.
+     * @return array Arreglo con las cantidades vendidas por producto.
+     */
+    public function contarProductosVendidos() {
+        $producto = new Producto(); // Instancia de la clase Producto
+        return $producto->contarProductosVendidos(); // Llamada al método de Producto
+    }
 }
 ?>
