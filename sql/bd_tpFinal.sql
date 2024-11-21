@@ -193,7 +193,8 @@ INSERT INTO menurol (idmenu, idrol) VALUES
     (32, 4),  
     (33, 4),
     (34, 4),
-    (35, 4);           
+    (35, 4),
+    (36, 1);           
 
 --
 -- Volcado de datos para la tabla usuario

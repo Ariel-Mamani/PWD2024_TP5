@@ -253,11 +253,6 @@ public function restarProducto($param){
  */
 public function cancelarProducto($param){
     $resp = false;
- /*   $objAbmProd = new AbmProducto();
-    $lista = $objAbmProd->buscar($param);
-    $lista[0]->setProStock('25');
-    $lista[0]->modificar();
-    return true;*/
     $objSession = new Session();
     $param['idcompra'] = $objSession->getCompra()->getIdCompra();
     $objAbmCompraItem = new AbmCompraItem();
