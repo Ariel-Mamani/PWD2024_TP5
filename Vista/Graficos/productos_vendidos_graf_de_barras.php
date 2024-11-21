@@ -1,3 +1,8 @@
+<?php 
+$titulo = "TP FINAL - Gráfico de productos vendidos";
+include_once "../Estructura/header.php";
+?>
+
 <?php
 $titulo = "TP 5 - Ver Gráfico de Productos Vendidos"; // Título en la pestaña
 
@@ -48,4 +53,9 @@ $graph->xaxis->SetLabelAngle(50); // Inclina las etiquetas si son largas
 
 // Mostrar el gráfico
 $graph->Stroke();
+?>
+
+<!-- Footer -->
+<?php
+    include_once '../Estructura/footer_tienda.php';
 ?>
