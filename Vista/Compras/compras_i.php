@@ -13,7 +13,7 @@ include_once "../Estructura/header.php";
 </div>
 
 <script type="text/javascript">
-
+    //Configuracion de la tabla principal. Obtiene los datos de listar_compra.php
     $('#tabla1').datagrid({
         width: 710,
         heigth: 300,
@@ -37,6 +37,8 @@ include_once "../Estructura/header.php";
             {field:'usnombre',title:'Nombre', width:150, align:'center'},
         ]]
     });
+
+    //Configuracion de la tabla de detalle. Carga datos desde detalle_compra.php
     $('#tabla2').datagrid({
         width: 610,
         heigth: 300,
@@ -61,6 +63,7 @@ include_once "../Estructura/header.php";
         ]]
     });
 
+    //Configuracion del dialogo
     $('#dialogo1').dialog({
 
         title: 'Detalle de la compra',
@@ -76,12 +79,15 @@ include_once "../Estructura/header.php";
 
     
     function DetalleCompra(){
-                var row = $('#tabla1').datagrid('getSelected');
-              //  if (row){
-                    $('#dialogo1').dialog('open').dialog('center').dialog('setTitle','Detalle de la Compra');
-                   // $('#fm').form('load',row);
-                    url = 'accion/detalle_compra.php?accion=mod&idcompra='+row.id;
-                //}
-            }
+        //Obtiene la fila seleccionada de tabla1. Si no hay selección, devuelve null
+        var row = $('#tabla1').datagrid('getSelected');
+          //  if (row){
+            //Abre el cuadro de diálogo y le asigna el título Detalle de la Compra.
+            $('#dialogo1').dialog('open').dialog('center').dialog('setTitle','Detalle de la Compra');
+          // $('#fm').form('load',row);
+            //Establece una URL dinámica (detalle_compra.php) que incluye el idcompra de la fila seleccionada.
+            url = 'accion/detalle_compra.php?accion=mod&idcompra='+row.id;
+        //}
+    }
 
 </script>
