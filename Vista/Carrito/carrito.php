@@ -4,7 +4,6 @@ include_once '../Estructura/header.php';
 $session = new Session();
 $user = $session->getUsuario()->getusnombre();
 $correo = $session->getUsuario()->getusmail();
-$datos = data_submitted();
 
 
 //Hay que verificar si el que ingresa al carrito es un usuario registrado
@@ -28,7 +27,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
     <title>Agregar al carrito</title>
 
 <script src="../js/funciones.js"></script>
-<h3><?php $datos['nombre']  ?></h3>
+
 </head>
 
 <form action="" method="post">
@@ -40,41 +39,7 @@ $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
 
     <div class="container">
         <div class="table-responsive">
-            <table class="table table-bordered" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Artículo</th>
-                        <th>Cant</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (is_array($carrito) && count($carrito) > 0): ?>
-                        <?php
-                            $totalGeneral = 0;
-                            foreach ($carrito as $index => $item) :
-                            $totalItem = $item['cantidad'] * $item['precioVenta'];
-                        ?>
-                        <tr>
-                            <td><?php echo $index + 1; ?></td>
-                            <td><?php echo htmlspecialchars($item['nombre']); ?></td>
-                            <td><?php echo htmlspecialchars($item['cantidad']); ?></td>
-                            <td><?php echo '$' . htmlspecialchars($item['precio']); ?></td>
-                            <td>
-                                <button class="btn btn-danger eliminar-carrito" data-index="<?php echo $index; ?>" data-id='<?php echo $item['idArt'];?>'><i class="bi bi-trash-fill"></i></button>
-                                
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                        <?php else: ?>
-                        <tr>
-                            <td colspan="5">El carrito está vacío.</td>
-                        </tr>
-                        <?php endif; ?>
-                    </tbody>
-            </table><br>
+          <table></table>
             <h4>
                 Total: <?php echo '$' . number_format(isset($totalGeneral) ? $totalGeneral : 0, 2); ?>
             </h4> <!-- Muestra el total -->
@@ -108,4 +73,9 @@ $(document).on('click', '.eliminar-carrito', function() {
         }
     });
 });
+</script>
+<script>
+    $(document).ready(function(){
+
+    })
 </script>

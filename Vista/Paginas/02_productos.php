@@ -2,6 +2,7 @@
 $titulo = "Productos"; //Titulo en la pestaña
 include_once '../Estructura/header.php';
 
+
 ?>
 
 
@@ -64,44 +65,62 @@ include_once '../Estructura/header.php';
                         '<p>' +  producto.pronombre + '</p>' +
                         '<p>Precio: $' + producto.proprecio + '</p>' +
                         '<p>Stock: ' + producto.procantstock + '</p>' + 
+                        '<input type="number" id="cantidad" name="cantidad" min="1" max="'+ producto.procantstock+'" placeholder="Cantidad">' +
                         '<img class="grid-img" src="../../Archivos/Productos/'+producto.proimagen+'.png" alt="' + producto.pronombre + '" stlye="width:50%; heigth:auto">' +
-                        '<button type="button" class="btn-compra"' + 'data-nombre="' + producto.pronombre + '"' + 'data-precio="'+ 
-                        producto.proprecio + '">' + 'Añadir al carro </button>' 
+                        '<button type="button" class="btn-compra"'+ 'data-id="'+ producto.idproducto+ '"' +
+                        'data-nombre="'+ producto.pronombre+ '"'+ 
+                        'data-precio="' + producto.proprecio + '"' +
+                        'data-stock="' + producto.procantstock +'">'+
+                        'Añadir al carro </button>' 
+                        
                     );
 
                     //Agregar contenido al div
                     $('#grid-container').append(divProducto);
                 });
+                var producto;
                 
-//Manejar el click en el boton "Añadir al carro"
-$('.btn-compra').on('click', function(){
-    var nombre = $(this).data('nombre');
-    var precio= $(this).data('precio');
+        
+                // Manejar el click en el botón "Añadir al carro"
+                $('.btn-compra').on('click', function() {
+                    var idArt = $(this).data('id');
+                    var nombre = $(this).data('nombre');
+                    var precio = $(this).data('precio');
+                    var stock = $(this).data('stock'); // Obtener el stock del botón
+                    var cantidad = $(this).siblings('input[name="cantidad"]').val(); // Obtener la cantidad desde el input
 
-    //enviar datos al archivo carrito.php
+                    // Validar que la cantidad ingresada sea válida
+                    if (!cantidad || cantidad < 1 || cantidad > stock) {
+                        alert('Por favor ingresa una cantidad válida.');
+                        return;
+                    }
 
-    $.ajax({
-        type:'POST',
-        url: '../Carrito/carrito2.php',
-        data:{nombre: nombre, precio: precio},
-        success: function(response){
-            $('#notification-container').html('<div class="alert alert-success">Producto añadido al carrito.</div>');
-            alert('El producto fue añadido con exito');
-        },
-        error:function(xhr,status,error){
-            console.error("Error al añadir al carrito:", error);
-            console.log(xhr.responseText);
-        }
-    });
-
-
-});
+                    // Enviar datos al archivo carrito.php
+                    $.ajax({
+                        type: 'POST',
+                        url: '../Carrito/agregarCarrito.php',
+                        data: {
+                            idArt: idArt,
+                            nombre: nombre,
+                            cantidad: cantidad,
+                            precioVenta: precio,
+                            stock: stock // Usar el stock del botón
+                        },
+                        success: function(response) {
+                            $('#notification-container').html('<div class="alert alert-success">Producto añadido al carrito.</div>');
+                            alert('El producto fue añadido con éxito');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error al añadir al carrito:", error);
+                            console.log(xhr.responseText);
+                        }
+                    });
+                });
             },
-            error: function(xhr,status,error){
+            error: function(xhr, status, error) {
                 console.error("Error al obtener datos: ", error);
                 console.log('Respuesta:', xhr.responseText);
             }
         });
     });
 </script>
-

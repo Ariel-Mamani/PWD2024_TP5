@@ -305,13 +305,32 @@ public function cancelarCompra($param){
     }
     return $resp;
 }
-
-
-
-
-
-
+/**
+ * Toma de la session activa el idcompra
+ * @return array
+ */
+public function mostrarCompra(){
+    $resp = false;
+    $objSession = new Session();
+    $param['idcompra'] = $objSession->getCompra()->getIdCompra();
+    $objAbmCompraItem = new AbmCompraItem();
+    $listaCompraItem = $objAbmCompraItem->buscar($param);
+    $listaProductos = array();
+    if(count($listaCompraItem) >0){
+        $objProducto = $listaCompraItem[0]->getProducto();
+        array_push($listaProductos, $objProducto);
+    }
+    return $listaProductos;
+}
 
 }
+
+
+
+
+
+
+
+
 
 ?>
