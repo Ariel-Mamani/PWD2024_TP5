@@ -11,8 +11,9 @@ $carrito = $objAbmCompra->mostrarCompra(); //Muestra los productos del carrito
 if (!$objSession->validarCompra()) {
     echo " <h3><b>No hay Productos en el  CARRITO</b></h3>";
 }
-// echo $_SESSION['idcompra'];
-// echo $_SESSION['idusuario'];
+ echo $_SESSION['idcompra'];
+ echo $_SESSION['idusuario'];
+    
 ?>
 
 <form action="" method="post">
@@ -49,7 +50,7 @@ if (!$objSession->validarCompra()) {
                             <td><?php echo htmlspecialchars($item['cicantidad']); ?></td>
                             <td><?php echo '$' . htmlspecialchars($item['proprecio']); ?></td>
                             <td>
-                                <button class="btn btn-danger eliminar-carrito" data-index="<?php echo $index; ?>" data-id='<?php echo $item['idproducto'];?>'><i class="bi bi-trash-fill"></i></button>
+                                <button class="btn btn-danger eliminar-producto" data-index="<?php echo $index; ?>" data-id='<?php echo $item['idproducto'];?>'><i class="bi bi-trash-fill"></i></button>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -60,7 +61,7 @@ if (!$objSession->validarCompra()) {
                         <?php endif; ?>
                     </tbody>
             </table><br>
-
+                            <div id="mostrar"></div>
             <!-- Muestra el valor total de todos los productos en el carrito -->
             <h4>
                 Total: <?php echo '$' . number_format(isset($totalGeneral) ? $totalGeneral : 0, 2); ?>
@@ -78,10 +79,10 @@ if (!$objSession->validarCompra()) {
 
 <!-- Script para decrementar la cantidad de productos agegados e incrementa el stock en la BD si elimino cantidad------>
 <script>
-$(document).on('click', '.eliminar-carrito', function() {
+$(document).on('click', '.eliminar-producto', function() {
     var idProducto = $(this).data('id'); // Obtener el ID del producto a decrementar
     $.ajax({
-        url: 'decrementarProducto.php', 
+        url: 'eliminarProducto.php', 
         method: 'POST',
         data: { idproducto: idProducto },
         success: function(response) {
@@ -89,7 +90,8 @@ $(document).on('click', '.eliminar-carrito', function() {
     if (response.success) {
         alert('Producto eliminado con éxito.');
     } else {
-        alert('Error al eliminar el producto: ' + response.message);
+    
+        alert('Error al eliminar el producto: ' + response.message  + idProducto);
     }
 },
         error: function(jqXHR, textStatus, errorThrown) {

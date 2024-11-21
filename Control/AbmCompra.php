@@ -216,12 +216,13 @@ class AbmCompra{
  * @param array
  * @return bool
  */
-public function quitarProducto($param){
+public function restarProducto($param){
     $resp = false;
     $objSession = new Session();
     $param['idcompra'] = $objSession->getCompra()->getIdCompra();
     $objAbmProducto = new AbmProducto();
     $listaProducto = $objAbmProducto->buscar($param);
+    
     if(count($listaProducto) > 0){
         $objProducto = $listaProducto[0];
         $stock = $objProducto->getProStock();
@@ -252,15 +253,26 @@ public function quitarProducto($param){
  */
 public function cancelarProducto($param){
     $resp = false;
+ /*   $objAbmProd = new AbmProducto();
+    $lista = $objAbmProd->buscar($param);
+    $lista[0]->setProStock('25');
+    $lista[0]->modificar();
+    return true;*/
     $objSession = new Session();
     $param['idcompra'] = $objSession->getCompra()->getIdCompra();
     $objAbmCompraItem = new AbmCompraItem();
     $listaCompraItem = $objAbmCompraItem->buscar($param);
     if(count($listaCompraItem) > 0){
-        $objCompraItem = $listaCompraItem[0]; 
-        if($objCompraItem->eliminar()){
-            $resp = true;
+        $objProducto = $listaCompraItem[0]->getProducto();
+        $cant = $listaCompraItem[0]->getCiCantidad();
+        $cant += $objProducto->getProStock();
+        $objProducto->setProStock($cant);
+        if($objProducto->modificar()){
+            if($listaCompraItem[0]->eliminar()){
+                $resp = true;
+            }
         }
+
     }
     return $resp;
 }

@@ -107,7 +107,7 @@ $(document).ready(function (){
 // }
 
 //Funcion para eliminar los productos del carrito
-
+/*
 $(document).ready(function () {
     $('.eliminar-carrito').on('click', function () {
         var index = $(this).data('index');
@@ -123,6 +123,6 @@ $(document).ready(function () {
             }
         });
     });
-});
+});*/
 
 
