@@ -81,9 +81,10 @@ include_once "../Estructura/header.php";
             <br>
             <label for="proimagen">Url de la imagen</label>
             <input type="text" id="proimagenM" name="proimagen" require>
-            <br>
-            <button type="submit">Guardar Cambios</button>
-            <button type="button" id="btnCancelar">Cancelar</button>
+            <br><br>
+            <button type="submit" class="btn-primary">Guardar Cambios</button>
+            <br><br>
+            <button type="button" id="btnCancelar" class="btn-primary">Cancelar</button>
         </form>
     </div>
 
@@ -93,6 +94,7 @@ include_once "../Estructura/header.php";
         Ir arriba
     </a>
 </div>
+<br><br>
 
 <!-- Footer -->
 <?php
@@ -119,8 +121,8 @@ include_once "../Estructura/header.php";
                 row.append($('<td>').text(producto.proprecio));
                 row.append($('<td>').text(producto.procantstock));
                 row.append($('<td>').text(producto.proimagen));
-                row.append($('<td>').html('<button class="btn-eliminar" data-id="' + producto.idproducto + '"><i class="bi bi-trash"></i></button>')); // Botón de eliminar
-                row.append($('<td>').html('<button class="btn-modificar" data-id="' + producto.idproducto + '"><i class="bi bi-pencil"></i></button>')); //Boton editar
+                row.append($('<td>').html('<button class="btn-eliminar btn-danger" data-id="' + producto.idproducto + '"><i class="bi bi-trash"></i></button>')); // Botón de eliminar
+                row.append($('<td>').html('<button class="btn-modificar btn-success" data-id="' + producto.idproducto + '"><i class="bi bi-pencil"></i></button>')); //Boton editar
                 
                 tbody.append(row);
             });

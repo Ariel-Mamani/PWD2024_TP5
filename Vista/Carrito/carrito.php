@@ -38,7 +38,7 @@ echo $_SESSION['idusuario'];
                             foreach ($carrito as $index => $item) :
                             $totalItem = $item['cicantidad'] * $item['proprecio'];
                             $totalGeneral += $totalItem;
-                         ?>
+                        ?>
                         <tr>
                             <td><?php echo $index + 1; ?></td>
                             <td><?php echo htmlspecialchars($item['pronombre']); ?></td>

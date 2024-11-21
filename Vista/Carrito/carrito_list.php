@@ -7,12 +7,4 @@ $arreglo_salida = array();
 $arreglo_salida = $objAbmCompra->mostrarCompra();
 //var_dump($arreglo_salida);
 echo json_encode($arreglo_salida);
-
-
-
-
-
-
-
-  
 ?>
