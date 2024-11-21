@@ -13,9 +13,17 @@ $objAbmProducto = new AbmProducto(); // Instancia de la clase para manejar produ
 // Obtener la cantidad de productos vendidos usando tu método modificado
 $cantidadProductosVendidos = $objAbmProducto->contarProductosVendidos();
 
-// Configurar los datos para el gráfico
-$labels = array_keys($cantidadProductosVendidos); // Nombres o IDs de los productos
-$valores = array_values($cantidadProductosVendidos); // Cantidades vendidas
+// Obtener los nombres de los productos vendidos
+$labels = [];
+$valores = [];
+
+// Asegúrate de que cada producto tenga un nombre y una cantidad
+foreach ($cantidadProductosVendidos as $productoId => $cantidad) {
+    // Suponiendo que $productoId es el ID del producto, obtenemos el nombre
+    $producto = $objAbmProducto->obtenerProductoPorId($productoId);
+    $labels[] = $producto['pronombre'];  // Agregar nombre del producto
+    $valores[] = $cantidad;           // Agregar la cantidad vendida
+}
 
 // Verificar que hay datos para graficar
 if (empty($cantidadProductosVendidos)) {
@@ -43,20 +51,22 @@ $barplot->SetShadow('gray', 3); // Sombra de las barras
 $graph->Add($barplot);
 
 // Configurar las etiquetas del eje X
-$graph->xaxis->SetTickLabels($labels);
+$graph->xaxis->SetTickLabels($labels); // Nombres de los productos en el eje X
 $graph->xaxis->SetLabelAngle(50); // Inclina las etiquetas si son largas
 
-//Ruta donde se guardara la imagen
-$ruta = "grafico.png";
+// Ruta donde se guardará la imagen
+$ruta = "g.png";
 
-//Mostrar el gráfico
-$graph->Stroke($ruta);  //Esto genera la imagen para mostrar
+// Mostrar el gráfico
+$graph->Stroke($ruta);  // Esto genera la imagen para mostrar
 
+
+/*
 $dir = 'grafico.png';
 if (is_writable($dir)) {
     echo "El directorio es escribible.";
 } else {
     echo "El directorio NO es escribible.";
 }
-
+*/
 ?>

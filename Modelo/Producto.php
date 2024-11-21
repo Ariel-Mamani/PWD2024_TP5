@@ -7,6 +7,7 @@ class Producto extends BaseDatos{
     private $procantstock;
     private $proimagen;
     private $mensajeoperacion;
+    private $db; //Para el grafico
 
     public function __construct()
     {
@@ -18,6 +19,7 @@ class Producto extends BaseDatos{
         $this->procantstock = '';
         $this->proimagen = '';
         $this->mensajeoperacion = "";
+        $this->db = new BaseDatos();  //Para el grafico. Instancia de la clase que gestiona la base de datos
     }
 
     public function setear($idproducto, $pronombre, $prodetalle, $proprecio, $procantstock, $proimagen){
@@ -295,5 +297,12 @@ class Producto extends BaseDatos{
         }
         return $arreglo;
     }
-        
+
+
+    public function obtenerProductoPorId($productoId) {
+        $query = "SELECT nombre FROM producto WHERE id_producto = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$productoId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

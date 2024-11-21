@@ -1,8 +1,15 @@
 <?php
 class AbmProducto{
+    private $db; //Para el grafico
     //Espera como parametro un arreglo asociativo donde las claves coincidProductoen con los nombres de las variables instancias del objeto
 
-    
+    //Para el grafico
+    public function __construct() {
+        // Crea una instancia de BaseDatos para acceder a la conexión
+        $this->db = new BaseDatos();  // Ahora $db está correctamente inicializada
+    }
+
+
     public function abm($datos){
         $resp = false;
         if($datos['accion'] == 'editar'){
@@ -225,5 +232,16 @@ class AbmProducto{
         $producto = new Producto(); // Instancia de la clase Producto
         return $producto->contarProductosVendidos(); // Llamada al método de Producto
     }
+
+
+    public function obtenerProductoPorId($productoId) {
+        // Consulta SQL
+        $query = "SELECT pronombre FROM producto WHERE idproducto = ?";
+        
+        // Preparamos la consulta usando $this->db
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$productoId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);  // Devuelve el resultado
+    }    
 }
 ?>
