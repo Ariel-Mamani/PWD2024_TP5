@@ -179,7 +179,7 @@ class AbmCompra{
  */
     public function agregarProducto($param){
         $resp = false;
-        $param['cicantidad'] = 1;
+       // $param['cicantidad'] = 1;
         $objSession = new Session();
         $param['idcompra'] = $objSession->getCompra()->getIdCompra();
         $objAbmProducto = new AbmProducto();
@@ -187,8 +187,8 @@ class AbmCompra{
         if(count($listaProducto) > 0){
             $objProducto = $listaProducto[0];
             $stock = $objProducto->getProStock();
-            if($stock > 0){
-                $stock--;
+            if($stock > $param['cicantidad']){
+                $stock -= $param['cicantidad'];
                 $objProducto->setProStock($stock);
                 if ($objProducto->modificar()){
                     $objAbmCompraItem = new AbmCompraItem();
@@ -196,7 +196,7 @@ class AbmCompra{
                     if(count($listaCompraItem) > 0){
                         $objCompraItem = $listaCompraItem[0]; 
                         $cant = $objCompraItem->getCiCantidad();
-                        $cant++;
+                        $cant += $param['cicantidad'];
                         $objCompraItem->setCiCantidad($cant);
                         if($objCompraItem->modificar()){
                             $resp = true;
