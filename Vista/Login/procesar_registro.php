@@ -1,7 +1,8 @@
 <?php
+include_once "../../configuracion.php";
 session_start();
 $titulo = "TP 5 - Login";
-include_once '../Estructura/header_N.php';
+
 echo "<div class='divtitulo'><h1>{$titulo}</h1>";
 $objSession = new Session();
 $objAbmUsuario = new AbmUsuario();
@@ -30,5 +31,7 @@ if(!empty(data_submitted())){
         die();
     }
 }
+
+include_once '../Estructura/header_N.php';
 
 ?>
