@@ -105,7 +105,7 @@ include_once "../Estructura/header.php";
 <script>$(document).ready(function() {
     // Realizar una solicitud AJAX para obtener los datos en formato JSON
     $.ajax({
-        url: 'accion/listar_Productos.php', // Cambia esto a la ruta correcta de tu archivo PHP
+        url: 'accion/listar_Productos.php', 
         method: 'GET',
         dataType: 'json',
         success: function(data) {
@@ -143,7 +143,7 @@ $(document).on('click', '.btn-eliminar', function() {
     // Confirmar la eliminación
     if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
         $.ajax({
-            url: 'accion/eliminar_Producto.php', // Cambia esto a la ruta correcta de tu archivo PHP
+            url: 'accion/eliminar_Producto.php', 
             method: 'POST',
             data: { idproducto: idProducto },
             success: function(response) {
