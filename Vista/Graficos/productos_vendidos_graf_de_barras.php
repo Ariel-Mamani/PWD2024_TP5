@@ -1,8 +1,3 @@
-<?php 
-$titulo = "TP FINAL - Gráfico de productos vendidos";
-include_once "../Estructura/header.php";
-?>
-
 <?php
 $titulo = "TP 5 - Ver Gráfico de Productos Vendidos"; // Título en la pestaña
 
@@ -51,11 +46,9 @@ $graph->Add($barplot);
 $graph->xaxis->SetTickLabels($labels);
 $graph->xaxis->SetLabelAngle(50); // Inclina las etiquetas si son largas
 
-// Mostrar el gráfico
-$graph->Stroke();
-?>
+//Ruta donde se guardara la imagen
+$ruta = "productos_vendidos_graf_de_barras.png";
 
-<!-- Footer -->
-<?php
-    include_once '../Estructura/footer_tienda.php';
+//Mostrar el gráfico
+$graph->Stroke($ruta);  //Esto genera la imagen para mostrar
 ?>
