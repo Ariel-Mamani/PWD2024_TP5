@@ -126,7 +126,7 @@ INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VAL
     (6, '', 'menu/accion/edit_menu.php', null, null),
     (7, '', 'menu/accion/alta_menu.php', null, null),
     (10, 'Compras', '', null, null),
-    (11, 'Compras', 'Compras/cpm´ras_ingresadas.php', 10, null),
+    (11, 'Compras', 'Compras/compras_ingresadas.php', 10, null),
     (12, 'Compras', 'Compras/compras_i.php', 10, null),
     (20, 'Productos', '', null, null),
     (21, 'Productos', 'Producto/Productos_lista.php', 20, null),
