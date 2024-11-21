@@ -17,9 +17,11 @@ if (!$objSession->validarCompra()) {
 
 <form action="" method="post">
     <!-- Informacion del usuario -->
-    <b>Usuario: </b><?php echo $user; ?><br>
-    <b>Correo: </b><?php echo $correo; ?><br>
-    <b>Fecha: </b> <?php echo date('d-m-Y'); ?><br><br>
+    <div style="font-size: 24px; text-align: center;">
+        <b>Usuario: </b><?php echo $user; ?><br>
+        <b>Correo: </b><?php echo $correo; ?><br>
+        <b>Fecha: </b> <?php echo date('d-m-Y'); ?><br><br>
+    </div>
     <div class="container">
         <div class="table-responsive">
             <!-- Tabla con productos que hay en el carrito -->
