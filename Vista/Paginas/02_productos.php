@@ -64,7 +64,7 @@ include_once '../Estructura/header.php';
                         '<p>' +  producto.pronombre + '</p>' +
                         '<p>Precio: $' + producto.proprecio + '</p>' +
                         '<p>Stock: ' + producto.procantstock + '</p>' + 
-                        '<img class="grid-img" src="../../Archivos/Productos/'+producto.proimagen+'.png" alt="' + producto.pronombre + '" stlye="width:50%; heigth:auto">' +
+                        '<img class="grid-img" src="../../Archivos/Productos/'+producto.proimagen+'" alt="' + producto.pronombre + '" stlye="width:50%; heigth:auto">' +
                         '<button type="button" class="btn-compra"' + 'data-nombre="' + producto.pronombre + '"' + 'data-precio="'+ 
                         producto.proprecio + '">' + 'Añadir al carro </button>' 
                     );
@@ -82,7 +82,7 @@ $('.btn-compra').on('click', function(){
 
     $.ajax({
         type:'POST',
-        url: '../Carrito/carrito2.php',
+        url: '../Carrito/carrito.php',
         data:{nombre: nombre, precio: precio},
         success: function(response){
             $('#notification-container').html('<div class="alert alert-success">Producto añadido al carrito.</div>');

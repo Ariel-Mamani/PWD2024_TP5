@@ -7,26 +7,11 @@ include_once "../Estructura/header.php";
 ?>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Basic CRUD Application - jQuery EasyUI CRUD Demo</title>
-    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/themes/color.css">
-    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.6.6/demo/demo.css">
-    <script type="text/javascript" src="../js/jquery-easyui-1.6.6/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-easyui-1.6.6/jquery.easyui.min.js"></script>
-</head>
-
-<body>
     <br><br>
 <h2>Compras Ingresadas</h2>
-<p class="letras">Seleccione la acci&oacute;n que desea realizar.</p>
 
 <table id="dg" title="Administrador de item Compra" class="easyui-datagrid" style="width:900px;height:750px"
-    url="accion/listar_compra.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" striped="true" data="1">
+    url="accion/listar_compra.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" striped="true" >
 
     <thead>
         <tr>
@@ -34,6 +19,7 @@ include_once "../Estructura/header.php";
             <th field="cofecha" width="20">Fecha</th>
             <th field="idusuario" width="10">ID Usuario</th>
             <th field="usnombre" width="20">Nombre Usuario</th>
+            <th field="item cicantidad" width="20">cantidad</th>
         </tr>
     </thead>
 </table>
@@ -61,11 +47,12 @@ include_once "../Estructura/header.php";
     <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
         <h3>Compra Informacion</h3>
         <div style="margin-bottom:10px">                    
-            <input name="cofecha" id="cofecha"  class="easyui-textbox" required="true" label="Fecha:" style="width:100%">
+            <input name="cofecha" id="cofecha"  class="easyui-textbox" required="true" label="Fecha:" style="width:100%" readonly>
         </div>
         <div style="margin-bottom:10px">
-            <input  name="idusuario" id="idusuario"  class="easyui-textbox" required="true" label="Descripcion:" style="width:100%">
+            <input  name="idusuario" id="idusuario"  class="easyui-textbox" required="true" label="Descripcion:" style="width:100%" readonly>
         </div>
+      
     </form>
 </div>
 
