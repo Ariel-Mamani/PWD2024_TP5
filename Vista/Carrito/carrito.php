@@ -6,13 +6,12 @@ $correo = $objSession->getUsuario()->getusmail();
 $objAbmCompra = new AbmCompra();
 $carrito = $objAbmCompra->mostrarCompra();
 
-
 //Hay que verificar si el que ingresa al carrito es un usuario registrado
 if (!$objSession->validarCompra()) {
     echo " <h3><b>No hay Productos en el  CARRITO</b></h3>";
 }
-echo $_SESSION['idcompra'];
-echo $_SESSION['idusuario'];
+// echo $_SESSION['idcompra'];
+// echo $_SESSION['idusuario'];
 ?>
 
 <form action="" method="post">
@@ -32,18 +31,17 @@ echo $_SESSION['idusuario'];
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (is_array($carrito) && count($carrito) > 0): ?>
+                        <?php if ($objSession->validarCompra()): ?>
                         <?php
                             $totalGeneral = 0;
                             foreach ($carrito as $index => $item) :
                             $totalItem = $item['cicantidad'] * $item['proprecio'];
                             $totalGeneral += $totalItem;
-                        ?>
+                         ?>
                         <tr>
                             <td><?php echo $index + 1; ?></td>
                             <td><?php echo htmlspecialchars($item['pronombre']); ?></td>
-                            <td><input type="number" min="1" name="cicantidad" id="cicantidad" value="<?php echo htmlspecialchars($item['cicantidad']); ?>"></td>
-                      <!--      <td><?php //echo htmlspecialchars($item['cicantidad']); ?></td> -->
+                            <td><?php echo htmlspecialchars($item['cicantidad']); ?></td>
                             <td><?php echo '$' . htmlspecialchars($item['proprecio']); ?></td>
                             <td>
                                 <button class="btn btn-danger eliminar-carrito" data-index="<?php echo $index; ?>" data-id='<?php echo $item['idproducto'];?>'><i class="bi bi-trash-fill"></i></button>
