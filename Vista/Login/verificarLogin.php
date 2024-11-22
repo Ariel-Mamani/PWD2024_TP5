@@ -17,8 +17,8 @@ if(!empty(data_submitted())){
         $respuesta = $objSession->iniciar($recibido['usnombre'],$recibido['uspass']);
         if($respuesta){
             // Si es correcto, redirige a la página segura
-            header("Location: ".$VISTA."Paginas/02_productos.php");
-           // header("Location: ".$VISTA."Paginas/informacion_util.php");
+            //header("Location: ".$VISTA."Paginas/02_productos.php");
+            header("Location: ".$VISTA."Login/paginaSegura.php");
             die();
         }else{
             $mensaje = $objSession->getMensaje($respuesta);

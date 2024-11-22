@@ -172,7 +172,9 @@ class AbmMenu{
             if (isset($param['menunombre']))
                 $where .= " and menunombre = '".$param['menunombre']."'";
             if (isset($param['medescripcion']))
-                $where .= " and medescripcion = '".$param['medescripcion']."'";    
+                $where .= " and medescripcion = '".$param['medescripcion']."'";  
+                if (isset($param['idpadre']))
+                $where .= " and idpadre = '".$param['idpadre']."'";    
         }
         $objMenu = new Menu();
         $arreglo = $objMenu->listar($where);

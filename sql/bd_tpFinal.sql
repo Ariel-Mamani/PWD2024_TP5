@@ -91,34 +91,40 @@ CREATE TABLE compraestado (
     FOREIGN KEY (idcompraestadotipo) REFERENCES compraestadotipo(idcompraestadotipo)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
+DELETE FROM menu;
 INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VALUES
-    (1, 'Venta', 'Paginas/02_productos.php', null, null),
-    (2, '', 'Paginas/carrito.php', null, null),
-    (3, '', 'Login/paginaSegura.php', null, null),
-    (4, 'Menu', 'menu/menu_list.php', null, null),
-    (5, '', 'menu/accion/listar_menu.php', null, null),
-    (6, '', 'menu/accion/edit_menu.php', null, null),
-    (7, '', 'menu/accion/alta_menu.php', null, null),
-    (10, 'Compras', '', null, null),
-    (11, 'Compras', 'Compras/compras_ingresadas.php', 10, null),
-    (12, 'Compras', 'Compras/compras_i.php', 10, null),
+    (10, 'Usuarios', '', null, null),
     (20, 'Productos', '', null, null),
+    (30, 'Compras', '', null, null),
+    (40, 'Graficos', '', null, null),
+    (50, 'Ventas', '', null, null),
+        
     (21, 'Productos', 'Producto/Productos_lista.php', 20, null),
     (22, '', 'Producto/ProductoNuevo.php', null, null),
     (23, '', 'Producto/ProductosAccion.php', null, null),
     (24, '', 'Producto/accion/eliminar_Producto.php', null, null),
     (25, '', 'Producto/accion/listar_Productos.php', null, null),
-    (30, 'Carrito', 'Carrito/carrito.php', null, null),
-    (31, '', 'Carrito/agregarCarrito.php', null, null),
-    (32, '', 'Carrito/eliminarCarrito.php', null, null),
-    (33, '', 'Carrito/decrementarProducto.php', null, null),
-    (34, '', 'Carrito/incrementarCarrito.php', null, null),
-    (35, '', 'Carrito/carrito_list.php', null, null),
-    (36, '', 'Carrito/eliminarProducto.php', null, null),
-    (40, 'Gráfico', 'Graficos/productos_vendidos_graf_de_barras.php', null, null),
-    (41, '', 'Graficos/grafico.png', null, null),
-    (42, '', 'Graficos/mostrar_grafico.php', null, null);
+    
+    (31, 'Compras', 'Compras/compras_ingresadas.php', 30, null),
+    (32, 'Compras', 'Compras/compras_i.php', null, null),
+
+    (41, 'Gráfico', 'Graficos/productos_vendidos_graf_de_barras.php', 40, null),
+    (42, '', 'Graficos/grafico.png', 40, null),
+    (43, '', 'Graficos/mostrar_grafico.php', 40, null),
+
+    (51, 'Insumos', 'Paginas/02_productos.php', 50, null),
+
+    (71, 'Carrito', 'Carrito/carrito.php', null, null),
+    (72, '', 'Carrito/eliminarCarrito.php', null, null),
+    (73, '', 'Carrito/decrementarProducto.php', null, null),
+    (74, '', 'Carrito/incrementarCarrito.php', null, null),
+    (75, '', 'Carrito/carrito_list.php', null, null),
+    (76, '', 'Carrito/eliminarProducto.php', null, null),
+    (77, '', 'Carrito/agregarCarrito.php', null, null),
+    (80, '', 'Login/procesar_registro.php', null, null),
+    (81, '', 'Login/registro.php', null, null),
+    (82, '', 'Login/verificarLogin.php', null, null),
+    (83, '', 'Login/paginaSegura.php', null, null);
 
 
 INSERT INTO rol (idrol, rodescripcion) VALUES 
@@ -128,59 +134,26 @@ INSERT INTO rol (idrol, rodescripcion) VALUES
     (4, 'cliente');
 
 
+DELETE FROM menurol;
 INSERT INTO menurol (idmenu, idrol) VALUES 
-    (1, 1),
-    (2, 1),
-    (3, 1),
-    (1, 2),
-    (2, 2),
-    (3, 2),
-    (1, 3),
-    (2, 3),
-    (3, 3),
-    (1, 4),
-    (2, 4),
-    (3, 4),
-    (4, 1),
-    (5, 1),
-    (6, 1),
-    (7, 1),
-    (10, 1),
-    (11, 1),
-    (12, 1),
-    (10, 3),
-    (11, 3),
-    (12, 3),    
-    (20, 1),
-    (21, 1),
-    (22, 1),  
-    (23, 1),
-    (24, 1),
-    (25, 1),
-    (30, 1),
-    (31, 1),
-    (32, 1),  
-    (33, 1),
-    (34, 1),
-    (35, 1),
-    (30, 4),
-    (31, 4),
-    (32, 4),  
-    (33, 4),
-    (34, 4),
-    (35, 4),
-    (36, 1),
-    (40, 1),           
-    (41, 1),           
-    (42, 1);           
+    (10, 1), (20, 1), (30, 1), (40, 1), (50, 1), 
+    (21, 1), (22, 1), (23, 1), (24, 1), (25, 1), (31, 1), (32, 1), (41, 1), (42, 1), (43, 1), (51, 1),
+    (71, 1), (72, 1), (73, 1), (74, 1), (75, 1), (76, 1), (77, 1),     
+    (20, 2), (30, 2), (40, 2), (21, 2), (22, 2), (23, 2), (24, 2), (25, 2), (31, 2), (32, 2), (41, 2), (42, 2), (43, 2),
+    (20, 3), (30, 3), (21, 3), (22, 3), (23, 3), (24, 3), (25, 3), (31, 3), (32, 3), 
+    (50, 4), (51, 4), (70, 4), (71, 4), (72, 4), (73, 4), (74, 4), (75, 4), (76, 4), (77, 4), 
+    (80, 1), (80, 2), (80, 3), (80, 4), (81, 1), (81, 2), (81, 3), (81, 4), (82, 1), (82, 2), (82, 3), (82, 4), (83, 1), (83, 2), (83, 3), (83, 4);    
 
 
 INSERT INTO usuario (idusuario, usnombre, uspass, usmail, usdeshabilitado) VALUES
-    (1, 'Jose', 'e10adc3949ba59abbe56e057f20f883e', 'jose@jose.com', null);
+    (1, 'superadmin', 'e10adc3949ba59abbe56e057f20f883e', 'jose@jose.com', null),
+    (2, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'jose@jose.com', null),
+    (3, 'depo', 'e10adc3949ba59abbe56e057f20f883e', 'jose@jose.com', null),
+    (4, 'cliente', 'e10adc3949ba59abbe56e057f20f883e', 'jose@jose.com', null);
 
 
 INSERT INTO usuariorol (idusuario, idrol) VALUES
-    (1, 1);
+    (1, 1), (3, 3), (2, 2), (4, 4);
 
 
 INSERT INTO `compraestadotipo` (`idcompraestadotipo`, `cetdescripcion`, `cetdetalle`) VALUES

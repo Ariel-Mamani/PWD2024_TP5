@@ -9,16 +9,10 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav"> 
-          <!-- Menu TP 5 -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Acciones</a>
-            <ul class="dropdown-menu">
+
               <?php echo $cadenaMenu;  ?>  
-            </ul>
-          </li>          
-        </ul>
-        <li><a href="../Carrito/carrito.php"><span id="cuenta-carrito"></span><i class="bi bi-cart " style="font-size: 25px;"></i></a></li>
+
+
         <form action="<?php echo $VISTA ?>Login/verificarLogin.php" method="post" class="d-flex align-items-center ms-auto">
           <label for="lusuario" class="labelUsuario " style="position: relative; left:auto;"><?php echo $usuario.' ('.( $objSession->getRol() <> null ? $objSession->getRol()->getroldescripcion() : "" ).')'.'<img src="../Imagenes/gatito.png" alt="Avatar Gatito" style="width:40px;" class="rounded-pill m-3"> '; ?>  </label>
 
