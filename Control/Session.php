@@ -91,6 +91,7 @@ class Session {
      */
     public function iniciar($usuario, $psw){
         $resp = false;
+        //if($this->cerrar());
         $param['usnombre'] = $usuario;
         $param['uspass'] = $psw;
         $objAbmUsuario = new AbmUsuario;
@@ -115,6 +116,19 @@ class Session {
             session_unset();
             // destroy the session
             session_destroy();
+            $resp = true;
+        }
+        return $resp;
+    }
+
+        /**
+     * Cierra la sesión destruyendo las variables y la sesión misma.
+     * @return bool $resp
+     */
+    public function cerrarCompra(){
+        $resp = false;
+        if($this->validarCompra()){
+            unset($_SESSION['idcompra']);
             $resp = true;
         }
         return $resp;

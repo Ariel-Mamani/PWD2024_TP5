@@ -10,15 +10,15 @@
                 <ul class="navbar-nav"> 
                     <!-- Menu TP 5 -->
 
-                    <!-- Boton 2 - Pagina Principal -->
+                    <!-- Boton 2 - Pagina Principal 
                     <li class="nav-item">
                         <a class="nav-link" href="../Paginas/01_reservar.php">P&aacute;gina Principal</a>
-                    </li>
+                    </li>-->
 
-                    <!-- Boton 3 - Comprar -->
+                    <!-- Boton 3 - Comprar 
                     <li class="nav-item">
                         <a class="nav-link" href="../Paginas/02_productos.php">Comprar</a>
-                    </li>
+                    </li> -->
 
                     <!-- Boton 4 - Informacion Util -->
                     <li class="nav-item">
@@ -39,16 +39,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../Paginas/contacto.php">Contacto</a>
                     </li>
-
                     <!-- Boton 8 - Login -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Login/Registro</a>
-                        <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<?php echo $VISTA ?>Login/login.php">Login</a></li>
-                        <li><a class="dropdown-item" href="<?php echo $VISTA ?>Login/registro.php">Registrar</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $VISTA ?>Login/login.php">Login</a>
                     </li>
-                    <li><a href="../Paginas/carrito.php"><span id="cuenta-carrito"></span><i class="bi bi-cart " style="font-size: 25px;"></i></a></li>
+
                 </ul>
 
                 <div class="d-flex align-items-center ms-auto">

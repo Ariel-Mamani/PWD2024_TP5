@@ -68,7 +68,7 @@ if (!$objSession->validarCompra()) {
             </h4>
 
             <!-- Guarda los datos del carrito -->
-            <button type="button" id="SaveCompra" class="btn btn-primary">Guardar Registro</button>
+            <button type="button" id="SaveCompra" class="btn btn-primary">Finalizar Compra</button>
             <br><br>
         </div>
     </div>
