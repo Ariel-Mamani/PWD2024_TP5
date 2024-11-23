@@ -5,7 +5,7 @@
 
     //Validación de sesión y roles
     $cortar = strlen($VISTA);
-    if($objSession->validar() and $objSession->validarRol($cortar)){
+    if($objSession->validar() ){//and $objSession->validarRol($cortar)){
       $titulo = "TP Final";
     }else{
       header("Location: ".$VISTA."Inicio/principal.php");

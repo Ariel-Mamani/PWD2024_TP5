@@ -190,6 +190,7 @@ class AbmCompra{
             if($stock > $param['cicantidad']){
                 $stock -= $param['cicantidad'];
                 $objProducto->setProStock($stock);
+            
                 if ($objProducto->modificar()){
                     $objAbmCompraItem = new AbmCompraItem();
                     $listaCompraItem = $objAbmCompraItem->buscar($param);
@@ -198,6 +199,7 @@ class AbmCompra{
                         $cant = $objCompraItem->getCiCantidad();
                         $cant += $param['cicantidad'];
                         $objCompraItem->setCiCantidad($cant);
+
                         if($objCompraItem->modificar()){
                             $resp = true;
                         }

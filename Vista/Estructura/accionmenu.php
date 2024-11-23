@@ -19,9 +19,12 @@
                     $objAbmMenu = new AbmMenu();
                     $listaObjMenu = $objAbmMenu->buscar($par);
                     foreach($listaObjMenu as $objMenu){
-                        $url = $objMenu->getMedescripcion();
-                        $nombre = $objMenu->getMeNombre();
-                        $cadenaMenu .= '<li><a class="dropdown-item" href="'.$VISTA.$url.'">'.$nombre.'</a></li>'; 
+                        if ($objMenu->getObjMenu() <> NULL){
+
+                            $url = $objMenu->getMedescripcion();
+                            $nombre = $objMenu->getMeNombre();
+                            $cadenaMenu .= '<li><a class="dropdown-item" href="'.$VISTA.$url.'">'.$nombre.'</a></li>'; 
+                        }
                     }
                     $cadenaMenu .= '</ul></li>';
                 }              

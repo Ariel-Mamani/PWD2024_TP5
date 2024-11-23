@@ -11,8 +11,6 @@ $carrito = $objAbmCompra->mostrarCompra(); //Muestra los productos del carrito
 if (!$objSession->validarCompra()) {
     echo " <h3><b>No hay Productos en el  CARRITO</b></h3>";
 }
- echo $_SESSION['idcompra'];
- echo $_SESSION['idusuario'];
     
 ?>
 

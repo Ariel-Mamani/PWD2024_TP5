@@ -177,7 +177,8 @@ class Producto extends BaseDatos{
         prodetalle = '".$this->getProDetalle()."', 
         proprecio = ".$this->getProPrecio().", 
         procantstock = '".$this->getProStock()."', 
-        proimagen = '".$this->getProImagen()."' 
+        proimagen = '".$this->getProImagen()."',
+        prodeshabilitado = null  
         WHERE idproducto = ".$this->getIdProducto();
 
         if ($this->Iniciar()) {
