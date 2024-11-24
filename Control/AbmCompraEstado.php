@@ -127,7 +127,7 @@ class AbmCompraEstado{
         }
         return $resp;
     }
-*/
+
 
     /**
      * permite modificar un objeto menos la password.
@@ -138,7 +138,7 @@ class AbmCompraEstado{
      * @param array $param
      * @return boolean $resp
      */
-  /*  public function modificacion($param){
+    public function modificacion($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objCompraEstado = $this->cargarObjeto($param);
@@ -147,7 +147,7 @@ class AbmCompraEstado{
             }
         }
         return $resp;
-    }*/
+    }
 
 
     /**

@@ -103,14 +103,14 @@ $(document).on('click', '.eliminar-producto', function() {
 });
 
 //Finaliza la compra
-$(document).on('click', '#SaveCompra', function() {
-
+$("#SaveCompra").on('click', function() {
+    var idcompra = $("#idcompra").value; 
     $.ajax({
         url: 'accion/finalizarCarrito.php', 
         method: 'POST',
         data: { idcompra: idcompra },
         success: function(response) {
-    console.log(response); // Para verificar la respuesta del servidor
+        console.log(response); // Para verificar la respuesta del servidor
     if (response.success) {
         alert('Compra Finalizada.');
     } else {
