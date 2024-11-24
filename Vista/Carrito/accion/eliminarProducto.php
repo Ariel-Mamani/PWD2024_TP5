@@ -1,5 +1,5 @@
 <?php
-include_once '../Estructura/header.php';
+include_once "../../../configuracion.php";
 $datos = data_submitted();
 $abmCompra = new AbmCompra();
 

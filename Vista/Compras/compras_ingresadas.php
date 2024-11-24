@@ -45,7 +45,20 @@ include_once "../Estructura/header.php";
 
 <!-- Formulario de compra -->
 <div id="dlg" class="easyui-dialog" style="width:600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
-    <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
+<table id="dg1" title="Administrador de item Compra" class="easyui-datagrid" style="width:500px;height:750px"
+  pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" striped="true" >
+
+    <thead>
+        <tr>
+            <th field="idcompra" width="10">ID Compra</th>
+            <th field="cofecha" width="20">Fecha</th>
+            <th field="idusuario" width="10">ID Usuario</th>
+            <th field="usnombre" width="20">Nombre Usuario</th>
+            <th field="item cicantidad" width="20">cantidad</th>
+        </tr>
+    </thead>
+</table>
+ <!--   <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
         <h3>Compra Informaci&oacute;n</h3>
         <div style="margin-bottom:10px">                    
             <input name="cofecha" id="cofecha"  class="easyui-textbox" required="true" label="Fecha:" style="width:100%" readonly>
@@ -53,7 +66,7 @@ include_once "../Estructura/header.php";
         <div style="margin-bottom:10px">
             <input  name="idusuario" id="idusuario"  class="easyui-textbox" required="true" label="Descripcion:" style="width:100%" readonly>
         </div>
-    </form>
+    </form>-->
 </div>
 
 <!-- Botones del formulario -->
@@ -72,29 +85,23 @@ include_once "../Estructura/header.php";
 <script type="text/javascript">
             var url;
 
-            //Abre el cuadro de diálogo para crear una nueva compra. Limpia el formulario y establece la URL de destino a accion/alta_compra.php
             function newCompra(){
                 $('#dlg').dialog('open').dialog('center').dialog('setTitle','Nuevo Compra');
                 $('#fm').form('clear');
                 url = 'accion/alta_compra.php';
             }
 
-            //Muestra los detalles de una compra seleccionada. Obtiene la fila seleccionada de la tabla #dg, y carga esos datos en el formulario dentro del cuadro de diálogo.
-            //Nota: Si no se selecciona una fila, el código no hace nada.
-            //URL: Se establece para cargar los detalles de la compra mediante accion/detalle_compra.php.
+
             function DetalleCompra(){
                 var row = $('#dg').datagrid('getSelected');
                 if (row){
                     $('#dlg').dialog('open').dialog('center').dialog('setTitle','Detalle de la Compra');
-                    $('#fm').form('load',row);
+                    $('#dg1').datagrid('load',row);
                     url = 'accion/detalle_compra.php?accion=mod&idcompra='+row.idCompra;
                 }
             }
 
-            //Envía el formulario de compra al servidor.
-            //Usa Ajax para enviar los datos del formulario ($('#fm').form('submit')) a la URL especificada en la variable url.
-            //Si la respuesta es exitosa, recarga la tabla de compras ($('#dg').datagrid('reload')) y cierra el cuadro de diálogo.
-            //Validación: Se asegura de que el formulario sea válido antes de enviarlo
+
             function saveCompra(){
             	//alert(" Accion");
                 $('#fm').form('submit',{

@@ -187,27 +187,36 @@ class AbmCompra{
         if(count($listaProducto) > 0){
             $objProducto = $listaProducto[0];
             $stock = $objProducto->getProStock();
-            if($stock > $param['cicantidad']){
-                $stock -= $param['cicantidad'];
-                $objProducto->setProStock($stock);
-            
-                if ($objProducto->modificar()){
-                    $objAbmCompraItem = new AbmCompraItem();
-                    $listaCompraItem = $objAbmCompraItem->buscar($param);
-                    if(count($listaCompraItem) > 0){
-                        $objCompraItem = $listaCompraItem[0]; 
-                        $cant = $objCompraItem->getCiCantidad();
-                        $cant += $param['cicantidad'];
-                        $objCompraItem->setCiCantidad($cant);
-
-                        if($objCompraItem->modificar()){
+            $objAbmCompraItem = new AbmCompraItem();
+            $listaCompraItem = $objAbmCompraItem->buscar($param);
+            $nuevaCant = $param['cicantidad'];
+            if(count($listaCompraItem) > 0){
+                $objCompraItem = $listaCompraItem[0]; 
+                $cant = $objCompraItem->getCiCantidad();
+                if($param['cicantidad'] > $cant){
+                    $nuevaCant = $param['cicantidad'] - $cant;
+                }else{
+                    $nuevaCant = $cant - $param['cicantidad']; 
+                }
+                $objCompraItem->setCiCantidad($nuevaCant);
+                if($objCompraItem->modificar()){
+                    if($stock > $nuevaCant){
+                        $stock -= $nuevaCant;
+                        $objProducto->setProStock($stock);
+                        if ($objProducto->modificar()){
                             $resp = true;
                         }
-                    }elseif($objAbmCompraItem->alta($param)){
+                    }
+                }
+            }elseif($objAbmCompraItem->alta($param)){
+                if($stock > $nuevaCant){
+                    $stock -= $nuevaCant;
+                    $objProducto->setProStock($stock);
+                    if ($objProducto->modificar()){
                         $resp = true;
                     }
                 }
-            }
+            }  
         }
         return $resp;
     }
@@ -246,7 +255,40 @@ public function restarProducto($param){
     }
     return $resp;
 }
-
+/**
+ * Toma de la session activa el idcompra
+ * Recibe en $param['idproducto']
+ * @param array
+ * @return bool
+ */
+public function sumarProducto($param){
+    $resp = false;
+    $objSession = new Session();
+    $param['idcompra'] = $objSession->getCompra()->getIdCompra();
+    $objAbmProducto = new AbmProducto();
+    $listaProducto = $objAbmProducto->buscar($param);
+    
+    if(count($listaProducto) > 0){
+        $objProducto = $listaProducto[0];
+        $stock = $objProducto->getProStock();
+        $stock--;
+        $objProducto->setProStock($stock);
+        if ($objProducto->modificar()){
+            $objAbmCompraItem = new AbmCompraItem();
+            $listaCompraItem = $objAbmCompraItem->buscar($param);
+            if(count($listaCompraItem) > 0){
+                $objCompraItem = $listaCompraItem[0]; 
+                $cant = $objCompraItem->getCiCantidad();
+                if($cant > 0) {$cant++;}
+                $objCompraItem->setCiCantidad($cant);
+                if($objCompraItem->modificar()){
+                    $resp = true;
+                }
+            }
+        }
+    }
+    return $resp;
+}
 /**
  * Toma de la session activa el idcompra
  * Recibe en $param['idproducto']
@@ -289,7 +331,13 @@ public function finalizar(){
         $objCompraEstado = $listaAbmCompraEstado[0];
         $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
         if ($objCompraEstado->modificar()){
-            $resp = true;
+            $objAbmCompraEstado = new AbmCompraEstado();
+            $param['idcompraestadotipo'] = 2; // estado ingresada = 1
+            $param['cefechainit'] = date("Y-m-d h:i:sa");
+            $param['cefechafin'] = null;
+            if($objAbmCompraEstado->alta($param)){
+                $resp = true;
+            }
         }
     }
     return $resp;

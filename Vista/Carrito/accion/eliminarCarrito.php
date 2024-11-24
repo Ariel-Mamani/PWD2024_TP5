@@ -1,5 +1,5 @@
 <?php
-include_once "../Estructura/header.php";
+include_once "../../../configuracion.php";
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $index = $_POST['index'];

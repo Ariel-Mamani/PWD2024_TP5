@@ -1,8 +1,8 @@
 <?php
 
-include_once "../Estructura/header.php";
+include_once "../../../configuracion.php";
 $datos = data_submitted();
-//$objSession = new Session();
+$objSession = new Session();
 $abmCompra = new AbmCompra();
 
 if (!$objSession->validarCompra()){

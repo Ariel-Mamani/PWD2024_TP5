@@ -45,6 +45,7 @@ include_once "../Estructura/header.php";
             {field:'cofecha',title:'Fecha', width:150, align:'center'},
             {field:'idusuario',title:'ID Usuario', width:100, align:'center'},
             {field:'usnombre',title:'Nombre', width:150, align:'center'},
+            {field:'item',title:'Nombre', width:150, align:'center'},
         ]]
     });
 

@@ -3,6 +3,7 @@ $titulo = "Carrito";
 include_once '../Estructura/header.php';
 $user = $objSession->getUsuario()->getusnombre();
 $correo = $objSession->getUsuario()->getusmail();
+$idcompra = $objSession->getCompra()->getIdCompra();
 $objAbmCompra = new AbmCompra();
 $carrito = $objAbmCompra->mostrarCompra(); //Muestra los productos del carrito
 
@@ -17,6 +18,7 @@ if (!$objSession->validarCompra()) {
 <form action="" method="post">
     <!-- Informacion del usuario -->
     <div style="font-size: 24px; text-align: center;">
+        <b id="idcompra">Compra Nro: </b><?php echo $idcompra; ?><br>
         <b>Usuario: </b><?php echo $user; ?><br>
         <b>Correo: </b><?php echo $correo; ?><br>
         <b>Fecha: </b> <?php echo date('d-m-Y'); ?><br><br>
@@ -45,7 +47,8 @@ if (!$objSession->validarCompra()) {
                         <tr>
                             <td><?php echo $index + 1; ?></td>
                             <td><?php echo htmlspecialchars($item['pronombre']); ?></td>
-                            <td><?php echo htmlspecialchars($item['cicantidad']); ?></td>
+                            <td><input type="number" name="cicantidad" id="cicantidad" min="1" value="<?php echo htmlspecialchars($item['cicantidad']); ?>"></td>
+                            
                             <td><?php echo '$' . htmlspecialchars($item['proprecio']); ?></td>
                             <td>
                                 <button class="btn btn-danger eliminar-producto" data-index="<?php echo $index; ?>" data-id='<?php echo $item['idproducto'];?>'><i class="bi bi-trash-fill"></i></button>
@@ -80,7 +83,7 @@ if (!$objSession->validarCompra()) {
 $(document).on('click', '.eliminar-producto', function() {
     var idProducto = $(this).data('id'); // Obtener el ID del producto a decrementar
     $.ajax({
-        url: 'eliminarProducto.php', 
+        url: 'accion/eliminarProducto.php', 
         method: 'POST',
         data: { idproducto: idProducto },
         success: function(response) {
@@ -98,4 +101,32 @@ $(document).on('click', '.eliminar-producto', function() {
         }
     });
 });
+
+//Finaliza la compra
+$(document).on('click', '#SaveCompra', function() {
+
+    $.ajax({
+        url: 'accion/finalizarCarrito.php', 
+        method: 'POST',
+        data: { idcompra: idcompra },
+        success: function(response) {
+    console.log(response); // Para verificar la respuesta del servidor
+    if (response.success) {
+        alert('Compra Finalizada.');
+    } else {
+    
+        alert('Error al finalizar la compra: ');
+    }
+},
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error al finalizar la compra', textStatus, errorThrown);
+            alert('Error al finalizar la compra. Inténtalo de nuevo.');
+        }
+    });
+});
 </script>
+
+<!--
+<td><input type="number" name="cicantidad" id="cicantidad" min="1" value="<?php //echo htmlspecialchars($item['cicantidad']); ?>"></td>
+<td><?php //echo htmlspecialchars($item['cicantidad']); ?></td>
+-->

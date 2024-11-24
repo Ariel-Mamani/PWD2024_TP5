@@ -92,7 +92,7 @@ include_once '../Estructura/header.php';
                     // Enviar datos al archivo carrito.php
                     $.ajax({
                         type: 'POST',
-                        url: '../Carrito/agregarCarrito.php',
+                        url: '../Carrito/accion/agregarCarrito.php',
                         data: {
                             idproducto: idArt,
                             pronombre: nombre,

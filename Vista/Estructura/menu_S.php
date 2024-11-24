@@ -12,7 +12,7 @@
             foreach($listaMenuRol as $menuRol){
                 $objMenuP = $menuRol->getMenu();
                 if($objMenuP->getObjMenu() == NULL){
-                    $cadenaMenu .= '<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">'.$objMenuP->getMenombre().'</a>';
+                    $cadenaMenu .= '<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" href="#">'.$objMenuP->getMenombre().'</a>';
                     $cadenaMenu .= '<ul class="dropdown-menu">';
                     $par['idpadre'] = $objMenuP->getIdmenu();
                     $objAbmMenu = new AbmMenu();
@@ -27,7 +27,7 @@
                     }
                     $cadenaMenu .= '</ul></li>';
                 }              
-            }
+            }    
 
         }
     }

@@ -5,8 +5,14 @@
 
     //Validación de sesión y roles
     $cortar = strlen($VISTA);
-    if($objSession->validar() and $objSession->validarRol($cortar)){
-      $titulo = "TP Final";
+    if($objSession->validar()){
+      if($objSession->validarRol($cortar)){
+        $titulo = "TP Final";
+
+      }else{
+        header("Location: ".$VISTA."Login/paginaNo.php");
+        die();        
+      }
     }else{
       header("Location: ".$VISTA."Inicio/principal.php");
       die();

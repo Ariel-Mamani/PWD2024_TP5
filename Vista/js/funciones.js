@@ -1,6 +1,6 @@
 
 // Funcion para procesar y agregar al carrito
-
+/*
 $(document).ready(function (){
     //Detecta el clic del botón con la clase agregar-carrito
     $('.agregar-carrito').on('click', function (){
@@ -14,7 +14,7 @@ $(document).ready(function (){
         if($(this).data('stock') > 0 ){
             // Enviar datos al servidor mediante una solicitud AJAX
             $.ajax({
-                url: '../Carrito/agregarCarrito.php',  // URL del archivo que procesa la solicitud
+                url: '../Carrito/accion/agregarCarrito.php',  // URL del archivo que procesa la solicitud
                 method: 'POST',             // Método para enviar los datos 
                 data: {                     // Datos que se envían al servidor
                     idArt: idArt,
@@ -48,7 +48,7 @@ $(document).ready(function (){
 //         if (stock > 0)
 //         {
 //             $.ajax({
-//                 url: '../Carrito/agregarCarrito.php',
+//                 url: '../Carrito/accion/agregarCarrito.php',
 //                 method: 'POST',
 //                 data: {
 //                     idArt: idArt,
@@ -112,7 +112,7 @@ $(document).ready(function () {
     $('.eliminar-carrito').on('click', function () {
         var index = $(this).data('index');
         $.ajax({
-            url: '../Carrito/eliminarCarrito.php',
+            url: '../Carrito/accion/eliminarCarrito.php',
             method: 'POST',
             data: {
                 index: index

@@ -1,7 +1,7 @@
 <?php 
 include_once "../../../configuracion.php";
 $data = data_submitted();
-$param['idcompraestadotipo'] = 1; //Compra ingresada
+$param['idcompraestadotipo'] = 2; //Compra ingresada
 $objAbmCompraEstado = new AbmCompraEstado();
 $listaCompraEstado = $objAbmCompraEstado->buscar($param);
 $listaCompra = array();
@@ -14,7 +14,7 @@ if(count($listaCompraEstado) > 0){
 }
 $arreglo_salida =  array();
 foreach ($listaCompra as $elem ){
-  /*  $objAbmCompraItem = new AbmCompraItem();
+    $objAbmCompraItem = new AbmCompraItem();
     $param['idcompra']  = $elem->getIdCompra();
     $listaCompraItem = $objAbmCompraItem->buscar($param);
     if(count($listaCompraItem) > 0){
@@ -27,7 +27,7 @@ foreach ($listaCompra as $elem ){
             array_push($nuevo,$arrCompraItem);
         }
         $nuevoElem['item'] = $nuevo;
-    }*/
+    }
     $nuevoElem['idcompra']  = $elem->getIdCompra();
     $nuevoElem["cofecha"]   = $elem->getCoFecha();
     $nuevoElem["idusuario"] = $elem->getUsuario()->getidusuario();
