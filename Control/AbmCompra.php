@@ -336,6 +336,7 @@ public function finalizar(){
             $param['cefechainit'] = date("Y-m-d h:i:sa");
             $param['cefechafin'] = null;
             if($objAbmCompraEstado->alta($param)){
+                $objSession->cerrarCompra();
                 $resp = true;
             }
         }

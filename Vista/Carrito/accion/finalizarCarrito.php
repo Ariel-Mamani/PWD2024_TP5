@@ -13,7 +13,8 @@ $retorno['respuesta'] = $respuesta;
 if (isset($mensaje)){
     $retorno['errorMsg']=$mensaje;
 }
-echo json_encode($retorno);
+echo json_encode(['success' => $respuesta]);
+//echo json_encode($retorno);
 
   
     

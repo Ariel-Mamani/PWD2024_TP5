@@ -112,9 +112,10 @@ $("#SaveCompra").on('click', function() {
         success: function(response) {
         console.log(response); // Para verificar la respuesta del servidor
     if (response.success) {
-        alert('Compra Finalizada.');
+        window.location.replace("pago.php");
+      //  alert('Compra Finalizada.');
     } else {
-    
+        window.location.replace("pago.php");
         alert('Error al finalizar la compra: ');
     }
 },

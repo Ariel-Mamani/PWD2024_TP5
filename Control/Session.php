@@ -121,18 +121,7 @@ class Session {
         return $resp;
     }
 
-        /**
-     * Cierra la sesión destruyendo las variables y la sesión misma.
-     * @return bool $resp
-     */
-    public function cerrarCompra(){
-        $resp = false;
-        if($this->validarCompra()){
-            unset($_SESSION['idcompra']);
-            $resp = true;
-        }
-        return $resp;
-    }
+
 
     /**
      * Verifica si la session está activa.
@@ -224,7 +213,18 @@ public function iniciarCompra(){
         }
         return $resp;    
     }
-
+        /**
+     * Cierra la sesión destruyendo las variables y la sesión misma.
+     * @return bool $resp
+     */
+    public function cerrarCompra(){
+        $resp = false;
+        if($this->validarCompra()){
+            unset($_SESSION['idcompra']);
+            $resp = true;
+        }
+        return $resp;
+    }
 
 }
 ?>

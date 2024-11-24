@@ -125,6 +125,7 @@ INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VAL
     (76, '', 'Carrito/accion/eliminarProducto.php', 30, null),
     (77, '', 'Carrito/accion/agregarCarrito.php', 30, null),
     (78, '', 'Carrito/accion/finalizarCarrito.php', 30, null),
+    (79, '', 'Carrito/pago.php', 30, null),
     (80, '', 'Login/procesar_registro.php', 30, null),
     (81, '', 'Login/registro.php', 30, null),
     (82, '', 'Login/verificarLogin.php', 30, null),
@@ -147,7 +148,7 @@ INSERT INTO menurol (idmenu, idrol) VALUES
     (100, 1), (100, 2), (100, 3), (100, 4),
     (20, 2), (30, 2), (40, 2), (21, 2), (22, 2), (23, 2), (24, 2), (25, 2), (31, 2), (32, 2), (41, 2), 
     (20, 3), (30, 3), (21, 3), (22, 3), (23, 3), (24, 3), (25, 3), (31, 3), (32, 3), 
-    (50, 4), (51, 4), (62, 4), (63, 4), (64, 4), (65, 4), (71, 4), (72, 4), (73, 4), (74, 4), (75, 4), (76, 4), (77, 4), (78, 4),
+    (50, 4), (51, 4), (62, 4), (63, 4), (64, 4), (65, 4), (71, 4), (72, 4), (73, 4), (74, 4), (75, 4), (76, 4), (77, 4), (78, 4), (79, 4),
     (80, 1), (80, 2), (80, 3), (80, 4), (81, 1), (81, 2), (81, 3), (81, 4), (82, 1), (82, 2), (82, 3), (82, 4), (83, 1), (83, 2), (83, 3), (83, 4);    
 
 
