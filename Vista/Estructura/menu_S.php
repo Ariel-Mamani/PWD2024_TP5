@@ -31,10 +31,10 @@
 
         }
     }
-    $cadenaMenu .= '</ul>';
-    if ($objSession->validarCompra()){
-      $cadenaMenu .= '<li><a href="../Carrito/carrito.php"><span id="cuenta-carrito"></span><i class="bi bi-cart " style="font-size: 25px;"></i></a></li>';
-    }
+    $cadenaMenu .= '</ul><li><a href="';
+    if ($objSession->validarCompra()){$cadenaMenu .= '../Carrito/carrito.php';
+    }else{$cadenaMenu .='#';    }
+    $cadenaMenu .= '"><span id="cuenta-carrito"></span><i class="bi bi-cart " style="font-size: 25px;"></i></a></li>';
 ?>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
     <div class="container-fluid">

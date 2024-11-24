@@ -179,7 +179,6 @@ class AbmCompra{
  */
     public function agregarProducto($param){
         $resp = false;
-       // $param['cicantidad'] = 1;
         $objSession = new Session();
         $param['idcompra'] = $objSession->getCompra()->getIdCompra();
         $objAbmProducto = new AbmProducto();

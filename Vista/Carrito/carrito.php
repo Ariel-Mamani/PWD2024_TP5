@@ -41,20 +41,22 @@ if (!$objSession->validarCompra()) {
                         <?php
                             $totalGeneral = 0;
                             foreach ($carrito as $index => $item) :
-                            $totalItem = $item['cicantidad'] * $item['proprecio'];
-                            $totalGeneral += $totalItem;
                         ?>
                         <tr>
                             <td><?php echo $index + 1; ?></td>
                             <td><?php echo htmlspecialchars($item['pronombre']); ?></td>
-                            <td><input type="number" name="cicantidad" id="cicantidad" min="1" value="<?php echo htmlspecialchars($item['cicantidad']); ?>"></td>
+                            <td><input type="number" name="cicantidad" id="cicantidad"  class="cantidad-producto" data-index="<?php echo $index; ?>" data-id='<?php echo $item['idproducto'];?>'   min="1" value="<?php echo htmlspecialchars($item['cicantidad']); ?>"></td>
                             
                             <td><?php echo '$' . htmlspecialchars($item['proprecio']); ?></td>
                             <td>
                                 <button class="btn btn-danger eliminar-producto" data-index="<?php echo $index; ?>" data-id='<?php echo $item['idproducto'];?>'><i class="bi bi-trash-fill"></i></button>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+
+                        <?php
+                            $totalItem = $item['cicantidad'] * $item['proprecio'];
+                            $totalGeneral += $totalItem; 
+                            endforeach; ?>
                         <?php else: ?>
                         <tr>
                             <td colspan="5">El carrito está vacío.</td>
@@ -102,26 +104,44 @@ $(document).on('click', '.eliminar-producto', function() {
     });
 });
 
+
+//Modificar cantidad de productos
+$(document).on('blur', '.cantidad-producto', function() {
+//$("#cicantidad").blur(function() {
+    var idProducto = $(this).data('id');
+    var ciCantidad = $(this).val(); 
+    $.ajax({
+        url: 'accion/agregarCarrito.php', 
+        method: 'POST',
+        data: { 
+            cicantidad: ciCantidad,
+            idproducto: idProducto 
+        },
+        success: function(response) {
+            $('#notification-container').html('<div class="alert alert-success">Producto añadido al carrito.</div>');
+            alert('El producto fue añadido con éxito');
+        },
+        error: function(xhr, status, error) {
+            console.error("Error al añadir al carrito:", error);
+            console.log(xhr.responseText);
+        }
+    });
+});
+
 //Finaliza la compra
 $("#SaveCompra").on('click', function() {
-    var idcompra = $("#idcompra").value; 
+    var idcompra = $("#idcompra").val(); 
     $.ajax({
         url: 'accion/finalizarCarrito.php', 
         method: 'POST',
         data: { idcompra: idcompra },
         success: function(response) {
-        console.log(response); // Para verificar la respuesta del servidor
-    if (response.success) {
-        window.location.replace("pago.php");
-      //  alert('Compra Finalizada.');
-    } else {
-        window.location.replace("pago.php");
-        alert('Error al finalizar la compra: ');
-    }
-},
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error al finalizar la compra', textStatus, errorThrown);
-            alert('Error al finalizar la compra. Inténtalo de nuevo.');
+            $('#notification-container').html('<div class="alert alert-success">Producto añadido al carrito.</div>');
+            alert('CompraFinalizada con éxito');
+        },
+        error: function(xhr, status, error) {
+            console.error("Error al finalizar compra:", error);
+            console.log(xhr.responseText);
         }
     });
 });
