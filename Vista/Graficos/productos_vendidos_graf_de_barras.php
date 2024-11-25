@@ -55,11 +55,22 @@ $graph->xaxis->SetTickLabels($labels); // Nombres de los productos en el eje X
 $graph->xaxis->SetLabelAngle(50); // Inclina las etiquetas si son largas
 
 // Ruta donde se guardará la imagen
-$ruta = "g.png";
+$ruta = "grafico.png";
 
-// Mostrar el gráfico
+// Eliminar el archivo si ya existe
+if (file_exists($ruta)) {
+    unlink($ruta);
+}
+
+// Mostrar el grafico
 $graph->Stroke($ruta);  // Esto genera la imagen para mostrar
 
+//Mensaje de verificacion
+if (file_exists($ruta)) {
+    echo "El gráfico se ha generado y guardado como 'grafico.png'.";
+} else {
+    echo "Hubo un problema al generar el gráfico.";
+}
 
 /*
 $dir = 'grafico.png';
