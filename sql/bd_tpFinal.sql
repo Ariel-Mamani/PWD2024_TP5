@@ -130,7 +130,7 @@ INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VAL
     (81, '', 'Login/registro.php', 30, null),
     (82, '', 'Login/verificarLogin.php', 30, null),
     (83, '', 'Login/paginaSegura.php', 30, null),
-    (100, '', 'Login/paginaNo.php', 30, null),
+    (100, '', 'Login/paginaNo.php', 30, null);
 
 
 INSERT INTO rol (idrol, rodescripcion) VALUES 
