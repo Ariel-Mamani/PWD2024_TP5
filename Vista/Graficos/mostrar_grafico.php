@@ -1,6 +1,9 @@
 <?php 
 $titulo = "TP FINAL";
 include_once "../Estructura/header.php";
+
+//Ejecutar el script de generación de gráfico
+include_once "productos_vendidos_graf_de_barras.php";
 ?>
 
 <!-- Aquí va el contenido principal de tu página -->

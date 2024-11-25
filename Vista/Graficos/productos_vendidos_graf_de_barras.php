@@ -66,11 +66,11 @@ if (file_exists($ruta)) {
 $graph->Stroke($ruta);  //Esto genera la imagen para mostrar
 
 //Mensaje de verificacion
-if (file_exists($ruta)) {
+/*if (file_exists($ruta)) {
     echo "El gráfico se ha generado y guardado como 'grafico.png'.";
 } else {
     echo "Hubo un problema al generar el gráfico.";
-}
+}*/
 
 /*
 $dir = 'grafico.png';
