@@ -3,7 +3,7 @@ include_once "../../../configuracion.php";
 $data = data_submitted();
 
 //Incluyo el script para enviar el mail al usuario al finalizar la compra
-include_once "mail_finalizarCarrito.php";
+include_once "mail_realizar_compra.php";
 
 
 $respuesta = false;
