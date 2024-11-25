@@ -63,7 +63,7 @@ if (file_exists($ruta)) {
 }
 
 //Mostrar el grafico
-$graph->Stroke($ruta);  // Esto genera la imagen para mostrar
+$graph->Stroke($ruta);  //Esto genera la imagen para mostrar
 
 //Mensaje de verificacion
 if (file_exists($ruta)) {
