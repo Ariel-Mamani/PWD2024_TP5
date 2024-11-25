@@ -39,20 +39,20 @@ try{
     //Contenido del correo
     $mail->CharSet = 'UTF-8';  //Establecer la codificación a UTF-8, sino sale todo feo
     $mail->isHTML(true);
-    $mail->Subject = 'Confirmación de Compra';
+    $mail->Subject = 'Confirmación de Cancelación de compra';
     
     //Crear el cuerpo del correo con los detalles de la compra
     $body = "<h2>¡Hola, $user!</h2>";
-    $body .= "<p>Gracias por tu compra en nuestra tienda. Aquí están los detalles:</p>";
-    $body .= "<p><b>Compra Nro:</b> $idcompra</p>";
-    $body .= "<p><b>Productos:</b></p><ul>";
+    $body .= "<p>Su compra ha sido cancelada.</p>";
+    //$body .= "<p><b>Compra Nro:</b> $idcompra</p>";
+    //$body .= "<p><b>Productos:</b></p><ul>";
 
-    foreach($carrito as $item){
+ /*   foreach($carrito as $item){
         $body .= "<li>" . $item['pronombre'] . " - Cantidad: " . $item['cicantidad'] . " - Precio: $" . $item['proprecio'] . "</li>";
-    }
+    }*/
     
-    $body .= "</ul>";
-    $body .= "<p><b>Total:</b> $" . number_format(($item['proprecio'] * $item['cicantidad']), 2) . "</p>";
+   // $body .= "</ul>";
+   // $body .= "<p><b>Total:</b> $" . number_format(($item['proprecio'] * $item['cicantidad']), 2) . "</p>";
     $body .= "<p>Gracias por tu compra. ¡Esperamos verte pronto!</p>";
 
     $mail->Body = $body;
