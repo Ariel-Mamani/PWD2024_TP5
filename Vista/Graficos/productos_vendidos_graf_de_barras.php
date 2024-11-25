@@ -1,38 +1,38 @@
 <?php
-$titulo = "TP 5 - Ver Gráfico de Productos Vendidos"; // Título en la pestaña
+$titulo = "TP 5 - Ver Gráfico de Productos Vendidos"; //Titulo en la pestaña
 
 require_once "../../Control/abmProducto.php";
 require_once "../../Modelo/Conector/BaseDatos.php";
 require_once "../../Modelo/producto.php";
 require_once "../../configuracion.php";
 require_once ('../Librerias/jpGraph/jpgraph.php');
-require_once ('../Librerias/jpGraph/jpgraph_bar.php'); // La librería para gráficos de barras
+require_once ('../Librerias/jpGraph/jpgraph_bar.php'); //La librería para gráficos de barras
 
-$objAbmProducto = new AbmProducto(); // Instancia de la clase para manejar productos
+$objAbmProducto = new AbmProducto(); //Instancia de la clase para manejar productos
 
-// Obtener la cantidad de productos vendidos usando tu método modificado
+//Obtener la cantidad de productos vendidos usando tu método modificado
 $cantidadProductosVendidos = $objAbmProducto->contarProductosVendidos();
 
-// Obtener los nombres de los productos vendidos
+//Obtener los nombres de los productos vendidos
 $labels = [];
 $valores = [];
 
-// Asegúrate de que cada producto tenga un nombre y una cantidad
+//Asegúrate de que cada producto tenga un nombre y una cantidad
 foreach ($cantidadProductosVendidos as $productoId => $cantidad) {
-    // Suponiendo que $productoId es el ID del producto, obtenemos el nombre
+    //Suponiendo que $productoId es el ID del producto, obtenemos el nombre
     $producto = $objAbmProducto->obtenerProductoPorId($productoId);
-    $labels[] = $producto['pronombre'];  // Agregar nombre del producto
-    $valores[] = $cantidad;           // Agregar la cantidad vendida
+    $labels[] = $producto['pronombre'];  //Agregar nombre del producto
+    $valores[] = $cantidad;           //Agregar la cantidad vendida
 }
 
-// Verificar que hay datos para graficar
+//Verificar que hay datos para graficar
 if (empty($cantidadProductosVendidos)) {
     die("No hay datos para mostrar en el gráfico.");
 }
 
-// Configurar el gráfico de barras
+//Configurar el gráfico de barras
 $graph = new Graph(900, 600);
-$graph->SetScale("textlin"); // Escala lineal para barras
+$graph->SetScale("textlin"); //Escala lineal para barras
 
 // Título del gráfico
 $graph->title->Set('Cantidad de Productos Vendidos');
@@ -41,28 +41,28 @@ $graph->title->SetColor('#1E90FF');
 $graph->title->SetAlign('center');
 $graph->title->SetMargin(15);
 
-// Crear el gráfico de barras
+//Crear el gráfico de barras
 $barplot = new BarPlot($valores);
-$barplot->SetFillColor('lightblue'); // Color de las barras
+$barplot->SetFillColor('lightblue'); //Color de las barras
 $barplot->SetLegend("Productos Vendidos");
-$barplot->SetShadow('gray', 3); // Sombra de las barras
+$barplot->SetShadow('gray', 3); //Sombra de las barras
 
-// Agregar el gráfico de barras al gráfico principal
+//Agregar el gráfico de barras al gráfico principal
 $graph->Add($barplot);
 
-// Configurar las etiquetas del eje X
-$graph->xaxis->SetTickLabels($labels); // Nombres de los productos en el eje X
-$graph->xaxis->SetLabelAngle(50); // Inclina las etiquetas si son largas
+//Configurar las etiquetas del eje X
+$graph->xaxis->SetTickLabels($labels); //Nombres de los productos en el eje X
+$graph->xaxis->SetLabelAngle(50); //Inclina las etiquetas si son largas
 
-// Ruta donde se guardará la imagen
+//Ruta donde se guardará la imagen
 $ruta = "grafico.png";
 
-// Eliminar el archivo si ya existe
+//Eliminar el archivo si ya existe
 if (file_exists($ruta)) {
     unlink($ruta);
 }
 
-// Mostrar el grafico
+//Mostrar el grafico
 $graph->Stroke($ruta);  // Esto genera la imagen para mostrar
 
 //Mensaje de verificacion
