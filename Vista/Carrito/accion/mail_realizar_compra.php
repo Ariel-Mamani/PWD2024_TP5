@@ -28,7 +28,7 @@ try{
     $mail->Host = 'smtp.mail.yahoo.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'dariofuentealba@yahoo.com.ar';
-    $mail->Password = 'tngyquqcynxnkpqk';
+    $mail->Password = 'phmonwixmgzvzivx';
     $mail->SMTPSecure = 'ssl';
     $mail->Port = 465;
 
@@ -47,12 +47,15 @@ try{
     $body .= "<p><b>Compra Nro:</b> $idcompra</p>";
     $body .= "<p><b>Productos:</b></p><ul>";
 
+    $total = 0;
     foreach($carrito as $item){
         $body .= "<li>" . $item['pronombre'] . " - Cantidad: " . $item['cicantidad'] . " - Precio: $" . $item['proprecio'] . "</li>";
+
+        $total += ($item['proprecio'] * $item['cicantidad']);
     }
     
     $body .= "</ul>";
-    $body .= "<p><b>Total:</b> $" . number_format(($item['proprecio'] * $item['cicantidad']), 2) . "</p>";
+    $body .= "<p><b>Total:</b> $" . number_format($total, 2) . "</p>";
     $body .= "<p>Gracias por tu compra. ¡Esperamos verte pronto!</p>";
 
     $mail->Body = $body;
