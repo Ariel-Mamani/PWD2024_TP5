@@ -28,7 +28,7 @@
 
             <!-- Segunda columna - Logo de la peluquería -->
             <div class="col-sm-12 col-md-4 footer_column">
-                <img src="../../Archivos/Logo/logo_blanco.png" alt="logo_tienda_blanco" class="logo_circular">
+                <img src="../../Archivos/Logo/logo_footer_2.png" alt="logo_tienda_blanco" class="logo_circular">
             </div>
 
             <!-- Tercera columna - Información adicional -->
