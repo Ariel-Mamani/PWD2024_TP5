@@ -99,6 +99,7 @@ $objSession = new Session();
 
 <!-- BOOTSTRAP con las validaciones de los campos -->
 <script type="text/javascript" src="../js/validacionTp5.js"></script>
+
 <script>
     function convertirClaveMD5(){
         var clave = document.getElementById('clave').value;

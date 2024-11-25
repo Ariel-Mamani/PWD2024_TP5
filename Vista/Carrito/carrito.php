@@ -10,7 +10,7 @@ $carrito = $objAbmCompra->mostrarCompra(); //Muestra los productos del carrito
 //Hay que verificar si el que ingresa al carrito es un usuario registrado
 //Verifica si el usuario tiene productos en el carrito
 if (!$objSession->validarCompra()) {
-    echo " <h3><b>No hay Productos en el  CARRITO</b></h3>";
+    echo " <h3><b>No hay Productos en el CARRITO</b></h3>";
 }
     
 ?>
