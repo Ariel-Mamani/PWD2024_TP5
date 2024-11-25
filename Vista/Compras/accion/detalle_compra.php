@@ -10,7 +10,8 @@ if (isset($data['idcompra'])){
         foreach ($listaCompraItem as $objCompraItem ){
             $arrCompraItem["idcompraitem"]  = $objCompraItem->getIdCompraItem();
             $arrCompraItem["idproducto"]    = $objCompraItem->getProducto()->getIdProducto();
-            $arrCompraItem['idcompra']      = $objCompraItem->getIdCompra();
+            $arrCompraItem["pronombre"]    = $objCompraItem->getProducto()->getProNombre();
+            $arrCompraItem['idcompra']      = $objCompraItem->getCompra()->getIdCompra();
             $arrCompraItem["cicantidad"]    = $objCompraItem->getCiCantidad();
             array_push($arreglo_salida,$arrCompraItem);
         } 

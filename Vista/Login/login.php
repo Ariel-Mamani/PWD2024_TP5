@@ -42,7 +42,7 @@ $objSession = new Session();
                     <i class="bi bi-person"></i>
                 </span>
 
-                <input type="text" name="usnombre" id="usnombre" class="form-control" required>
+                <input type="text" name="usnombre" id="usnombre" class="form-control" required autofocus>
                 <label>Ususario</label>
 
                 <!-- Mensajes aprobado y error -->

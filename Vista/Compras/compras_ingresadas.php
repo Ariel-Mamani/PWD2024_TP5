@@ -29,44 +29,23 @@ include_once "../Estructura/header.php";
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="DetalleCompra()">Detalle Compra</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyCompra()">Baja Compra</a>
 
-    <!-- <select id="cc" class="easyui-combogrid" name="dept" style="width:220px;"
-        data-options="
-            panelWidth:220,
-            value:'Estado de la compra',
-            idField:'idcompraestadotipo',
-            textField:'cetdescripcion',
-            url:'accion/tipo_list.php',
-            columns:[[
-                {field:'idcompraestadotipo',title:'Id',width:40},
-                {field:'cetdescripcion',title:'Descripci&oacute;',width:180},
-            ]]
-        "></select> -->
+
 </div>
 
 <!-- Formulario de compra -->
 <div id="dlg" class="easyui-dialog" style="width:600px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
-<table id="dg1" title="Administrador de item Compra" class="easyui-datagrid" style="width:500px;height:750px"
-  pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" striped="true" >
-
-    <thead>
-        <tr>
-            <th field="idcompra" width="10">ID Compra</th>
-            <th field="cofecha" width="20">Fecha</th>
-            <th field="idusuario" width="10">ID Usuario</th>
-            <th field="usnombre" width="20">Nombre Usuario</th>
-            <th field="item cicantidad" width="20">cantidad</th>
-        </tr>
-    </thead>
-</table>
- <!--   <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
-        <h3>Compra Informaci&oacute;n</h3>
-        <div style="margin-bottom:10px">                    
-            <input name="cofecha" id="cofecha"  class="easyui-textbox" required="true" label="Fecha:" style="width:100%" readonly>
-        </div>
-        <div style="margin-bottom:10px">
-            <input  name="idusuario" id="idusuario"  class="easyui-textbox" required="true" label="Descripcion:" style="width:100%" readonly>
-        </div>
-    </form>-->
+    <table id="dg1" title="Administrador de item Compra" class="easyui-datagrid" style="width:500px;height:750px"
+    pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" striped="true" >
+        <thead>
+            <tr>
+                <th field="idcompra" width="10">ID Compra</th>
+                <th field="cofecha" width="20">Fecha</th>
+                <th field="idusuario" width="10">ID Usuario</th>
+                <th field="usnombre" width="20">Nombre Usuario</th>
+                <th field="item cicantidad" width="20">cantidad</th>
+            </tr>
+        </thead>
+    </table>
 </div>
 
 <!-- Botones del formulario -->
@@ -81,27 +60,21 @@ include_once "../Estructura/header.php";
     include_once '../Estructura/footer_tienda.php';
 ?>
 
-
 <script type="text/javascript">
             var url;
-
             function newCompra(){
                 $('#dlg').dialog('open').dialog('center').dialog('setTitle','Nuevo Compra');
                 $('#fm').form('clear');
                 url = 'accion/alta_compra.php';
             }
-
-
             function DetalleCompra(){
                 var row = $('#dg').datagrid('getSelected');
                 if (row){
                     $('#dlg').dialog('open').dialog('center').dialog('setTitle','Detalle de la Compra');
-                    $('#dg1').datagrid('load',row);
                     url = 'accion/detalle_compra.php?accion=mod&idcompra='+row.idCompra;
+                    $('#dg1').datagrid('load',url);
                 }
             }
-
-
             function saveCompra(){
             	//alert(" Accion");
                 $('#fm').form('submit',{
@@ -152,3 +125,28 @@ include_once "../Estructura/header.php";
                 }
             }
 </script>
+    <!-- <select id="cc" class="easyui-combogrid" name="dept" style="width:220px;"
+        data-options="
+            panelWidth:220,
+            value:'Estado de la compra',
+            idField:'idcompraestadotipo',
+            textField:'cetdescripcion',
+            url:'accion/tipo_list.php',
+            columns:[[
+                {field:'idcompraestadotipo',title:'Id',width:40},
+                {field:'cetdescripcion',title:'Descripci&oacute;',width:180},
+            ]]
+        "></select> 
+    -->
+
+
+ <!--   <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
+        <h3>Compra Informaci&oacute;n</h3>
+        <div style="margin-bottom:10px">                    
+            <input name="cofecha" id="cofecha"  class="easyui-textbox" required="true" label="Fecha:" style="width:100%" readonly>
+        </div>
+        <div style="margin-bottom:10px">
+            <input  name="idusuario" id="idusuario"  class="easyui-textbox" required="true" label="Descripcion:" style="width:100%" readonly>
+        </div>
+    </form>
+-->

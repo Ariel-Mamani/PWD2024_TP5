@@ -1,7 +1,11 @@
 <?php 
 include_once "../../../configuracion.php";
 $data = data_submitted();
-$param['idcompraestadotipo'] = 2; //Compra ingresada
+if(empty($data)){
+    $param['idcompraestadotipo'] = 2; //Compra ingresada
+}else{
+    $param = $data;
+}
 $objAbmCompraEstado = new AbmCompraEstado();
 $listaCompraEstado = $objAbmCompraEstado->buscar($param);
 $listaCompra = array();

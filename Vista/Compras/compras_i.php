@@ -4,76 +4,127 @@ include_once "../Estructura/header.php";
 
 ?>
 <br><br>
-<h2>Compras Ingresadas</h2>
+<h1>Gesti&oacute;n de Compras</h1>
 
 <div class="main-content">
-
-    <table id="tabla1" toolbar="#toolbar"></table>
+    <table id="tbl1"></table>  
+    <div id="tool1">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="DetalleCompra()">Ver Detalle</a>
+        <input id="cmb1"  name="dept" >
+    </div>             
 </div>
+<div id="dlg1" >
+    <table id="tbl2"></table>
+    <div id="tool2">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="cancelarCompra()" >Cancelar Compra</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="seguirCompra()" >Confirmar</a>
+    </div>  
+</div>
+<!-- Botones del formulario -->
+<div id="dlg-buttons">
 
-<div id="toolbar">
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="DetalleCompra()">Detalle de la Compra</a>
-</div>   
-
-<div id="div_tabla2" hidden>
-    <table id="tabla2"></table>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="javascript:$('#dlg1').dialog('close')" style="width:90px">Aceptar</a>
 </div>
 
 <script type="text/javascript">
-
     var url;
 
-    $('#tabla1').datagrid({
+    $('#dlg1').dialog({
+        title: 'Detalle de la Compra',
+        width: 600,
+        height: 300,
+        closed: true,
+        cache: false,
+        modal: true,
+        border:'thin',
+        buttons:'#dlg-buttons',
+//        href: 'get_content.php'
+    });
+
+    $('#cmb1').combobox({
+        panelWidth:150,
+        value:'Seleccione Estado compra',
+        valueField:'idcompraestadotipo',
+        textField:'cetdescripcion',
+        url:'accion/tipo_list.php',
+        onSelect: function(rec){
+                var url = 'accion/listar_compra.php?idcompraestadotipo='+rec.idcompraestadotipo;
+                $('#tbl1').datagrid('reload', url);
+                //alert("Valor:   " + rec['idcompraestadotipo'] );
+        },
+    });
+
+    $('#tbl1').datagrid({
         width: 710,
         heigth: 300,
         fitColumns: true,
         singleSelect: true,
         striped: true,
-        toolbar: '#toolbar',
-        
-        toolbar: [{
-            iconCls: 'icon-edit',
-            handler: function(){DetalleCompra()}
-        },'-',{
-            iconCls: 'icon-help',
-            handler: function(){alert('help')}
-        }],
-
+        toolbar: '#tool1',
         url:'accion/listar_compra.php',
         columns:[[
             {field:'idcompra',title:'Id Compra', width:100, align:'center'},
             {field:'cofecha',title:'Fecha', width:150, align:'center'},
             {field:'idusuario',title:'ID Usuario', width:100, align:'center'},
             {field:'usnombre',title:'Nombre', width:150, align:'center'},
-            {field:'item',title:'Nombre', width:150, align:'center'},
         ]]
     });
 
-/*
-    $('#dialogo1').dialog({
-
-        title: 'Detalle de la compra',
-        width: 800,
-        height: 600,
-        closed: false,
-        cache: false,
-       // href: 'compra_item.php?accion=mod&idcompra='+$('#tabla1').datagrid('getSelected').idCompra,
-        modal: true
+    $('#tbl2').datagrid({
+        width: 592,
+        heigth: 250,
+        fitColumns: false,
+        singleSelect: true,
+        striped: true,
+        toolbar: '#tool2',
+      //  url:'accion/detalle_compra.php',
+        columns:[[
+            {field:'idcompraitem',title:'ID Item', width:70, align:'center'},
+            {field:'idproducto',title:'ID Pr', width:70, align:'center'},
+            {field:'pronombre',title:'Producto', width:380, align:'center'},
+            {field:'cicantidad',title:'Cantidad', width:70, align:'center'},
+        ]]
     });
-    $('#dialogo1').dialog('refresh', 'new_content.php');
 
-*/
-    
     function DetalleCompra(){
-        
-        var row = $('#tabla1').datagrid('getSelected');
-            if (row){
-                
-          //  $('#dialogo1').dialog('open').dialog('center').dialog('setTitle','Detalle de la Compra');
-          //  $('#tabla2').datagrid('load',row);
-          alert("Enviando");  
-            url = 'compra_item.php?accion=mod&idcompra='+row.idcompra;
+        var row = $('#tbl1').datagrid('getSelected');
+        if (row){
+           // alert("Enviando: " + row['idcompra']);  
+            url = 'accion/detalle_compra.php?idcompra='+row.idcompra;    
+            $('#dlg1').dialog('open').dialog('center').dialog('setTitle','Detalle de la Compra');
+            $('#tbl2').datagrid('reload', url);
+        }
+    }
+
+    function cancelarCompra(){
+        var row = $('#tbl1').datagrid('getSelected');
+        if (row){
+            alert("Seguro de cancelar la compra N° " + row['idcompra']);
+            url = 'accion/cancelar_compra.php?idcompra='+row.idcompra;   
+
         }
     }
 
 </script>
+
+
+     <!--   <input id="cmb1" class="easyui-combogrid" name="dept" style="width:220px;"
+        data-options="
+        panelWidth:220,
+        value:'Seleccione Estado compra',
+        idField:'idcompraestadotipo',
+        textField:'cetdescripcion',
+        url:'accion/tipo_list.php',
+        columns:[[
+            {field:'idcompraestadotipo',title:'Id',width:40},
+            {field:'cetdescripcion',title:'Descripci&oacute;',width:180},
+            ]],
+            onSelect: function(rec){
+                rec ++;
+                var url = 'accion/listar_compra.php?idcompraestadotipo='+rec;
+                $('#tbl1').datagrid('reload', url);
+                }
+
+
+                    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCompra()" style="width:90px">Aceptar</a>
+                "> -->

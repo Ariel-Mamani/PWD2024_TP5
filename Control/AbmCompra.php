@@ -350,14 +350,20 @@ public function finalizar(){
  */
 public function cancelarCompra($param){
     $resp = false;
-    $param['idcompraestadotipo'] = 3; // cancelada
     $objAbmCompraEstado = new AbmCompraEstado();
+    $param['cefechafin'] = NULL;
     $listaAbmCompraEstado = $objAbmCompraEstado->buscar($param);
     if (count($listaAbmCompraEstado) > 0){
         $objCompraEstado = $listaAbmCompraEstado[0];
         $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
         if ($objCompraEstado->modificar()){
-            $resp = true;
+    $objAbmCompraEstado = new AbmCompraEstado();
+            $param['idcompraestadotipo'] = 3; // estado cancelada = 3
+            $param['cefechainit'] = date("Y-m-d h:i:sa");
+            $param['cefechafin'] = null;
+            if($objAbmCompraEstado->alta($param)){
+                $resp = true;
+            }
         }
     }
     return $resp;
