@@ -106,8 +106,8 @@ INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VAL
     (24, '', 'Producto/accion/eliminar_Producto.php', 20, null),
     (25, '', 'Producto/accion/listar_Productos.php', 20, null),
     
-    (31, 'Compras', 'Compras/compras_ingresadas.php', 30, null),
-    (32, 'Compras', 'Compras/gestion_compras.php', 30, null),
+    (31, 'Compras Ingresadas', 'Compras/compras_ingresadas.php', 30, null),
+    (32, 'Gestión de Compras', 'Compras/gestion_compras.php', 30, null),
 
     (41, 'Graficos', 'Graficos/mostrar_grafico.php', 40, null),
     (42, '', 'Graficos/productos_vendidos_graf_de_barras.php', 40, null),
