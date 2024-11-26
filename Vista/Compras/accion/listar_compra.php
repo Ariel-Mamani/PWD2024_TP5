@@ -6,10 +6,12 @@ if(empty($data)){
 }else{
     $param = $data;
 }
+$cetNombre = '';
 $objAbmCompraEstado = new AbmCompraEstado();
 $listaCompraEstado = $objAbmCompraEstado->buscar($param);
 $listaCompra = array();
 if(count($listaCompraEstado) > 0){
+    $cetNombre = $listaCompraEstado[0]->getCompraEstadoTipo()->getcetdescripcion();
     foreach($listaCompraEstado as $objCompraEstado){
         if( $objCompraEstado->getCeFechaFin() == NULL){   
             array_push($listaCompra, $objCompraEstado->getCompra());
@@ -18,7 +20,7 @@ if(count($listaCompraEstado) > 0){
 }
 $arreglo_salida =  array();
 foreach ($listaCompra as $elem ){
-    $objAbmCompraItem = new AbmCompraItem();
+ /*   $objAbmCompraItem = new AbmCompraItem();
     $param['idcompra']  = $elem->getIdCompra();
     $listaCompraItem = $objAbmCompraItem->buscar($param);
     if(count($listaCompraItem) > 0){
@@ -31,11 +33,12 @@ foreach ($listaCompra as $elem ){
             array_push($nuevo,$arrCompraItem);
         }
         $nuevoElem['item'] = $nuevo;
-    }
-    $nuevoElem['idcompra']  = $elem->getIdCompra();
-    $nuevoElem["cofecha"]   = $elem->getCoFecha();
-    $nuevoElem["idusuario"] = $elem->getUsuario()->getidusuario();
-    $nuevoElem["usnombre"]  = $elem->getUsuario()->getusnombre();
+    }*/
+    $nuevoElem['idcompra']          = $elem->getIdCompra();
+    $nuevoElem["cofecha"]           = $elem->getCoFecha();
+    $nuevoElem["idusuario"]         = $elem->getUsuario()->getidusuario();
+    $nuevoElem["usnombre"]          = $elem->getUsuario()->getusnombre();
+    $nuevoElem['cetdescripcion']    = $cetNombre;
     array_push($arreglo_salida,$nuevoElem);
 }
 //var_dump($arreglo_salida);

@@ -73,18 +73,19 @@ include_once "../Estructura/header.php";
     //Las columnas incluyen información básica: ID de compra, fecha, ID del usuario y nombre.
     $('#tbl1').datagrid({
         title: 'Compras en proceso',
-        width: 710,
+        width: 605,
         heigth: 300,
-        fitColumns: true,
+       // fitColumns: true,
         singleSelect: true,
         striped: true,
         toolbar: '#tool1',
         url:'accion/listar_compra.php',
         columns:[[
             {field:'idcompra',title:'Id Compra', width:100, align:'center'},
-            {field:'cofecha',title:'Fecha', width:150, align:'center'},
+            {field:'cofecha',title:'Fecha', width:200, align:'center'},
             {field:'idusuario',title:'ID Usuario', width:100, align:'center'},
-            {field:'usnombre',title:'Nombre', width:150, align:'center'},
+            {field:'usnombre',title:'Nombre', width:200, align:'center'},
+            {field:'cetdescripcion',title:'Estado', width:150, align:'center'},
         ]]
     });
 
@@ -108,10 +109,12 @@ include_once "../Estructura/header.php";
     //Muestra los detalles de la compra seleccionada al abrir dlg1 y recarga los ítems de la compra.
     function DetalleCompra(){
         var row = $('#tbl1').datagrid('getSelected');
+        var titulo = row.cetdescripcion;
         if (row){
            // alert("Enviando: " + row['idcompra']);  
             url = 'accion/detalle_compra.php?idcompra='+row.idcompra;    
-            $('#dlg1').dialog('open').dialog('center').dialog('setTitle','Detalle de la Compra');
+
+            $('#dlg1').dialog('open').dialog('center').dialog('setTitle', 'Compra en Estado = "' +titulo+'"');
             $('#tbl2').datagrid('reload', url);
         }
     }
