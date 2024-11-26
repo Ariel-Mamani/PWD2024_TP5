@@ -352,14 +352,19 @@ public function cancelarCompra($param){
     $resp = false;
     $objAbmCompraEstado = new AbmCompraEstado();
     $listaAbmCompraEstado = $objAbmCompraEstado->buscar($param);
+
     if (count($listaAbmCompraEstado) > 0){
+   
         foreach($listaAbmCompraEstado as $objCompraEstado){
             if($objCompraEstado->getCeFechaFin() == NULL){
+              
                 $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
                 if ($objCompraEstado->modificar()){
+                
                     $objAbmCompraEstado = new AbmCompraEstado();
                     $param['idcompraestadotipo'] = 3; // estado cancelada = 3
                     $param['cefechainit'] = date("Y-m-d h:i:sa");
+                    $param['cefechafin'] = '';
                     if($objAbmCompraEstado->alta($param)){
                         $resp = true;
                     }
@@ -392,6 +397,7 @@ public function avanzarCompra($param){
                     $objAbmCompraEstado = new AbmCompraEstado();
                     $param['idcompraestadotipo'] = $estado;
                     $param['cefechainit'] = date("Y-m-d h:i:sa");
+                    $param['cefechafin'] = '';
                     if($objAbmCompraEstado->alta($param)){
                         $resp = true;
                     }

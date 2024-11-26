@@ -5,12 +5,14 @@ $respuesta = false;
 
 if (isset($data['idcompra'])){
     $objAbmCompra = new AbmCompra();
-    if($objAbmCompra->cancelarCompra($data)){
-        $respuesta = "Compra cacelada";
-    }else{
-        $respuesta = "Error - No se cancelo la compra";
+    $respuesta = $objAbmCompra->cancelarCompra($data);
+    if (!$respuesta){
+        $mensaje = " La accion CANCELAR No pudo concretarse";
+    }
+    $retorno['respuesta'] = $respuesta;
+    if (isset($mensaje)){
+        $retorno['errorMsg']=$mensaje;
     }
 }
-echo json_encode($respuesta);
-
+echo json_encode($retorno);
 ?>
