@@ -63,9 +63,9 @@ include_once "../Estructura/header.php";
 
 
     <div id="modalEditar" style="display:none">
-        <h3>Editar Producto</h3>
+        <h3 style="text-align: center;">Editar Producto</h3>
 
-        <form id="formEditarProducto">
+        <form id="formEditarProducto" class="div_formulario">
             <input type="hidden" id="idproductoM" name="idproducto">
             <label for="pronombre">Nombre del Producto:</label>
             <input type="text" id="pronombreM" name="pronombre" require>
@@ -82,9 +82,11 @@ include_once "../Estructura/header.php";
             <label for="proimagen">Url de la imagen</label>
             <input type="text" id="proimagenM" name="proimagen" require>
             <br><br>
-            <button type="submit" class="btn-primary">Guardar Cambios</button>
-            <br><br>
-            <button type="button" id="btnCancelar" class="btn-primary">Cancelar</button>
+            <div class="botones">
+                <button type="submit" class="btn-primary">Guardar Cambios</button>
+                <br><br>
+                <button type="button" id="btnCancelar" class="btn-primary">Cancelar</button>
+            </div>
         </form>
     </div>
 
