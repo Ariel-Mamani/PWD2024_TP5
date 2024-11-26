@@ -82,7 +82,7 @@ include_once "../Estructura/header.php";
         url:'accion/listar_compra.php',
         columns:[[
             {field:'idcompra',title:'Id Compra', width:100, align:'center'},
-            {field:'cofecha',title:'Fecha', width:200, align:'center'},
+            {field:'cefechainit',title:'Fecha', width:200, align:'center'},
             {field:'idusuario',title:'ID Usuario', width:100, align:'center'},
             {field:'usnombre',title:'Nombre', width:200, align:'center'},
             {field:'cetdescripcion',title:'Estado', width:150, align:'center'},

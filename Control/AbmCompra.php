@@ -357,16 +357,16 @@ public function cancelarCompra($param){
    
         foreach($listaAbmCompraEstado as $objCompraEstado){
             if($objCompraEstado->getCeFechaFin() == NULL){
-              
-                $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
-                if ($objCompraEstado->modificar()){
-                
-                    $objAbmCompraEstado = new AbmCompraEstado();
-                    $param['idcompraestadotipo'] = 3; // estado cancelada = 3
-                    $param['cefechainit'] = date("Y-m-d h:i:sa");
-                    $param['cefechafin'] = '';
-                    if($objAbmCompraEstado->alta($param)){
-                        $resp = true;
+                if($objCompraEstado->getCompraEstadoTipo()->getIdCompraEstadoTipo() < 3){
+                    $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
+                    if ($objCompraEstado->modificar()){              
+                        $objAbmCompraEstado = new AbmCompraEstado();
+                        $param['idcompraestadotipo'] = 3; // estado cancelada = 3
+                        $param['cefechainit'] = date("Y-m-d h:i:sa");
+                        $param['cefechafin'] = '';
+                        if($objAbmCompraEstado->alta($param)){
+                            $resp = true;
+                        }
                     }
                 }
             }
@@ -431,6 +431,34 @@ public function mostrarCompra(){
     }
     return $listaProductos;
 }
+
+/**
+ * Toma de la session activa el idcompra
+ * @return array
+ */
+public function buscarCompra(){
+    $resp = false;
+    $datos = array();
+    $objSession = new Session();
+    $param['idusuario'] = $objSession->getUsuario()->getidusuario();
+    $objAbmCompra = new AbmCompra();
+    $listaCompra = $objAbmCompra->buscar($param);
+    if(count($listaCompra) >0){
+        foreach ($listaCompra as $objCompra){
+            $param['idcompra']    = $objCompra->getIdCompra();
+            $param['idcompraestadotipo'] = 1;
+            $param['cefechafin'] = '';
+            $objAbmCompraEstado = new AbmCompraEstado();
+            $listaObjCompraEstado = $objAbmCompraEstado->buscar($param);
+            if(count($listaObjCompraEstado) > 0){
+                $datos['idcompra'] = $param['idcompra'];
+            }         
+        }
+    }
+    return $datos;
+}
+
+
 
 }
 

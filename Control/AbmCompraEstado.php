@@ -171,7 +171,7 @@ class AbmCompraEstado{
             if (isset($param['cefechainit']))
                 $where .= " and cefechainit = '".$param['cefechainit']."'";
             if (isset($param['cefechafin']))
-            $where .= " and cefechafin = '".$param['cefechafin']."'";
+            $where .= " and cefechafin IS NULL";
     }
         $objCompraEstado = new CompraEstado();
         $arreglo = $objCompraEstado->listar($where);

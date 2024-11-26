@@ -185,19 +185,25 @@ class Session {
  */
 public function iniciarCompra(){
     $resp = false;
-    $param['idusuario'] = $this->getUsuario()->getidusuario();
-    $param['cofecha'] = date("Y-m-d h:i:sa");
     $objAbmCompra = new AbmCompra();
-    if($param['idcompra'] = $objAbmCompra->alta($param)){ 
-        $objAbmCompraEstado = new AbmCompraEstado();
-        $param['idcompraestadotipo'] = 1; // estado ingresada = 1
-        $param['cefechainit'] = $param['cofecha'] ;
-        $param['cefechafin'] = null;
-        if($objAbmCompraEstado->alta($param)){
-            $resp = true;
-            $_SESSION['idcompra'] = $param['idcompra'];
+    $datos = $objAbmCompra->buscarCompra();
+    if(isset($datos['idcompra'])){
+        $resp = true;
+        $_SESSION['idcompra'] = $datos['idcompra'];
+    }else{
+        $param['idusuario'] = $this->getUsuario()->getidusuario();
+        $param['cofecha'] = date("Y-m-d h:i:sa");
+        $objAbmCompra = new AbmCompra();
+        if($param['idcompra'] = $objAbmCompra->alta($param)){ 
+            $objAbmCompraEstado = new AbmCompraEstado();
+            $param['idcompraestadotipo'] = 1; // estado ingresada = 1
+            $param['cefechainit'] = $param['cofecha'] ;
+            $param['cefechafin'] = null;
+            if($objAbmCompraEstado->alta($param)){
+                $resp = true;
+                $_SESSION['idcompra'] = $param['idcompra'];
+            }
         }
-
     }
     return $resp;
 }
