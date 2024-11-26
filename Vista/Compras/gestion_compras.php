@@ -18,7 +18,7 @@ include_once "../Estructura/header.php";
     <form id="frm1" method="post" novalidate hidden ></form>
     <div id="tool2">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="cancelarCompra()" >Cancelar Compra</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="seguirCompra()" >Confirmar</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="avanzarCompra()">Confirmar</a>
     </div>  
 </div>
 <!-- Botones del formulario -->
@@ -51,7 +51,6 @@ include_once "../Estructura/header.php";
         onSelect: function(rec){
                 var url = 'accion/listar_compra.php?idcompraestadotipo='+rec.idcompraestadotipo;
                 $('#tbl1').datagrid('reload', url);
-                //alert("Valor:   " + rec['idcompraestadotipo'] );
         },
     });
 
@@ -98,6 +97,13 @@ include_once "../Estructura/header.php";
         }
     }
 
+    function avanzarCompra(){
+        var row = $('#tbl1').datagrid('getSelected');
+        if (row){
+            alert("Seguro de cambiar la compra N° " + row['idcompra']);
+            url = 'accion/avanzar_compra.php?idcompra='+row.idcompra;   
+        }
+    }
     function cancelarCompra(){
         var row = $('#tbl1').datagrid('getSelected');
         if (row){
@@ -105,12 +111,7 @@ include_once "../Estructura/header.php";
             url = 'accion/cancelar_compra.php?idcompra='+row.idcompra;   
         }
     }
-    function seguirCompra(){
-        var row = $('#tbl1').datagrid('getSelected');
-        if (row){
-            url = 'accion/avanzar_compra.php?idcompra='+row.idcompra;            
-        }
-    }
+
 
     function saveCompra(){
             	//alert(" Accion");
@@ -120,9 +121,7 @@ include_once "../Estructura/header.php";
                         return $(this).form('validate');
                     },
                     success: function(result){
-                        var result = eval('('+result+')');
-
-                        alert("Hecho ");   
+                        var result = eval('('+result+')');  
                         if (!result.respuesta){
                             $.messager.show({
                                 title: 'Error',

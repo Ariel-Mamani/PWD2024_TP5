@@ -5,12 +5,14 @@ $respuesta = false;
 
 if (isset($data['idcompra'])){
     $objAbmCompra = new AbmCompra();
-    if($objAbmCompra->avanzarCompra($data)){
-        $respuesta = "Compra avanzada";
-    }else{
-        $respuesta = "Error - No se avanzo la compra";
+    $respuesta = $objAbmCompra->avanzarCompra($data);
+    if (!$respuesta){
+        $mensaje = " La accion AVANZAR No pudo concretarse";
+    }
+    $retorno['respuesta'] = $respuesta;
+    if (isset($mensaje)){
+        $retorno['errorMsg']=$mensaje;
     }
 }
-echo json_encode($respuesta);
-
+echo json_encode($retorno);
 ?>
