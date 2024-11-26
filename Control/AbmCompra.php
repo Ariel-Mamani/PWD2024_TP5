@@ -351,23 +351,58 @@ public function finalizar(){
 public function cancelarCompra($param){
     $resp = false;
     $objAbmCompraEstado = new AbmCompraEstado();
-    $param['cefechafin'] = NULL;
     $listaAbmCompraEstado = $objAbmCompraEstado->buscar($param);
     if (count($listaAbmCompraEstado) > 0){
-        $objCompraEstado = $listaAbmCompraEstado[0];
-        $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
-        if ($objCompraEstado->modificar()){
-    $objAbmCompraEstado = new AbmCompraEstado();
-            $param['idcompraestadotipo'] = 3; // estado cancelada = 3
-            $param['cefechainit'] = date("Y-m-d h:i:sa");
-            $param['cefechafin'] = null;
-            if($objAbmCompraEstado->alta($param)){
-                $resp = true;
+        foreach($listaAbmCompraEstado as $objCompraEstado){
+            if($objCompraEstado->getCeFechaFin() == NULL){
+                $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
+                if ($objCompraEstado->modificar()){
+                    $objAbmCompraEstado = new AbmCompraEstado();
+                    $param['idcompraestadotipo'] = 3; // estado cancelada = 3
+                    $param['cefechainit'] = date("Y-m-d h:i:sa");
+                    if($objAbmCompraEstado->alta($param)){
+                        $resp = true;
+                    }
+                }
             }
         }
     }
     return $resp;
 }
+
+
+/**
+ * Recibe en $param el idcompra a cancelar
+ * @param array
+ * @return bool
+ */
+public function avanzarCompra($param){
+    $resp = false;
+    $objAbmCompraEstado = new AbmCompraEstado();
+    $listaAbmCompraEstado = $objAbmCompraEstado->buscar($param);
+    if (count($listaAbmCompraEstado) > 0){
+        foreach($listaAbmCompraEstado as $objCompraEstado){
+            if($objCompraEstado->getCeFechaFin() == NULL){
+                $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
+                if ($objCompraEstado->modificar()){
+                    $estado = $objCompraEstado->getCompraEstadoTipo()->getIdCompraEstadoTipo();
+                    if($estado == 1){      $estado =2;
+                    }elseif($estado == 2){ $estado = 4;
+                    }elseif($estado == 4){ $estado = 5;}
+                    $objAbmCompraEstado = new AbmCompraEstado();
+                    $param['idcompraestadotipo'] = $estado;
+                    $param['cefechainit'] = date("Y-m-d h:i:sa");
+                    if($objAbmCompraEstado->alta($param)){
+                        $resp = true;
+                    }
+                }
+            }
+        }
+    }
+    return $resp;
+}
+
+
 /**
  * Toma de la session activa el idcompra
  * @return array

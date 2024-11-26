@@ -9,12 +9,13 @@ include_once "../Estructura/header.php";
 <div class="main-content">
     <table id="tbl1"></table>  
     <div id="tool1">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="DetalleCompra()">Ver Detalle</a>
-        <input id="cmb1"  name="dept" >
+        <input id="cmb1"  name="dept" style="width: 210px;" >
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="DetalleCompra()" style="width:150px">Ver Detalle</a>
     </div>             
 </div>
 <div id="dlg1" >
     <table id="tbl2"></table>
+    <form id="frm1" method="post" novalidate hidden ></form>
     <div id="tool2">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="cancelarCompra()" >Cancelar Compra</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="seguirCompra()" >Confirmar</a>
@@ -22,8 +23,8 @@ include_once "../Estructura/header.php";
 </div>
 <!-- Botones del formulario -->
 <div id="dlg-buttons">
-
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="javascript:$('#dlg1').dialog('close')" style="width:90px">Aceptar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCompra()" style="width:90px">Aceptar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg1').dialog('close')" style="width:90px">Cancelar</a>
 </div>
 
 <script type="text/javascript">
@@ -55,6 +56,7 @@ include_once "../Estructura/header.php";
     });
 
     $('#tbl1').datagrid({
+        title: 'Compras en proceso',
         width: 710,
         heigth: 300,
         fitColumns: true,
@@ -101,9 +103,38 @@ include_once "../Estructura/header.php";
         if (row){
             alert("Seguro de cancelar la compra N° " + row['idcompra']);
             url = 'accion/cancelar_compra.php?idcompra='+row.idcompra;   
-
         }
     }
+    function seguirCompra(){
+        var row = $('#tbl1').datagrid('getSelected');
+        if (row){
+            url = 'accion/avanzar_compra.php?idcompra='+row.idcompra;            
+        }
+    }
+
+    function saveCompra(){
+            	//alert(" Accion");
+                $('#frm1').form('submit',{
+                    url: url,
+                    onSubmit: function(){
+                        return $(this).form('validate');
+                    },
+                    success: function(result){
+                        var result = eval('('+result+')');
+
+                        alert("Hecho ");   
+                        if (!result.respuesta){
+                            $.messager.show({
+                                title: 'Error',
+                                msg: result.errorMsg
+                            });
+                        } else {
+                            $('#dlg1').dialog('close');        // close the dialog
+                            $('#tbl1').datagrid('reload');    // reload 
+                        }
+                    }
+                });
+            }
 
 </script>
 

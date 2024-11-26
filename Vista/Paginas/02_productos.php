@@ -116,5 +116,7 @@ include_once '../Estructura/header.php';
                 console.log('Respuesta:', xhr.responseText);
             }
         });
+
+        
     });
 </script>

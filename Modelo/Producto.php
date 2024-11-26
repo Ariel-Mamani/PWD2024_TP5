@@ -301,7 +301,7 @@ class Producto extends BaseDatos{
 
 
     public function obtenerProductoPorId($productoId) {
-        $query = "SELECT nombre FROM producto WHERE id_producto = ?";
+        $query = "SELECT pronombre FROM producto WHERE idproducto = ?";
         $stmt = $this->db->prepare($query);
         $stmt->execute([$productoId]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
