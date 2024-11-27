@@ -28,7 +28,7 @@ include_once "../Estructura/header.php";
 
     <!-- Boton Agregar nuevo producto -->
     <div class="container mt-3">
-        <a href="productoNuevo.php" class="btn btn-primary" role="button">Agregar nuevo producto</a>
+        <a href="accion/productoNuevo.php" class="btn btn-primary" role="button">Agregar nuevo producto</a>
     </div>
     <br><br>
 
@@ -56,7 +56,7 @@ include_once "../Estructura/header.php";
 
     <!-- Boton Agregar nuevo producto -->
     <div class="container mt-3">
-        <a href="productoNuevo.php" class="btn btn-primary" role="button">Agregar nuevo producto</a>
+        <a href="accion/productoNuevo.php" class="btn btn-primary" role="button">Agregar nuevo producto</a>
     </div>
     <br><br>
 
