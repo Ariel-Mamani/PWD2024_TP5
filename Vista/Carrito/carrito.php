@@ -73,6 +73,9 @@ if (!$objSession->validarCompra()) {
             <!-- Guarda los datos del carrito -->
             <button type="button" id="SaveCompra" class="btn btn-primary">Finalizar Compra</button>
             <br><br>
+            <!-- Botón para cancelar la compra -->
+            <button type="button" id="cancelarCompra" class="btn btn-danger">Cancelar Compra</button>
+            <br><br>
         </div>
     </div>
 </form>
@@ -141,6 +144,28 @@ $("#SaveCompra").on('click', function() {
         },
         error: function(xhr, status, error) {
             console.error("Error al finalizar compra:", error);
+            console.log(xhr.responseText);
+        }
+    });
+});
+
+//----------------------------------------------------------
+
+$(document).on('click', '#cancelarCompra', function () {
+    var idcompra = '<?php echo $idcompra; ?>'; // Obtén el ID de la compra desde PHP
+    // Llamada AJAX
+    $.ajax({
+        url: 'accion/cancelarCompra.php',
+        method: 'POST',
+        data: { idcompra: idcompra 
+        },
+        success: function(response){
+            $('#notification-container').html('<div class="alert alert-success">Producto añadido al carrito.</div>');
+            alert('Compra cancelada con éxito');
+            location.reload();
+        },
+        error: function(xhr, status, error){
+            console.error("Error al cancelar la compra:", error);
             console.log(xhr.responseText);
         }
     });
