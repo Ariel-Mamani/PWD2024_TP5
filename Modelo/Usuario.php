@@ -11,6 +11,7 @@ class Usuario extends BaseDatos{
     private $usnombre;
     private $uspass;
     private $usmail;
+    private $usdeshabilitado;
     private $mensajeoperacion;
 
     public function __construct()
@@ -24,11 +25,12 @@ class Usuario extends BaseDatos{
     }
 
     //Este método asigna valores a las propiedades del usuario. Llama a los métodos set correspondientes para actualizar cada propiedad.
-    public function setear($idusuario, $usnombre, $uspass, $usmail){
+    public function setear($idusuario, $usnombre, $uspass, $usmail, $usdes){
         $this->setidusuario($idusuario);
         $this->setusnombre($usnombre);
         $this->setuspass($uspass);
         $this->setusmail($usmail);
+        $this->setusdeshabilitado($usdes);
     }
     // Metodo get y set ID
     public function getidusuario(){
@@ -61,6 +63,12 @@ class Usuario extends BaseDatos{
     public function setusmail($valor){
         $this->usmail = $valor;
     }
+    public function getusdeshabilitado(){
+        return $this->usdeshabilitado;
+    }
+    public function setusdeshabilitado($valor){
+        $this->usdeshabilitado = $valor;
+    }
 
     // Metodo get y set MENSAJE ERROR
     public function getmensajeoperacion(){
@@ -87,7 +95,7 @@ class Usuario extends BaseDatos{
             $res = $this->Ejecutar($sql);
             if($res > -1){
                 $row = $this->Registro();
-                $this->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail']);
+                $this->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail'], $row['usdeshabilitado']);
                 $exito = true;
             }else{
                 $this->setmensajeoperacion("Usuario->cargar: ".$this->getError());
@@ -144,7 +152,8 @@ class Usuario extends BaseDatos{
         $sql = "UPDATE usuario SET 
         usnombre = '".$this->getusnombre()."', 
         uspass = '".$this->getuspass()."', 
-        usmail = '".$this->getusmail()."' WHERE idusuario = ".$this->getidusuario();
+        usmail = '".$this->getusmail()."',
+        usdeshabilitado = null WHERE idusuario = ".$this->getidusuario();
 
         if ($this->Iniciar()) {
             if($this->Ejecutar($sql)){
@@ -265,7 +274,7 @@ class Usuario extends BaseDatos{
                     while ($row = $this->Registro()){
                         if ($row['usdeshabilitado'] == NULL ){
                             $obj = new Usuario();
-                            $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail']);
+                            $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail'], $row['usdeshabilitado'] );
                             array_push($arreglo, $obj);
                         }
                     }

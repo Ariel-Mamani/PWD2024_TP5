@@ -44,7 +44,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <?php echo $cadenaMenu;  ?>  
       <form action="<?php echo $VISTA ?>Login/verificarLogin.php" method="post" class="d-flex align-items-center ms-auto">
-        <label for="lusuario" class="labelUsuario " style="position: relative; left:auto;"><?php echo $usuario.' ('.( $objSession->getRol() <> null ? $objSession->getRol()->getroldescripcion() : "" ).')'.'<a href="'.$VISTA.'/Login/editar_registro.php" ><img src="../Imagenes/gatito.png" alt="Perfil" style="width:40px;" class="rounded-pill m-3"></a>'; ?></label>
+        <label for="lusuario" class="labelUsuario " style="position: relative; left:auto;"><?php echo $usuario.' ('.( $objSession->getRol() <> null ? $objSession->getRol()->getroldescripcion() : "" ).')'.'<a href="'.$VISTA.'/Login/editar_usuario.php" ><img src="../Imagenes/gatito.png" alt="Perfil" style="width:40px;" class="rounded-pill m-3"></a>'; ?></label>
         <input type="text" name="cerrarSession" id="cerrarSession" value="1" hidden>
         <button class="btn btn-danger" type="submit" id="btnSalir" >Salir</button>
       </form>

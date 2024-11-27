@@ -1,5 +1,5 @@
 <?php
-include_once "../../configuracion.php";
+include_once "../../../configuracion.php";
 session_start();
 $titulo = "TP 5 - Login";
 
@@ -7,7 +7,9 @@ echo "<div class='divtitulo'><h1>{$titulo}</h1>";
 $objSession = new Session();
 $objAbmUsuario = new AbmUsuario();
 $objAbmUsuarioRol = new AbmUsuarioRol();
+
 if(!empty(data_submitted())){
+
     $recibido = data_submitted();
     $param = Array();
     $param['usnombre']  = $recibido['usnombre'];

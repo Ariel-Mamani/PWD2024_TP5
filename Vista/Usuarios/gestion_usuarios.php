@@ -60,11 +60,11 @@ include_once "../Estructura/header.php";
     $('#cmb1').combobox({
         panelWidth:150,
         value:'Seleccione Tipo de usuario',
-        valueField:'idcompraestadotipo',
-        textField:'cetdescripcion',
-        url:'accion/tipo_list.php',
+        valueField:'idrol',
+        textField:'rodescripcion',
+        url:'accion/rol_list.php',
         onSelect: function(rec){
-                var url = 'accion/listar_compra.php?idcompraestadotipo='+rec.idcompraestadotipo;
+                var url = 'accion/listar_usuario.php?idrol='+rec.idrol;
                 $('#tbl1').datagrid('reload', url);
         },
     });
@@ -72,20 +72,19 @@ include_once "../Estructura/header.php";
     //Configura tbl1 como una tabla dinámica que muestra las compras en proceso.
     //Las columnas incluyen información básica: ID de compra, fecha, ID del usuario y nombre.
     $('#tbl1').datagrid({
-        title: 'Compras en proceso',
+        title: 'Usuarios',
         width: 605,
         heigth: 300,
        // fitColumns: true,
         singleSelect: true,
         striped: true,
         toolbar: '#tool1',
-        url:'accion/listar_compra.php',
+        url:'accion/listar_usuario.php',
         columns:[[
-            {field:'idcompra',title:'Id Compra', width:100, align:'center'},
-            {field:'cefechainit',title:'Fecha', width:200, align:'center'},
-            {field:'idusuario',title:'ID Usuario', width:100, align:'center'},
+            {field:'idusuario',title:'Id Usuario', width:100, align:'center'},
             {field:'usnombre',title:'Nombre', width:200, align:'center'},
-            {field:'cetdescripcion',title:'Estado', width:150, align:'center'},
+            {field:'usmail',title:'Email', width:100, align:'center'},
+            {field:'usdeshabilitadore',title:'Activo', width:200, align:'center'},
         ]]
     });
 
