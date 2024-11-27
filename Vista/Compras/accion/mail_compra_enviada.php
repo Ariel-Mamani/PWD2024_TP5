@@ -2,64 +2,73 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Random\Engine\Secure;
 
-//Incluir el autoloader de Composer
+// Incluir el autoloader de Composer
 require '../../../vendor/autoload.php';
+include_once '../../../configuracion.php';
 
-//Obtener la sesion y la informacion del usuario
-include_once '../../Estructura/header.php';
-$user = $objSession->getUsuario()->getusnombre();
-$correo = $objSession->getUsuario()->getusmail();
-$idcompra = $objSession->getCompra()->getIdCompra();
-$objAbmCompra = new AbmCompra();
-$carrito = $objAbmCompra->mostrarCompra();
+error_log("Inicio del script mail_compra_enviada.php");
 
-//Verificar si la compra es valida
-if(!$objSession->validarCompra()){
-    echo "No hay productos en el carrito.";
-    exit;
+// Obtener la sesión y la información del usuario
+$objSession = new Session();
+error_log("Se instanció Session");
+
+$user = null;
+$correo = null;
+$idcompra = null;
+
+try {
+    //$user = $data['usnombre'];
+    $correo = $objSession->getUsuario()->getusmail();
+    $idcompra = $data['idcompra'];
+    error_log("Usuario obtenido: $user, Correo: $correo, ID Compra: $idcompra");
+} catch (Exception $e) {
+    error_log("Error al obtener datos de la sesión: " . $e->getMessage());
 }
 
-//Configurar el correo
+$objAbmCompra = new AbmCompra();
+
+// Configurar el correo
 $mail = new PHPMailer(true);
-try{
-    //Configuracion del servidor SMTP
+try {
+    error_log("Inicio de configuración de PHPMailer");
+
+    // Configuración del servidor SMTP
     $mail->isSMTP();
     $mail->Host = 'smtp.mail.yahoo.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'dariofuentealba@yahoo.com.ar';
-    $mail->Password = 'nhernxxdnkyejvhf';
+    $mail->Password = 'sxdxmrvdmewzhrnj';
     $mail->SMTPSecure = 'ssl';
     $mail->Port = 465;
+    error_log("Configuración SMTP completada");
 
-    //Remitente
+    // Remitente
     $mail->setFrom('dariofuentealba@yahoo.com.ar', 'Pelitos');
-    $mail->addAddress($correo, $user); //El correo del usuario
+    $mail->addAddress($correo, $user); // El correo del usuario
+    error_log("Destinatario configurado: $correo ($user)");
 
-    //Contenido del correo
-    $mail->CharSet = 'UTF-8';  //Establecer la codificación a UTF-8, sino sale todo feo
+    // Contenido del correo
+    $mail->CharSet = 'UTF-8';  // Establecer la codificación a UTF-8, sino sale todo feo
     $mail->isHTML(true);
     $mail->Subject = 'Confirmación de Envío';
-    
-    //Crear el cuerpo del correo con los detalles de la compra
-    $body = "<h2>¡Hola, $user!</h2>";
-    $body .= "<p>Su compra ha sido enviada.</p>";
-    //$body .= "<p><b>Compra Nro:</b> $idcompra</p>";
-    //$body .= "<p><b>Productos:</b></p><ul>";
 
- /*   foreach($carrito as $item){
-        $body .= "<li>" . $item['pronombre'] . " - Cantidad: " . $item['cicantidad'] . " - Precio: $" . $item['proprecio'] . "</li>";
-    }*/
-    
-   // $body .= "</ul>";
-   // $body .= "<p><b>Total:</b> $" . number_format(($item['proprecio'] * $item['cicantidad']), 2) . "</p>";
+    // Crear el cuerpo del correo con los detalles de la compra
+    $body = "<h2>¡Hola!</h2>";
+    $body .= "<p>Su compra ha sido enviada.</p>";
     $body .= "<p>Gracias por tu compra. ¡Esperamos verte pronto!</p>";
+    error_log("Cuerpo del correo creado");
 
     $mail->Body = $body;
 
-    //Enviar el correo
+    // Enviar el correo
     $mail->send();
+    error_log("Correo enviado con éxito");
     echo 'Correo enviado con éxito';
-}catch (Exception $e){
+} catch (Exception $e) {
+    error_log("Error al enviar el correo: {$mail->ErrorInfo}");
     echo "Error al enviar el correo: {$mail->ErrorInfo}";
+} catch (Throwable $t) {
+    error_log("Error inesperado: " . $t->getMessage());
 }

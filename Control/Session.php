@@ -22,7 +22,7 @@ class Session {
         if ($this->validar()){
             $objAbmUsuario = new AbmUsuario();
             $listaUsuario = $objAbmUsuario->buscar($_SESSION);
-            if ($listaUsuario >0){
+            if (count($listaUsuario) >0){
                 $obj = $listaUsuario[0];
             }
         }
@@ -58,7 +58,7 @@ class Session {
         if ($this->validar()){
             $objAbmCompra = new AbmCompra();
             $listaCompra = $objAbmCompra->buscar($_SESSION);
-            if ($listaCompra >0){
+            if (count($listaCompra) >0){
                 $obj = $listaCompra[0];
             }
         }

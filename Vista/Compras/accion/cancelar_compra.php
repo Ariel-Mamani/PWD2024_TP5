@@ -1,6 +1,9 @@
 <?php
 include_once "../../../configuracion.php";
 $data = data_submitted();
+
+include_once 'mail_cancelacion_compra.php';
+
 $respuesta = false;
 
 if (isset($data['idcompra'])){
