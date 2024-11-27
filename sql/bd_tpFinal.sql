@@ -177,5 +177,4 @@ INSERT INTO producto (idproducto, pronombre, prodetalle, proprecio, procantstock
     (1, 'Acondicionador Garnier', 'Higiene personal', 2000, 20, 'acondicionador', NULL),
     (2, 'Shampoo Garnier', 'Higiene personal', 3000, 50, 'shampoo', NULL),
     (3, 'Tijera', 'Aseo', 4000, 10, 'tijera', NULL),
-    (4, 'Cera Barba', 'Higiene personal', 2500, 15, 'cera', NULL),
-    (5, 'Cosa', 'Higiene personal', 2500, 15, 'cosa', NULL);
+    (4, 'Cera Barba', 'Higiene personal', 2500, 15, 'cera', NULL);
