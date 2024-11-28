@@ -1,21 +1,23 @@
 <?php 
 include_once "../../../configuracion.php";
 $data = data_submitted();
+if(empty($data)){
+    $param['idrol'] = 4; //CLiente
+}else{
+    $param = $data;
+}
+
+$objAbmUsuarioRol = new AbmUsuarioRol();
+$listaUsuarioRol = $objAbmUsuarioRol->buscar($param);
 $arreglo_salida =  array();
-if(!empty($data)){
+foreach ($listaUsuarioRol as $elem ){
 
-
-$objAbmUsuario = new AbmUsuario();
-$listaUsuario = $objAbmUsuario->buscar($data);
-
-foreach ($listaUsuario as $elem ){
-
-    $nuevoElem['idusuario']      = $elem->getidusuario();
-    $nuevoElem["usnombre"]       = $elem->getusnombre();
-    $nuevoElem["usmail"]         = $elem->getusmail();
-    $nuevoElem["usdeshabilitado"]= $elem->getusdeshabilitado();
+    $nuevoElem['idusuario']      = $elem->getUsuario()->getidusuario();
+    $nuevoElem["usnombre"]       = $elem->getUsuario()->getusnombre();
+    $nuevoElem["usmail"]         = $elem->getUsuario()->getusmail();
+    $nuevoElem["usdeshabilitado"]= $elem->getUsuario()->getusdeshabilitado();
     array_push($arreglo_salida,$nuevoElem);
 }
-}
+//}
 echo json_encode($arreglo_salida);
 ?>

@@ -96,7 +96,7 @@ class Rol extends BaseDatos{
     public function insertar(){
         $resp = false;
 
-        $sql="INSERT INTO rol (roldescripcion)  VALUES ('".$this->getroldescripcion()."');";
+        $sql="INSERT INTO rol (rodescripcion)  VALUES ('".$this->getroldescripcion()."');";
 
         if ($this->Iniciar()) {
             if ($elid = $this->Ejecutar($sql)) {
@@ -119,7 +119,7 @@ class Rol extends BaseDatos{
     public function modificar(){
         $resp = false;
 
-        $sql="UPDATE rol SET roldescripcion = '".$this->getroldescripcion()."' ".
+        $sql="UPDATE rol SET rodescripcion = '".$this->getroldescripcion()."' ".
             " WHERE idrol = ".$this->getidrol();
 
         if ($this->Iniciar()) {
@@ -178,7 +178,7 @@ class Rol extends BaseDatos{
                 if($res>0){
                     while ($row = $this->Registro()){
                             $objrol= new rol();
-                            $objrol->setear($row['idrol'], $row['roldescripcion']);
+                            $objrol->setear($row['idrol'], $row['rodescripcion']);
                             array_push($arreglo, $objrol);
                     }
                 } 

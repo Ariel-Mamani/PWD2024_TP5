@@ -6,11 +6,11 @@ include_once "../Estructura/header.php";
 <h1>Gesti&oacute;n de Usuarios</h1>
 
 <div class="main-content">
-    <!-- Tabla dinamica para mostrar las compras en proceso -->
+    <!-- Tabla dinamica  -->
     <table id="tbl1"></table>
 
     <!-- Un div que contiene: -->
-    <!-- Un selector desplegable (#cmb1) para filtrar las compras por estado -->
+    <!-- Un selector desplegable (#cmb1) -->
     <div id="tool1">
         <input id="cmb1"  name="dept" style="width: 210px;" >
         <!-- Un botón para ver los detalles de la compra seleccionada, asociado a la función DetalleCompra() -->
@@ -20,11 +20,22 @@ include_once "../Estructura/header.php";
 
 <!-- dlg1: Un cuadro de diálogo que se abre para mostrar los detalles de una compra seleccionada -->
 <div id="dlg1" >
-    <!-- Tabla dinámica (tbl2) para listar los ítems de la compra -->
-    <table id="tbl2"></table>
     <!-- Formulario oculto (frm1) que se usa para enviar datos mediante POST -->
-    <form id="frm1" method="post" novalidate hidden ></form>
-
+    <form id="frm1" method="post" novalidate style="margin:0;padding:20px 50px">
+            <h3>Informaciondel Usuario</h3>
+            <div style="margin-bottom:10px">                               
+                <input name="usnombre" id="usnombre"  class="easyui-textbox" required="true" label="Nombre:" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input  name="usmail" id="usmail"  class="easyui-textbox" required="true" label="Mail:" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+             
+            </div>
+              <div style="margin-bottom:10px">
+            <input class="easyui-checkbox" name="usdeshabilitado" value="usdeshabilitado" label="Inactivo">
+        </div>
+    </form>
     <div id="tool2">
         <!-- Dos botones funcionales: 1) Cancelar Compra: Llama a cancelarCompra(). 2) Confirmar Compra: Llama a avanzarCompra() -->
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="cancelarCompra()" >Cancelar Compra</a>
@@ -82,39 +93,19 @@ include_once "../Estructura/header.php";
         url:'accion/listar_usuario.php',
         columns:[[
             {field:'idusuario',title:'Id Usuario', width:100, align:'center'},
-            {field:'usnombre',title:'Nombre', width:200, align:'center'},
-            {field:'usmail',title:'Email', width:100, align:'center'},
-            {field:'usdeshabilitadore',title:'Activo', width:200, align:'center'},
-        ]]
-    });
-
-    //Configura tbl2 para mostrar los detalles de una compra (ítems, productos, y cantidades).
-    $('#tbl2').datagrid({
-        width: 592,
-        heigth: 250,
-        fitColumns: false,
-        singleSelect: true,
-        striped: true,
-        toolbar: '#tool2',
-      //  url:'accion/detalle_compra.php',
-        columns:[[
-            {field:'idcompraitem',title:'ID Item', width:70, align:'center'},
-            {field:'idproducto',title:'ID Pr', width:70, align:'center'},
-            {field:'pronombre',title:'Producto', width:380, align:'center'},
-            {field:'cicantidad',title:'Cantidad', width:70, align:'center'},
+            {field:'usnombre',title:'Nombre', width:250, align:'center', sortable:true, order:'asc'},
+            {field:'usmail',title:'Email', width:250, align:'center'},
         ]]
     });
 
     //Muestra los detalles de la compra seleccionada al abrir dlg1 y recarga los ítems de la compra.
-    function DetalleCompra(){
+    function editar(){
         var row = $('#tbl1').datagrid('getSelected');
-        var titulo = row.cetdescripcion;
+        var titulo = 'Editar Usuario';
         if (row){
-           // alert("Enviando: " + row['idcompra']);  
-            url = 'accion/detalle_compra.php?idcompra='+row.idcompra;    
-
-            $('#dlg1').dialog('open').dialog('center').dialog('setTitle', 'Compra en Estado = "' +titulo+'"');
-            $('#tbl2').datagrid('reload', url);
+           $('#dlg1').dialog('open').dialog('center').dialog('setTitle', titulo);
+           $('#frm1').form('load', row);
+           url = 'accion/editar_usuario.php?idusuario='+row.idusuario;    
         }
     }
 
@@ -146,7 +137,8 @@ include_once "../Estructura/header.php";
                 return $(this).form('validate');
             },
             success: function(result){
-                var result = eval('('+result+')');  
+                var result = eval('('+result+')'); 
+                 
                 if (!result.respuesta){
                     $.messager.show({
                         title: 'Error',
