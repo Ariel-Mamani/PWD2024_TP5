@@ -392,15 +392,18 @@ public function avanzarCompra($param){
                 $objCompraEstado->setCeFechaFin(date("Y-m-d h:i:sa"));
                 if ($objCompraEstado->modificar()){
                     $estado = $objCompraEstado->getCompraEstadoTipo()->getIdCompraEstadoTipo();
-                    if($estado == 1){      $estado =2;
+                    if($estado == 1){      $estado = 2;
                     }elseif($estado == 2){ $estado = 4;
-                    }elseif($estado == 4){ $estado = 5;}
-                    $objAbmCompraEstado = new AbmCompraEstado();
-                    $param['idcompraestadotipo'] = $estado;
-                    $param['cefechainit'] = date("Y-m-d h:i:sa");
-                    $param['cefechafin'] = '';
-                    if($objAbmCompraEstado->alta($param)){
-                        $resp = true;
+                    }elseif($estado == 4){ $estado = 5;
+                    }elseif($estado == 5){ $estado = 6;}
+                    if($estado < 6){
+                        $objAbmCompraEstado = new AbmCompraEstado();
+                        $param['idcompraestadotipo'] = $estado;
+                        $param['cefechainit'] = date("Y-m-d h:i:sa");
+                        $param['cefechafin'] = '';
+                        if($objAbmCompraEstado->alta($param)){
+                            $resp = true;
+                        }
                     }
                 }
             }

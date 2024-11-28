@@ -15,6 +15,7 @@ include_once "../Estructura/header.php";
         <input id="cmb1"  name="dept" style="width: 210px;" >
         <!-- Un botón para ver los detalles de la compra seleccionada, asociado a la función DetalleCompra() -->
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editar()" style="width:150px">Editar Usuario</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editarRol()" style="width:150px">Cambiar Rol</a>
     </div>             
 </div>
 
@@ -29,25 +30,39 @@ include_once "../Estructura/header.php";
             <div style="margin-bottom:10px">
                 <input  name="usmail" id="usmail"  class="easyui-textbox" required="true" label="Mail:" style="width:100%">
             </div>
-            <div style="margin-bottom:10px">
-             
+            <div style="margin-bottom:10px">          
             </div>
               <div style="margin-bottom:10px">
             <input class="easyui-checkbox" name="usdeshabilitado" value="usdeshabilitado" label="Inactivo">
         </div>
     </form>
-    <div id="tool2">
-        <!-- Dos botones funcionales: 1) Cancelar Compra: Llama a cancelarCompra(). 2) Confirmar Compra: Llama a avanzarCompra() -->
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="cancelarCompra()" >Cancelar Compra</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="avanzarCompra()">Confirmar</a>
-    </div>
 </div>
 
 <!-- Botones del formulario -->
-<!-- Botones de dialogo para: 1)Aceptar: Ejecuta saveCompra(), que envía el formulario frm1. 2)Cancelar: Cierra el cuadro de diálogo dlg1 -->
+<!-- Botones de dialogo para: 1)Aceptar: Ejecuta saveUsuario(), que envía el formulario frm1. 2)Cancelar: Cierra el cuadro de diálogo dlg1 -->
 <div id="dlg-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCompra()" style="width:90px">Aceptar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUsuario()" style="width:90px">Aceptar</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg1').dialog('close')" style="width:90px">Cancelar</a>
+</div>
+
+<!-- dlg1: Un cuadro de diálogo que se abre para mostrar los detalles de una compra seleccionada -->
+<div id="dlg2" >
+    <!-- Formulario oculto (frm1) que se usa para enviar datos mediante POST -->
+    <form id="frm2" method="post" novalidate style="margin:0;padding:20px 50px">
+        <h3>Informaciondel Usuario</h3>
+        <div style="margin-bottom:10px">                               
+            <input name="usnombre" id="usnombre"  class="easyui-textbox" required="true" label="Nombre:" style="width:100%" readonly>
+        </div>
+        <div style="margin-bottom:10px"></div>
+        <div style="margin-bottom:10px">
+            <input id="cmb2"  name="dept" style="width: 210px;" >
+        </div>
+    </form>
+</div>
+
+<div id="dlg-buttons2">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUsuarioRol()" style="width:90px">Aceptar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg2').dialog('close')" style="width:90px">Cancelar</a>
 </div>
 
 <script type="text/javascript">
@@ -66,6 +81,17 @@ include_once "../Estructura/header.php";
 //        href: 'get_content.php'
     });
 
+    $('#dlg2').dialog({
+        title: 'Cambiar Rol',
+        width: 600,
+        height: 300,
+        closed: true,
+        cache: false,
+        modal: true,
+        border:'thin',
+        buttons:'#dlg-buttons2',
+    });
+
     //cmb1 es un desplegable dinámico que carga sus opciones desde tipo_list.php.
     //Al seleccionar un estado, recarga la tabla tbl1 con datos filtrados según el estado seleccionado.
     $('#cmb1').combobox({
@@ -78,6 +104,14 @@ include_once "../Estructura/header.php";
                 var url = 'accion/listar_usuario.php?idrol='+rec.idrol;
                 $('#tbl1').datagrid('reload', url);
         },
+    });
+
+    $('#cmb2').combobox({
+        panelWidth:150,
+        value:'Seleccione Tipo de usuario',
+        valueField:'idrol',
+        textField:'rodescripcion',
+        url:'accion/rol_list.php',
     });
 
     //Configura tbl1 como una tabla dinámica que muestra las compras en proceso.
@@ -109,27 +143,19 @@ include_once "../Estructura/header.php";
         }
     }
 
-    //Muestra un mensaje de confirmación y genera un enlace para avanzar el estado de una compra.
-    function avanzarCompra(){
+    function editarRol(){
         var row = $('#tbl1').datagrid('getSelected');
+        var titulo = 'Cambiar Rol del Usuario';
         if (row){
-            alert("Seguro de cambiar la compra N° " + row['idcompra']);
-            url = 'accion/avanzar_compra.php?idcompra='+row.idcompra;   
-        }
-    }
-
-    //Muestra un mensaje de confirmación para cancelar la compra seleccionada.
-    function cancelarCompra(){
-        var row = $('#tbl1').datagrid('getSelected');
-        if (row){
-            alert("Seguro de cancelar la compra N° " + row['idcompra']);
-            url = 'accion/cancelar_compra.php?idcompra='+row.idcompra;   
+           $('#dlg2').dialog('open').dialog('center').dialog('setTitle', titulo);
+           $('#frm2').form('load', row);
+           url = 'accion/cambiar_rol.php?idusuario='+row.idusuario+'&idrol='+row.idrol;    
         }
     }
 
     //Envia los datos del formulario oculto (frm1) al servidor.
     //Si tiene éxito, cierra el diálogo y recarga la tabla tbl1.
-    function saveCompra(){
+    function saveUsuario(){
     	//alert(" Accion");
         $('#frm1').form('submit',{
             url: url,
@@ -146,6 +172,29 @@ include_once "../Estructura/header.php";
                     });
                 } else {
                     $('#dlg1').dialog('close');        // close the dialog
+                    $('#tbl1').datagrid('reload');    // reload 
+                }
+            }
+        });
+    }
+
+    function saveUsuarioRol(){
+    	//alert(" Accion");
+        $('#frm2').form('submit',{
+            url: url,
+            onSubmit: function(){
+                return $(this).form('validate');
+            },
+            success: function(result){
+                var result = eval('('+result+')'); 
+                 
+                if (!result.respuesta){
+                    $.messager.show({
+                        title: 'Error',
+                        msg: result.errorMsg
+                    });
+                } else {
+                    $('#dlg2').dialog('close');        // close the dialog
                     $('#tbl1').datagrid('reload');    // reload 
                 }
             }
