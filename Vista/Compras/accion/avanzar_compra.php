@@ -2,7 +2,6 @@
 include_once "../../../configuracion.php";
 $data = data_submitted();
 
-include_once 'mail_compra_enviada.php';
 
 $respuesta = false;
 
@@ -11,7 +10,7 @@ if (isset($data['idcompra'])){
     $respuesta = $objAbmCompra->avanzarCompra($data);
     if (!$respuesta){
         $mensaje = " La accion AVANZAR No pudo concretarse";
-
+        
     }
     
     $retorno['respuesta'] = $respuesta;
@@ -20,4 +19,5 @@ if (isset($data['idcompra'])){
     }
 }
 echo json_encode($retorno);
+include_once 'mail_compra_enviada.php';
 ?>

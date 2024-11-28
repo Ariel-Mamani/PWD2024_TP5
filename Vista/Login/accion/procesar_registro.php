@@ -13,8 +13,7 @@ if(!empty(data_submitted())){
     $recibido = data_submitted();
     $param = Array();
     $param['usnombre']  = $recibido['usnombre'];
-    $param['usmail']    = $recibido['usmail'];  
-    $param['uspass']    = $recibido['uspass'];  
+    $param['usmail']    = $recibido['usmail'];   
     $recibido['usdeshabilitado'] = NULL;
    // $listaUsuario = $objAbmUsuario->buscar($param);
     if($objAbmUsuario->alta($recibido)){

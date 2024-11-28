@@ -367,6 +367,12 @@ public function cancelarCompra($param){
                         $param['cefechafin'] = '';
                         if($objAbmCompraEstado->alta($param)){
                             $resp = true;
+                       /*     
+                            $objAbmCompraItem = new AbmCompraItem();
+                            $listaItem = $objAbmCompraItem->buscar($param);*/
+
+
+
                         }
                     }
                 }
