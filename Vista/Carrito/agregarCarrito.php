@@ -11,11 +11,16 @@ if (!$objSession->validarCompra()){
 
 if(!empty($datos)){
     if($abmCompra->agregarProducto($datos)){
-        $respuesta = "producto agregado al carrito";
+        echo json_encode(['success' => true]);
     }else{
-        $respuesta = "No se agrego al carrito";
+        echo json_encode(['success' => false, 'message'=> 'No se pudo eliminar el producto.']);
     }
+}else{
+    echo json_encode(['success'=> false, 'message' => 'Metodo no  permitido']);
 }
-echo json_encode($respuesta);
+
+
+
+
 ?>
 
