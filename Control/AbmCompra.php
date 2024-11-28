@@ -183,6 +183,7 @@ class AbmCompra{
         $param['idcompra'] = $objSession->getCompra()->getIdCompra();
         $objAbmProducto = new AbmProducto();
         $listaProducto = $objAbmProducto->buscar($param);
+        $cant = 0;
         if(count($listaProducto) > 0){
             $objProducto = $listaProducto[0];
             $stock = $objProducto->getProStock();
@@ -192,17 +193,17 @@ class AbmCompra{
             if(count($listaCompraItem) > 0){
                 $objCompraItem = $listaCompraItem[0]; 
                 $cant = $objCompraItem->getCiCantidad();
-                if($param['cicantidad'] > $cant){
-                    $nuevaCant = $param['cicantidad'] - $cant;
+                if($nuevaCant >= $cant){
+                    $nuevaCant = $nuevaCant - $cant;
                 }else{
-                    $nuevaCant = $cant - $param['cicantidad']; 
+                    $nuevaCant = $cant - $nuevaCant; 
                 }
-                $objCompraItem->setCiCantidad($nuevaCant);
-                if($objCompraItem->modificar()){
-                    if($stock > $nuevaCant){
-                        $stock -= $nuevaCant;
-                        $objProducto->setProStock($stock);
-                        if ($objProducto->modificar()){
+                if($stock >= $nuevaCant){
+                    $stock -= $nuevaCant;
+                    $objProducto->setProStock($stock);
+                    if ($objProducto->modificar()){
+                        $objCompraItem->setCiCantidad($nuevaCant);
+                        if($objCompraItem->modificar()){
                             $resp = true;
                         }
                     }

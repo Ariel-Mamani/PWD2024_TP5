@@ -1,7 +1,6 @@
 <?php 
 include_once "../../../configuracion.php";
 $data = data_submitted();
-//$objControl = new AbmCompraEstadoTipo();
 $objControl = new AbmRol();
 $list = $objControl->buscar(NULL);
 $arreglo_salida =  array();

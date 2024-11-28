@@ -121,13 +121,18 @@ $(document).on('blur', '.cantidad-producto', function() {
             idproducto: idProducto 
         },
         success: function(response) {
-            $('#notification-container').html('<div class="alert alert-success">Producto añadido al carrito.</div>');
-            alert('El producto fue añadido con éxito');
-        },
-        error: function(xhr, status, error) {
-            console.error("Error al añadir al carrito:", error);
-            console.log(xhr.responseText);
-        }
+                if (response.success) {
+                    // Eliminar la fila de la tabla
+                 //   $('button[data-id="' + idProducto + '"]').closest('tr').remove();
+                    alert('Producto cargado con éxito.');
+                } else {
+                    alert('Error al cargar el producto: ' + response.message);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error al cargar el producto:', textStatus, errorThrown);
+                alert('Error al cargar el producto. Inténtalo de nuevo.');
+            }
     });
 });
 

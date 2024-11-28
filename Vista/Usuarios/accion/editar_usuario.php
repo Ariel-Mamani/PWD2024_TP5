@@ -7,17 +7,13 @@ if (isset($data['idusuario'])){
     $respuesta = $objAbmUsuario->modificacion($data);
     
     if (!$respuesta){
-
-        $sms_error = " La accion  MODIFICACION No pudo concretarse";
-        
+        $sms_error = " La accion  MODIFICACION No pudo concretarse";       
     }else $respuesta =true;
     
 }
 $retorno['respuesta'] = $respuesta;
-if (isset($mensaje)){
-    
-    $retorno['errorMsg']=$sms_error;
-    
+if (isset($mensaje)){   
+    $retorno['errorMsg']=$sms_error;   
 }
 echo json_encode($retorno);
 ?>

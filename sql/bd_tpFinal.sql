@@ -99,6 +99,8 @@ INSERT INTO menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VAL
     (40, 'Graficos', '', null, null),
     (50, 'Ventas', '', null, null),
     (60, 'Nosotros', '', null, null),
+
+    (11, 'Gestion de usuarios', 'Usuarios/gestion_usuarios.php', 10, null),
         
     (21, 'Productos', 'Producto/Productos_lista.php', 20, null),
     (22, '', 'Producto/ProductoNuevo.php', 20, null),
@@ -145,7 +147,7 @@ INSERT INTO rol (idrol, rodescripcion) VALUES
 
 DELETE FROM menurol;
 INSERT INTO menurol (idmenu, idrol) VALUES 
-    (10, 1), (20, 1), (30, 1), (40, 1), (50, 1), 
+    (10, 1), (20, 1), (30, 1), (40, 1), (50, 1), (11, 1),
     (21, 1), (22, 1), (23, 1), (24, 1), (25, 1), (31, 1), (32, 1), (41, 1), (42, 1), (43, 1), (51, 1),
     (71, 1), (72, 1), (73, 1), (74, 1), (75, 1), (76, 1), (77, 1), (78, 1), (84, 1),   
     (100, 1), (100, 2), (100, 3), (100, 4),
