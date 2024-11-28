@@ -14,7 +14,9 @@ if(!empty(data_submitted())){
     $param = Array();
     $param['usnombre']  = $recibido['usnombre'];
     $param['usmail']    = $recibido['usmail'];  
-    $listaUsuario = $objAbmUsuario->buscar($param);
+    $param['uspass']    = $recibido['uspass'];  
+    $recibido['usdeshabilitado'] = NULL;
+   // $listaUsuario = $objAbmUsuario->buscar($param);
     if($objAbmUsuario->alta($recibido)){
         // Cuando se cargue el usuario lo busco
         $usuario = $objAbmUsuario->buscar($param);
@@ -29,11 +31,10 @@ if(!empty(data_submitted())){
     }else{
         $mensaje = $objSession->getMensaje();
         echo "<h1>No</h1>";
-        header("Location: login.php");
+        header("Location: ".$VISTA."Login/login.php");
         die();
     }
 }
 
-include_once '../Estructura/header_N.php';
 
 ?>

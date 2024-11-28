@@ -40,9 +40,10 @@ class AbmUsuario{
         if( array_key_exists('idusuario',$param) and 
             array_key_exists('usnombre',$param) and 
             array_key_exists('uspass',$param) and 
-            array_key_exists('usmail',$param)){
+            array_key_exists('usmail',$param) and 
+            array_key_exists('usdeshabilitado',$param)){
             $objUsuario = new Usuario();
-            $objUsuario->setear($param['idusuario'], $param['usnombre'], $param['uspass'], $param['usmail']);
+            $objUsuario->setear($param['idusuario'], $param['usnombre'], $param['uspass'], $param['usmail'], $param['deshabilitado']);
         }
         return $objUsuario;
     }
@@ -59,9 +60,10 @@ class AbmUsuario{
         
         if( array_key_exists('idusuario',$param) and 
             array_key_exists('usnombre',$param) and 
-            array_key_exists('usmail',$param)){
+            array_key_exists('usmail',$param) and 
+            array_key_exists('usdeshabilitado',$param)){
             $objUsuario = new Usuario();
-            $objUsuario->setear($param['idusuario'], $param['usnombre'], null, $param['usmail']);
+            $objUsuario->setear($param['idusuario'], $param['usnombre'], null, $param['usmail'], $param['deshabilitado']);
         }
         return $objUsuario;
     }
@@ -78,7 +80,7 @@ class AbmUsuario{
         if( array_key_exists('idusuario',$param) and 
             array_key_exists('uspass',$param)){
             $objUsuario = new Usuario();
-            $objUsuario->setear($param['idusuario'], null, $param['uspass'], null);
+            $objUsuario->setear($param['idusuario'], null, $param['uspass'], null, null);
         }
         return $objUsuario;
     }
@@ -94,7 +96,7 @@ class AbmUsuario{
         
         if( isset($param['idusuario']) ){
             $objUsuario = new Usuario();
-            $objUsuario->setear($param['idusuario'], null, null, null);
+            $objUsuario->setear($param['idusuario'], null, null, null, null);
         }
         return $objUsuario;
     }
